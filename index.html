@@ -2634,11 +2634,22 @@ function showDayDetail(dateStr) {
       <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--clay);margin:0 0 6px;">📋 ${dayResas.length} réservation${dayResas.length>1?'s':''}</p>
       ${dayResas.map(r => {
         const names = (r.participants||[]).map(p=>p.name||p).filter(Boolean).join(', ');
-        return `<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);margin-bottom:4px;font-size:12.5px;">
-          <span style="width:10px;height:10px;border-radius:50%;background:${r.couleur||'#d1d5db'};flex-shrink:0;"></span>
-          <strong>${r.groupe||'—'}</strong>
-          ${names ? `<span style="color:#7a6a54;">· ${names}</span>` : ''}
-          ${r.hebergement ? `<span style="margin-left:auto;color:#9c8a6a;">${r.hebergement}</span>` : ''}
+        const rid = 'rb-' + (r.id || Math.random().toString(36).slice(2));
+        const emails = (r.participants||[]).map(p=>p.email).filter(Boolean).join(', ');
+        return `<div style="border:1.5px solid var(--line);border-radius:10px;margin-bottom:5px;overflow:hidden;">
+          <div onclick="_toggleResaDet('${rid}')" style="display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;background:var(--card);" onmouseover="this.style.background='#fdf4ed'" onmouseout="this.style.background='var(--card)'">
+            <span style="width:11px;height:11px;border-radius:50%;background:${r.couleur||'#d1d5db'};flex-shrink:0;border:2px solid rgba(0,0,0,.1);"></span>
+            <div style="flex:1;min-width:0;font-size:13px;"><strong>${r.groupe||'—'}</strong>${names ? " · "+names : ""}</div>
+            <span id="${rid}-chev" style="color:#9c8a6a;font-size:11px;transition:transform .2s;">▾</span>
+          </div>
+          <div id="${rid}" style="display:none;padding:10px 13px;background:var(--cream);border-top:1px solid var(--line);font-size:12.5px;line-height:1.9;color:var(--ink);">
+            ${r.hebergement ? '<div>🛏️ ' + r.hebergement + '</div>' : ''}
+            ${r.dateArrivee ? '<div>📅 ' + r.dateArrivee + (r.dateDepart && r.dateDepart !== r.dateArrivee ? ' → ' + r.dateDepart : '') + '</div>' : ''}
+            ${names ? '<div>👥 ' + names + (emails ? ' · ' + emails : '') + '</div>' : ''}
+            ${r.activites ? '<div>🌿 ' + r.activites + '</div>' : ''}
+            ${r.autreIdee ? '<div>💡 ' + r.autreIdee + '</div>' : ''}
+            ${r.message ? '<div>💬 ' + r.message + '</div>' : ''}
+            ${adminMode ? '<button onclick="event.stopPropagation();_deletResaConfirm(' + JSON.stringify(r.id) + ')" style="margin-top:8px;background:none;border:1px solid #a32d2d;color:#a32d2d;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;font-weight:600;">✕ Supprimer</button>' : ''}
         </div>`;
       }).join('')}
     </div>`;
@@ -2680,6 +2691,19 @@ function showDayDetail(dateStr) {
   document.getElementById('cal-detail').classList.add('visible');
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   if (calView === 'month') renderMonthGrid();
+}
+
+function _deletResaConfirm(id) {
+  if (confirm('Supprimer cette réservation ?')) _deleteResa(id);
+}
+
+function _toggleResaDet(id) {
+  const body = document.getElementById(id);
+  const chev = document.getElementById(id + '-chev');
+  if (!body) return;
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  if (chev) chev.style.transform = isOpen ? '' : 'rotate(180deg)';
 }
 
 function _toggleAcc(header) {
@@ -2766,23 +2790,6 @@ function linkify(text) {
     .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
 
-function _toggleAcc(id) {
-  const body = document.getElementById(id + '-body');
-  const chev = document.getElementById(id + '-chev');
-  if (!body) return;
-  const isOpen = body.classList.contains('open');
-  // Fermer tous les autres accordéons du même parent
-  body.closest('.day-events-list')?.querySelectorAll('.evt-accordion-body').forEach(b => {
-    b.classList.remove('open');
-  });
-  body.closest('.day-events-list')?.querySelectorAll('.evt-acc-chevron').forEach(ch => {
-    ch.style.transform = '';
-  });
-  if (!isOpen) {
-    body.classList.add('open');
-    if (chev) chev.style.transform = 'rotate(180deg)';
-  }
-}
 
 async function _deleteResa(id) {
   if (!confirm('Supprimer cette réservation ?')) return;
@@ -2805,17 +2812,6 @@ function _openResaFromEvent(evtId) {
   if (e) openResaForEvent(e);
 }
 
-function _toggleAccordion(el) {
-  const body = el.querySelector('.evt-accordion-body');
-  const chev = el.querySelector('.evt-acc-chevron');
-  if (!body) return;
-  const isOpen = body.classList.contains('open');
-  el.closest('div[id="detail-grid"]')?.querySelectorAll('.evt-accordion-body').forEach(b => {
-    b.classList.remove('open');
-    b.parentElement?.querySelector('.evt-acc-chevron')?.classList.remove('open');
-  });
-  if (!isOpen) { body.classList.add('open'); chev?.classList.add('open'); }
-}
 
 function section(title, content) {
   return `<div class="cal-detail-section"><h4>${title}</h4>${content}</div>`;
@@ -2849,6 +2845,7 @@ document.getElementById('detail-close-btn')?.addEventListener('click', () => {
 function openResaForEvent(evt) {
   document.getElementById('resa-section-title').textContent = '→ Événement sélectionné : ' + evt.title;
   document.getElementById('resa-evt-name').value = evt.title;
+  document.getElementById('resa-evt-name').dataset.evtid = evt.id || '';
   const debutEl = document.getElementById('resa-date-debut');
   const finEl = document.getElementById('resa-date-fin');
   if (debutEl) debutEl.value = evt.dateStart || '';
@@ -3029,6 +3026,21 @@ const HEBERGEMENTS = {
 
 let calReservations = [];
 
+
+// Calcule le taken pour un événement depuis les réservations
+function getTakenForEvent(evt) {
+  if (!evt) return 0;
+  return calReservations
+    .filter(r => r.evenementId === evt.id || (r.evenement && r.evenement === evt.title))
+    .reduce((sum, r) => sum + ((r.participants||[]).length || 1), 0);
+}
+function syncTakenFromReservations() {
+  calEvents.forEach(e => {
+    const n = getTakenForEvent(e);
+    if (n > 0) e.taken = n;
+  });
+}
+
 async function loadReservations() {
   try {
     const r = await fetch('/.netlify/functions/data-api?type=reservations');
@@ -3054,8 +3066,9 @@ function getHebergementDispo(startDate, endDate) {
     if (hb === 'Chambre 1 (2 lits 2 places)') dispo.ch1++;
     if (hb === 'Chambre 2 (1 lit 2 places)') dispo.ch2++;
     if (hb === 'Chambre 3 (1 lit 2 places, petite)') dispo.ch3++;
-    if (hb === 'Couchage extra Chambre 1') dispo.cs1--;
-    if (hb === 'Couchage extra Chambre 2') dispo.cs2--;
+    const np = (r.participants||[]).length || 1;
+    if (hb === 'Couchage extra Chambre 1') dispo.cs1 -= np;
+    if (hb === 'Couchage extra Chambre 2') dispo.cs2 -= np;
   });
   return dispo;
 }
@@ -3146,7 +3159,25 @@ async function loadDispos() {
 // Charger les dispos au démarrage
 loadDispos().then(() => renderCalendar());
 // Charger les réservations
-loadReservations().then(() => { _updateHebergementDispo(); renderCalendar(); });
+loadReservations().then(() => { syncTakenFromReservations(); _updateHebergementDispo(); renderCalendar(); });
+
+
+// Event delegation : accordéons événements + réservations dans le panneau détail
+document.getElementById('cal-detail')?.addEventListener('click', function(e) {
+  const toggle = e.target.closest('[data-toggle]');
+  if (toggle) { e.stopPropagation(); _toggleAcc(toggle.dataset.toggle); return; }
+  const resaToggle = e.target.closest('[data-resa-toggle]');
+  if (resaToggle) {
+    e.stopPropagation();
+    const body = document.getElementById(resaToggle.dataset.resaToggle);
+    const chev = resaToggle.querySelector('.resa-chev');
+    if (body) {
+      const open = body.style.display !== 'none' && body.style.display !== '';
+      body.style.display = open ? 'none' : 'block';
+      if (chev) chev.style.transform = open ? '' : 'rotate(180deg)';
+    }
+  }
+});
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
@@ -3607,6 +3638,7 @@ if (resaForm) {
 
     const activites = [...this.querySelectorAll('input[name="activites"]:checked')].map(el => el.value).join(', ');
     const evenement = document.getElementById('resa-evt-name')?.value || '';
+    const evenementId = document.getElementById('resa-evt-name')?.dataset?.evtid || '';
     const dateArrivee = document.getElementById('resa-date-debut')?.value || '';
     const dateDepart = document.getElementById('resa-date-fin')?.value || '';
     const autreIdee = document.getElementById('activite-proposee')?.value || '';
