@@ -83,8 +83,8 @@ export default async function handler(req, context) {
       return new Response(JSON.stringify({ error: "JSON invalide" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
     const adminPw = process.env.ADMIN_PASSWORD || "MGcastelboun2026";
-    const isPublicResa = type === "reservations" && body.password === "_public_resa_";
-    if (!isPublicResa && body.password !== adminPw) {
+    // Les réservations sont publiques (formulaire) ; tout le reste nécessite le mot de passe admin
+    if (type !== "reservations" && body.password !== adminPw) {
       return new Response(JSON.stringify({ error: "Mot de passe incorrect" }), { status: 401, headers: { "Content-Type": "application/json" } });
     }
     await store.setJSON(type, body.data);
