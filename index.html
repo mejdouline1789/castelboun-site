@@ -746,6 +746,26 @@
     .cal-month-label { min-width: auto; }
   }
 
+  /* ===== HÉBERGEMENT SELECT ===== */
+  #opt-ch1:disabled, #opt-ch2:disabled, #opt-ch3:disabled, #opt-cs1:disabled, #opt-cs2:disabled { color: #999; }
+
+  /* ===== ACCORDÉON ÉVÉNEMENTS ===== */
+  .day-events-list { display: flex; flex-direction: column; gap: 8px; }
+  .evt-accordion { border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--card); transition: box-shadow .15s; }
+  .evt-accordion:hover { box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+  .evt-accordion-header { display: flex; align-items: center; gap: 10px; padding: 13px 15px; cursor: pointer; user-select: none; }
+  .evt-acc-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 2px solid rgba(0,0,0,.12); }
+  .evt-acc-title { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .evt-acc-meta { font-size: 11px; color: #9c8a6a; margin-top: 2px; }
+  .evt-acc-chevron { font-size: 12px; color: #9c8a6a; transition: transform .2s; flex-shrink: 0; }
+  .evt-accordion-body { display: none; padding: 0 15px 14px; font-size: 13.5px; line-height: 1.65; color: var(--ink); border-top: 1px solid var(--line); background: var(--cream); padding-top: 12px; }
+  .evt-accordion-body.open { display: block; }
+
+  /* ===== RÉSERVATIONS DANS DÉTAIL ===== */
+  .resa-group-header { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--card); border: 1.5px solid var(--line); border-radius: 10px; margin-bottom: 5px; font-size: 13px; }
+  .resa-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; border-radius: 4px; padding: 2px 6px; margin: 1px 2px 1px 0; cursor: default; }
+  .resa-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
 </style>
 </head>
 <body>
@@ -1636,44 +1656,25 @@
 
         <!-- Hébergement -->
         <div class="resa-field">
-          <label>Mode d'hébergement</label>
-          <div id="hebergement-options" style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
-            <label class="hberg-option" id="hb-ch1">
-              <input type="radio" name="hbergement-choice" value="Chambre 1 (2 lits 2 places)"> 
-              <span class="hb-label">🛏️ Chambre 1 — 2 lits 2 places</span>
-              <span class="hb-dispo" id="hb-ch1-dispo"></span>
-            </label>
-            <label class="hberg-option" id="hb-ch2">
-              <input type="radio" name="hbergement-choice" value="Chambre 2 (1 lit 2 places)">
-              <span class="hb-label">🛏️ Chambre 2 — 1 lit 2 places</span>
-              <span class="hb-dispo" id="hb-ch2-dispo"></span>
-            </label>
-            <label class="hberg-option" id="hb-ch3">
-              <input type="radio" name="hbergement-choice" value="Chambre 3 (1 lit 2 places, petite)">
-              <span class="hb-label">🛏️ Chambre 3 — 1 lit 2 places (petite)</span>
-              <span class="hb-dispo" id="hb-ch3-dispo"></span>
-            </label>
-            <label class="hberg-option">
-              <input type="radio" name="hbergement-choice" value="Couchage extra Chambre 1">
-              <span class="hb-label">🛌 Couchage extra Ch.1 <span id="hb-cs1-dispo" style="color:#9c8a6a;font-size:12px;"></span></span>
-            </label>
-            <label class="hberg-option">
-              <input type="radio" name="hbergement-choice" value="Couchage extra Chambre 2">
-              <span class="hb-label">🛌 Couchage extra Ch.2 <span id="hb-cs2-dispo" style="color:#9c8a6a;font-size:12px;"></span></span>
-            </label>
-            <label class="hberg-option">
-              <input type="radio" name="hbergement-choice" value="Camping">
-              <span class="hb-label">⛺ Camping (places illimitées)</span>
-            </label>
-            <label class="hberg-option">
-              <input type="radio" name="hbergement-choice" value="Hôtel">
-              <span class="hb-label">🏨 Hôtel (à réserver par vos soins)</span>
-            </label>
-            <label class="hberg-option">
-              <input type="radio" name="hbergement-choice" value="Autre hébergement">
-              <span class="hb-label">❓ Autre</span>
-            </label>
-          </div>
+          <label for="resa-hebergement">Mode d'hébergement</label>
+          <select id="resa-hebergement" style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;font-family:'Inter',sans-serif;">
+            <option value="">— Choisir —</option>
+            <optgroup label="🛏️ Chambres">
+              <option value="Chambre 1 (2 lits 2 places)" id="opt-ch1">Chambre 1 — 2 lits 2 places</option>
+              <option value="Chambre 2 (1 lit 2 places)" id="opt-ch2">Chambre 2 — 1 lit 2 places</option>
+              <option value="Chambre 3 (1 lit 2 places, petite)" id="opt-ch3">Chambre 3 — 1 lit 2 places (petite)</option>
+            </optgroup>
+            <optgroup label="🛌 Couchages extra">
+              <option value="Couchage extra Chambre 1" id="opt-cs1">Couchage extra Ch.1 (4 dispo)</option>
+              <option value="Couchage extra Chambre 2" id="opt-cs2">Couchage extra Ch.2 (4 dispo)</option>
+            </optgroup>
+            <optgroup label="🏕️ Autres">
+              <option value="Camping">⛺ Camping (places illimitées)</option>
+              <option value="Hôtel">🏨 Hôtel (à réserver par vos soins)</option>
+              <option value="Autre hébergement">❓ Autre</option>
+            </optgroup>
+          </select>
+          <p style="font-size:11px;color:#9c8a6a;margin:4px 0 0;" id="hberg-dispo-msg"></p>
         </div>
 
         <!-- Activités -->
@@ -2618,45 +2619,83 @@ function showDayDetail(dateStr) {
   const evts = eventsForDate(dateStr);
   if (!evts.length) return;
   selectedDate = dateStr;
-  if (evts.length === 1) {
-    showDetail(evts[0].id);
-    return;
-  }
-  // Plusieurs événements : afficher la liste
-  const dsp = getDispoForDate(dateStr);
-  const dspMsg = dsp ? `<div style="background:${dsp==='normandie'?'rgba(29,158,117,0.1)':'var(--cream)'};border-radius:8px;padding:10px 14px;font-size:13.5px;color:var(--ink);margin-bottom:12px;">${DISPO_ICONS[dsp]||''} <strong>${DISPO_LABELS[dsp]||dsp}</strong></div>` : '';
   document.getElementById('detail-title').textContent = formatDateFR(dateStr);
-  document.getElementById('detail-dates').textContent = `${evts.length} événements ce jour`;
-  let grid = `<div class="day-events-list" style="grid-column:1/-1">`;
-  evts.forEach(e => {
-    const dotColor = TYPE_COLORS[e.type] || '#9c8a6a';
-    const isFull = e.status === 'full' || (e.max && (e.taken||0) >= e.max);
-    grid += `<div class="evt-accordion" onclick="_toggleAccordion(this)">
-      <div class="evt-accordion-header">
-        <div class="evt-acc-dot" style="background:${dotColor}"></div>
-        <span class="evt-acc-title">${e.title}</span>
-        <span class="evt-acc-meta">${e.time||TYPE_LABELS[e.type]||''}${isFull?' · Complet':''}</span>
-        <span class="evt-acc-chevron">▾</span>
-      </div>
-      <div class="evt-accordion-body">
-        ${e.description ? `<p style="margin:0 0 8px;">${linkify(e.description)}</p>` : ''}
-        ${e.activities ? `<p style="margin:0 0 8px;">🌿 ${e.activities.replace(String.fromCharCode(10),', ')}</p>` : ''}
-        ${e.prerequisites ? `<p style="margin:0 0 8px;">ℹ️ ${e.prerequisites}</p>` : ''}
-        ${e.max ? `<p style="margin:0;color:${isFull?'#a32d2d':'#1d9e75'};">👥 ${e.taken||0}/${e.max} places</p>` : ''}
-        ${adminMode ? `<button onclick="event.stopPropagation();openEventModal('${e.id}')" style="margin-top:8px;background:none;border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;">✏️ Modifier</button>` : ''}
-        <button onclick="event.stopPropagation();openResaForEvent(${JSON.stringify(e).replace(/"/g,'&quot;')})" style="margin-top:8px;margin-left:6px;background:var(--clay);color:white;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-size:12px;" ${isFull?'disabled':''}>Réserver 🌱</button>
-      </div>
+  document.getElementById('detail-dates').textContent = evts.length === 1 ? TYPE_LABELS[evts[0].type]||'' : `${evts.length} événements`;
+
+  // Dispo du jour
+  const dsp = getDispoForDate(dateStr);
+  let topHtml = dsp ? `<div style="grid-column:1/-1;display:flex;align-items:center;gap:8px;background:${dsp==='normandie'?'rgba(29,158,117,0.08)':'var(--cream)'};border-radius:8px;padding:9px 14px;font-size:13.5px;margin-bottom:4px;">${DISPO_ICONS[dsp]||''} <strong>${DISPO_LABELS[dsp]||dsp}</strong></div>` : '';
+
+  // Réservations du jour
+  const dayResas = calReservations.filter(r => r.dateArrivee <= dateStr && (r.dateDepart||r.dateArrivee) >= dateStr);
+  let resaHtml = '';
+  if (dayResas.length) {
+    resaHtml = `<div style="grid-column:1/-1;margin-bottom:8px;">
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--clay);margin:0 0 6px;">📋 ${dayResas.length} réservation${dayResas.length>1?'s':''}</p>
+      ${dayResas.map(r => {
+        const names = (r.participants||[]).map(p=>p.name||p).filter(Boolean).join(', ');
+        return `<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);margin-bottom:4px;font-size:12.5px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:${r.couleur||'#d1d5db'};flex-shrink:0;"></span>
+          <strong>${r.groupe||'—'}</strong>
+          ${names ? `<span style="color:#7a6a54;">· ${names}</span>` : ''}
+          ${r.hebergement ? `<span style="margin-left:auto;color:#9c8a6a;">${r.hebergement}</span>` : ''}
+        </div>`;
+      }).join('')}
     </div>`;
-  });
-  grid += '</div>';
-  document.getElementById('detail-grid').innerHTML = grid;
-  const btn = document.getElementById('detail-resa-btn');
-  btn.textContent = 'Réserver ma place 🌱';
-  btn.disabled = false;
-  btn.onclick = () => openResaForEvent(evts[0]);
+  }
+
+  // Événements en accordéon (fermés par défaut)
+  const evtHtml = evts.map(e => {
+    const dot = TYPE_COLORS[e.type] || '#9c8a6a';
+    const isFull = e.status === 'full' || (e.max && (e.taken||0) >= e.max);
+    const badge = isFull ? `<span style="font-size:11px;padding:2px 7px;border-radius:10px;background:#fcebeb;color:#a32d2d;font-weight:600;">Complet</span>` : (e.max ? `<span style="font-size:11px;padding:2px 7px;border-radius:10px;background:#e1f5ee;color:#0f6e56;font-weight:600;">${e.max-(e.taken||0)} places</span>` : '');
+    const NL = String.fromCharCode(10);
+    const body = [
+      e.time ? `<div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;"><span style="font-size:18px;">🕐</span><span>${e.time}</span></div>` : '',
+      e.description ? `<div style="margin-bottom:8px;line-height:1.6;">${linkify(e.description)}</div>` : '',
+      e.activities ? `<div style="margin-bottom:8px;"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--clay);">Activités</strong><ul style="margin:4px 0 0;padding-left:18px;">${e.activities.split(NL).filter(a=>a.trim()).map(a=>`<li>${a}</li>`).join('')}</ul></div>` : '',
+      e.prerequisites ? `<div style="margin-bottom:8px;background:rgba(173,101,48,.06);border-radius:6px;padding:8px 12px;font-size:12.5px;">ℹ️ ${e.prerequisites}</div>` : '',
+      e.max ? `<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>Places réservées</span><span>${e.taken||0}/${e.max}</span></div><div style="height:6px;background:var(--line);border-radius:3px;"><div style="height:100%;border-radius:3px;background:${isFull?'#ef4444':'#1d9e75'};width:${Math.min(100,Math.round(((e.taken||0)/e.max)*100))}%;transition:width .3s;"></div></div></div>` : '',
+      `<div style="display:flex;gap:8px;">
+        ${adminMode ? `<button type="button" onclick="event.stopPropagation();openEventModal('${e.id}')" style="background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:600;">✏️ Modifier</button>` : ''}
+        <button type="button" onclick="event.stopPropagation();openResaForEvent({id:'${e.id}',title:${JSON.stringify(e.title)},dateStart:'${e.dateStart}',dateEnd:'${e.dateEnd||''}',activities:${JSON.stringify(e.activities||'')}})" style="flex:1;background:var(--clay);color:white;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:700;" ${isFull?'disabled':''}>Réserver ma place 🌱</button>
+      </div>`,
+    ].filter(Boolean).join('');
+    return `<div style="grid-column:1/-1;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px;">
+      <div onclick="_toggleAcc(this)" style="display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;background:var(--card);transition:background .15s;" onmouseover="this.style.background='#fdf4ed'" onmouseout="this.style.background='var(--card)'">
+        <div style="width:14px;height:14px;border-radius:50%;background:${dot};flex-shrink:0;border:2px solid ${dot}44;"></div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--ink);">${e.title}</div>
+          <div style="font-size:12px;color:#9c8a6a;margin-top:2px;">${TYPE_LABELS[e.type]||''}${e.time?' · '+e.time:''}</div>
+        </div>
+        ${badge}
+        <span style="color:#9c8a6a;font-size:13px;margin-left:4px;transition:transform .2s;" class="acc-chev">▾</span>
+      </div>
+      <div class="acc-body" style="display:none;padding:14px 16px;background:var(--cream);border-top:1px solid var(--line);font-size:13.5px;color:var(--ink);">${body}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('detail-grid').innerHTML = topHtml + resaHtml + evtHtml;
+  document.getElementById('detail-resa-btn').style.display = 'none';
   document.getElementById('cal-detail').classList.add('visible');
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   if (calView === 'month') renderMonthGrid();
+}
+
+function _toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.acc-chev');
+  if (!body) return;
+  const isOpen = body.style.display !== 'none';
+  // Fermer tous dans le même conteneur
+  header.closest('div[id="cal-detail"]')?.querySelectorAll('.acc-body').forEach(b => {
+    b.style.display = 'none';
+    b.previousElementSibling?.querySelector('.acc-chev')?.style?.setProperty('transform','');
+  });
+  if (!isOpen) {
+    body.style.display = 'block';
+    if (chev) chev.style.transform = 'rotate(180deg)';
+  }
 }
 
 function showDetail(id) {
@@ -2725,6 +2764,45 @@ function linkify(text) {
   return text
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
+function _toggleAcc(id) {
+  const body = document.getElementById(id + '-body');
+  const chev = document.getElementById(id + '-chev');
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  // Fermer tous les autres accordéons du même parent
+  body.closest('.day-events-list')?.querySelectorAll('.evt-accordion-body').forEach(b => {
+    b.classList.remove('open');
+  });
+  body.closest('.day-events-list')?.querySelectorAll('.evt-acc-chevron').forEach(ch => {
+    ch.style.transform = '';
+  });
+  if (!isOpen) {
+    body.classList.add('open');
+    if (chev) chev.style.transform = 'rotate(180deg)';
+  }
+}
+
+async function _deleteResa(id) {
+  if (!confirm('Supprimer cette réservation ?')) return;
+  calReservations = calReservations.filter(r => r.id !== id);
+  localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
+  // Sauvegarder via API
+  const pw = _actAdminPw || calAdminPw;
+  if (pw) {
+    fetch('/.netlify/functions/data-api?type=reservations', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password: pw, data: calReservations})
+    });
+  }
+  renderCalendar();
+  document.getElementById('cal-detail').classList.remove('visible');
+}
+
+function _openResaFromEvent(evtId) {
+  const e = calEvents.find(x => x.id === evtId);
+  if (e) openResaForEvent(e);
 }
 
 function _toggleAccordion(el) {
@@ -2973,11 +3051,11 @@ function getHebergementDispo(startDate, endDate) {
     // Chevauchement ?
     if (r.dateArrivee > end || rEnd < startDate) return;
     const hb = r.hebergement || '';
-    if (hb.includes('Chambre 1')) dispo.ch1++;
-    if (hb.includes('Chambre 2')) dispo.ch2++;
-    if (hb.includes('Chambre 3')) dispo.ch3++;
-    if (hb.includes('Couchage extra Chambre 1')) dispo.cs1--;
-    if (hb.includes('Couchage extra Chambre 2')) dispo.cs2--;
+    if (hb === 'Chambre 1 (2 lits 2 places)') dispo.ch1++;
+    if (hb === 'Chambre 2 (1 lit 2 places)') dispo.ch2++;
+    if (hb === 'Chambre 3 (1 lit 2 places, petite)') dispo.ch3++;
+    if (hb === 'Couchage extra Chambre 1') dispo.cs1--;
+    if (hb === 'Couchage extra Chambre 2') dispo.cs2--;
   });
   return dispo;
 }
@@ -2985,30 +3063,30 @@ function getHebergementDispo(startDate, endDate) {
 function _updateHebergementDispo() {
   const start = document.getElementById('resa-date-debut')?.value;
   const end = document.getElementById('resa-date-fin')?.value;
-  if (!start) return;
+  const msg = document.getElementById('hberg-dispo-msg');
+  if (!start) { if(msg) msg.textContent = ''; return; }
   const dispo = getHebergementDispo(start, end || start);
-  const setDispo = (id, dispoBool, label) => {
-    const el = document.getElementById(id);
-    const opt = el?.closest('.hberg-option');
-    if (!el) return;
-    if (dispoBool) {
-      el.textContent = '✓ Libre';
-      el.className = 'hb-dispo libre';
-      opt?.classList.remove('taken');
-    } else {
-      el.textContent = '✗ Pris';
-      el.className = 'hb-dispo pris';
-      opt?.classList.add('taken');
-      opt?.querySelector('input')?.removeAttribute('checked');
-    }
+  // Mettre à jour les options du select
+  const labels = {
+    'opt-ch1': dispo.ch1 >= 1 ? 'Chambre 1 — 2 lits 2 places ✗ PRISE' : 'Chambre 1 — 2 lits 2 places ✓ Libre',
+    'opt-ch2': dispo.ch2 >= 1 ? 'Chambre 2 — 1 lit 2 places ✗ PRISE' : 'Chambre 2 — 1 lit 2 places ✓ Libre',
+    'opt-ch3': dispo.ch3 >= 1 ? 'Chambre 3 — petite ✗ PRISE' : 'Chambre 3 — petite ✓ Libre',
+    'opt-cs1': `Couchage extra Ch.1 (${Math.max(0,dispo.cs1)}/4 dispo)`,
+    'opt-cs2': `Couchage extra Ch.2 (${Math.max(0,dispo.cs2)}/4 dispo)`,
   };
-  setDispo('hb-ch1-dispo', dispo.ch1 < 1);
-  setDispo('hb-ch2-dispo', dispo.ch2 < 1);
-  setDispo('hb-ch3-dispo', dispo.ch3 < 1);
-  const cs1El = document.getElementById('hb-cs1-dispo');
-  const cs2El = document.getElementById('hb-cs2-dispo');
-  if (cs1El) cs1El.textContent = `(${Math.max(0,dispo.cs1)} dispo)`;
-  if (cs2El) cs2El.textContent = `(${Math.max(0,dispo.cs2)} dispo)`;
+  Object.entries(labels).forEach(([id, label]) => {
+    const opt = document.getElementById(id);
+    if (opt) {
+      opt.textContent = label;
+      opt.disabled = label.includes('PRISE') || label.includes('0/');
+    }
+  });
+  // Message récap
+  const taken = [];
+  if (dispo.ch1 >= 1) taken.push('Ch.1 prise');
+  if (dispo.ch2 >= 1) taken.push('Ch.2 prise');
+  if (dispo.ch3 >= 1) taken.push('Ch.3 prise');
+  if (msg) msg.textContent = taken.length ? '⚠️ ' + taken.join(', ') : '✓ Toutes les chambres disponibles sur cette période.';
 }
 
 // Démarrer : affichage immédiat depuis cache, puis sync API
@@ -3523,7 +3601,7 @@ if (resaForm) {
 
     const groupe = document.getElementById('resa-groupe')?.value || '';
     const couleur = document.getElementById('resa-groupe')?.selectedOptions[0]?.dataset.color || '#d1d5db';
-    const hebergement = document.querySelector('input[name="hbergement-choice"]:checked')?.value || '';
+    const hebergement = document.getElementById('resa-hebergement')?.value || '';
     document.getElementById('resa-groupe-hidden').value = groupe;
     document.getElementById('resa-hebergement-hidden').value = hebergement;
 
