@@ -1595,7 +1595,7 @@
 
       <form name="reservation" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="evenement" /><input type="text" name="participants" />
-        <input type="date" name="date-arrivee" /><input type="date" name="date-depart" />
+        <input type="date" name="date-arrivee" /><input type="text" name="heure-arrivee" /><input type="date" name="date-depart" /><input type="text" name="heure-depart" /><input type="text" name="transport" />
         <input type="text" name="groupe" /><input type="text" name="hebergement" />
         <input type="text" name="activites" /><input type="text" name="activite-proposee" />
         <textarea name="message"></textarea>
@@ -1627,18 +1627,18 @@
           <label for="resa-groupe">Votre groupe *</label>
           <select id="resa-groupe" required style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;font-family:'Inter',sans-serif;">
             <option value="">— Choisir votre groupe —</option>
-            <option value="Albertivilariens" data-color="#f97316">🟠 Albertivilariens</option>
-            <option value="Autre" data-color="#f1f5f9">⚪ Autre</option>
-            <option value="Ceci n'est pas du basket" data-color="#7c3aed">🟣 Ceci n'est pas du basket</option>
-            <option value="Die" data-color="#166534">🟢 Die</option>
-            <option value="Famille" data-color="#db2777">🩷 Famille</option>
-            <option value="Furax" data-color="#ef4444">🔴 Furax</option>
-            <option value="Geopotes" data-color="#eab308">🟡 Geopotes</option>
-            <option value="Greenpeace" data-color="#86efac">🍃 Greenpeace</option>
-            <option value="Les best de CAA" data-color="#0e7490">🔵 Les best de CAA</option>
-            <option value="Pengyou" data-color="#1d4ed8">🔵 Pengyou</option>
-            <option value="Trotters" data-color="#f9a8d4">🩷 Trotters</option>
-            <option value="Truites" data-color="#38bdf8">🩵 Truites</option>
+            <option value="Albertivilariens" data-color="#f97316">❤️ Albertivilariens</option>
+            <option value="Autre" data-color="#d1d5db">❤️ Autre</option>
+            <option value="Ceci n'est pas du basket" data-color="#7c3aed">❤️ Ceci n'est pas du basket</option>
+            <option value="Die" data-color="#166534">❤️ Die</option>
+            <option value="Famille" data-color="#db2777">❤️ Famille</option>
+            <option value="Furax" data-color="#ef4444">❤️ Furax</option>
+            <option value="Geopotes" data-color="#eab308">❤️ Geopotes</option>
+            <option value="Greenpeace" data-color="#86efac">❤️ Greenpeace</option>
+            <option value="Les best de CAA" data-color="#0e7490">❤️ Les best de CAA</option>
+            <option value="Pengyou" data-color="#1d4ed8">❤️ Pengyou</option>
+            <option value="Trotters" data-color="#f9a8d4">❤️ Trotters</option>
+            <option value="Truites" data-color="#38bdf8">❤️ Truites</option>
           </select>
         </div>
 
@@ -1649,9 +1649,36 @@
             <input type="date" id="resa-date-debut" name="date-arrivee" required onchange="_updateHebergementDispo()">
           </div>
           <div class="resa-field">
+            <label for="resa-heure-arrivee">Heure d'arrivée</label>
+            <select id="resa-heure-arrivee" name="heure-arrivee" style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;">
+              <option value="">— Heure estimée —</option>
+              <option value="Matin">🌅 Matin (avant 12h)</option>
+              <option value="Après-midi">☀️ Après-midi (12h–18h)</option>
+              <option value="Soir">🌙 Soir (après 18h)</option>
+            </select>
+          </div>
+          <div class="resa-field">
             <label for="resa-date-fin">Date de départ</label>
             <input type="date" id="resa-date-fin" name="date-depart" onchange="_updateHebergementDispo()">
           </div>
+          <div class="resa-field">
+            <label for="resa-heure-depart">Heure de départ</label>
+            <select id="resa-heure-depart" name="heure-depart" style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;">
+              <option value="">— Heure estimée —</option>
+              <option value="Matin">🌅 Matin (avant 12h)</option>
+              <option value="Après-midi">☀️ Après-midi (12h–18h)</option>
+              <option value="Soir">🌙 Soir (après 18h)</option>
+            </select>
+          </div>
+        </div>
+        <div class="resa-field">
+          <label for="resa-transport">Comment venez-vous ?</label>
+          <select id="resa-transport" name="transport" style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;">
+            <option value="">— Moyen de transport —</option>
+            <option value="En train">🚂 En train</option>
+            <option value="En voiture">🚗 En voiture</option>
+            <option value="Ne sait pas encore">🤷 Ne sait pas encore</option>
+          </select>
         </div>
 
         <!-- Hébergement -->
@@ -2570,8 +2597,7 @@ function renderListView() {
         <div class="cal-list-meta">
           <span class="cal-list-badge type-${e.type}">${TYPE_LABELS[e.type]||e.type}</span>
           ${e.time ? `<span>🕐 ${e.time}</span>` : ''}
-          ${e.max ? `<span>👥 ${e.max} places</span>` : ''}
-          ${e.status==='full' ? '<span style="color:#a32d2d;font-weight:600;">Complet</span>' : ''}
+
         </div>
       </div>
     </div>`;
@@ -2649,7 +2675,7 @@ function showDayDetail(dateStr) {
             ${r.activites ? '<div>🌿 ' + r.activites + '</div>' : ''}
             ${r.autreIdee ? '<div>💡 ' + r.autreIdee + '</div>' : ''}
             ${r.message ? '<div>💬 ' + r.message + '</div>' : ''}
-            ${adminMode ? '<button onclick="event.stopPropagation();_deletResaConfirm(' + JSON.stringify(r.id) + ')" style="margin-top:8px;background:none;border:1px solid #a32d2d;color:#a32d2d;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;font-weight:600;">✕ Supprimer</button>' : ''}
+            '<button onclick="event.stopPropagation();_deletResaWithPw(' + JSON.stringify(r.id) + ')" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>'
         </div>`;
       }).join('')}
     </div>`;
@@ -2658,18 +2684,18 @@ function showDayDetail(dateStr) {
   // Événements en accordéon (fermés par défaut)
   const evtHtml = evts.map(e => {
     const dot = TYPE_COLORS[e.type] || '#9c8a6a';
-    const isFull = e.status === 'full' || (e.max && (e.taken||0) >= e.max);
-    const badge = isFull ? `<span style="font-size:11px;padding:2px 7px;border-radius:10px;background:#fcebeb;color:#a32d2d;font-weight:600;">Complet</span>` : (e.max ? `<span style="font-size:11px;padding:2px 7px;border-radius:10px;background:#e1f5ee;color:#0f6e56;font-weight:600;">${e.max-(e.taken||0)} places</span>` : '');
+    const isFull = false; // places supprimées
+    const badge = '';
     const NL = String.fromCharCode(10);
     const body = [
       e.time ? `<div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;"><span style="font-size:18px;">🕐</span><span>${e.time}</span></div>` : '',
       e.description ? `<div style="margin-bottom:8px;line-height:1.6;">${linkify(e.description)}</div>` : '',
       e.activities ? `<div style="margin-bottom:8px;"><strong style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--clay);">Activités</strong><ul style="margin:4px 0 0;padding-left:18px;">${e.activities.split(NL).filter(a=>a.trim()).map(a=>`<li>${a}</li>`).join('')}</ul></div>` : '',
       e.prerequisites ? `<div style="margin-bottom:8px;background:rgba(173,101,48,.06);border-radius:6px;padding:8px 12px;font-size:12.5px;">ℹ️ ${e.prerequisites}</div>` : '',
-      e.max ? `<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>Places réservées</span><span>${e.taken||0}/${e.max}</span></div><div style="height:6px;background:var(--line);border-radius:3px;"><div style="height:100%;border-radius:3px;background:${isFull?'#ef4444':'#1d9e75'};width:${Math.min(100,Math.round(((e.taken||0)/e.max)*100))}%;transition:width .3s;"></div></div></div>` : '',
+      // jauge places supprimée
       `<div style="display:flex;gap:8px;">
         ${adminMode ? `<button type="button" onclick="event.stopPropagation();openEventModal('${e.id}')" style="background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:600;">✏️ Modifier</button>` : ''}
-        <button type="button" onclick="event.stopPropagation();openResaForEvent({id:'${e.id}',title:${JSON.stringify(e.title)},dateStart:'${e.dateStart}',dateEnd:'${e.dateEnd||''}',activities:${JSON.stringify(e.activities||'')}})" style="flex:1;background:var(--clay);color:white;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:700;" ${isFull?'disabled':''}>Réserver ma place 🌱</button>
+        <button type="button" onclick="event.stopPropagation();openResaForEvent({id:'${e.id}',title:${JSON.stringify(e.title)},dateStart:'${e.dateStart}',dateEnd:'${e.dateEnd||''}',activities:${JSON.stringify(e.activities||'')}})" style="flex:1;background:var(--clay);color:white;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:700;">Réserver ma place 🌱</button>
       </div>`,
     ].filter(Boolean).join('');
     return `<div style="grid-column:1/-1;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px;">
@@ -2679,22 +2705,24 @@ function showDayDetail(dateStr) {
           <div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--ink);">${e.title}</div>
           <div style="font-size:12px;color:#9c8a6a;margin-top:2px;">${TYPE_LABELS[e.type]||''}${e.time?' · '+e.time:''}</div>
         </div>
-        ${badge}
         <span style="color:#9c8a6a;font-size:13px;margin-left:4px;transition:transform .2s;" class="acc-chev">▾</span>
       </div>
       <div class="acc-body" style="display:none;padding:14px 16px;background:var(--cream);border-top:1px solid var(--line);font-size:13.5px;color:var(--ink);">${body}</div>
     </div>`;
   }).join('');
 
-  document.getElementById('detail-grid').innerHTML = topHtml + resaHtml + evtHtml;
+  document.getElementById('detail-grid').innerHTML = topHtml + evtHtml + resaHtml;
   document.getElementById('detail-resa-btn').style.display = 'none';
   document.getElementById('cal-detail').classList.add('visible');
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   if (calView === 'month') renderMonthGrid();
 }
 
-function _deletResaConfirm(id) {
-  if (confirm('Supprimer cette réservation ?')) _deleteResa(id);
+function _deletResaWithPw(id) {
+  const pw = prompt('Mot de passe pour supprimer cette réservation :');
+  if (!pw) return;
+  if (pw !== ADMIN_PASSWORD) { alert('Mot de passe incorrect.'); return; }
+  _deleteResa(id);
 }
 
 function _toggleResaDet(id) {
@@ -3633,6 +3661,9 @@ if (resaForm) {
     const groupe = document.getElementById('resa-groupe')?.value || '';
     const couleur = document.getElementById('resa-groupe')?.selectedOptions[0]?.dataset.color || '#d1d5db';
     const hebergement = document.getElementById('resa-hebergement')?.value || '';
+    const heureArrivee = document.getElementById('resa-heure-arrivee')?.value || '';
+    const heureDepart = document.getElementById('resa-heure-depart')?.value || '';
+    const transport = document.getElementById('resa-transport')?.value || '';
     document.getElementById('resa-groupe-hidden').value = groupe;
     document.getElementById('resa-hebergement-hidden').value = hebergement;
 
@@ -3658,11 +3689,14 @@ if (resaForm) {
       formData.set('activites', activites || 'Non précisées');
       await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(formData).toString() });
 
-      // 2. Sauvegarder la réservation dans Netlify Blobs
+      // 2. Sauvegarder la réservation dans Netlify Blobs (fetch les existantes d'abord)
+      try {
+        const apiR = await fetch('/.netlify/functions/data-api?type=reservations');
+        if (apiR.ok) { const apiData = await apiR.json(); if (Array.isArray(apiData)) calReservations = apiData; }
+      } catch {}
       calReservations = [...(calReservations || []), reservation];
       localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
-      // Envoi en arrière-plan (pas de mot de passe requis pour les réservations publiques)
-      fetch('/.netlify/functions/data-api?type=reservations', {
+      await fetch('/.netlify/functions/data-api?type=reservations', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ password: '_public_resa_', data: calReservations })
