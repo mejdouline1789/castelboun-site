@@ -1540,11 +1540,13 @@
       <button class="cal-resa-btn" id="detail-resa-btn" type="button">Réserver ma place 🌱</button>
     </div>
 
-    <!-- Export ICS -->
-    <div style="margin-top:8px;">
-      <button class="ics-btn" id="export-ics-btn" type="button">📅 Exporter le calendrier (.ics)</button>
-      <p class="ics-note">Compatible Google Calendar, Apple Calendar, Samsung Calendar, FamilyWall et tout logiciel supportant le format iCal.</p>
+    <!-- Export ICS + webcal + admin agenda -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center;">
+      <button class="ics-btn" id="export-ics-btn" type="button">📥 Télécharger (.ics)</button>
+      <button class="ics-btn" id="webcal-btn" type="button">🔄 S'abonner (webcal)</button>
+      <button type="button" id="cal-admin-btn" style="margin-left:auto;background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;">⚙ Gérer l'agenda</button>
     </div>
+    <p class="ics-note">Compatible Google Calendar, Apple Calendar (iPhone), Samsung, FamilyWall — l'abonnement webcal se met à jour automatiquement.</p>
   </div><!-- fin col gauche calendrier -->
 
   <!-- Colonne droite : formulaire de réservation toujours visible -->
@@ -1597,11 +1599,69 @@
         </div>
         <button type="submit" class="resa-submit">Envoyer ma demande 🌱</button>
       </form>
+      <div style="text-align:right;margin-top:10px;">
+        <button type="button" id="act-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;">⚙ Gérer les activités</button>
+      </div>
     </div>
   </div>
 
 </div><!-- fin venez-grid -->
 </div><!-- fin cal-wrap -->
+
+<!-- Modale admin AGENDA -->
+<div class="admin-overlay" id="cal-admin-overlay">
+  <div class="admin-box" style="max-width:560px;">
+    <div id="cal-admin-auth" style="">
+      <h3>🔒 Admin agenda</h3>
+      <div class="admin-pw-box">
+        <input type="password" id="cal-admin-pw" placeholder="Mot de passe" autocomplete="off">
+        <span style="color:#a32d2d;font-size:13px;display:none;" id="cal-admin-pw-err">Mot de passe incorrect</span>
+        <button class="admin-save" type="button" id="cal-admin-pw-ok">Connexion</button>
+      </div>
+    </div>
+    <div id="cal-admin-form" style="display:none;">
+      <h3 id="cal-admin-form-title">📅 Nouvel événement</h3>
+      <div class="evt-field-row">
+        <div class="evt-field"><label>Date de début *</label><input type="date" id="cal-evt-start"></div>
+        <div class="evt-field"><label>Date de fin</label><input type="date" id="cal-evt-end"></div>
+      </div>
+      <div class="evt-field"><label>Titre *</label><input type="text" id="cal-evt-title" placeholder="Ex : Week-end permaculture"></div>
+      <div class="evt-field-row">
+        <div class="evt-field"><label>Type</label>
+          <select id="cal-evt-type">
+            <option value="weekend">Week-end / séjour</option>
+            <option value="atelier">Atelier</option>
+            <option value="visite">Visite</option>
+            <option value="fete">Fête / événement</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="evt-field"><label>Horaires</label><input type="text" id="cal-evt-time" placeholder="10h - 17h"></div>
+      </div>
+      <div class="evt-field"><label>Description</label><textarea id="cal-evt-desc" style="min-height:65px;" placeholder="Programme, ambiance…"></textarea></div>
+      <div class="evt-field"><label>Prérequis</label><textarea id="cal-evt-prereq" style="min-height:50px;" placeholder="Prévoir des chaussures de marche…"></textarea></div>
+      <div class="evt-field"><label>Activités (une par ligne)</label><textarea id="cal-evt-acts" style="min-height:70px;" placeholder="Visite du potager&#10;Atelier compost"></textarea></div>
+      <div class="evt-field-row">
+        <div class="evt-field"><label>Places max</label><input type="number" id="cal-evt-max" min="1" placeholder="10"></div>
+        <div class="evt-field"><label>Statut</label>
+          <select id="cal-evt-status"><option value="open">Ouvert</option><option value="full">Complet</option><option value="closed">Fermé</option></select>
+        </div>
+      </div>
+      <div id="cal-edit-existing" style="margin:12px 0;display:none;">
+        <label style="font-size:13px;font-weight:600;">Modifier un événement existant :</label>
+        <select id="cal-evt-select" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:13px;margin-top:4px;">
+          <option value="">— Nouvel événement —</option>
+        </select>
+      </div>
+      <div class="evt-modal-btns">
+        <button class="evt-modal-save" type="button" id="cal-save-evt-btn">💾 Enregistrer</button>
+        <button class="evt-modal-cancel" type="button" id="cal-admin-close-btn">Annuler</button>
+        <button class="evt-modal-delete" type="button" id="cal-delete-evt-btn" style="display:none;">🗑 Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div><!-- fin tab-partage -->
 
 
@@ -2408,12 +2468,161 @@ function formatDateFR(ds) {
 }
 
 // Démarrer
-renderCalendar();
+loadCalEvents().then(evts => { calEvents = evts || []; renderCalendar(); });
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
-  if (a.dataset.tab === 'partage') a.addEventListener('click', () => setTimeout(renderCalendar, 50));
+  if (a.dataset.tab === 'partage') a.addEventListener('click', () => setTimeout(() => {
+    renderCalendar();
+    renderActivitesForm();
+  }, 50));
 });
+
+// ===== BOUTON ADMIN AGENDA =====
+let calAdminPw = null;
+const calAdminOverlay = document.getElementById('cal-admin-overlay');
+
+function openCalAdmin(prefillDate) {
+  if (!calAdminOverlay) return;
+  if (calAdminPw) {
+    showCalAdminForm(prefillDate);
+  } else {
+    document.getElementById('cal-admin-auth').style.display = '';
+    document.getElementById('cal-admin-form').style.display = 'none';
+  }
+  calAdminOverlay.classList.add('visible');
+}
+
+function showCalAdminForm(prefillDate) {
+  document.getElementById('cal-admin-auth').style.display = 'none';
+  const form = document.getElementById('cal-admin-form');
+  form.style.display = '';
+  // Remplir la liste des événements existants
+  const sel = document.getElementById('cal-evt-select');
+  const editBlock = document.getElementById('cal-edit-existing');
+  sel.innerHTML = '<option value="">— Nouvel événement —</option>' +
+    calEvents.map(e => `<option value="${e.id}">${e.title} (${e.dateStart})</option>`).join('');
+  editBlock.style.display = calEvents.length ? '' : 'none';
+  // Pré-remplir la date si fournie
+  if (prefillDate) document.getElementById('cal-evt-start').value = prefillDate;
+}
+
+document.getElementById('cal-admin-btn')?.addEventListener('click', () => openCalAdmin(null));
+
+document.getElementById('cal-admin-pw-ok')?.addEventListener('click', async () => {
+  const pw = document.getElementById('cal-admin-pw').value;
+  if (pw === ADMIN_PASSWORD) {
+    calAdminPw = pw;
+    document.getElementById('cal-admin-pw-err').style.display = 'none';
+    showCalAdminForm(null);
+  } else {
+    document.getElementById('cal-admin-pw-err').style.display = 'block';
+  }
+});
+document.getElementById('cal-admin-pw')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('cal-admin-pw-ok').click();
+});
+
+document.getElementById('cal-admin-close-btn')?.addEventListener('click', () => {
+  calAdminOverlay.classList.remove('visible');
+});
+calAdminOverlay?.addEventListener('click', e => {
+  if (e.target === calAdminOverlay) calAdminOverlay.classList.remove('visible');
+});
+
+// Sélectionner un événement existant pour le modifier
+document.getElementById('cal-evt-select')?.addEventListener('change', function() {
+  const id = this.value;
+  const deleteBtn = document.getElementById('cal-delete-evt-btn');
+  if (!id) {
+    // Nouveau
+    ['cal-evt-start','cal-evt-end','cal-evt-title','cal-evt-time','cal-evt-desc','cal-evt-prereq','cal-evt-acts','cal-evt-max'].forEach(f => { const el = document.getElementById(f); if(el) el.value = ''; });
+    document.getElementById('cal-evt-type').value = 'weekend';
+    document.getElementById('cal-evt-status').value = 'open';
+    document.getElementById('cal-admin-form-title').textContent = '📅 Nouvel événement';
+    deleteBtn.style.display = 'none';
+  } else {
+    const evt = calEvents.find(e => e.id === id);
+    if (!evt) return;
+    document.getElementById('cal-evt-start').value = evt.dateStart || '';
+    document.getElementById('cal-evt-end').value = evt.dateEnd || '';
+    document.getElementById('cal-evt-title').value = evt.title || '';
+    document.getElementById('cal-evt-type').value = evt.type || 'weekend';
+    document.getElementById('cal-evt-time').value = evt.time || '';
+    document.getElementById('cal-evt-desc').value = evt.description || '';
+    document.getElementById('cal-evt-prereq').value = evt.prerequisites || '';
+    document.getElementById('cal-evt-acts').value = evt.activities || '';
+    document.getElementById('cal-evt-max').value = evt.max || '';
+    document.getElementById('cal-evt-status').value = evt.status || 'open';
+    document.getElementById('cal-admin-form-title').textContent = '✏️ Modifier l’événement';
+    deleteBtn.style.display = '';
+  }
+});
+
+document.getElementById('cal-save-evt-btn')?.addEventListener('click', async () => {
+  const selId = document.getElementById('cal-evt-select').value;
+  const data = {
+    id: selId || generateId(),
+    dateStart: document.getElementById('cal-evt-start').value,
+    dateEnd: document.getElementById('cal-evt-end').value || null,
+    title: document.getElementById('cal-evt-title').value.trim(),
+    type: document.getElementById('cal-evt-type').value,
+    time: document.getElementById('cal-evt-time').value.trim(),
+    description: document.getElementById('cal-evt-desc').value.trim(),
+    prerequisites: document.getElementById('cal-evt-prereq').value.trim(),
+    activities: document.getElementById('cal-evt-acts').value.trim(),
+    max: parseInt(document.getElementById('cal-evt-max').value) || null,
+    status: document.getElementById('cal-evt-status').value,
+  };
+  if (!data.title || !data.dateStart) { alert('Le titre et la date de début sont obligatoires.'); return; }
+  if (selId) { calEvents = calEvents.map(e => e.id === selId ? data : e); }
+  else { calEvents.push(data); }
+  // Sauvegarder via API
+  try {
+    await fetch('/.netlify/functions/data-api?type=events', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ password: calAdminPw, data: calEvents })
+    });
+  } catch(e) { console.error('Erreur sauvegarde événement', e); }
+  renderCalendar();
+  calAdminOverlay.classList.remove('visible');
+});
+
+document.getElementById('cal-delete-evt-btn')?.addEventListener('click', async () => {
+  const id = document.getElementById('cal-evt-select').value;
+  if (!id || !confirm('Supprimer cet événement ?')) return;
+  calEvents = calEvents.filter(e => e.id !== id);
+  try {
+    await fetch('/.netlify/functions/data-api?type=events', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ password: calAdminPw, data: calEvents })
+    });
+  } catch(e) { console.error('Erreur suppression', e); }
+  renderCalendar();
+  calAdminOverlay.classList.remove('visible');
+});
+
+// Bouton discret "Gérer les activités" sous le formulaire
+document.getElementById('act-admin-btn')?.addEventListener('click', () => {
+  // Utilise le même système d'auth que le panneau ⚙ existant
+  document.getElementById('admin-overlay')?.classList.add('visible');
+  document.getElementById('admin-pw-screen').style.display = '';
+  document.getElementById('admin-edit-screen').style.display = 'none';
+});
+
+// Bouton webcal
+document.getElementById('webcal-btn')?.addEventListener('click', () => {
+  window.open('webcal://' + location.host + '/calendar.ics', '_blank');
+});
+
+// Cliquer sur une case du calendrier en mode admin → ouvre la modale agenda
+function handleCalCellAdminClick(dateStr) {
+  if (calAdminPw) { openCalAdmin(dateStr); return; }
+  openCalAdmin(null);
+  document.getElementById('cal-evt-start').dataset.prefill = dateStr;
+}
 
 // ===== NAVIGATION PAR ONGLETS =====
 const navLinks = document.querySelectorAll('#main-nav a');
