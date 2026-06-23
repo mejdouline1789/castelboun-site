@@ -2722,7 +2722,26 @@ function _deletResaWithPw(id) {
   const pw = prompt('Mot de passe pour supprimer cette réservation :');
   if (!pw) return;
   if (pw !== ADMIN_PASSWORD) { alert('Mot de passe incorrect.'); return; }
-  _deleteResa(id);
+  // Supprimer localement
+  calReservations = calReservations.filter(r => r.id !== id);
+  localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
+  // Sauvegarder dans Blobs avec le mdp fourni
+  fetch('/.netlify/functions/data-api?type=reservations', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ password: pw, data: calReservations })
+  });
+  // Rafraîchir l'affichage
+  renderCalendar();
+  if (selectedDate && eventsForDate(selectedDate).length > 0) {
+    showDayDetail(selectedDate);
+  } else if (selectedDate) {
+    const dsp = getDispoForDate(selectedDate);
+    if (dsp) showDispoDetail(selectedDate, dsp);
+    else document.getElementById('cal-detail').classList.remove('visible');
+  } else {
+    document.getElementById('cal-detail').classList.remove('visible');
+  }
 }
 
 function _toggleResaDet(id) {
