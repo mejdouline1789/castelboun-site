@@ -1543,7 +1543,20 @@
     <!-- Export ICS + webcal + admin agenda -->
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center;">
       <button class="ics-btn" id="export-ics-btn" type="button">📥 Télécharger (.ics)</button>
-      <button class="ics-btn" id="webcal-btn" type="button">🔄 S'abonner (webcal)</button>
+      <div style="position:relative;display:inline-block;">
+        <button class="ics-btn" id="webcal-btn" type="button">🔄 S'abonner</button>
+        <div id="webcal-menu" style="display:none;position:absolute;bottom:110%;left:0;background:white;border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.15);min-width:230px;z-index:200;overflow:hidden;">
+          <a id="webcal-google" href="#" style="display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:13px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);" target="_blank">
+            <span style="font-size:18px;">📅</span> Google Calendar
+          </a>
+          <a id="webcal-apple" href="#" style="display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:13px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);">
+            <span style="font-size:18px;">🍎</span> iPhone / Apple Calendar
+          </a>
+          <a id="webcal-other" href="#" style="display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:13px;color:var(--ink);text-decoration:none;">
+            <span style="font-size:18px;">📋</span> Copier le lien (Samsung, etc.)
+          </a>
+        </div>
+      </div>
       <button type="button" id="cal-admin-btn" style="margin-left:auto;background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;">⚙ Gérer l'agenda</button>
     </div>
     <p class="ics-note">Compatible Google Calendar, Apple Calendar (iPhone), Samsung, FamilyWall — l'abonnement webcal se met à jour automatiquement.</p>
@@ -2128,14 +2141,20 @@ async function renderAdminCats() {
 async function removeAdminItem(ci, ii) {
   const act = await getActivites();
   act[ci].items.splice(ii, 1);
-  await saveActivites(act);
+  // Sauvegarder localement d'abord (pour renderAdminCats)
+  localStorage.setItem('castelboun_activites', JSON.stringify(act));
+  // Puis via API (pour les autres visiteurs)
+  saveActivites(act);
   renderAdminCats();
 }
 
 async function addAdminItem(ci) {
   const act = await getActivites();
   act[ci].items.push('');
-  await saveActivites(act);
+  // Sauvegarder localement d'abord (pour renderAdminCats)
+  localStorage.setItem('castelboun_activites', JSON.stringify(act));
+  // Puis via API (pour les autres visiteurs)
+  saveActivites(act);
   await renderAdminCats();
   const rows = document.querySelectorAll(`[data-ci="${ci}"] .admin-item-input`);
   rows[rows.length-1]?.focus();
@@ -2613,9 +2632,33 @@ document.getElementById('act-admin-btn')?.addEventListener('click', () => {
   document.getElementById('admin-edit-screen').style.display = 'none';
 });
 
-// Bouton webcal
-document.getElementById('webcal-btn')?.addEventListener('click', () => {
-  window.open('webcal://' + location.host + '/calendar.ics', '_blank');
+// Menu webcal
+const webcalBtn = document.getElementById('webcal-btn');
+const webcalMenu = document.getElementById('webcal-menu');
+const ICS_URL = 'https://' + location.host + '/calendar.ics';
+const WEBCAL_URL = 'webcal://' + location.host + '/calendar.ics';
+
+webcalBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  webcalMenu.style.display = webcalMenu.style.display === 'none' ? 'block' : 'none';
+});
+document.addEventListener('click', () => { if(webcalMenu) webcalMenu.style.display = 'none'; });
+
+document.getElementById('webcal-google')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.open('https://www.google.com/calendar/render?cid=' + encodeURIComponent(WEBCAL_URL), '_blank');
+});
+document.getElementById('webcal-apple')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Sur iPhone, webcal:// ouvre directement l'app Calendrier
+  window.location.href = WEBCAL_URL;
+});
+document.getElementById('webcal-other')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  navigator.clipboard?.writeText(ICS_URL).then(() => {
+    e.target.closest('a').textContent = '✅ Lien copié !';
+    setTimeout(() => { e.target.closest('a').innerHTML = '<span style="font-size:18px;">📋</span> Copier le lien (Samsung, etc.)'; }, 2000);
+  });
 });
 
 // Cliquer sur une case du calendrier en mode admin → ouvre la modale agenda
