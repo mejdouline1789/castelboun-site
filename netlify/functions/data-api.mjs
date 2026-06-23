@@ -87,7 +87,7 @@ export default async function handler(req, context) {
     if (type !== "reservations" && body.password !== adminPw) {
       return new Response(JSON.stringify({ error: "Mot de passe incorrect" }), { status: 401, headers: { "Content-Type": "application/json" } });
     }
-    await store.setJSON(type, body.data);
+    await store.set(type, JSON.stringify(body.data));
     return Response.json({ ok: true });
   }
 
