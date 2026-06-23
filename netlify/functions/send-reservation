@@ -1,0 +1,76 @@
+// Fonction Netlify : confirmation de réservation par email via Resend
+// Déclenchée par le formulaire de réservation (POST)
+
+export default async function handler(req, context) {
+  if (req.method !== 'POST') {
+    return new Response('Method not allowed', { status: 405 });
+  }
+
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'JSON invalide' }), { status: 400 });
+  }
+
+  const { participants, evenement, dateArrivee, dateDepart, activites, message, icsUrl } = body;
+
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  if (!RESEND_API_KEY) {
+    return new Response(JSON.stringify({ error: 'Clé API manquante' }), { status: 500 });
+  }
+
+  // Construire le contenu email
+  const participantsList = (participants || []).map(p => `• ${p.name}${p.email ? ` (${p.email})` : ''}`).join('\n');
+  const firstEmail = (participants || []).find(p => p.email)?.email;
+
+  const emailBody = `
+Bonjour,
+
+Votre réservation au Domaine Castelboun a bien été prise en compte ! 🌿
+
+${evenement ? `🗓️ Événement : ${evenement}` : ''}
+${dateArrivee ? `📅 Arrivée : ${dateArrivee}` : ''}
+${dateDepart ? `📅 Départ : ${dateDepart}` : ''}
+${participantsList ? `\n👥 Participant(e)s :\n${participantsList}` : ''}
+${activites ? `\n🌿 Activités souhaitées : ${activites}` : ''}
+${message ? `\n💬 Votre message : ${message}` : ''}
+
+Nous vous répondrons sous 48h pour confirmer votre venue.
+
+📆 Pour ajouter cet événement à votre calendrier :
+${icsUrl || 'https://permaculture-au-castelboun.netlify.app/calendar.ics'}
+
+À bientôt au Domaine Castelboun !
+Mejdouline & Guillaume
+`.trim();
+
+  // Destinataires
+  const ownerEmails = ['diboun.mejdouline@gmail.com', 'castelbou.guillaume@gmail.com'];
+  const recipientEmails = (participants || []).map(p => p.email).filter(Boolean);
+  const allRecipients = [...new Set([...recipientEmails, ...ownerEmails])];
+
+  // Envoi via Resend
+  const emails = allRecipients.map(to => ({
+    from: 'Domaine Castelboun <noreply@permaculture-au-castelboun.netlify.app>',
+    to,
+    subject: `✅ Réservation confirmée${evenement ? ` — ${evenement}` : ''} — Domaine Castelboun`,
+    text: emailBody,
+  }));
+
+  const results = await Promise.all(emails.map(email =>
+    fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(email),
+    }).then(r => r.json())
+  ));
+
+  const hasError = results.some(r => r.error);
+  return Response.json({ ok: !hasError, results });
+}
+
+export const config = { path: '/api/send-reservation' };
