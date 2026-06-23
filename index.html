@@ -2332,10 +2332,18 @@ let calDispos = { periods: [] };
 function getDispoForDate(dateStr) {
   const periods = calDispos.periods || [];
   const d = new Date(dateStr + 'T12:00:00');
-  const dow = d.getDay(); // 0=dim
+  const dow = d.getDay();
+  // 1. Périodes SANS récurrence en priorité (= exceptions spécifiques)
   for (const p of periods) {
+    if (p.recurrence) continue;
     if (dateStr < p.startDate || dateStr > p.endDate) continue;
-    if (p.recurrence && !p.recurrence.includes(dow)) continue;
+    return p.status;
+  }
+  // 2. Périodes AVEC récurrence en fallback (= règles générales)
+  for (const p of periods) {
+    if (!p.recurrence) continue;
+    if (dateStr < p.startDate || dateStr > p.endDate) continue;
+    if (!p.recurrence.includes(dow)) continue;
     return p.status;
   }
   return null;
