@@ -2468,7 +2468,8 @@ function formatDateFR(ds) {
 }
 
 // Démarrer
-loadCalEvents().then(evts => { calEvents = evts || []; renderCalendar(); });
+calEvents = loadCalEvents();
+renderCalendar();
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
