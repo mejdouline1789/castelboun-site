@@ -909,7 +909,7 @@
     </div>
   </div>
   <div class="actu-grid" id="actu-grid">
-    <div class="actu-empty" id="actu-loading">Chargement…</div>
+    <div class="actu-empty">Aucune actualité pour le moment — revenez bientôt !</div>
   </div>
 </div>
 
@@ -1542,11 +1542,8 @@
 
     <!-- Export ICS -->
     <div style="margin-top:8px;">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
-        <button class="ics-btn" id="export-ics-btn" type="button">📥 Télécharger (.ics)</button>
-        <button class="ics-btn" id="webcal-btn" type="button">🔄 S'abonner (webcal)</button>
-      </div>
-      <p class="ics-note">Compatible Google Calendar, Apple Calendar (iPhone), Samsung, FamilyWall — l'abonnement webcal se met à jour automatiquement.</p>
+      <button class="ics-btn" id="export-ics-btn" type="button">📅 Exporter le calendrier (.ics)</button>
+      <p class="ics-note">Compatible Google Calendar, Apple Calendar, Samsung Calendar, FamilyWall et tout logiciel supportant le format iCal.</p>
     </div>
   </div><!-- fin col gauche calendrier -->
 
@@ -1948,27 +1945,17 @@ const DEFAULT_ACTIVITES = [
 ];
 
 // ===== ACTIVITÉS : CHARGEMENT + RENDU FORMULAIRE =====
-async function getActivites() {
+function getActivites() {
   try {
-    const r = await fetch('/.netlify/functions/data-api?type=activities');
-    return r.ok ? await r.json() : DEFAULT_ACTIVITES;
-  } catch { return DEFAULT_ACTIVITES; }
-}
-async function saveActivites(data) {
-  const pw = localStorage.getItem('cb_admin_pw');
-  if (!pw) return false;
-  const r = await fetch('/.netlify/functions/data-api?type=activities', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ password: pw, data })
-  });
-  return r.ok;
+    const saved = localStorage.getItem('castelboun_activites');
+    return saved ? JSON.parse(saved) : DEFAULT_ACTIVITES;
+  } catch(e) { return DEFAULT_ACTIVITES; }
 }
 
-async function renderActivitesForm() {
+function renderActivitesForm() {
   const container = document.getElementById('activites-form-list');
   if (!container) return;
-  const activites = await getActivites();
+  const activites = getActivites();
   container.innerHTML = activites.map(cat => `
     <div class="activites-cat-title">${cat.cat}</div>
     <div class="activites-grid">
@@ -1989,7 +1976,7 @@ document.querySelectorAll('#main-nav a').forEach(a => {
 });
 
 // ===== PANEL ADMIN =====
-const ADMIN_PASSWORD = 'castelboun2026';
+const ADMIN_PASSWORD = 'MGcastelboun2026';
 
 document.addEventListener('DOMContentLoaded', function() {
   const adminTrigger = document.getElementById('admin-trigger');
@@ -2023,21 +2010,21 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('admin-pw-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('admin-pw-ok').click();
   });
-  document.getElementById('admin-save-btn').addEventListener('click', async () => {
-    const act = await getActivites();
+  document.getElementById('admin-save-btn').addEventListener('click', () => {
+    const act = getActivites();
     document.querySelectorAll('.admin-cat-block').forEach((block, ci) => {
       act[ci].items = [...block.querySelectorAll('.admin-item-input')]
         .map(i => i.value.trim()).filter(Boolean);
     });
-    const ok = await saveActivites(act);
-    if (ok) { renderActivitesForm(); closeAdmin(); }
-    else { alert('Erreur de sauvegarde. Vérifiez le mot de passe.'); }
+    localStorage.setItem('castelboun_activites', JSON.stringify(act));
+    renderActivitesForm();
+    closeAdmin();
   });
 });
 
 
-function renderAdminCats() {
-  const activites = getActivites();
+async function renderAdminCats() {
+  const activites = await getActivites();
   const container = document.getElementById('admin-cats');
   container.innerHTML = activites.map((cat, ci) => `
     <div class="admin-cat-block" data-ci="${ci}">
@@ -2046,27 +2033,26 @@ function renderAdminCats() {
         ${cat.items.map((item, ii) => `
           <div class="admin-activite-row" data-ii="${ii}">
             <input type="text" value="${item}" class="admin-item-input" onkeydown="if(event.key==='Enter'){event.preventDefault();}">
-            <button class="admin-rm" onclick="removeAdminItem(${ci},${ii})">✕</button>
+            <button class="admin-rm" type="button" onclick="removeAdminItem(${ci},${ii})">✕</button>
           </div>`).join('')}
       </div>
-      <button class="admin-add" onclick="addAdminItem(${ci})">+ Ajouter une activité</button>
+      <button class="admin-add" type="button" onclick="addAdminItem(${ci})">+ Ajouter une activité</button>
     </div>
   `).join('');
 }
 
-function removeAdminItem(ci, ii) {
-  const act = getActivites();
+async function removeAdminItem(ci, ii) {
+  const act = await getActivites();
   act[ci].items.splice(ii, 1);
-  localStorage.setItem('castelboun_activites', JSON.stringify(act));
+  await saveActivites(act);
   renderAdminCats();
 }
 
-function addAdminItem(ci) {
-  const act = getActivites();
+async function addAdminItem(ci) {
+  const act = await getActivites();
   act[ci].items.push('');
-  localStorage.setItem('castelboun_activites', JSON.stringify(act));
-  renderAdminCats();
-  // Focus sur le nouveau champ
+  await saveActivites(act);
+  await renderAdminCats();
   const rows = document.querySelectorAll(`[data-ci="${ci}"] .admin-item-input`);
   rows[rows.length-1]?.focus();
 }
@@ -2077,7 +2063,7 @@ function addAdminItem(ci) {
 
 // ===== CALENDRIER DOMAINE CASTELBOUN =====
 const CAL_STORAGE_KEY = 'castelboun_calendar_v2';
-let calEvents = [];
+let calEvents = loadCalEvents();
 let currentDate = new Date();
 let calView = 'month';
 let adminMode = false;
@@ -2087,20 +2073,11 @@ let editingEventId = null;
 const TYPE_LABELS = { weekend:'Week-end / séjour', atelier:'Atelier', visite:'Visite', fete:'Fête / événement', autre:'Autre' };
 const TYPE_COLORS = { weekend:'#1d9e75', atelier:'#ba7517', visite:'#185fa5', fete:'#d4537e', autre:'#5f5e5a' };
 
-async function loadCalEvents() {
-  try {
-    const r = await fetch('/.netlify/functions/data-api?type=events');
-    return r.ok ? await r.json() : [];
-  } catch { return []; }
+function loadCalEvents() {
+  try { return JSON.parse(localStorage.getItem(CAL_STORAGE_KEY)) || []; } catch { return []; }
 }
-async function saveCalEvents() {
-  const pw = localStorage.getItem('cb_admin_pw');
-  if (!pw) return;
-  await fetch('/.netlify/functions/data-api?type=events', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ password: pw, data: calEvents })
-  });
+function saveCalEvents() {
+  localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(calEvents));
 }
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2);
@@ -2342,12 +2319,7 @@ document.getElementById('view-month-btn')?.addEventListener('click', () => { cal
 document.getElementById('view-list-btn')?.addEventListener('click', () => { calView='list'; renderCalendar(); });
 
 // ---- EXPORT ICS ----
-document.getElementById('webcal-btn')?.addEventListener('click', () => {
-  window.open('webcal://' + location.host + '/calendar.ics', '_blank');
-});
 document.getElementById('export-ics-btn')?.addEventListener('click', () => {
-  window.open('/calendar.ics', '_blank');
-  return;
   if (!calEvents.length) { alert('Aucun événement à exporter.'); return; }
   let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Domaine Castelboun//FR\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\nX-WR-CALNAME:Domaine Castelboun\r\nX-WR-CALDESC:Agenda des événements du Domaine Castelboun\r\n';
   calEvents.forEach(e => {
@@ -2411,11 +2383,8 @@ function formatDateFR(ds) {
   return d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 }
 
-// Démarrer (chargement async des événements)
-loadCalEvents().then(evts => {
-  calEvents = evts || [];
-  renderCalendar();
-});
+// Démarrer
+renderCalendar();
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
