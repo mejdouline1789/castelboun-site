@@ -1557,7 +1557,10 @@
           </a>
         </div>
       </div>
-      <button type="button" id="cal-admin-btn" style="margin-left:auto;background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;">⚙ Gérer l'agenda</button>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-left:auto;">
+        <button type="button" id="cal-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;text-align:right;">⚙ Gérer l'agenda</button>
+        <button type="button" id="dispo-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;text-align:right;">📍 Gérer les disponibilités</button>
+      </div>
     </div>
     <p class="ics-note">Compatible Google Calendar, Apple Calendar (iPhone), Samsung, FamilyWall — l'abonnement webcal se met à jour automatiquement.</p>
   </div><!-- fin col gauche calendrier -->
@@ -1672,29 +1675,92 @@
           <option value="">— Nouvel événement —</option>
         </select>
       </div>
-      <div style="margin-top:12px;"><button type="button" class="evt-modal-cancel" style="font-size:12px;" onclick="document.getElementById('cal-admin-dispo').style.display=document.getElementById('cal-admin-dispo').style.display==='none'?'block':'none'">📍 Gérer nos disponibilités ▾</button></div>
-
-      <div id="cal-admin-dispo" style="display:none;margin-top:20px;border-top:1px solid var(--line);padding-top:20px;">
-        <h4 style="font-family:'Fraunces',serif;font-size:16px;font-weight:700;margin:0 0 12px;color:var(--ink);">📍 Nos disponibilités</h4>
-        <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Sélectionnez un type puis cliquez sur les jours du calendrier ci-dessus.</p>
-        <div class="dispo-legend" id="dispo-legend">
-          <button type="button" class="dispo-btn" data-dtype="normandie" onclick="_dispoSelectType('normandie')">🏰 En Normandie</button>
-<button type="button" class="dispo-btn" data-dtype="paris" onclick="_dispoSelectType('paris')">🗼 À Paris</button>
-<button type="button" class="dispo-btn" data-dtype="voilier" onclick="_dispoSelectType('voilier')">⛵ Stage voilier</button>
-<button type="button" class="dispo-btn" data-dtype="formation" onclick="_dispoSelectType('formation')">📚 Formation</button>
-<button type="button" class="dispo-btn" data-dtype="vacances" onclick="_dispoSelectType('vacances')">🏖️ Vacances</button>
-<button type="button" class="dispo-btn" data-dtype="travaux" onclick="_dispoSelectType('travaux')">🔨 Travaux</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <span style="font-size:12px;color:#9c8a6a;">Cliquez sur un jour pour lui assigner/retirer le statut</span>
-          <button type="button" class="evt-modal-cancel" style="font-size:12px;padding:5px 10px;" onclick="_dispoReset()">Tout effacer</button>
-        </div>
-        <div class="dispo-admin-grid" id="dispo-admin-grid"></div>
-      </div>
       <div class="evt-modal-btns">
         <button class="evt-modal-save" type="button" id="cal-save-evt-btn">💾 Enregistrer</button>
         <button class="evt-modal-cancel" type="button" id="cal-admin-close-btn">Annuler</button>
         <button class="evt-modal-delete" type="button" id="cal-delete-evt-btn" style="display:none;">🗑 Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale admin DISPONIBILITÉS -->
+<div class="admin-overlay" id="dispo-admin-overlay">
+  <div class="admin-box" style="max-width:580px;">
+    <div id="dispo-admin-auth">
+      <h3>🔒 Admin disponibilités</h3>
+      <div class="admin-pw-box">
+        <input type="password" id="dispo-admin-pw" placeholder="Mot de passe" autocomplete="off">
+        <span style="color:#a32d2d;font-size:13px;display:none;" id="dispo-admin-pw-err">Mot de passe incorrect</span>
+        <button class="admin-save" type="button" id="dispo-admin-pw-ok">Connexion</button>
+      </div>
+    </div>
+    <div id="dispo-admin-form" style="display:none;">
+      <h3>📍 Nos disponibilités</h3>
+
+      <!-- Section récurrences -->
+      <div style="margin-bottom:20px;">
+        <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--clay);margin:0 0 10px;">Récurrences hebdomadaires</h4>
+        <div id="dispo-rules-list" style="margin-bottom:10px;"></div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px;border:1px solid var(--line);">
+          <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Ajouter une règle récurrente :</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+            <label style="font-size:13px;"><input type="checkbox" id="dr-lun" value="1"> Lun</label>
+            <label style="font-size:13px;"><input type="checkbox" id="dr-mar" value="2"> Mar</label>
+            <label style="font-size:13px;"><input type="checkbox" id="dr-mer" value="3"> Mer</label>
+            <label style="font-size:13px;"><input type="checkbox" id="dr-jeu" value="4"> Jeu</label>
+            <label style="font-size:13px;"><input type="checkbox" id="dr-ven" value="5"> Ven</label>
+            <label style="font-size:13px;"><input type="checkbox" id="dr-sam" value="6"> Sam</label>
+            <label style="font-size:13px;"><input type="checkbox" id="dr-dim" value="0"> Dim</label>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+            <div class="evt-field"><label>Du</label><input type="date" id="dr-start"></div>
+            <div class="evt-field"><label>Au (optionnel)</label><input type="date" id="dr-end"></div>
+          </div>
+          <div class="evt-field">
+            <label>Statut</label>
+            <select id="dr-status" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:13px;">
+              <option value="normandie">🏰 En Normandie</option>
+              <option value="paris">🗼 À Paris</option>
+              <option value="voilier">⛵ Stage voilier</option>
+              <option value="formation">📚 Formation</option>
+              <option value="vacances">🏖️ Vacances</option>
+              <option value="travaux">🔨 Travaux</option>
+            </select>
+          </div>
+          <button class="admin-add" type="button" id="dr-add-btn" style="width:100%;margin-top:4px;">+ Ajouter cette récurrence</button>
+        </div>
+      </div>
+
+      <!-- Section exceptions -->
+      <div>
+        <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--clay);margin:0 0 10px;">Modifications ponctuelles</h4>
+        <div id="dispo-exc-list" style="margin-bottom:10px;"></div>
+        <div style="background:var(--cream);border-radius:10px;padding:14px;border:1px solid var(--line);">
+          <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Modifier une date spécifique (remplace la récurrence) :</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+            <div class="evt-field"><label>Date</label><input type="date" id="de-date"></div>
+            <div class="evt-field"><label>Statut</label>
+              <select id="de-status" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:13px;">
+                <option value="">— Effacer (suivre règle) —</option>
+                <option value="normandie">🏰 En Normandie</option>
+                <option value="paris">🗼 À Paris</option>
+                <option value="voilier">⛵ Stage voilier</option>
+                <option value="formation">📚 Formation</option>
+                <option value="vacances">🏖️ Vacances</option>
+                <option value="travaux">🔨 Travaux</option>
+                <option value="_clear">✕ Aucun (forcer vide)</option>
+              </select>
+            </div>
+          </div>
+          <button class="admin-add" type="button" id="de-add-btn" style="width:100%;margin-top:4px;">+ Ajouter cette exception</button>
+        </div>
+      </div>
+
+      <div class="evt-modal-btns" style="margin-top:20px;">
+        <button class="evt-modal-save" type="button" id="dispo-save-btn">💾 Enregistrer</button>
+        <button class="evt-modal-cancel" type="button" id="dispo-close-btn">Fermer</button>
+        <button class="evt-modal-delete" type="button" id="dispo-reset-btn">🗑 Tout effacer</button>
       </div>
     </div>
   </div>
@@ -2276,8 +2342,24 @@ const DISPO_LABELS = {
   normandie: 'En Normandie', paris: 'À Paris', voilier: 'Stage voilier',
   formation: 'Formation', vacances: 'Vacances', travaux: 'Travaux'
 };
-let calDispos = {}; // { 'YYYY-MM-DD': 'normandie', ... }
-let _dispoSelectedType = null;
+let calDispos = { rules: [], exceptions: {} }; // { rules:[{id,days,status,startDate,endDate}], exceptions:{date:status} }
+
+// Résoudre le statut d'une date (exceptions > règles)
+function getDispoForDate(dateStr) {
+  const { rules = [], exceptions = {} } = calDispos;
+  if (dateStr in exceptions) {
+    return exceptions[dateStr] === '_clear' ? null : exceptions[dateStr];
+  }
+  const d = new Date(dateStr + 'T12:00:00');
+  const dow = d.getDay(); // 0=dim,1=lun,...,6=sam
+  for (const rule of rules) {
+    if (!rule.days?.includes(dow)) continue;
+    if (rule.startDate && dateStr < rule.startDate) continue;
+    if (rule.endDate && dateStr > rule.endDate) continue;
+    return rule.status;
+  }
+  return null;
+}
 
 // ===== CALENDRIER DOMAINE CASTELBOUN =====
 const CAL_STORAGE_KEY = 'castelboun_calendar_v2';
@@ -2352,11 +2434,6 @@ function renderMonthGrid() {
     cell.addEventListener('click', e => {
       if (e.target.classList.contains('cal-admin-add')) return;
       const ds = cell.dataset.date;
-      // En mode admin avec un type de dispo sélectionné → affecter la dispo
-      if (adminMode && _dispoSelectedType) {
-        _dispoToggleDay(ds);
-        return;
-      }
       const evts = eventsForDate(ds);
       if (evts.length) showDayDetail(ds);
       else if (adminMode) openEventModal(null, ds);
@@ -2385,9 +2462,11 @@ function cellHtml(date, other) {
   ).join('');
   const addBtn = adminMode ? `<button class="cal-admin-add" title="Ajouter">+</button>` : '';
   // Afficher l'icone de disponibilité si définie
-  const dispo = calDispos[ds];
-  const dispoHtml = dispo ? `<span style="position:absolute;top:3px;right:4px;font-size:12px;line-height:1;">${DISPO_ICONS[dispo]||''}</span>` : '';
-  return `<div class="${classes}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${dispoHtml}${addBtn}</div>`;
+  const dispo = getDispoForDate(ds);
+  const dispoIcon = dispo ? `<span style="position:absolute;top:3px;right:4px;font-size:11px;line-height:1;">${DISPO_ICONS[dispo]||''}</span>` : '';
+  const dispoBorder = dispo === 'normandie' ? 'border-color:rgba(29,158,117,0.4);' : '';
+  const dispoBg = dispo === 'normandie' ? 'background:rgba(29,158,117,0.07);' : '';
+  return `<div class="${classes}" style="${dispoBg}${dispoBorder}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${dispoIcon}${addBtn}</div>`;
 }
 
 function renderListView() {
@@ -2729,37 +2808,28 @@ async function saveDispos() {
       body:JSON.stringify({password:calAdminPw, data:calDispos})
     });
   }
+  renderCalendar(); // Rafraîchir le calendrier après sauvegarde
 }
 
 async function loadDispos() {
   try {
     const r = await fetch('/.netlify/functions/data-api?type=dispos');
-    if (r.ok) { calDispos = await r.json(); return; }
+    if (r.ok) {
+      const data = await r.json();
+      // Compatibilité : migrer ancien format {date:status} vers nouveau format {rules,exceptions}
+      if (data && !data.rules) {
+        calDispos = { rules: [], exceptions: data };
+      } else {
+        calDispos = data || { rules: [], exceptions: {} };
+      }
+      localStorage.setItem('castelboun_dispos', JSON.stringify(calDispos));
+      return;
+    }
   } catch {}
-  try { calDispos = JSON.parse(localStorage.getItem('castelboun_dispos') || '{}'); } catch { calDispos = {}; }
-}
-
-function _dispoSelectType(dtype) {
-  _dispoSelectedType = dtype;
-  document.querySelectorAll('.dispo-btn').forEach(b => b.classList.toggle('active', b.dataset.dtype === dtype));
-}
-
-function _dispoReset() {
-  if (!confirm('Effacer toutes les disponibilités ?')) return;
-  calDispos = {};
-  saveDispos();
-  renderCalendar();
-}
-
-function _dispoToggleDay(dateStr) {
-  if (!_dispoSelectedType) { alert("Sélectionnez d'abord un type de disponibilité."); return; }
-  if (calDispos[dateStr] === _dispoSelectedType) {
-    delete calDispos[dateStr];
-  } else {
-    calDispos[dateStr] = _dispoSelectedType;
-  }
-  saveDispos();
-  renderCalendar();
+  try {
+    const saved = JSON.parse(localStorage.getItem('castelboun_dispos') || '{}');
+    calDispos = saved.rules ? saved : { rules: [], exceptions: saved };
+  } catch { calDispos = { rules: [], exceptions: {} }; }
 }
 
 // Charger les dispos au démarrage
@@ -2772,6 +2842,133 @@ document.querySelectorAll('#main-nav a').forEach(a => {
     renderActivitesForm();
   }, 50));
 });
+
+
+// ===== ADMIN DISPONIBILITÉS =====
+let _dispoPw = null;
+
+function _openDispoAdmin() {
+  const overlay = document.getElementById('dispo-admin-overlay');
+  if (!overlay) return;
+  if (_dispoPw) {
+    _showDispoForm();
+  } else {
+    document.getElementById('dispo-admin-auth').style.display = '';
+    document.getElementById('dispo-admin-form').style.display = 'none';
+  }
+  overlay.classList.add('visible');
+}
+
+function _showDispoForm() {
+  document.getElementById('dispo-admin-auth').style.display = 'none';
+  document.getElementById('dispo-admin-form').style.display = '';
+  _renderDispoRules();
+  _renderDispoExceptions();
+}
+
+function _renderDispoRules() {
+  const { rules = [] } = calDispos;
+  const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  document.getElementById('dispo-rules-list').innerHTML = rules.length ? rules.map((r,i) => `
+    <div style="display:flex;align-items:center;gap:8px;background:var(--cream);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;">
+      <span>${DISPO_ICONS[r.status]||''} ${DISPO_LABELS[r.status]||r.status}</span>
+      <span style="color:#9c8a6a;">— ${r.days.map(d=>days[d]).join(', ')}${r.startDate?' du '+r.startDate:''}${r.endDate?' au '+r.endDate:''}</span>
+      <button type="button" style="margin-left:auto;background:none;border:none;color:#a32d2d;cursor:pointer;font-size:15px;" onclick="_deleteDispoRule(${i})">✕</button>
+    </div>`).join('') : '<p style="font-size:12px;color:#9c8a6a;margin:0 0 8px;">Aucune récurrence définie.</p>';
+}
+
+function _renderDispoExceptions() {
+  const { exceptions = {} } = calDispos;
+  const entries = Object.entries(exceptions).sort(([a],[b]) => a.localeCompare(b));
+  document.getElementById('dispo-exc-list').innerHTML = entries.length ? entries.map(([date,status]) => `
+    <div style="display:flex;align-items:center;gap:8px;background:var(--cream);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;">
+      <span>${date}</span>
+      <span>${status === '_clear' ? '✕ Aucun' : (DISPO_ICONS[status]||'') + ' ' + (DISPO_LABELS[status]||status)}</span>
+      <button type="button" style="margin-left:auto;background:none;border:none;color:#a32d2d;cursor:pointer;font-size:15px;" onclick="_deleteDispoExc('${date}')">✕</button>
+    </div>`).join('') : '<p style="font-size:12px;color:#9c8a6a;margin:0 0 8px;">Aucune modification ponctuelle.</p>';
+}
+
+function _deleteDispoRule(idx) {
+  calDispos.rules = (calDispos.rules || []).filter((_,i) => i !== idx);
+  _renderDispoRules();
+}
+
+function _deleteDispoExc(date) {
+  delete calDispos.exceptions[date];
+  _renderDispoExceptions();
+}
+
+document.getElementById('dispo-admin-btn')?.addEventListener('click', _openDispoAdmin);
+
+document.getElementById('dispo-admin-pw-ok')?.addEventListener('click', () => {
+  const pw = document.getElementById('dispo-admin-pw').value;
+  if (pw === ADMIN_PASSWORD) {
+    _dispoPw = pw;
+    document.getElementById('dispo-admin-pw-err').style.display = 'none';
+    _showDispoForm();
+  } else {
+    document.getElementById('dispo-admin-pw-err').style.display = 'block';
+  }
+});
+document.getElementById('dispo-admin-pw')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('dispo-admin-pw-ok').click();
+});
+
+document.getElementById('dr-add-btn')?.addEventListener('click', () => {
+  const days = [0,1,2,3,4,5,6].filter(d => {
+    const ids = ['dr-dim','dr-lun','dr-mar','dr-mer','dr-jeu','dr-ven','dr-sam'];
+    return document.getElementById(ids[d])?.checked;
+  });
+  if (!days.length) { alert('Sélectionnez au moins un jour.'); return; }
+  const status = document.getElementById('dr-status').value;
+  const startDate = document.getElementById('dr-start').value || null;
+  const endDate = document.getElementById('dr-end').value || null;
+  calDispos.rules = calDispos.rules || [];
+  calDispos.rules.push({ id: Date.now().toString(36), days, status, startDate, endDate });
+  // Reset checkboxes
+  ['dr-dim','dr-lun','dr-mar','dr-mer','dr-jeu','dr-ven','dr-sam'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.checked = false;
+  });
+  document.getElementById('dr-start').value = '';
+  document.getElementById('dr-end').value = '';
+  _renderDispoRules();
+});
+
+document.getElementById('de-add-btn')?.addEventListener('click', () => {
+  const date = document.getElementById('de-date').value;
+  if (!date) { alert('Sélectionnez une date.'); return; }
+  const status = document.getElementById('de-status').value || '_clear';
+  calDispos.exceptions = calDispos.exceptions || {};
+  calDispos.exceptions[date] = status;
+  document.getElementById('de-date').value = '';
+  _renderDispoExceptions();
+});
+
+document.getElementById('dispo-save-btn')?.addEventListener('click', async () => {
+  await saveDispos();
+  document.getElementById('dispo-admin-overlay').classList.remove('visible');
+});
+
+document.getElementById('dispo-close-btn')?.addEventListener('click', () => {
+  document.getElementById('dispo-admin-overlay').classList.remove('visible');
+});
+
+document.getElementById('dispo-reset-btn')?.addEventListener('click', () => {
+  if (!confirm('Effacer toutes les disponibilités ?')) return;
+  calDispos = { rules: [], exceptions: {} };
+  saveDispos();
+  document.getElementById('dispo-admin-overlay').classList.remove('visible');
+});
+
+document.getElementById('dispo-admin-overlay')?.addEventListener('click', e => {
+  if (e.target.id === 'dispo-admin-overlay') document.getElementById('dispo-admin-overlay').classList.remove('visible');
+});
+
+// Synchroniser le mot de passe avec calAdminPw si déjà connecté à l'agenda
+function _syncDispoPw() {
+  if (calAdminPw && !_dispoPw) _dispoPw = calAdminPw;
+  if (_dispoPw && !calAdminPw) calAdminPw = _dispoPw;
+}
 
 // ===== BOUTON ADMIN AGENDA =====
 let calAdminPw = null;
@@ -3066,18 +3263,37 @@ const resaSuccess = document.getElementById('resa-success');
 if (resaForm) {
   resaForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    // Collecter les participants (nom + email séparés)
     const rows = document.querySelectorAll('.participant-row');
-    const participants = [...rows].map(r => {
-      const name = r.querySelector('.p-name')?.value.trim();
-      const email = r.querySelector('.p-email')?.value.trim();
-      return [name, email].filter(Boolean).join(' — ');
-    }).filter(Boolean).join(' | ');
-    document.getElementById('participants-hidden').value = participants;
-    const data = new FormData(this);
+    const participants = [...rows].map(r => ({
+      name: r.querySelector('.p-name')?.value.trim() || '',
+      email: r.querySelector('.p-email')?.value.trim() || ''
+    })).filter(p => p.name || p.email);
+    // Champ caché pour Netlify Forms
+    const participantsStr = participants.map(p => [p.name, p.email].filter(Boolean).join(' — ')).join(' | ');
+    document.getElementById('participants-hidden').value = participantsStr;
+
     const activites = [...this.querySelectorAll('input[name="activites"]:checked')].map(el => el.value).join(', ');
-    data.set('activites', activites || 'Non précisées');
+    const evenement = document.getElementById('resa-evt-name')?.value || '';
+    const dateArrivee = document.getElementById('resa-date-debut')?.value || '';
+    const dateDepart = document.getElementById('resa-date-fin')?.value || '';
+    const autreIdee = document.getElementById('activite-proposee')?.value || '';
+    const message = document.getElementById('resa-message')?.value || '';
+
     try {
-      await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() });
+      // 1. Netlify Forms (capture admin)
+      const formData = new FormData(this);
+      formData.set('activites', activites || 'Non précisées');
+      await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(formData).toString() });
+
+      // 2. Email de confirmation via Resend
+      fetch('/api/send-reservation', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ participants, evenement, dateArrivee, dateDepart, activites, autreIdee, message })
+      });
+
+      // 3. Afficher le message de succès
       resaForm.style.display = 'none';
       resaSuccess.classList.add('visible');
     } catch(err) {
