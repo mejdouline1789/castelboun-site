@@ -2042,17 +2042,40 @@ const DEFAULT_ACTIVITES = [
 ];
 
 // ===== ACTIVITÉS : CHARGEMENT + RENDU FORMULAIRE =====
-function getActivites() {
+function getActivitesLocal() {
   try {
     const saved = localStorage.getItem('castelboun_activites');
     return saved ? JSON.parse(saved) : DEFAULT_ACTIVITES;
   } catch(e) { return DEFAULT_ACTIVITES; }
 }
 
+async function loadActivitesFromAPI() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=activities');
+    if (r.ok) {
+      const data = await r.json();
+      localStorage.setItem('castelboun_activites', JSON.stringify(data));
+      return data;
+    }
+  } catch(e) {}
+  return getActivitesLocal();
+}
+
+async function saveActivitesToAPI(data, pw) {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=activities', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ password: pw, data })
+    });
+    return r.ok;
+  } catch { return false; }
+}
+
 function renderActivitesForm() {
   const container = document.getElementById('activites-form-list');
   if (!container) return;
-  const activites = getActivites();
+  const activites = getActivitesLocal();
   container.innerHTML = activites.map(cat => `
     <div class="activites-cat-title">${cat.cat}</div>
     <div class="activites-grid">
@@ -2063,7 +2086,11 @@ function renderActivitesForm() {
     </div>
   `).join('');
 }
-renderActivitesForm();
+
+// Charger depuis API au démarrage et rafraîchir l'affichage
+loadActivitesFromAPI().then(data => {
+  renderActivitesForm();
+});
 
 // Re-render quand on clique sur l'onglet Venez !
 document.querySelectorAll('#main-nav a').forEach(a => {
@@ -2072,8 +2099,98 @@ document.querySelectorAll('#main-nav a').forEach(a => {
   }
 });
 
-// ===== PANEL ADMIN =====
+// ===== ADMIN ACTIVITÉS — REFAIT DE ZÉRO =====
 const ADMIN_PASSWORD = 'MGcastelboun2026';
+let _actAdminPw = null;       // Mot de passe en mémoire (reste valide toute la session)
+let _actBuffer = null;        // Buffer local des modifications en cours
+
+function _actRenderBuffer() {
+  const container = document.getElementById('admin-cats');
+  if (!container || !_actBuffer) return;
+  container.innerHTML = _actBuffer.map((cat, ci) => `
+    <div class="admin-cat-block">
+      <span class="admin-cat-label">${cat.cat}</span>
+      <div class="admin-items-list" id="act-list-${ci}">
+        ${cat.items.map((item, ii) => `
+          <div class="admin-activite-row">
+            <input type="text"
+              value="${item.replace(/"/g, '&quot;')}"
+              class="admin-item-input"
+              data-ci="${ci}" data-ii="${ii}"
+              onkeydown="if(event.key==='Enter'){event.preventDefault();_actValidateAndAdd(${ci},${ii},this);}"
+              onblur="_actUpdateItem(${ci},${ii},this.value)">
+            <button class="admin-rm" type="button" onclick="_actDeleteItem(${ci},${ii})">✕</button>
+          </div>`).join('')}
+      </div>
+      <button class="admin-add" type="button" onclick="_actAddItem(${ci})">+ Ajouter une activité</button>
+    </div>
+  `).join('');
+}
+
+function _actUpdateItem(ci, ii, value) {
+  if (_actBuffer) _actBuffer[ci].items[ii] = value;
+}
+
+function _actDeleteItem(ci, ii) {
+  if (!_actBuffer) return;
+  _actBuffer[ci].items.splice(ii, 1);
+  _actRenderBuffer();
+}
+
+function _actAddItem(ci) {
+  if (!_actBuffer) return;
+  // Lire les valeurs actuelles avant d'ajouter
+  _actSyncInputs();
+  _actBuffer[ci].items.push('');
+  _actRenderBuffer();
+  // Focus sur le nouveau champ
+  const list = document.getElementById('act-list-' + ci);
+  const inputs = list?.querySelectorAll('.admin-item-input');
+  if (inputs?.length) inputs[inputs.length - 1].focus();
+}
+
+function _actValidateAndAdd(ci, ii, input) {
+  // Valider la valeur courante et ajouter un nouveau champ dans la même catégorie
+  if (_actBuffer) _actBuffer[ci].items[ii] = input.value;
+  _actAddItem(ci);
+}
+
+function _actSyncInputs() {
+  // Lire toutes les valeurs des inputs dans le buffer avant toute opération
+  document.querySelectorAll('.admin-item-input').forEach(input => {
+    const ci = parseInt(input.dataset.ci);
+    const ii = parseInt(input.dataset.ii);
+    if (!isNaN(ci) && !isNaN(ii) && _actBuffer?.[ci]) {
+      _actBuffer[ci].items[ii] = input.value;
+    }
+  });
+}
+
+async function _actOpenAdmin() {
+  const overlay = document.getElementById('admin-overlay');
+  const pwScreen = document.getElementById('admin-pw-screen');
+  const editScreen = document.getElementById('admin-edit-screen');
+  if (!overlay) return;
+
+  if (_actAdminPw) {
+    // Déjà authentifié : charger le buffer et ouvrir directement
+    _actBuffer = JSON.parse(JSON.stringify(getActivitesLocal()));
+    _actRenderBuffer();
+    pwScreen.style.display = 'none';
+    editScreen.style.display = '';
+  } else {
+    pwScreen.style.display = '';
+    editScreen.style.display = 'none';
+  }
+  overlay.classList.add('visible');
+}
+
+function _actCloseAdmin() {
+  const overlay = document.getElementById('admin-overlay');
+  overlay?.classList.remove('visible');
+  // NE PAS réinitialiser le mot de passe → reste connecté
+  // NE PAS vider l'input pw → l'utilisateur n'a pas besoin de le retaper
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   const adminTrigger = document.getElementById('admin-trigger');
@@ -2082,86 +2199,47 @@ document.addEventListener('DOMContentLoaded', function() {
   const adminEditScreen = document.getElementById('admin-edit-screen');
   if (!adminTrigger) return;
 
-  adminTrigger.addEventListener('click', () => adminOverlay.classList.add('visible'));
-  adminOverlay.addEventListener('click', e => { if (e.target === adminOverlay) closeAdmin(); });
-  document.getElementById('admin-cancel-btn').addEventListener('click', closeAdmin);
+  adminTrigger.addEventListener('click', _actOpenAdmin);
+  adminOverlay.addEventListener('click', e => { if (e.target === adminOverlay) _actCloseAdmin(); });
+  document.getElementById('admin-cancel-btn').addEventListener('click', _actCloseAdmin);
 
-  function closeAdmin() {
-    adminOverlay.classList.remove('visible');
-    adminPwScreen.style.display = '';
-    adminEditScreen.style.display = 'none';
-    document.getElementById('admin-pw-input').value = '';
-    document.getElementById('admin-pw-err').style.display = 'none';
-  }
-
-  document.getElementById('admin-pw-ok').addEventListener('click', () => {
+  document.getElementById('admin-pw-ok').addEventListener('click', async () => {
     const pw = document.getElementById('admin-pw-input').value;
     if (pw === ADMIN_PASSWORD) {
+      _actAdminPw = pw;
+      // Charger depuis l'API dans le buffer
+      _actBuffer = JSON.parse(JSON.stringify(await loadActivitesFromAPI()));
+      _actRenderBuffer();
       adminPwScreen.style.display = 'none';
       adminEditScreen.style.display = '';
-      renderAdminCats();
     } else {
       document.getElementById('admin-pw-err').style.display = 'block';
     }
   });
+
   document.getElementById('admin-pw-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('admin-pw-ok').click();
   });
-  document.getElementById('admin-save-btn').addEventListener('click', () => {
-    const act = getActivites();
-    document.querySelectorAll('.admin-cat-block').forEach((block, ci) => {
-      act[ci].items = [...block.querySelectorAll('.admin-item-input')]
-        .map(i => i.value.trim()).filter(Boolean);
-    });
-    localStorage.setItem('castelboun_activites', JSON.stringify(act));
+
+  document.getElementById('admin-save-btn').addEventListener('click', async () => {
+    if (!_actBuffer || !_actAdminPw) return;
+    // Synchroniser les inputs avant sauvegarde
+    _actSyncInputs();
+    // Nettoyer les items vides
+    const cleaned = _actBuffer.map(cat => ({
+      ...cat,
+      items: cat.items.map(i => i.trim()).filter(Boolean)
+    }));
+    // Sauvegarder en localStorage (affichage immédiat pour cet appareil)
+    localStorage.setItem('castelboun_activites', JSON.stringify(cleaned));
+    // Sauvegarder via API (pour tous les visiteurs, persistant même après màj du site)
+    const ok = await saveActivitesToAPI(cleaned, _actAdminPw);
+    // Rafraîchir le formulaire visible
     renderActivitesForm();
-    closeAdmin();
+    _actCloseAdmin();
+    if (!ok) alert('⚠️ Activités sauvegardées localement mais erreur API — vérifiez votre connexion.');
   });
 });
-
-
-async function renderAdminCats() {
-  const activites = await getActivites();
-  const container = document.getElementById('admin-cats');
-  container.innerHTML = activites.map((cat, ci) => `
-    <div class="admin-cat-block" data-ci="${ci}">
-      <span class="admin-cat-label">${cat.cat}</span>
-      <div class="admin-items-list">
-        ${cat.items.map((item, ii) => `
-          <div class="admin-activite-row" data-ii="${ii}">
-            <input type="text" value="${item}" class="admin-item-input" onkeydown="if(event.key==='Enter'){event.preventDefault();}">
-            <button class="admin-rm" type="button" onclick="removeAdminItem(${ci},${ii})">✕</button>
-          </div>`).join('')}
-      </div>
-      <button class="admin-add" type="button" onclick="addAdminItem(${ci})">+ Ajouter une activité</button>
-    </div>
-  `).join('');
-}
-
-async function removeAdminItem(ci, ii) {
-  const act = await getActivites();
-  act[ci].items.splice(ii, 1);
-  // Sauvegarder localement d'abord (pour renderAdminCats)
-  localStorage.setItem('castelboun_activites', JSON.stringify(act));
-  // Puis via API (pour les autres visiteurs)
-  saveActivites(act);
-  renderAdminCats();
-}
-
-async function addAdminItem(ci) {
-  const act = await getActivites();
-  act[ci].items.push('');
-  // Sauvegarder localement d'abord (pour renderAdminCats)
-  localStorage.setItem('castelboun_activites', JSON.stringify(act));
-  // Puis via API (pour les autres visiteurs)
-  saveActivites(act);
-  await renderAdminCats();
-  const rows = document.querySelectorAll(`[data-ci="${ci}"] .admin-item-input`);
-  rows[rows.length-1]?.focus();
-}
-
-
-
 
 
 // ===== CALENDRIER DOMAINE CASTELBOUN =====
