@@ -1,76 +1,58 @@
-// Fonction Netlify : confirmation de réservation par email via Resend
-// Déclenchée par le formulaire de réservation (POST)
-
 export default async function handler(req, context) {
-  if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
-  }
+  if (req.method === 'OPTIONS') return new Response(null, { headers: {'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'POST','Access-Control-Allow-Headers':'Content-Type'} });
+  if (req.method !== 'POST') return new Response('Method not allowed', { status: 405 });
 
   let body;
-  try {
-    body = await req.json();
-  } catch {
-    return new Response(JSON.stringify({ error: 'JSON invalide' }), { status: 400 });
-  }
-
-  const { participants, evenement, dateArrivee, dateDepart, activites, message, icsUrl } = body;
+  try { body = await req.json(); } catch { return new Response('JSON invalide', { status: 400 }); }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  if (!RESEND_API_KEY) {
-    return new Response(JSON.stringify({ error: 'Clé API manquante' }), { status: 500 });
-  }
+  if (!RESEND_API_KEY) return new Response('Clé API manquante', { status: 500 });
 
-  // Construire le contenu email
-  const participantsList = (participants || []).map(p => `• ${p.name}${p.email ? ` (${p.email})` : ''}`).join('\n');
-  const firstEmail = (participants || []).find(p => p.email)?.email;
+  const { participants = [], evenement, dateArrivee, dateDepart, activites, autreIdee, message } = body;
 
-  const emailBody = `
-Bonjour,
+  const participantsText = participants.map(p => `• ${p.name || ''}${p.email ? ` <${p.email}>` : ''}`).join('\n');
+  const guestEmails = participants.map(p => p.email).filter(Boolean);
 
-Votre réservation au Domaine Castelboun a bien été prise en compte ! 🌿
+  const subject = `✅ Réservation — ${evenement || 'Domaine Castelboun'}`;
 
-${evenement ? `🗓️ Événement : ${evenement}` : ''}
-${dateArrivee ? `📅 Arrivée : ${dateArrivee}` : ''}
-${dateDepart ? `📅 Départ : ${dateDepart}` : ''}
-${participantsList ? `\n👥 Participant(e)s :\n${participantsList}` : ''}
-${activites ? `\n🌿 Activités souhaitées : ${activites}` : ''}
-${message ? `\n💬 Votre message : ${message}` : ''}
+  const bodyText = [
+    '✅ Votre réservation a bien été prise en compte !',
+    '',
+    evenement   ? `📅 Événement : ${evenement}` : '',
+    dateArrivee ? `🗓️ Arrivée : ${dateArrivee}` : '',
+    dateDepart  ? `🗓️ Départ : ${dateDepart}` : '',
+    participantsText ? `\n👥 Participant(e)s :\n${participantsText}` : '',
+    activites   ? `\n🌿 Activités : ${activites}` : '',
+    autreIdee   ? `💡 Autre idée : ${autreIdee}` : '',
+    message     ? `\n💬 Message : ${message}` : '',
+    '',
+    'Nous vous répondons sous 48h pour confirmer votre séjour.',
+    '',
+    '📆 Pour vous abonner à notre agenda :',
+    'https://permaculture-au-castelboun.netlify.app/calendar.ics',
+    '',
+    'Mejdouline & Guillaume — Domaine Castelboun',
+  ].filter(l => l !== undefined).join('\n');
 
-Nous vous répondrons sous 48h pour confirmer votre venue.
+  // Destinataires : propriétaires + invités
+  const owners = ['diboun.mejdouline@gmail.com', 'castelbou.guillaume@gmail.com'];
+  const allTo = [...new Set([...guestEmails, ...owners])];
 
-📆 Pour ajouter cet événement à votre calendrier :
-${icsUrl || 'https://permaculture-au-castelboun.netlify.app/calendar.ics'}
+  // Resend : FROM doit être un domaine vérifié ou onboarding@resend.dev (compte gratuit)
+  const FROM = 'Domaine Castelboun <onboarding@resend.dev>';
 
-À bientôt au Domaine Castelboun !
-Mejdouline & Guillaume
-`.trim();
+  const results = await Promise.allSettled(
+    allTo.map(to =>
+      fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from: FROM, to, subject, text: bodyText, reply_to: 'diboun.mejdouline@gmail.com' }),
+      }).then(r => r.json())
+    )
+  );
 
-  // Destinataires
-  const ownerEmails = ['diboun.mejdouline@gmail.com', 'castelbou.guillaume@gmail.com'];
-  const recipientEmails = (participants || []).map(p => p.email).filter(Boolean);
-  const allRecipients = [...new Set([...recipientEmails, ...ownerEmails])];
-
-  // Envoi via Resend
-  const emails = allRecipients.map(to => ({
-    from: 'Domaine Castelboun <noreply@permaculture-au-castelboun.netlify.app>',
-    to,
-    subject: `✅ Réservation confirmée${evenement ? ` — ${evenement}` : ''} — Domaine Castelboun`,
-    text: emailBody,
-  }));
-
-  const results = await Promise.all(emails.map(email =>
-    fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(email),
-    }).then(r => r.json())
-  ));
-
-  const hasError = results.some(r => r.error);
-  return Response.json({ ok: !hasError, results });
+  const errors = results.filter(r => r.status === 'rejected' || r.value?.error);
+  return Response.json({ ok: errors.length === 0, sent: allTo.length, errors: errors.map(e => e.reason || e.value?.error) });
 }
 
 export const config = { path: '/api/send-reservation' };
