@@ -1570,10 +1570,10 @@
 
       <form name="reservation" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="evenement" /><input type="text" name="participants" />
-        <input type="date" name="date-souhaitee" /><input type="text" name="activites" />
+        <input type="date" name="date-arrivee" /><input type="date" name="date-depart" /><input type="text" name="activites" />
         <input type="text" name="activite-proposee" /><textarea name="message"></textarea>
       </form>
-      <div id="resa-success" class="resa-success">🌿 Merci ! Nous vous répondons sous 48h pour confirmer.</div>
+      <div id="resa-success" class="resa-success">✅ Votre réservation a bien été prise en compte ! Nous vous répondons sous 48h pour confirmer votre séjour.</div>
       <form id="resa-form-live" data-netlify="true" name="reservation" method="POST" netlify>
         <input type="hidden" name="form-name" value="reservation">
         <input type="hidden" name="evenement" id="resa-evt-name">
@@ -1590,9 +1590,15 @@
           </div>
           <button type="button" class="add-person-btn" id="add-person-btn">+ Ajouter une personne</button>
         </div>
-        <div class="resa-field">
-          <label for="resa-date">Date souhaitée *</label>
-          <input type="date" id="resa-date" name="date-souhaitee" required>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="resa-field">
+            <label for="resa-date-debut">Date d'arrivée *</label>
+            <input type="date" id="resa-date-debut" name="date-arrivee" required>
+          </div>
+          <div class="resa-field">
+            <label for="resa-date-fin">Date de départ</label>
+            <input type="date" id="resa-date-fin" name="date-depart">
+          </div>
         </div>
         <div class="resa-field" id="resa-activites-field" style="display:none;">
           <label>Activités proposées pour cet événement</label>
@@ -1665,6 +1671,25 @@
         <select id="cal-evt-select" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:13px;margin-top:4px;">
           <option value="">— Nouvel événement —</option>
         </select>
+      </div>
+      <div style="margin-top:12px;"><button type="button" class="evt-modal-cancel" style="font-size:12px;" onclick="document.getElementById('cal-admin-dispo').style.display=document.getElementById('cal-admin-dispo').style.display==='none'?'block':'none'">📍 Gérer nos disponibilités ▾</button></div>
+
+      <div id="cal-admin-dispo" style="display:none;margin-top:20px;border-top:1px solid var(--line);padding-top:20px;">
+        <h4 style="font-family:'Fraunces',serif;font-size:16px;font-weight:700;margin:0 0 12px;color:var(--ink);">📍 Nos disponibilités</h4>
+        <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Sélectionnez un type puis cliquez sur les jours du calendrier ci-dessus.</p>
+        <div class="dispo-legend" id="dispo-legend">
+          <button type="button" class="dispo-btn" data-dtype="normandie" onclick="_dispoSelectType('normandie')">🏰 En Normandie</button>
+<button type="button" class="dispo-btn" data-dtype="paris" onclick="_dispoSelectType('paris')">🗼 À Paris</button>
+<button type="button" class="dispo-btn" data-dtype="voilier" onclick="_dispoSelectType('voilier')">⛵ Stage voilier</button>
+<button type="button" class="dispo-btn" data-dtype="formation" onclick="_dispoSelectType('formation')">📚 Formation</button>
+<button type="button" class="dispo-btn" data-dtype="vacances" onclick="_dispoSelectType('vacances')">🏖️ Vacances</button>
+<button type="button" class="dispo-btn" data-dtype="travaux" onclick="_dispoSelectType('travaux')">🔨 Travaux</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:12px;color:#9c8a6a;">Cliquez sur un jour pour lui assigner/retirer le statut</span>
+          <button type="button" class="evt-modal-cancel" style="font-size:12px;padding:5px 10px;" onclick="_dispoReset()">Tout effacer</button>
+        </div>
+        <div class="dispo-admin-grid" id="dispo-admin-grid"></div>
       </div>
       <div class="evt-modal-btns">
         <button class="evt-modal-save" type="button" id="cal-save-evt-btn">💾 Enregistrer</button>
@@ -2315,8 +2340,13 @@ function renderMonthGrid() {
     cell.addEventListener('click', e => {
       if (e.target.classList.contains('cal-admin-add')) return;
       const ds = cell.dataset.date;
+      // En mode admin avec un type de dispo sélectionné → affecter la dispo
+      if (adminMode && _dispoSelectedType) {
+        _dispoToggleDay(ds);
+        return;
+      }
       const evts = eventsForDate(ds);
-      if (evts.length) showDetail(evts[0].id);
+      if (evts.length) showDayDetail(ds);
       else if (adminMode) openEventModal(null, ds);
     });
     cell.querySelector('.cal-admin-add')?.addEventListener('click', e => {
@@ -2342,7 +2372,10 @@ function cellHtml(date, other) {
     `<div class="cal-event-pill" style="background:${TYPE_COLORS[e.type]}22;color:${TYPE_COLORS[e.type]};border:1px solid ${TYPE_COLORS[e.type]}44;">${e.title}</div>`
   ).join('');
   const addBtn = adminMode ? `<button class="cal-admin-add" title="Ajouter">+</button>` : '';
-  return `<div class="${classes}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${addBtn}</div>`;
+  // Afficher l'icone de disponibilité si définie
+  const dispo = calDispos[ds];
+  const dispoHtml = dispo ? `<span style="position:absolute;top:3px;right:4px;font-size:12px;line-height:1;">${DISPO_ICONS[dispo]||''}</span>` : '';
+  return `<div class="${classes}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${dispoHtml}${addBtn}</div>`;
 }
 
 function renderListView() {
@@ -2378,6 +2411,37 @@ function renderListView() {
 }
 
 // ---- DETAIL EVENEMENT ----
+// Afficher un jour avec potentiellement plusieurs événements
+function showDayDetail(dateStr) {
+  const evts = eventsForDate(dateStr);
+  if (!evts.length) return;
+  selectedDate = dateStr;
+  if (evts.length === 1) {
+    showDetail(evts[0].id);
+    return;
+  }
+  // Plusieurs événements : afficher la liste
+  document.getElementById('detail-title').textContent = formatDateFR(dateStr);
+  document.getElementById('detail-dates').textContent = `${evts.length} événements ce jour`;
+  let grid = `<div class="day-events-list" style="grid-column:1/-1">`;
+  evts.forEach(e => {
+    grid += `<div class="day-evt-row" onclick="showDetail('${e.id}')">
+      <div class="day-evt-dot" style="background:${TYPE_COLORS[e.type]}"></div>
+      <span class="day-evt-label">${e.title}</span>
+      <span class="day-evt-time">${e.time||TYPE_LABELS[e.type]||''}</span>
+    </div>`;
+  });
+  grid += '</div>';
+  document.getElementById('detail-grid').innerHTML = grid;
+  const btn = document.getElementById('detail-resa-btn');
+  btn.textContent = 'Réserver ma place 🌱';
+  btn.disabled = false;
+  btn.onclick = () => openResaForEvent(evts[0]);
+  document.getElementById('cal-detail').classList.add('visible');
+  document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+  if (calView === 'month') renderMonthGrid();
+}
+
 function showDetail(id) {
   const e = calEvents.find(x => x.id === id);
   if (!e) return;
@@ -2387,23 +2451,49 @@ function showDetail(id) {
   const d2 = e.dateEnd && e.dateEnd !== e.dateStart ? ' → ' + formatDateFR(e.dateEnd) : '';
   document.getElementById('detail-dates').textContent = d1 + d2 + (e.time ? ' · ' + e.time : '');
   let grid = '';
-  if (e.description) grid += section('📝 Description', `<p>${e.description}</p>`);
+
+  // Description avec liens cliquables
+  if (e.description) {
+    const descHtml = linkify(e.description);
+    grid += section('📝 Description', `<p>${descHtml}</p>`);
+  }
   if (e.activities) {
     const NL = String.fromCharCode(10);
     const acts = e.activities.split(NL).filter(a=>a.trim());
-    if (acts.length) grid += section('🌿 Activités', '<ul>' + acts.map(a=>`<li>${a}</li>`).join('') + '</ul>');
+    if (acts.length) grid += section('🌿 Activités', '<ul>' + acts.map(a=>`<li>${linkify(a)}</li>`).join('') + '</ul>');
   }
-  if (e.prerequisites) grid += section('ℹ️ Prérequis', `<p>${e.prerequisites}</p>`);
+  if (e.prerequisites) grid += section('ℹ️ Prérequis', `<p>${linkify(e.prerequisites)}</p>`);
+
+  // Gestion des places
   if (e.max) {
-    const pct = Math.min(100, Math.round(0));
-    grid += section('👥 Places', `<div class="cal-places"><span>${e.max} places</span><div class="cal-places-bar"><div class="cal-places-fill" style="width:${pct}%"></div></div></div>`);
+    const taken = e.taken || 0;
+    const free = Math.max(0, e.max - taken);
+    const pct = Math.min(100, Math.round((taken / e.max) * 100));
+    const color = pct >= 90 ? '#d45c3e' : pct >= 60 ? '#ba7517' : '#1d9e75';
+    grid += section('👥 Places', `
+      <div class="places-info">
+        <div class="places-row">
+          <span>Capacité : <strong>${e.max} personnes</strong></span>
+        </div>
+        <div class="places-row">
+          <span class="places-taken">Réservées : ${taken}</span>
+          <span class="places-free">Disponibles : ${free}</span>
+        </div>
+        <div class="cal-places-bar" style="height:8px;margin-top:4px;">
+          <div class="cal-places-fill" style="width:${pct}%;background:${color}"></div>
+        </div>
+      </div>`);
   }
+
   if (adminMode) {
-    grid += `<div style="grid-column:1/-1;"><button onclick="openEventModal('${id}')" style="background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;color:var(--ink);">✏️ Modifier cet événement</button></div>`;
+    grid += `<div style="grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;">
+      <button onclick="openEventModal('${id}')" style="background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;color:var(--ink);">✏️ Modifier</button>
+      <button onclick="updateTakenPlaces('${id}')" style="background:var(--cream);border:1px solid var(--clay);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;color:var(--clay);">👥 Màj places réservées</button>
+    </div>`;
   }
   document.getElementById('detail-grid').innerHTML = grid;
   const btn = document.getElementById('detail-resa-btn');
-  const isFull = e.status === 'full';
+  const isFull = e.status === 'full' || (e.max && (e.taken||0) >= e.max);
   const isClosed = e.status === 'closed';
   btn.textContent = isFull ? 'Complet' : isClosed ? 'Fermé aux réservations' : 'Réserver ma place 🌱';
   btn.disabled = isFull || isClosed;
@@ -2412,8 +2502,35 @@ function showDetail(id) {
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   if (calView === 'month') renderMonthGrid();
 }
+
+function linkify(text) {
+  // Rendre les URLs cliquables dans un texte
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
 function section(title, content) {
   return `<div class="cal-detail-section"><h4>${title}</h4>${content}</div>`;
+}
+
+function updateTakenPlaces(id) {
+  const e = calEvents.find(x => x.id === id);
+  if (!e) return;
+  const val = prompt(`Nombre de personnes ayant réservé pour "${e.title}" :`, e.taken || 0);
+  if (val === null) return;
+  const n = parseInt(val);
+  if (isNaN(n) || n < 0) return;
+  e.taken = n;
+  localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(calEvents));
+  // Sauvegarder via API
+  if (calAdminPw) {
+    fetch('/.netlify/functions/data-api?type=events', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:calAdminPw, data:calEvents})
+    });
+  }
+  showDetail(id);
 }
 document.getElementById('detail-close-btn')?.addEventListener('click', () => {
   document.getElementById('cal-detail').classList.remove('visible');
@@ -2425,7 +2542,10 @@ document.getElementById('detail-close-btn')?.addEventListener('click', () => {
 function openResaForEvent(evt) {
   document.getElementById('resa-section-title').textContent = '→ Événement sélectionné : ' + evt.title;
   document.getElementById('resa-evt-name').value = evt.title;
-  document.getElementById('resa-date').value = evt.dateStart;
+  const debutEl = document.getElementById('resa-date-debut');
+  const finEl = document.getElementById('resa-date-fin');
+  if (debutEl) debutEl.value = evt.dateStart || '';
+  if (finEl) finEl.value = evt.dateEnd || evt.dateStart || '';
   const actsField = document.getElementById('resa-activites-list');
   const actsContainer = document.getElementById('resa-activites-field');
   const NL = String.fromCharCode(10);
@@ -2588,6 +2708,62 @@ loadCalEventsFromAPI().then(apiData => {
     renderCalendar();
   }
 });
+
+
+// ===== DISPONIBILITÉS =====
+const DISPO_ICONS = {
+  normandie: '🏰', paris: '🗼', voilier: '⛵',
+  formation: '📚', vacances: '🏖️', travaux: '🔨'
+};
+const DISPO_LABELS = {
+  normandie: 'En Normandie', paris: 'À Paris', voilier: 'Stage voilier',
+  formation: 'Formation', vacances: 'Vacances', travaux: 'Travaux'
+};
+let calDispos = {}; // { 'YYYY-MM-DD': 'normandie', ... }
+let _dispoSelectedType = null;
+
+async function loadDispos() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=dispos');
+    if (r.ok) { calDispos = await r.json(); return; }
+  } catch {}
+  try { calDispos = JSON.parse(localStorage.getItem('castelboun_dispos') || '{}'); } catch { calDispos = {}; }
+}
+async function saveDispos() {
+  localStorage.setItem('castelboun_dispos', JSON.stringify(calDispos));
+  if (calAdminPw) {
+    fetch('/.netlify/functions/data-api?type=dispos', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:calAdminPw, data:calDispos})
+    });
+  }
+}
+
+function _dispoSelectType(dtype) {
+  _dispoSelectedType = dtype;
+  document.querySelectorAll('.dispo-btn').forEach(b => b.classList.toggle('active', b.dataset.dtype === dtype));
+}
+
+function _dispoReset() {
+  if (!confirm('Effacer toutes les disponibilités ?')) return;
+  calDispos = {};
+  saveDispos();
+  renderCalendar();
+}
+
+function _dispoToggleDay(dateStr) {
+  if (!_dispoSelectedType) { alert("Sélectionnez d'abord un type de disponibilité."); return; }
+  if (calDispos[dateStr] === _dispoSelectedType) {
+    delete calDispos[dateStr];
+  } else {
+    calDispos[dateStr] = _dispoSelectedType;
+  }
+  saveDispos();
+  renderCalendar();
+}
+
+// Charger les dispos au démarrage
+loadDispos().then(() => renderCalendar());
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
