@@ -50,7 +50,8 @@ const DEFAULTS = {
   activities: DEFAULT_ACTIVITIES,
   events: DEFAULT_EVENTS,
   news: DEFAULT_NEWS,
-  dispos: {}
+  dispos: {},
+  reservations: []
 };
 
 export default async function handler(req, context) {
@@ -61,7 +62,7 @@ export default async function handler(req, context) {
   const url = new URL(req.url);
   const type = url.searchParams.get("type");
 
-  if (!["activities", "events", "news", "dispos"].includes(type)) {
+  if (!["activities", "events", "news", "dispos", "reservations"].includes(type)) {
     return new Response(JSON.stringify({ error: "Type invalide" }), { status: 400, headers: { "Content-Type": "application/json" } });
   }
 
@@ -82,7 +83,8 @@ export default async function handler(req, context) {
       return new Response(JSON.stringify({ error: "JSON invalide" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
     const adminPw = process.env.ADMIN_PASSWORD || "MGcastelboun2026";
-    if (body.password !== adminPw) {
+    const isPublicResa = type === "reservations" && body.password === "_public_resa_";
+    if (!isPublicResa && body.password !== adminPw) {
       return new Response(JSON.stringify({ error: "Mot de passe incorrect" }), { status: 401, headers: { "Content-Type": "application/json" } });
     }
     await store.setJSON(type, body.data);
