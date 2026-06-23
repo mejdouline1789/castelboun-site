@@ -4,28 +4,36 @@ const DEFAULT_ACTIVITIES = [
   {
     cat: "Ateliers permanents",
     items: [
-      "Visite du potager mandala",
+      "Atelier défi cuisine 100% du jardin",
       "Atelier semis & repiquage",
       "Atelier compost & sol vivant",
-      "Découverte de la permaculture"
+      "Atelier découpe de bois",
+      "Atelier identification de la biodiversité"
     ]
   },
   {
     cat: "Ateliers du mois",
-    items: ["Atelier taille & greffe", "Cueillette sauvage"]
+    items: ["Atelier récolte fruits et légumes de saison,", "Atelier Vin de noix 14/07", "Atelier Jus de pommes", 'Atelier construction d'un bar en verres"]
   },
   {
     cat: "Jeux et activités nocturnes",
     items: [
-      "Observation des lucioles (juin-juillet)",
-      "Soirée contes au coin du feu"
+      "Cinéma plein air",
+      "Billard Américain, Catalan, Indien...",
+      "Jeux d'extérieur : Mollky, pingpong, badminton, plumfoot...",
+      "Jeux de société : Foufoufou, Belote coinche, Skyjo...",
+      "Soirée karaoké / Blindtest"
     ]
   },
   {
-    cat: "Découverte de la région",
+    cat: "Découverte de la région à pied, à vélo ou en voiture",
     items: [
-      "Balade au bord du Val du Breuil",
-      "Circuit des villages du Pays d'Houlme"
+      "Sentier de la roche d'oëtre",
+      "Sentier Le marais du Grand Hazé",
+      "Mont saint-Michel",
+      "L'estuaire de Ouistreham",
+      "Les plages du débarquement",
+      "Découverte d'un nouveau village ornais"
     ]
   }
 ];
@@ -89,7 +97,7 @@ export default async function handler(req, context) {
       });
     }
 
-    const adminPw = process.env.ADMIN_PASSWORD || "castelboun2026";
+    const adminPw = process.env.ADMIN_PASSWORD || "MGcastelboun2026";
     if (body.password !== adminPw) {
       return new Response(JSON.stringify({ error: "Mot de passe incorrect" }), {
         status: 401,
