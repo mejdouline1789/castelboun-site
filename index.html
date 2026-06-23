@@ -2166,7 +2166,7 @@ async function addAdminItem(ci) {
 
 // ===== CALENDRIER DOMAINE CASTELBOUN =====
 const CAL_STORAGE_KEY = 'castelboun_calendar_v2';
-let calEvents = loadCalEvents();
+let calEvents = loadCalEventsLocal(); // Affichage rapide depuis cache local
 let currentDate = new Date();
 let calView = 'month';
 let adminMode = false;
@@ -2176,8 +2176,20 @@ let editingEventId = null;
 const TYPE_LABELS = { weekend:'Week-end / séjour', atelier:'Atelier', visite:'Visite', fete:'Fête / événement', autre:'Autre' };
 const TYPE_COLORS = { weekend:'#1d9e75', atelier:'#ba7517', visite:'#185fa5', fete:'#d4537e', autre:'#5f5e5a' };
 
-function loadCalEvents() {
+function loadCalEventsLocal() {
   try { return JSON.parse(localStorage.getItem(CAL_STORAGE_KEY)) || []; } catch { return []; }
+}
+async function loadCalEventsFromAPI() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=events');
+    if (r.ok) {
+      const data = await r.json();
+      // Mettre en cache dans localStorage
+      localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(data));
+      return data;
+    }
+  } catch {}
+  return loadCalEventsLocal();
 }
 function saveCalEvents() {
   localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(calEvents));
@@ -2486,9 +2498,18 @@ function formatDateFR(ds) {
   return d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 }
 
-// Démarrer
-calEvents = loadCalEvents();
+// Démarrer : affichage immédiat depuis cache, puis sync API
+calEvents = loadCalEventsLocal();
 renderCalendar();
+// Charger depuis l'API en arrière-plan et rafraîchir si données différentes
+loadCalEventsFromAPI().then(apiData => {
+  const localStr = JSON.stringify(calEvents);
+  const apiStr = JSON.stringify(apiData);
+  if (localStr !== apiStr) {
+    calEvents = apiData;
+    renderCalendar();
+  }
+});
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
@@ -2597,7 +2618,8 @@ document.getElementById('cal-save-evt-btn')?.addEventListener('click', async () 
   if (!data.title || !data.dateStart) { alert('Le titre et la date de début sont obligatoires.'); return; }
   if (selId) { calEvents = calEvents.map(e => e.id === selId ? data : e); }
   else { calEvents.push(data); }
-  // Sauvegarder via API
+  // Sauvegarder en localStorage ET via API
+  localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(calEvents));
   try {
     await fetch('/.netlify/functions/data-api?type=events', {
       method: 'POST',
@@ -2613,6 +2635,8 @@ document.getElementById('cal-delete-evt-btn')?.addEventListener('click', async (
   const id = document.getElementById('cal-evt-select').value;
   if (!id || !confirm('Supprimer cet événement ?')) return;
   calEvents = calEvents.filter(e => e.id !== id);
+  // Sauvegarder en localStorage ET via API
+  localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(calEvents));
   try {
     await fetch('/.netlify/functions/data-api?type=events', {
       method: 'POST',
