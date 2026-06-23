@@ -1563,6 +1563,7 @@
       </div>
     </div>
     <p class="ics-note">Compatible Google Calendar, Apple Calendar (iPhone), Samsung, FamilyWall — l'abonnement webcal se met à jour automatiquement.</p>
+    <div id="dispo-legend-display" style="margin-top:10px;font-size:12px;color:#7a6a54;display:flex;flex-wrap:wrap;gap:8px;"></div>
   </div><!-- fin col gauche calendrier -->
 
   <!-- Colonne droite : formulaire de réservation toujours visible -->
@@ -1576,7 +1577,7 @@
         <input type="date" name="date-arrivee" /><input type="date" name="date-depart" /><input type="text" name="activites" />
         <input type="text" name="activite-proposee" /><textarea name="message"></textarea>
       </form>
-      <div id="resa-success" class="resa-success">✅ Votre réservation a bien été prise en compte ! Nous vous répondons sous 48h pour confirmer votre séjour.</div>
+      <div id="resa-success" class="resa-success">✅ Votre réservation est confirmée ! Regardez dans vos mails pour ajouter votre visite sur votre agenda 😉</div>
       <form id="resa-form-live" data-netlify="true" name="reservation" method="POST" netlify>
         <input type="hidden" name="form-name" value="reservation">
         <input type="hidden" name="evenement" id="resa-evt-name">
@@ -1686,7 +1687,7 @@
 
 <!-- Modale admin DISPONIBILITÉS -->
 <div class="admin-overlay" id="dispo-admin-overlay">
-  <div class="admin-box" style="max-width:580px;">
+  <div class="admin-box" style="max-width:560px;">
     <div id="dispo-admin-auth">
       <h3>🔒 Admin disponibilités</h3>
       <div class="admin-pw-box">
@@ -1697,68 +1698,51 @@
     </div>
     <div id="dispo-admin-form" style="display:none;">
       <h3>📍 Nos disponibilités</h3>
+      <p style="font-size:12px;color:#9c8a6a;margin:0 0 16px;">Définissez des périodes pour indiquer où vous êtes. Ces infos s'affichent sur l'agenda public.</p>
 
-      <!-- Section récurrences -->
-      <div style="margin-bottom:20px;">
-        <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--clay);margin:0 0 10px;">Récurrences hebdomadaires</h4>
-        <div id="dispo-rules-list" style="margin-bottom:10px;"></div>
-        <div style="background:var(--cream);border-radius:10px;padding:14px;border:1px solid var(--line);">
-          <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Ajouter une règle récurrente :</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
-            <label style="font-size:13px;"><input type="checkbox" id="dr-lun" value="1"> Lun</label>
-            <label style="font-size:13px;"><input type="checkbox" id="dr-mar" value="2"> Mar</label>
-            <label style="font-size:13px;"><input type="checkbox" id="dr-mer" value="3"> Mer</label>
-            <label style="font-size:13px;"><input type="checkbox" id="dr-jeu" value="4"> Jeu</label>
-            <label style="font-size:13px;"><input type="checkbox" id="dr-ven" value="5"> Ven</label>
-            <label style="font-size:13px;"><input type="checkbox" id="dr-sam" value="6"> Sam</label>
-            <label style="font-size:13px;"><input type="checkbox" id="dr-dim" value="0"> Dim</label>
+      <!-- Liste des périodes -->
+      <div id="dispo-periods-list" style="margin-bottom:16px;"></div>
+
+      <!-- Formulaire d'ajout/modification -->
+      <div style="background:var(--cream);border-radius:12px;padding:16px;border:1px solid var(--line);">
+        <h4 style="font-size:13px;font-weight:700;color:var(--clay);margin:0 0 12px;" id="dispo-form-title">Nouvelle période</h4>
+        <input type="hidden" id="dispo-edit-id">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+          <div class="evt-field"><label>Début *</label><input type="date" id="dp-start"></div>
+          <div class="evt-field"><label>Fin *</label><input type="date" id="dp-end"></div>
+        </div>
+        <div class="evt-field" style="margin-bottom:10px;">
+          <label>Statut *</label>
+          <select id="dp-status" style="padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:white;font-size:14px;width:100%;">
+            <option value="normandie">🏰 En Normandie</option>
+            <option value="paris">🗼 À Paris</option>
+            <option value="voilier">⛵ Stage voilier</option>
+            <option value="formation">📚 Formation</option>
+            <option value="vacances">🏖️ Vacances</option>
+            <option value="travaux">🔨 Travaux</option>
+          </select>
+        </div>
+        <div class="evt-field" style="margin-bottom:12px;">
+          <label style="font-size:13px;font-weight:600;">Récurrence (optionnel — uniquement certains jours de la période)</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="1"> Lun</label>
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="2"> Mar</label>
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="3"> Mer</label>
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="4"> Jeu</label>
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="5"> Ven</label>
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="6"> Sam</label>
+            <label class="activite-check"><input type="checkbox" class="dp-day" value="0"> Dim</label>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
-            <div class="evt-field"><label>Du</label><input type="date" id="dr-start"></div>
-            <div class="evt-field"><label>Au (optionnel)</label><input type="date" id="dr-end"></div>
-          </div>
-          <div class="evt-field">
-            <label>Statut</label>
-            <select id="dr-status" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:13px;">
-              <option value="normandie">🏰 En Normandie</option>
-              <option value="paris">🗼 À Paris</option>
-              <option value="voilier">⛵ Stage voilier</option>
-              <option value="formation">📚 Formation</option>
-              <option value="vacances">🏖️ Vacances</option>
-              <option value="travaux">🔨 Travaux</option>
-            </select>
-          </div>
-          <button class="admin-add" type="button" id="dr-add-btn" style="width:100%;margin-top:4px;">+ Ajouter cette récurrence</button>
+          <p style="font-size:11px;color:#9c8a6a;margin:4px 0 0;">Laissez tout décoché pour appliquer à tous les jours de la période.</p>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="evt-modal-save" type="button" id="dp-save-btn" style="flex:1;">💾 Enregistrer la période</button>
+          <button class="evt-modal-cancel" type="button" id="dp-cancel-btn" style="display:none;">Annuler modif.</button>
         </div>
       </div>
 
-      <!-- Section exceptions -->
-      <div>
-        <h4 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--clay);margin:0 0 10px;">Modifications ponctuelles</h4>
-        <div id="dispo-exc-list" style="margin-bottom:10px;"></div>
-        <div style="background:var(--cream);border-radius:10px;padding:14px;border:1px solid var(--line);">
-          <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Modifier une date spécifique (remplace la récurrence) :</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
-            <div class="evt-field"><label>Date</label><input type="date" id="de-date"></div>
-            <div class="evt-field"><label>Statut</label>
-              <select id="de-status" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:13px;">
-                <option value="">— Effacer (suivre règle) —</option>
-                <option value="normandie">🏰 En Normandie</option>
-                <option value="paris">🗼 À Paris</option>
-                <option value="voilier">⛵ Stage voilier</option>
-                <option value="formation">📚 Formation</option>
-                <option value="vacances">🏖️ Vacances</option>
-                <option value="travaux">🔨 Travaux</option>
-                <option value="_clear">✕ Aucun (forcer vide)</option>
-              </select>
-            </div>
-          </div>
-          <button class="admin-add" type="button" id="de-add-btn" style="width:100%;margin-top:4px;">+ Ajouter cette exception</button>
-        </div>
-      </div>
-
-      <div class="evt-modal-btns" style="margin-top:20px;">
-        <button class="evt-modal-save" type="button" id="dispo-save-btn">💾 Enregistrer</button>
+      <div class="evt-modal-btns" style="margin-top:16px;">
+        <button class="evt-modal-save" type="button" id="dispo-save-btn">✅ Sauvegarder tout</button>
         <button class="evt-modal-cancel" type="button" id="dispo-close-btn">Fermer</button>
         <button class="evt-modal-delete" type="button" id="dispo-reset-btn">🗑 Tout effacer</button>
       </div>
@@ -2342,21 +2326,17 @@ const DISPO_LABELS = {
   normandie: 'En Normandie', paris: 'À Paris', voilier: 'Stage voilier',
   formation: 'Formation', vacances: 'Vacances', travaux: 'Travaux'
 };
-let calDispos = { rules: [], exceptions: {} }; // { rules:[{id,days,status,startDate,endDate}], exceptions:{date:status} }
+let calDispos = { periods: [] };
+// Structure d'une période: { id, startDate, endDate, status, recurrence: null|[0..6] }
 
-// Résoudre le statut d'une date (exceptions > règles)
 function getDispoForDate(dateStr) {
-  const { rules = [], exceptions = {} } = calDispos;
-  if (dateStr in exceptions) {
-    return exceptions[dateStr] === '_clear' ? null : exceptions[dateStr];
-  }
+  const periods = calDispos.periods || [];
   const d = new Date(dateStr + 'T12:00:00');
-  const dow = d.getDay(); // 0=dim,1=lun,...,6=sam
-  for (const rule of rules) {
-    if (!rule.days?.includes(dow)) continue;
-    if (rule.startDate && dateStr < rule.startDate) continue;
-    if (rule.endDate && dateStr > rule.endDate) continue;
-    return rule.status;
+  const dow = d.getDay(); // 0=dim
+  for (const p of periods) {
+    if (dateStr < p.startDate || dateStr > p.endDate) continue;
+    if (p.recurrence && !p.recurrence.includes(dow)) continue;
+    return p.status;
   }
   return null;
 }
@@ -2397,6 +2377,12 @@ function generateId() {
 
 // ---- RENDU CALENDRIER ----
 function renderCalendar() {
+  // Légende des icônes présents ce mois
+  const legend = document.getElementById('dispo-legend-display');
+  if (legend) {
+    const active = [...new Set((calDispos.periods||[]).map(p=>p.status))];
+    legend.innerHTML = active.map(s => `<span title="${DISPO_LABELS[s]||s}">${DISPO_ICONS[s]||''} ${DISPO_LABELS[s]||s}</span>`).join(' · ') || '';
+  }
   document.getElementById('cal-month-view').style.display = calView === 'month' ? '' : 'none';
   document.getElementById('cal-list-view').style.display = calView === 'list' ? '' : 'none';
   document.getElementById('view-month-btn').classList.toggle('active', calView === 'month');
@@ -2436,7 +2422,12 @@ function renderMonthGrid() {
       const ds = cell.dataset.date;
       const evts = eventsForDate(ds);
       if (evts.length) showDayDetail(ds);
-      else if (adminMode) openEventModal(null, ds);
+      else {
+        const dsp = getDispoForDate(ds);
+        if (dsp) showDispoDetail(ds, dsp);
+        else if (adminMode) openEventModal(null, ds);
+        else { document.getElementById('cal-detail').classList.remove('visible'); selectedDate = null; renderMonthGrid(); }
+      }
     });
     cell.querySelector('.cal-admin-add')?.addEventListener('click', e => {
       e.stopPropagation();
@@ -2501,6 +2492,38 @@ function renderListView() {
   });
 }
 
+
+// Afficher le statut de disponibilité d'un jour sans événement
+function showDispoDetail(dateStr, status) {
+  selectedDate = dateStr;
+  document.getElementById('detail-title').textContent = formatDateFR(dateStr);
+  document.getElementById('detail-dates').textContent = '';
+  const msgs = {
+    normandie: "Nous sommes en Normandie, au Domaine Castelboun ! N'hésitez pas à nous contacter.",
+    paris: "Nous sommes à Paris ce jour-là.",
+    voilier: "Nous sommes en stage voilier, donc peu disponibles.",
+    formation: "Nous sommes en formation ce jour-là.",
+    vacances: "Nous sommes en vacances, peu disponibles.",
+    travaux: "Nous avons des travaux ce jour-là.",
+  };
+  const bg = status === 'normandie' ? 'background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.3);' : 'background:var(--cream);border:1px solid var(--line);';
+  document.getElementById('detail-grid').innerHTML = `
+    <div style="grid-column:1/-1;">
+      <div style="${bg}border-radius:12px;padding:20px;text-align:center;">
+        <div style="font-size:36px;margin-bottom:8px;">${DISPO_ICONS[status]||''}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;">${DISPO_LABELS[status]||status}</div>
+        <div style="font-size:13.5px;color:#5a5244;line-height:1.6;">${msgs[status]||''}</div>
+      </div>
+    </div>`;
+  const btn = document.getElementById('detail-resa-btn');
+  btn.textContent = status === 'normandie' ? 'Faire une demande de visite 🌱' : 'Nous contacter';
+  btn.disabled = false;
+  btn.onclick = () => document.getElementById('resa-form-live').scrollIntoView({behavior:'smooth'});
+  document.getElementById('cal-detail').classList.add('visible');
+  document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+  renderMonthGrid();
+}
+
 // ---- DETAIL EVENEMENT ----
 // Afficher un jour avec potentiellement plusieurs événements
 function showDayDetail(dateStr) {
@@ -2512,6 +2535,8 @@ function showDayDetail(dateStr) {
     return;
   }
   // Plusieurs événements : afficher la liste
+  const dsp = getDispoForDate(dateStr);
+  const dspMsg = dsp ? `<div style="background:${dsp==='normandie'?'rgba(29,158,117,0.1)':'var(--cream)'};border-radius:8px;padding:10px 14px;font-size:13.5px;color:var(--ink);margin-bottom:12px;">${DISPO_ICONS[dsp]||''} <strong>${DISPO_LABELS[dsp]||dsp}</strong></div>` : '';
   document.getElementById('detail-title').textContent = formatDateFR(dateStr);
   document.getElementById('detail-dates').textContent = `${evts.length} événements ce jour`;
   let grid = `<div class="day-events-list" style="grid-column:1/-1">`;
@@ -2800,15 +2825,20 @@ loadCalEventsFromAPI().then(apiData => {
   }
 });
 
-async function saveDispos() {
+async function saveDispos(pw) {
+  // Sauvegarder en localStorage ET via API
   localStorage.setItem('castelboun_dispos', JSON.stringify(calDispos));
-  if (calAdminPw) {
-    fetch('/.netlify/functions/data-api?type=dispos', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({password:calAdminPw, data:calDispos})
-    });
+  const usePw = pw || _dispoPw || calAdminPw;
+  if (usePw) {
+    try {
+      const r = await fetch('/.netlify/functions/data-api?type=dispos', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({password: usePw, data: calDispos})
+      });
+      if (!r.ok) console.error('saveDispos API error:', await r.text());
+    } catch(e) { console.error('saveDispos error:', e); }
   }
-  renderCalendar(); // Rafraîchir le calendrier après sauvegarde
+  renderCalendar();
 }
 
 async function loadDispos() {
@@ -2816,11 +2846,14 @@ async function loadDispos() {
     const r = await fetch('/.netlify/functions/data-api?type=dispos');
     if (r.ok) {
       const data = await r.json();
-      // Compatibilité : migrer ancien format {date:status} vers nouveau format {rules,exceptions}
-      if (data && !data.rules) {
-        calDispos = { rules: [], exceptions: data };
+      // Migration depuis l'ancien format
+      if (data && data.periods) {
+        calDispos = data;
+      } else if (data && (data.rules || data.exceptions)) {
+        // Ancien format règles+exceptions → ignorer, repartir vide
+        calDispos = { periods: [] };
       } else {
-        calDispos = data || { rules: [], exceptions: {} };
+        calDispos = { periods: [] };
       }
       localStorage.setItem('castelboun_dispos', JSON.stringify(calDispos));
       return;
@@ -2828,8 +2861,8 @@ async function loadDispos() {
   } catch {}
   try {
     const saved = JSON.parse(localStorage.getItem('castelboun_dispos') || '{}');
-    calDispos = saved.rules ? saved : { rules: [], exceptions: saved };
-  } catch { calDispos = { rules: [], exceptions: {} }; }
+    calDispos = saved.periods ? saved : { periods: [] };
+  } catch { calDispos = { periods: [] }; }
 }
 
 // Charger les dispos au démarrage
@@ -2850,7 +2883,8 @@ let _dispoPw = null;
 function _openDispoAdmin() {
   const overlay = document.getElementById('dispo-admin-overlay');
   if (!overlay) return;
-  if (_dispoPw) {
+  if (_dispoPw || calAdminPw) {
+    _dispoPw = _dispoPw || calAdminPw;
     _showDispoForm();
   } else {
     document.getElementById('dispo-admin-auth').style.display = '';
@@ -2862,41 +2896,84 @@ function _openDispoAdmin() {
 function _showDispoForm() {
   document.getElementById('dispo-admin-auth').style.display = 'none';
   document.getElementById('dispo-admin-form').style.display = '';
-  _renderDispoRules();
-  _renderDispoExceptions();
+  _renderDispoPeriods();
+  _resetDispoForm();
 }
 
-function _renderDispoRules() {
-  const { rules = [] } = calDispos;
-  const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
-  document.getElementById('dispo-rules-list').innerHTML = rules.length ? rules.map((r,i) => `
-    <div style="display:flex;align-items:center;gap:8px;background:var(--cream);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;">
-      <span>${DISPO_ICONS[r.status]||''} ${DISPO_LABELS[r.status]||r.status}</span>
-      <span style="color:#9c8a6a;">— ${r.days.map(d=>days[d]).join(', ')}${r.startDate?' du '+r.startDate:''}${r.endDate?' au '+r.endDate:''}</span>
-      <button type="button" style="margin-left:auto;background:none;border:none;color:#a32d2d;cursor:pointer;font-size:15px;" onclick="_deleteDispoRule(${i})">✕</button>
-    </div>`).join('') : '<p style="font-size:12px;color:#9c8a6a;margin:0 0 8px;">Aucune récurrence définie.</p>';
+const DAYS_FR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+
+function _renderDispoPeriods() {
+  const periods = calDispos.periods || [];
+  const el = document.getElementById('dispo-periods-list');
+  if (!periods.length) {
+    el.innerHTML = '<p style="font-size:12px;color:#9c8a6a;margin:0 0 8px;">Aucune période définie.</p>';
+    return;
+  }
+  el.innerHTML = periods.map((p, i) => {
+    const recLabel = p.recurrence?.length ? ' · ' + p.recurrence.map(d=>DAYS_FR[d]).join(', ') : '';
+    return `<div style="display:flex;align-items:center;gap:8px;background:${p.status==='normandie'?'rgba(29,158,117,0.08)':'var(--cream)'};border-radius:8px;padding:9px 12px;margin-bottom:6px;font-size:13px;border:1px solid var(--line);">
+      <span>${DISPO_ICONS[p.status]||''}</span>
+      <span style="flex:1;"><strong>${p.startDate}</strong> → <strong>${p.endDate}</strong>${recLabel}</span>
+      <button type="button" style="background:none;border:none;color:var(--clay);cursor:pointer;font-size:12px;font-weight:600;" onclick="_editDispoPeriod(${i})">✏️</button>
+      <button type="button" style="background:none;border:none;color:#a32d2d;cursor:pointer;font-size:15px;" onclick="_deleteDispoPeriod(${i})">✕</button>
+    </div>`;
+  }).join('');
 }
 
-function _renderDispoExceptions() {
-  const { exceptions = {} } = calDispos;
-  const entries = Object.entries(exceptions).sort(([a],[b]) => a.localeCompare(b));
-  document.getElementById('dispo-exc-list').innerHTML = entries.length ? entries.map(([date,status]) => `
-    <div style="display:flex;align-items:center;gap:8px;background:var(--cream);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;">
-      <span>${date}</span>
-      <span>${status === '_clear' ? '✕ Aucun' : (DISPO_ICONS[status]||'') + ' ' + (DISPO_LABELS[status]||status)}</span>
-      <button type="button" style="margin-left:auto;background:none;border:none;color:#a32d2d;cursor:pointer;font-size:15px;" onclick="_deleteDispoExc('${date}')">✕</button>
-    </div>`).join('') : '<p style="font-size:12px;color:#9c8a6a;margin:0 0 8px;">Aucune modification ponctuelle.</p>';
+function _resetDispoForm() {
+  document.getElementById('dispo-form-title').textContent = 'Nouvelle période';
+  document.getElementById('dispo-edit-id').value = '';
+  document.getElementById('dp-start').value = '';
+  document.getElementById('dp-end').value = '';
+  document.getElementById('dp-status').value = 'normandie';
+  document.querySelectorAll('.dp-day').forEach(cb => cb.checked = false);
+  document.getElementById('dp-cancel-btn').style.display = 'none';
 }
 
-function _deleteDispoRule(idx) {
-  calDispos.rules = (calDispos.rules || []).filter((_,i) => i !== idx);
-  _renderDispoRules();
+function _editDispoPeriod(idx) {
+  const p = (calDispos.periods || [])[idx];
+  if (!p) return;
+  document.getElementById('dispo-form-title').textContent = 'Modifier la période';
+  document.getElementById('dispo-edit-id').value = String(idx);
+  document.getElementById('dp-start').value = p.startDate;
+  document.getElementById('dp-end').value = p.endDate;
+  document.getElementById('dp-status').value = p.status;
+  document.querySelectorAll('.dp-day').forEach(cb => {
+    cb.checked = p.recurrence ? p.recurrence.includes(parseInt(cb.value)) : false;
+  });
+  document.getElementById('dp-cancel-btn').style.display = '';
+  document.getElementById('dispo-admin-form').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function _deleteDispoExc(date) {
-  delete calDispos.exceptions[date];
-  _renderDispoExceptions();
+function _deleteDispoPeriod(idx) {
+  calDispos.periods = (calDispos.periods || []).filter((_,i) => i !== idx);
+  _renderDispoPeriods();
 }
+
+document.getElementById('dp-save-btn')?.addEventListener('click', () => {
+  const start = document.getElementById('dp-start').value;
+  const end = document.getElementById('dp-end').value;
+  const status = document.getElementById('dp-status').value;
+  if (!start || !end) { alert('Sélectionnez une date de début et de fin.'); return; }
+  if (end < start) { alert('La date de fin doit être après la date de début.'); return; }
+  const days = [...document.querySelectorAll('.dp-day:checked')].map(cb => parseInt(cb.value));
+  const recurrence = days.length ? days : null;
+  const editId = document.getElementById('dispo-edit-id').value;
+  const period = { startDate: start, endDate: end, status, recurrence };
+  calDispos.periods = calDispos.periods || [];
+  if (editId !== '') {
+    calDispos.periods[parseInt(editId)] = period;
+  } else {
+    calDispos.periods.push(period);
+  }
+  // Trier par date de début
+  calDispos.periods.sort((a,b) => a.startDate.localeCompare(b.startDate));
+  _renderDispoPeriods();
+  _resetDispoForm();
+  renderCalendar();
+});
+
+document.getElementById('dp-cancel-btn')?.addEventListener('click', _resetDispoForm);
 
 document.getElementById('dispo-admin-btn')?.addEventListener('click', _openDispoAdmin);
 
@@ -2914,38 +2991,8 @@ document.getElementById('dispo-admin-pw')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') document.getElementById('dispo-admin-pw-ok').click();
 });
 
-document.getElementById('dr-add-btn')?.addEventListener('click', () => {
-  const days = [0,1,2,3,4,5,6].filter(d => {
-    const ids = ['dr-dim','dr-lun','dr-mar','dr-mer','dr-jeu','dr-ven','dr-sam'];
-    return document.getElementById(ids[d])?.checked;
-  });
-  if (!days.length) { alert('Sélectionnez au moins un jour.'); return; }
-  const status = document.getElementById('dr-status').value;
-  const startDate = document.getElementById('dr-start').value || null;
-  const endDate = document.getElementById('dr-end').value || null;
-  calDispos.rules = calDispos.rules || [];
-  calDispos.rules.push({ id: Date.now().toString(36), days, status, startDate, endDate });
-  // Reset checkboxes
-  ['dr-dim','dr-lun','dr-mar','dr-mer','dr-jeu','dr-ven','dr-sam'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.checked = false;
-  });
-  document.getElementById('dr-start').value = '';
-  document.getElementById('dr-end').value = '';
-  _renderDispoRules();
-});
-
-document.getElementById('de-add-btn')?.addEventListener('click', () => {
-  const date = document.getElementById('de-date').value;
-  if (!date) { alert('Sélectionnez une date.'); return; }
-  const status = document.getElementById('de-status').value || '_clear';
-  calDispos.exceptions = calDispos.exceptions || {};
-  calDispos.exceptions[date] = status;
-  document.getElementById('de-date').value = '';
-  _renderDispoExceptions();
-});
-
 document.getElementById('dispo-save-btn')?.addEventListener('click', async () => {
-  await saveDispos();
+  await saveDispos(_dispoPw);
   document.getElementById('dispo-admin-overlay').classList.remove('visible');
 });
 
@@ -2953,10 +3000,10 @@ document.getElementById('dispo-close-btn')?.addEventListener('click', () => {
   document.getElementById('dispo-admin-overlay').classList.remove('visible');
 });
 
-document.getElementById('dispo-reset-btn')?.addEventListener('click', () => {
+document.getElementById('dispo-reset-btn')?.addEventListener('click', async () => {
   if (!confirm('Effacer toutes les disponibilités ?')) return;
-  calDispos = { rules: [], exceptions: {} };
-  saveDispos();
+  calDispos = { periods: [] };
+  await saveDispos(_dispoPw);
   document.getElementById('dispo-admin-overlay').classList.remove('visible');
 });
 
