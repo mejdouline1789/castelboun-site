@@ -1627,18 +1627,18 @@
           <label for="resa-groupe">Votre groupe *</label>
           <select id="resa-groupe" required style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;font-family:'Inter',sans-serif;">
             <option value="">— Choisir votre groupe —</option>
-            <option value="Albertivilariens" data-color="#f97316">❤️ Albertivilariens</option>
-            <option value="Autre" data-color="#d1d5db">❤️ Autre</option>
-            <option value="Ceci n'est pas du basket" data-color="#7c3aed">❤️ Ceci n'est pas du basket</option>
-            <option value="Die" data-color="#166534">❤️ Die</option>
-            <option value="Famille" data-color="#db2777">❤️ Famille</option>
+            <option value="Albertivilariens" data-color="#f97316">🧡 Albertivilariens</option>
+            <option value="Autre" data-color="#d1d5db">🤍 Autre</option>
+            <option value="Ceci n'est pas du basket" data-color="#7c3aed">💜 Ceci n'est pas du basket</option>
+            <option value="Die" data-color="#166534">💚 Die</option>
+            <option value="Famille" data-color="#db2777">🩷 Famille</option>
             <option value="Furax" data-color="#ef4444">❤️ Furax</option>
-            <option value="Geopotes" data-color="#eab308">❤️ Geopotes</option>
-            <option value="Greenpeace" data-color="#86efac">❤️ Greenpeace</option>
-            <option value="Les best de CAA" data-color="#0e7490">❤️ Les best de CAA</option>
-            <option value="Pengyou" data-color="#1d4ed8">❤️ Pengyou</option>
-            <option value="Trotters" data-color="#f9a8d4">❤️ Trotters</option>
-            <option value="Truites" data-color="#38bdf8">❤️ Truites</option>
+            <option value="Geopotes" data-color="#eab308">💛 Geopotes</option>
+            <option value="Greenpeace" data-color="#86efac">💚 Greenpeace</option>
+            <option value="Les best de CAA" data-color="#0e7490">🩵 Les best de CAA</option>
+            <option value="Pengyou" data-color="#1d4ed8">💙 Pengyou</option>
+            <option value="Trotters" data-color="#f9a8d4">🩷 Trotters</option>
+            <option value="Truites" data-color="#38bdf8">🩵 Truites</option>
           </select>
         </div>
 
@@ -2677,7 +2677,7 @@ function showDayDetail(dateStr) {
             ${r.activites ? '<div>🌿 ' + r.activites + '</div>' : ''}
             ${r.autreIdee ? '<div>💡 ' + r.autreIdee + '</div>' : ''}
             ${r.message ? '<div>💬 ' + r.message + '</div>' : ''}
-            '<button onclick="event.stopPropagation();_deleteResaBtn('' + r.id + '')" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>'
+            '<button data-del-resa="' + r.id + '" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>'
         </div>`;
       }).join('')}
     </div>`;
@@ -3197,6 +3197,16 @@ loadReservations().then(() => { syncTakenFromReservations(); _updateHebergementD
 
 // Event delegation : accordéons événements + réservations dans le panneau détail
 document.getElementById('cal-detail')?.addEventListener('click', function(e) {
+  // Supprimer réservation
+  const delBtn = e.target.closest('[data-del-resa]');
+  if (delBtn) {
+    e.stopPropagation();
+    const id = delBtn.dataset.delResa;
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')) {
+      _deleteResaBtn(id);
+    }
+    return;
+  }
   const toggle = e.target.closest('[data-toggle]');
   if (toggle) { e.stopPropagation(); _toggleAcc(toggle.dataset.toggle); return; }
   const resaToggle = e.target.closest('[data-resa-toggle]');
@@ -3728,6 +3738,7 @@ if (resaForm) {
       resaForm.style.display = 'none';
       resaSuccess.classList.add('visible');
       if (typeof renderCalendar === 'function') renderCalendar();
+      if (typeof _updateHebergementDispo === 'function') _updateHebergementDispo();
 
     } catch(err) {
       alert('Une erreur est survenue. Veuillez réessayer ou nous contacter sur Instagram.');
