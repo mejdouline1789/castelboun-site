@@ -746,6 +746,18 @@
     .cal-month-label { min-width: auto; }
   }
 
+
+  /* ===== CUSTOM SELECT GROUPES ===== */
+  .cs-wrap { position:relative; }
+  .cs-display { display:flex;align-items:center;gap:8px;padding:10px 13px;border-radius:8px;border:1.5px solid var(--line);background:var(--cream);cursor:pointer;font-size:14px;color:var(--ink);transition:border-color .15s; }
+  .cs-display:hover, .cs-display:focus { border-color:var(--clay);outline:none; }
+  .cs-display .cs-dot { width:13px;height:13px;border-radius:50%;flex-shrink:0; }
+  .cs-opts { display:none;position:absolute;z-index:200;background:white;border:1.5px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);width:100%;max-height:220px;overflow-y:auto;margin-top:4px; }
+  .cs-opts.open { display:block; }
+  .cs-opt { display:flex;align-items:center;gap:10px;padding:10px 13px;cursor:pointer;font-size:13.5px;transition:background .1s; }
+  .cs-opt:hover { background:var(--cream); }
+  .cs-opt .cs-dot { width:12px;height:12px;border-radius:50%;flex-shrink:0; }
+
   /* ===== HÉBERGEMENT SELECT ===== */
   #opt-ch1:disabled, #opt-ch2:disabled, #opt-ch3:disabled, #opt-cs1:disabled, #opt-cs2:disabled { color: #999; }
 
@@ -1624,22 +1636,29 @@
 
         <!-- Groupe -->
         <div class="resa-field">
-          <label for="resa-groupe">Votre groupe *</label>
-          <select id="resa-groupe" required style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;font-family:'Inter',sans-serif;">
-            <option value="">— Choisir votre groupe —</option>
-            <option value="Albertivilariens" data-color="#f97316">🧡 Albertivilariens</option>
-            <option value="Autre" data-color="#d1d5db">🤍 Autre</option>
-            <option value="Ceci n'est pas du basket" data-color="#7c3aed">💜 Ceci n'est pas du basket</option>
-            <option value="Die" data-color="#166534">💚 Die</option>
-            <option value="Famille" data-color="#db2777">🩷 Famille</option>
-            <option value="Furax" data-color="#ef4444">❤️ Furax</option>
-            <option value="Geopotes" data-color="#eab308">💛 Geopotes</option>
-            <option value="Greenpeace" data-color="#86efac">💚 Greenpeace</option>
-            <option value="Les best de CAA" data-color="#0e7490">🩵 Les best de CAA</option>
-            <option value="Pengyou" data-color="#1d4ed8">💙 Pengyou</option>
-            <option value="Trotters" data-color="#f9a8d4">🩷 Trotters</option>
-            <option value="Truites" data-color="#38bdf8">🩵 Truites</option>
-          </select>
+          <label>Votre groupe *</label>
+          <div class="cs-wrap" id="resa-groupe-wrap">
+            <div class="cs-display" id="resa-groupe-display" tabindex="0">
+              <span class="cs-dot" id="cs-dot-sel" style="display:none;"></span>
+              <span id="cs-label-sel" style="color:#9c8a6a;">— Choisir votre groupe —</span>
+              <span style="margin-left:auto;font-size:11px;color:#9c8a6a;">▾</span>
+            </div>
+            <div class="cs-opts" id="resa-groupe-opts">
+              <div class="cs-opt" data-val="Albertivilariens" data-color="#f97316"><span class="cs-dot" style="background:#f97316;"></span>Albertivilariens</div>
+              <div class="cs-opt" data-val="Autre" data-color="#d1d5db"><span class="cs-dot" style="background:#d1d5db;border:1px solid #aaa;"></span>Autre</div>
+              <div class="cs-opt" data-val="Ceci n'est pas du basket" data-color="#7c3aed"><span class="cs-dot" style="background:#7c3aed;"></span>Ceci n'est pas du basket</div>
+              <div class="cs-opt" data-val="Die" data-color="#166534"><span class="cs-dot" style="background:#166534;"></span>Die</div>
+              <div class="cs-opt" data-val="Famille" data-color="#db2777"><span class="cs-dot" style="background:#db2777;"></span>Famille</div>
+              <div class="cs-opt" data-val="Furax" data-color="#ef4444"><span class="cs-dot" style="background:#ef4444;"></span>Furax</div>
+              <div class="cs-opt" data-val="Geopotes" data-color="#eab308"><span class="cs-dot" style="background:#eab308;"></span>Geopotes</div>
+              <div class="cs-opt" data-val="Greenpeace" data-color="#86efac"><span class="cs-dot" style="background:#86efac;border:1px solid #aaa;"></span>Greenpeace</div>
+              <div class="cs-opt" data-val="Les best de CAA" data-color="#0e7490"><span class="cs-dot" style="background:#0e7490;"></span>Les best de CAA</div>
+              <div class="cs-opt" data-val="Pengyou" data-color="#1d4ed8"><span class="cs-dot" style="background:#1d4ed8;"></span>Pengyou</div>
+              <div class="cs-opt" data-val="Trotters" data-color="#f9a8d4"><span class="cs-dot" style="background:#f9a8d4;border:1px solid #aaa;"></span>Trotters</div>
+              <div class="cs-opt" data-val="Truites" data-color="#38bdf8"><span class="cs-dot" style="background:#38bdf8;"></span>Truites</div>
+            </div>
+          </div>
+          <input type="hidden" id="resa-groupe" name="groupe" required>
         </div>
 
         <!-- Dates -->
@@ -2660,10 +2679,11 @@ function showDayDetail(dateStr) {
   if (dayResas.length) {
     resaHtml = `<div style="grid-column:1/-1;margin-bottom:8px;">
       <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--clay);margin:0 0 6px;">📋 ${dayResas.length} réservation${dayResas.length>1?'s':''}</p>
-      ${dayResas.map(r => {
+      ${dayResas.map((r, ri) => {
         const names = (r.participants||[]).map(p=>p.name||p).filter(Boolean).join(', ');
-        const rid = 'rb-' + (r.id || Math.random().toString(36).slice(2));
+        const rid = 'rb-' + dateStr.replace(/-/g,'') + ri;
         const emails = (r.participants||[]).map(p=>p.email).filter(Boolean).join(', ');
+        const globalIdx = calReservations.indexOf(r);
         return `<div style="border:1.5px solid var(--line);border-radius:10px;margin-bottom:5px;overflow:hidden;">
           <div onclick="_toggleResaDet('${rid}')" style="display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;background:var(--card);" onmouseover="this.style.background='#fdf4ed'" onmouseout="this.style.background='var(--card)'">
             <span style="width:11px;height:11px;border-radius:50%;background:${r.couleur||'#d1d5db'};flex-shrink:0;border:2px solid rgba(0,0,0,.1);"></span>
@@ -2677,7 +2697,8 @@ function showDayDetail(dateStr) {
             ${r.activites ? '<div>🌿 ' + r.activites + '</div>' : ''}
             ${r.autreIdee ? '<div>💡 ' + r.autreIdee + '</div>' : ''}
             ${r.message ? '<div>💬 ' + r.message + '</div>' : ''}
-            '<button data-del-resa="' + r.id + '" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>'
+            <button data-del-resa="${globalIdx}" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>
+          </div>
         </div>`;
       }).join('')}
     </div>`;
@@ -2720,8 +2741,10 @@ function showDayDetail(dateStr) {
   if (calView === 'month') renderMonthGrid();
 }
 
-function _deleteResaBtn(id) {
-  calReservations = calReservations.filter(r => r.id !== id);
+function _deleteResaBtn(idx) {
+  const i = parseInt(idx);
+  if (i < 0 || i >= calReservations.length) return;
+  calReservations = calReservations.filter((_, j) => j !== i);
   localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
   fetch('/.netlify/functions/data-api?type=reservations', {
     method: 'POST',
@@ -3222,6 +3245,39 @@ document.getElementById('cal-detail')?.addEventListener('click', function(e) {
   }
 });
 
+
+// Custom select groupes
+(function() {
+  const wrap = document.getElementById('resa-groupe-wrap');
+  const display = document.getElementById('resa-groupe-display');
+  const opts = document.getElementById('resa-groupe-opts');
+  const hidden = document.getElementById('resa-groupe');
+  const dotSel = document.getElementById('cs-dot-sel');
+  const labelSel = document.getElementById('cs-label-sel');
+  if (!display) return;
+  display.addEventListener('click', () => opts?.classList.toggle('open'));
+  display.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opts?.classList.toggle('open'); }});
+  opts?.addEventListener('click', e => {
+    const opt = e.target.closest('.cs-opt');
+    if (!opt) return;
+    const val = opt.dataset.val;
+    const color = opt.dataset.color;
+    hidden.value = val;
+    hidden.dataset.color = color;
+    labelSel.textContent = val;
+    labelSel.style.color = 'var(--ink)';
+    dotSel.style.display = 'inline-block';
+    dotSel.style.background = color;
+    dotSel.style.width = '13px';
+    dotSel.style.height = '13px';
+    dotSel.style.borderRadius = '50%';
+    dotSel.style.flexShrink = '0';
+    if (['#d1d5db','#86efac','#f9a8d4'].includes(color)) dotSel.style.border = '1px solid #aaa';
+    opts.classList.remove('open');
+  });
+  document.addEventListener('click', e => { if (!wrap?.contains(e.target)) opts?.classList.remove('open'); });
+})();
+
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
   if (a.dataset.tab === 'partage') a.addEventListener('click', () => setTimeout(() => {
@@ -3674,7 +3730,7 @@ if (resaForm) {
     document.getElementById('participants-hidden').value = participantsStr;
 
     const groupe = document.getElementById('resa-groupe')?.value || '';
-    const couleur = document.getElementById('resa-groupe')?.selectedOptions[0]?.dataset.color || '#d1d5db';
+    const couleur = document.getElementById('resa-groupe')?.dataset.color || '#d1d5db';
     const hebergement = document.getElementById('resa-hebergement')?.value || '';
     const heureArrivee = document.getElementById('resa-heure-arrivee')?.value || '';
     const heureDepart = document.getElementById('resa-heure-depart')?.value || '';
