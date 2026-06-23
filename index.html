@@ -2530,7 +2530,8 @@ function renderMonthGrid() {
       if (e.target.classList.contains('cal-admin-add')) return;
       const ds = cell.dataset.date;
       const evts = eventsForDate(ds);
-      if (evts.length) showDayDetail(ds);
+      const resas = calReservations.filter(r => r.dateArrivee <= ds && (r.dateDepart||r.dateArrivee) >= ds);
+      if (evts.length || resas.length) showDayDetail(ds);
       else {
         const dsp = getDispoForDate(ds);
         if (dsp) showDispoDetail(ds, dsp);
@@ -2643,7 +2644,8 @@ function showDispoDetail(dateStr, status) {
 // Afficher un jour avec potentiellement plusieurs événements
 function showDayDetail(dateStr) {
   const evts = eventsForDate(dateStr);
-  if (!evts.length) return;
+  const dayResasCheck = calReservations.filter(r => r.dateArrivee <= dateStr && (r.dateDepart||r.dateArrivee) >= dateStr);
+  if (!evts.length && !dayResasCheck.length) return;
   selectedDate = dateStr;
   document.getElementById('detail-title').textContent = formatDateFR(dateStr);
   document.getElementById('detail-dates').textContent = evts.length === 1 ? TYPE_LABELS[evts[0].type]||'' : `${evts.length} événements`;
@@ -2675,7 +2677,7 @@ function showDayDetail(dateStr) {
             ${r.activites ? '<div>🌿 ' + r.activites + '</div>' : ''}
             ${r.autreIdee ? '<div>💡 ' + r.autreIdee + '</div>' : ''}
             ${r.message ? '<div>💬 ' + r.message + '</div>' : ''}
-            '<button onclick="event.stopPropagation();_deletResaWithPw(' + JSON.stringify(r.id) + ')" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>'
+            '<button onclick="event.stopPropagation();_deleteResaBtn('' + r.id + '')" style="margin-top:8px;background:none;border:1px solid #c9bfaf;color:#9c8a6a;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;">✕ Supprimer</button>'
         </div>`;
       }).join('')}
     </div>`;
@@ -2718,29 +2720,27 @@ function showDayDetail(dateStr) {
   if (calView === 'month') renderMonthGrid();
 }
 
-function _deletResaWithPw(id) {
-  const pw = prompt('Mot de passe pour supprimer cette réservation :');
-  if (!pw) return;
-  if (pw !== ADMIN_PASSWORD) { alert('Mot de passe incorrect.'); return; }
-  // Supprimer localement
+function _deleteResaBtn(id) {
   calReservations = calReservations.filter(r => r.id !== id);
   localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
-  // Sauvegarder dans Blobs avec le mdp fourni
   fetch('/.netlify/functions/data-api?type=reservations', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ password: pw, data: calReservations })
+    body: JSON.stringify({ password: '_public_resa_', data: calReservations })
   });
-  // Rafraîchir l'affichage
+  syncTakenFromReservations();
   renderCalendar();
-  if (selectedDate && eventsForDate(selectedDate).length > 0) {
-    showDayDetail(selectedDate);
-  } else if (selectedDate) {
-    const dsp = getDispoForDate(selectedDate);
-    if (dsp) showDispoDetail(selectedDate, dsp);
-    else document.getElementById('cal-detail').classList.remove('visible');
-  } else {
-    document.getElementById('cal-detail').classList.remove('visible');
+  // Rafraîchir le panneau de détail sur le jour courant
+  const d = selectedDate;
+  if (d) {
+    const evts = eventsForDate(d);
+    const dayResas = calReservations.filter(r => r.dateArrivee <= d && (r.dateDepart||r.dateArrivee) >= d);
+    if (evts.length || dayResas.length) showDayDetail(d);
+    else {
+      const dsp = getDispoForDate(d);
+      if (dsp) showDispoDetail(d, dsp);
+      else document.getElementById('cal-detail').classList.remove('visible');
+    }
   }
 }
 
@@ -2838,21 +2838,7 @@ function linkify(text) {
 }
 
 
-async function _deleteResa(id) {
-  if (!confirm('Supprimer cette réservation ?')) return;
-  calReservations = calReservations.filter(r => r.id !== id);
-  localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
-  // Sauvegarder via API
-  const pw = _actAdminPw || calAdminPw;
-  if (pw) {
-    fetch('/.netlify/functions/data-api?type=reservations', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({password: pw, data: calReservations})
-    });
-  }
-  renderCalendar();
-  document.getElementById('cal-detail').classList.remove('visible');
-}
+// _deleteResa remplacé par _deleteResaBtn
 
 function _openResaFromEvent(evtId) {
   const e = calEvents.find(x => x.id === evtId);
@@ -3108,7 +3094,7 @@ function getHebergementDispo(startDate, endDate) {
   calReservations.forEach(r => {
     const rEnd = r.dateDepart || r.dateArrivee;
     // Chevauchement ?
-    if (r.dateArrivee > end || rEnd < startDate) return;
+    if (r.dateArrivee > end || rEnd <= startDate) return; // Départ = jour libre
     const hb = r.hebergement || '';
     if (hb === 'Chambre 1 (2 lits 2 places)') dispo.ch1++;
     if (hb === 'Chambre 2 (1 lit 2 places)') dispo.ch2++;
