@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Domaine Castelboun — Permaculture en Normandie</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ad6530'/><text y='75' x='50' text-anchor='middle' font-size='70'>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -1574,15 +1575,21 @@
 
       <form name="reservation" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="evenement" /><input type="text" name="participants" />
-        <input type="date" name="date-arrivee" /><input type="date" name="date-depart" /><input type="text" name="activites" />
-        <input type="text" name="activite-proposee" /><textarea name="message"></textarea>
+        <input type="date" name="date-arrivee" /><input type="date" name="date-depart" />
+        <input type="text" name="groupe" /><input type="text" name="hebergement" />
+        <input type="text" name="activites" /><input type="text" name="activite-proposee" />
+        <textarea name="message"></textarea>
       </form>
-      <div id="resa-success" class="resa-success">✅ Votre réservation est confirmée ! Regardez dans vos mails pour ajouter votre visite sur votre agenda 😉</div>
+      <div id="resa-success" class="resa-success">✅ Votre réservation est confirmée ! Vous la retrouverez dans notre agenda partagé 📅</div>
       <form id="resa-form-live" data-netlify="true" name="reservation" method="POST" netlify>
         <input type="hidden" name="form-name" value="reservation">
         <input type="hidden" name="evenement" id="resa-evt-name">
         <input type="hidden" name="participants" id="participants-hidden">
+        <input type="hidden" name="groupe" id="resa-groupe-hidden">
+        <input type="hidden" name="hebergement" id="resa-hebergement-hidden">
         <p style="display:none;"><input name="bot-field"></p>
+
+        <!-- Participants -->
         <div class="resa-field">
           <label>Participant(e)s *</label>
           <div class="participants-list" id="participants-list">
@@ -1594,22 +1601,88 @@
           </div>
           <button type="button" class="add-person-btn" id="add-person-btn">+ Ajouter une personne</button>
         </div>
+
+        <!-- Groupe -->
+        <div class="resa-field">
+          <label for="resa-groupe">Votre groupe *</label>
+          <select id="resa-groupe" required style="padding:10px 13px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);width:100%;font-family:'Inter',sans-serif;">
+            <option value="">— Choisir votre groupe —</option>
+            <option value="Albertivilariens" data-color="#f97316">🟠 Albertivilariens</option>
+            <option value="Autre" data-color="#f1f5f9">⚪ Autre</option>
+            <option value="Ceci n'est pas du basket" data-color="#7c3aed">🟣 Ceci n'est pas du basket</option>
+            <option value="Die" data-color="#166534">🟢 Die</option>
+            <option value="Famille" data-color="#db2777">🩷 Famille</option>
+            <option value="Furax" data-color="#ef4444">🔴 Furax</option>
+            <option value="Geopotes" data-color="#eab308">🟡 Geopotes</option>
+            <option value="Greenpeace" data-color="#86efac">🍃 Greenpeace</option>
+            <option value="Les best de CAA" data-color="#0e7490">🔵 Les best de CAA</option>
+            <option value="Pengyou" data-color="#1d4ed8">🔵 Pengyou</option>
+            <option value="Trotters" data-color="#f9a8d4">🩷 Trotters</option>
+            <option value="Truites" data-color="#38bdf8">🩵 Truites</option>
+          </select>
+        </div>
+
+        <!-- Dates -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div class="resa-field">
             <label for="resa-date-debut">Date d'arrivée *</label>
-            <input type="date" id="resa-date-debut" name="date-arrivee" required>
+            <input type="date" id="resa-date-debut" name="date-arrivee" required onchange="_updateHebergementDispo()">
           </div>
           <div class="resa-field">
             <label for="resa-date-fin">Date de départ</label>
-            <input type="date" id="resa-date-fin" name="date-depart">
+            <input type="date" id="resa-date-fin" name="date-depart" onchange="_updateHebergementDispo()">
           </div>
         </div>
+
+        <!-- Hébergement -->
+        <div class="resa-field">
+          <label>Mode d'hébergement</label>
+          <div id="hebergement-options" style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+            <label class="hberg-option" id="hb-ch1">
+              <input type="radio" name="hbergement-choice" value="Chambre 1 (2 lits 2 places)"> 
+              <span class="hb-label">🛏️ Chambre 1 — 2 lits 2 places</span>
+              <span class="hb-dispo" id="hb-ch1-dispo"></span>
+            </label>
+            <label class="hberg-option" id="hb-ch2">
+              <input type="radio" name="hbergement-choice" value="Chambre 2 (1 lit 2 places)">
+              <span class="hb-label">🛏️ Chambre 2 — 1 lit 2 places</span>
+              <span class="hb-dispo" id="hb-ch2-dispo"></span>
+            </label>
+            <label class="hberg-option" id="hb-ch3">
+              <input type="radio" name="hbergement-choice" value="Chambre 3 (1 lit 2 places, petite)">
+              <span class="hb-label">🛏️ Chambre 3 — 1 lit 2 places (petite)</span>
+              <span class="hb-dispo" id="hb-ch3-dispo"></span>
+            </label>
+            <label class="hberg-option">
+              <input type="radio" name="hbergement-choice" value="Couchage extra Chambre 1">
+              <span class="hb-label">🛌 Couchage extra Ch.1 <span id="hb-cs1-dispo" style="color:#9c8a6a;font-size:12px;"></span></span>
+            </label>
+            <label class="hberg-option">
+              <input type="radio" name="hbergement-choice" value="Couchage extra Chambre 2">
+              <span class="hb-label">🛌 Couchage extra Ch.2 <span id="hb-cs2-dispo" style="color:#9c8a6a;font-size:12px;"></span></span>
+            </label>
+            <label class="hberg-option">
+              <input type="radio" name="hbergement-choice" value="Camping">
+              <span class="hb-label">⛺ Camping (places illimitées)</span>
+            </label>
+            <label class="hberg-option">
+              <input type="radio" name="hbergement-choice" value="Hôtel">
+              <span class="hb-label">🏨 Hôtel (à réserver par vos soins)</span>
+            </label>
+            <label class="hberg-option">
+              <input type="radio" name="hbergement-choice" value="Autre hébergement">
+              <span class="hb-label">❓ Autre</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Activités -->
         <div class="resa-field" id="resa-activites-field" style="display:none;">
           <label>Activités proposées pour cet événement</label>
           <div id="resa-activites-list"></div>
         </div>
         <div class="resa-field">
-          <label>Activités proposées</label>
+          <label>Activités souhaitées</label>
           <div id="activites-form-list"></div>
         </div>
         <div class="resa-field">
@@ -2459,13 +2532,20 @@ function cellHtml(date, other) {
   const pills = evts.slice(0, 2).map(e =>
     `<div class="cal-event-pill" style="background:${TYPE_COLORS[e.type]}22;color:${TYPE_COLORS[e.type]};border:1px solid ${TYPE_COLORS[e.type]}44;">${e.title}</div>`
   ).join('');
+  // Réservations pour ce jour
+  const resas = calReservations.filter(r => r.dateArrivee <= ds && (r.dateDepart || r.dateArrivee) >= ds);
+  const resaPills = resas.slice(0, 2).map(r =>
+    `<div class="resa-pill" style="background:${r.couleur||'#d1d5db'}33;color:${r.couleur||'#555'};border:1px solid ${r.couleur||'#d1d5db'}66;">
+      <div class="resa-dot" style="background:${r.couleur||'#d1d5db'}"></div>${r.groupe||'Réservation'}
+    </div>`
+  ).join('');
   const addBtn = adminMode ? `<button class="cal-admin-add" title="Ajouter">+</button>` : '';
   // Afficher l'icone de disponibilité si définie
   const dispo = getDispoForDate(ds);
   const dispoIcon = dispo ? `<span style="position:absolute;top:3px;right:4px;font-size:11px;line-height:1;">${DISPO_ICONS[dispo]||''}</span>` : '';
-  const dispoBorder = dispo === 'normandie' ? 'border-color:rgba(29,158,117,0.4);' : '';
-  const dispoBg = dispo === 'normandie' ? 'background:rgba(29,158,117,0.07);' : '';
-  return `<div class="${classes}" style="${dispoBg}${dispoBorder}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${dispoIcon}${addBtn}</div>`;
+  const dispoBorder = '';
+  const dispoBg = dispo === 'normandie' ? 'box-shadow:inset 0 3px 0 0 #1d9e75;' : '';
+  return `<div class="${classes}" style="${dispoBg}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${resaPills}${dispoIcon}${addBtn}</div>`;
 }
 
 function renderListView() {
@@ -2549,10 +2629,23 @@ function showDayDetail(dateStr) {
   document.getElementById('detail-dates').textContent = `${evts.length} événements ce jour`;
   let grid = `<div class="day-events-list" style="grid-column:1/-1">`;
   evts.forEach(e => {
-    grid += `<div class="day-evt-row" onclick="showDetail('${e.id}')">
-      <div class="day-evt-dot" style="background:${TYPE_COLORS[e.type]}"></div>
-      <span class="day-evt-label">${e.title}</span>
-      <span class="day-evt-time">${e.time||TYPE_LABELS[e.type]||''}</span>
+    const dotColor = TYPE_COLORS[e.type] || '#9c8a6a';
+    const isFull = e.status === 'full' || (e.max && (e.taken||0) >= e.max);
+    grid += `<div class="evt-accordion" onclick="_toggleAccordion(this)">
+      <div class="evt-accordion-header">
+        <div class="evt-acc-dot" style="background:${dotColor}"></div>
+        <span class="evt-acc-title">${e.title}</span>
+        <span class="evt-acc-meta">${e.time||TYPE_LABELS[e.type]||''}${isFull?' · Complet':''}</span>
+        <span class="evt-acc-chevron">▾</span>
+      </div>
+      <div class="evt-accordion-body">
+        ${e.description ? `<p style="margin:0 0 8px;">${linkify(e.description)}</p>` : ''}
+        ${e.activities ? `<p style="margin:0 0 8px;">🌿 ${e.activities.replace(String.fromCharCode(10),', ')}</p>` : ''}
+        ${e.prerequisites ? `<p style="margin:0 0 8px;">ℹ️ ${e.prerequisites}</p>` : ''}
+        ${e.max ? `<p style="margin:0;color:${isFull?'#a32d2d':'#1d9e75'};">👥 ${e.taken||0}/${e.max} places</p>` : ''}
+        ${adminMode ? `<button onclick="event.stopPropagation();openEventModal('${e.id}')" style="margin-top:8px;background:none;border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;">✏️ Modifier</button>` : ''}
+        <button onclick="event.stopPropagation();openResaForEvent(${JSON.stringify(e).replace(/"/g,'&quot;')})" style="margin-top:8px;margin-left:6px;background:var(--clay);color:white;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-size:12px;" ${isFull?'disabled':''}>Réserver 🌱</button>
+      </div>
     </div>`;
   });
   grid += '</div>';
@@ -2632,6 +2725,18 @@ function linkify(text) {
   return text
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
+function _toggleAccordion(el) {
+  const body = el.querySelector('.evt-accordion-body');
+  const chev = el.querySelector('.evt-acc-chevron');
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  el.closest('div[id="detail-grid"]')?.querySelectorAll('.evt-accordion-body').forEach(b => {
+    b.classList.remove('open');
+    b.parentElement?.querySelector('.evt-acc-chevron')?.classList.remove('open');
+  });
+  if (!isOpen) { body.classList.add('open'); chev?.classList.add('open'); }
 }
 
 function section(title, content) {
@@ -2820,8 +2925,95 @@ function formatDateFR(ds) {
   return d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 }
 
+// ===== GROUPES ET HÉBERGEMENT =====
+const GROUPES = {
+  'Albertivilariens': '#f97316',
+  'Autre': '#d1d5db',
+  "Ceci n'est pas du basket": '#7c3aed',
+  'Die': '#166534',
+  'Famille': '#db2777',
+  'Furax': '#ef4444',
+  'Geopotes': '#eab308',
+  'Greenpeace': '#86efac',
+  'Les best de CAA': '#0e7490',
+  'Pengyou': '#1d4ed8',
+  'Trotters': '#f9a8d4',
+  'Truites': '#38bdf8',
+};
+
+const HEBERGEMENTS = {
+  ch1: { label: 'Chambre 1 (2×2 places)', max: 1, value: 'Chambre 1 (2 lits 2 places)' },
+  ch2: { label: 'Chambre 2 (1×2 places)', max: 1, value: 'Chambre 2 (1 lit 2 places)' },
+  ch3: { label: 'Chambre 3 (petite)', max: 1, value: 'Chambre 3 (1 lit 2 places, petite)' },
+  cs1: { label: 'Couchage extra Ch.1', max: 4, value: 'Couchage extra Chambre 1' },
+  cs2: { label: 'Couchage extra Ch.2', max: 4, value: 'Couchage extra Chambre 2' },
+};
+
+let calReservations = [];
+
+async function loadReservations() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=reservations');
+    if (r.ok) {
+      calReservations = await r.json() || [];
+      localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
+      return;
+    }
+  } catch {}
+  try { calReservations = JSON.parse(localStorage.getItem('castelboun_reservations') || '[]'); } catch { calReservations = []; }
+}
+
+// Calcule la dispo hébergement pour une plage de dates
+function getHebergementDispo(startDate, endDate) {
+  const dispo = { ch1: 0, ch2: 0, ch3: 0, cs1: 4, cs2: 4 };
+  if (!startDate) return dispo;
+  const end = endDate || startDate;
+  calReservations.forEach(r => {
+    const rEnd = r.dateDepart || r.dateArrivee;
+    // Chevauchement ?
+    if (r.dateArrivee > end || rEnd < startDate) return;
+    const hb = r.hebergement || '';
+    if (hb.includes('Chambre 1')) dispo.ch1++;
+    if (hb.includes('Chambre 2')) dispo.ch2++;
+    if (hb.includes('Chambre 3')) dispo.ch3++;
+    if (hb.includes('Couchage extra Chambre 1')) dispo.cs1--;
+    if (hb.includes('Couchage extra Chambre 2')) dispo.cs2--;
+  });
+  return dispo;
+}
+
+function _updateHebergementDispo() {
+  const start = document.getElementById('resa-date-debut')?.value;
+  const end = document.getElementById('resa-date-fin')?.value;
+  if (!start) return;
+  const dispo = getHebergementDispo(start, end || start);
+  const setDispo = (id, dispoBool, label) => {
+    const el = document.getElementById(id);
+    const opt = el?.closest('.hberg-option');
+    if (!el) return;
+    if (dispoBool) {
+      el.textContent = '✓ Libre';
+      el.className = 'hb-dispo libre';
+      opt?.classList.remove('taken');
+    } else {
+      el.textContent = '✗ Pris';
+      el.className = 'hb-dispo pris';
+      opt?.classList.add('taken');
+      opt?.querySelector('input')?.removeAttribute('checked');
+    }
+  };
+  setDispo('hb-ch1-dispo', dispo.ch1 < 1);
+  setDispo('hb-ch2-dispo', dispo.ch2 < 1);
+  setDispo('hb-ch3-dispo', dispo.ch3 < 1);
+  const cs1El = document.getElementById('hb-cs1-dispo');
+  const cs2El = document.getElementById('hb-cs2-dispo');
+  if (cs1El) cs1El.textContent = `(${Math.max(0,dispo.cs1)} dispo)`;
+  if (cs2El) cs2El.textContent = `(${Math.max(0,dispo.cs2)} dispo)`;
+}
+
 // Démarrer : affichage immédiat depuis cache, puis sync API
 calEvents = loadCalEventsLocal();
+calReservations = JSON.parse(localStorage.getItem('castelboun_reservations') || '[]');
 renderCalendar();
 // Charger depuis l'API en arrière-plan et rafraîchir si données différentes
 loadCalEventsFromAPI().then(apiData => {
@@ -2875,6 +3067,8 @@ async function loadDispos() {
 
 // Charger les dispos au démarrage
 loadDispos().then(() => renderCalendar());
+// Charger les réservations
+loadReservations().then(() => { _updateHebergementDispo(); renderCalendar(); });
 
 // Re-render en changeant d'onglet
 document.querySelectorAll('#main-nav a').forEach(a => {
@@ -3318,15 +3512,20 @@ const resaSuccess = document.getElementById('resa-success');
 if (resaForm) {
   resaForm.addEventListener('submit', async function(e) {
     e.preventDefault();
-    // Collecter les participants (nom + email séparés)
+    // Collecter les participants
     const rows = document.querySelectorAll('.participant-row');
     const participants = [...rows].map(r => ({
       name: r.querySelector('.p-name')?.value.trim() || '',
       email: r.querySelector('.p-email')?.value.trim() || ''
     })).filter(p => p.name || p.email);
-    // Champ caché pour Netlify Forms
     const participantsStr = participants.map(p => [p.name, p.email].filter(Boolean).join(' — ')).join(' | ');
     document.getElementById('participants-hidden').value = participantsStr;
+
+    const groupe = document.getElementById('resa-groupe')?.value || '';
+    const couleur = document.getElementById('resa-groupe')?.selectedOptions[0]?.dataset.color || '#d1d5db';
+    const hebergement = document.querySelector('input[name="hbergement-choice"]:checked')?.value || '';
+    document.getElementById('resa-groupe-hidden').value = groupe;
+    document.getElementById('resa-hebergement-hidden').value = hebergement;
 
     const activites = [...this.querySelectorAll('input[name="activites"]:checked')].map(el => el.value).join(', ');
     const evenement = document.getElementById('resa-evt-name')?.value || '';
@@ -3335,22 +3534,52 @@ if (resaForm) {
     const autreIdee = document.getElementById('activite-proposee')?.value || '';
     const message = document.getElementById('resa-message')?.value || '';
 
+    const reservation = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2,5),
+      createdAt: new Date().toISOString(),
+      dateArrivee, dateDepart: dateDepart || dateArrivee,
+      participants, groupe, couleur, hebergement,
+      activites, autreIdee, message, evenement
+    };
+
     try {
       // 1. Netlify Forms (capture admin)
       const formData = new FormData(this);
       formData.set('activites', activites || 'Non précisées');
       await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(formData).toString() });
 
-      // 2. Email de confirmation via Resend
+      // 2. Sauvegarder la réservation dans Netlify Blobs
+      calReservations = [...(calReservations || []), reservation];
+      localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
+      // Envoi en arrière-plan (pas de mot de passe requis pour les réservations publiques)
+      fetch('/.netlify/functions/data-api?type=reservations', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ password: '_public_resa_', data: calReservations })
+      });
+
+      // 3. Màj des places de l'événement associé
+      if (evenement && typeof calEvents !== 'undefined') {
+        const evt = calEvents.find(e => e.title === evenement || e.id === document.getElementById('resa-evt-name')?.dataset?.id);
+        if (evt) {
+          evt.taken = (evt.taken || 0) + participants.length;
+          localStorage.setItem(CAL_STORAGE_KEY, JSON.stringify(calEvents));
+          renderCalendar();
+        }
+      }
+
+      // 4. Email Resend (arrière-plan)
       fetch('/api/send-reservation', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ participants, evenement, dateArrivee, dateDepart, activites, autreIdee, message })
+        body: JSON.stringify({ participants, evenement, dateArrivee, dateDepart, activites, autreIdee, message, groupe })
       });
 
-      // 3. Afficher le message de succès
+      // 5. Afficher succès + mettre à jour dispo hébergement
       resaForm.style.display = 'none';
       resaSuccess.classList.add('visible');
+      if (typeof renderCalendar === 'function') renderCalendar();
+
     } catch(err) {
       alert('Une erreur est survenue. Veuillez réessayer ou nous contacter sur Instagram.');
     }
