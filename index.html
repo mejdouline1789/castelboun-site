@@ -2741,19 +2741,25 @@ function showDayDetail(dateStr) {
   if (calView === 'month') renderMonthGrid();
 }
 
-function _deleteResaBtn(idx) {
+async function _deleteResaBtn(idx) {
   const i = parseInt(idx);
   if (i < 0 || i >= calReservations.length) return;
   calReservations = calReservations.filter((_, j) => j !== i);
   localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
-  fetch('/.netlify/functions/data-api?type=reservations', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ password: '_public_resa_', data: calReservations })
-  });
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=reservations', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ password: ADMIN_PASSWORD, data: calReservations })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+  } catch(e) {
+    console.error('Erreur sauvegarde suppression:', e);
+    alert('Suppression locale OK, mais erreur de synchronisation. Rafraîchissez et réessayez.');
+    return;
+  }
   syncTakenFromReservations();
   renderCalendar();
-  // Rafraîchir le panneau de détail sur le jour courant
   const d = selectedDate;
   if (d) {
     const evts = eventsForDate(d);
@@ -3767,11 +3773,12 @@ if (resaForm) {
       } catch {}
       calReservations = [...(calReservations || []), reservation];
       localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
-      await fetch('/.netlify/functions/data-api?type=reservations', {
+      const saveR = await fetch('/.netlify/functions/data-api?type=reservations', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ password: '_public_resa_', data: calReservations })
+        body: JSON.stringify({ password: ADMIN_PASSWORD, data: calReservations })
       });
+      if (!saveR.ok) console.error('Blobs save failed:', saveR.status, await saveR.text());
 
       // 3. Màj des places de l'événement associé
       if (evenement && typeof calEvents !== 'undefined') {
