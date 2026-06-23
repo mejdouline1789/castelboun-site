@@ -2267,6 +2267,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// ===== DISPONIBILITÉS =====
+const DISPO_ICONS = {
+  normandie: '🏰', paris: '🗼', voilier: '⛵',
+  formation: '📚', vacances: '🏖️', travaux: '🔨'
+};
+const DISPO_LABELS = {
+  normandie: 'En Normandie', paris: 'À Paris', voilier: 'Stage voilier',
+  formation: 'Formation', vacances: 'Vacances', travaux: 'Travaux'
+};
+let calDispos = {}; // { 'YYYY-MM-DD': 'normandie', ... }
+let _dispoSelectedType = null;
+
 // ===== CALENDRIER DOMAINE CASTELBOUN =====
 const CAL_STORAGE_KEY = 'castelboun_calendar_v2';
 let calEvents = loadCalEventsLocal(); // Affichage rapide depuis cache local
@@ -2709,26 +2721,6 @@ loadCalEventsFromAPI().then(apiData => {
   }
 });
 
-
-// ===== DISPONIBILITÉS =====
-const DISPO_ICONS = {
-  normandie: '🏰', paris: '🗼', voilier: '⛵',
-  formation: '📚', vacances: '🏖️', travaux: '🔨'
-};
-const DISPO_LABELS = {
-  normandie: 'En Normandie', paris: 'À Paris', voilier: 'Stage voilier',
-  formation: 'Formation', vacances: 'Vacances', travaux: 'Travaux'
-};
-let calDispos = {}; // { 'YYYY-MM-DD': 'normandie', ... }
-let _dispoSelectedType = null;
-
-async function loadDispos() {
-  try {
-    const r = await fetch('/.netlify/functions/data-api?type=dispos');
-    if (r.ok) { calDispos = await r.json(); return; }
-  } catch {}
-  try { calDispos = JSON.parse(localStorage.getItem('castelboun_dispos') || '{}'); } catch { calDispos = {}; }
-}
 async function saveDispos() {
   localStorage.setItem('castelboun_dispos', JSON.stringify(calDispos));
   if (calAdminPw) {
@@ -2737,6 +2729,14 @@ async function saveDispos() {
       body:JSON.stringify({password:calAdminPw, data:calDispos})
     });
   }
+}
+
+async function loadDispos() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=dispos');
+    if (r.ok) { calDispos = await r.json(); return; }
+  } catch {}
+  try { calDispos = JSON.parse(localStorage.getItem('castelboun_dispos') || '{}'); } catch { calDispos = {}; }
 }
 
 function _dispoSelectType(dtype) {
