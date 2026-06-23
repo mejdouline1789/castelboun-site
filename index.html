@@ -1837,7 +1837,7 @@
             <option value="normandie">🍎 En Normandie</option>
             <option value="paris">🗼 À Paris</option>
             <option value="voilier">⛵ Stage voilier</option>
-            <option value="formation">📚 Formation</option>
+            <option value="formation">🎓 Formation</option>
             <option value="vacances">🏖️ Vacances</option>
             <option value="travaux">🔨 Travaux</option>
           </select>
@@ -2440,7 +2440,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== DISPONIBILITÉS =====
 const DISPO_ICONS = {
   normandie: '🍎', paris: '🗼', voilier: '⛵',
-  formation: '📚', vacances: '🏖️', travaux: '🔨'
+  formation: '🎓', vacances: '🏖️', travaux: '🔨'
 };
 const DISPO_LABELS = {
   normandie: 'En Normandie', paris: 'À Paris', voilier: 'Stage voilier',
@@ -2593,6 +2593,10 @@ function cellHtml(date, other) {
   const dispoIcon = dispo ? `<span style="position:absolute;top:3px;right:4px;font-size:11px;line-height:1;">${DISPO_ICONS[dispo]||''}</span>` : '';
   const dispoBorder = '';
   const dispoBg = dispo === 'normandie' ? 'box-shadow:inset 0 3px 0 0 #1d9e75;' : '';
+  const dispoBg = dispo === 'formation' ? 'box-shadow:inset 0 3px 0 0 #942F0A;' : '';
+  const dispoBg = dispo === 'vacances' ? 'box-shadow:inset 0 3px 0 0 #942F0A;' : '';
+  const dispoBg = dispo === 'travaux' ? 'box-shadow:inset 0 3px 0 0 #942F0A;' : '';
+  const dispoBg = dispo === 'voilier' ? 'box-shadow:inset 0 3px 0 0 #942F0A;' : '';
   return `<div class="${classes}" style="${dispoBg}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${resaPills}${dispoIcon}${addBtn}</div>`;
 }
 
