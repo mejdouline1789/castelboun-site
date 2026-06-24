@@ -51,7 +51,8 @@ const DEFAULTS = {
   events: DEFAULT_EVENTS,
   news: DEFAULT_NEWS,
   dispos: {},
-  reservations: []
+  reservations: [],
+  garden: {}
 };
 
 export default async function handler(req, context) {
@@ -62,7 +63,7 @@ export default async function handler(req, context) {
   const url = new URL(req.url);
   const type = url.searchParams.get("type");
 
-  if (!["activities", "events", "news", "dispos", "reservations"].includes(type)) {
+  if (!["activities", "events", "news", "dispos", "reservations","garden"].includes(type)) {
     return new Response(JSON.stringify({ error: "Type invalide" }), { status: 400, headers: { "Content-Type": "application/json" } });
   }
 
