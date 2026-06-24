@@ -1596,6 +1596,7 @@
             <button class="gt-filter-btn f-r" data-filter="r">🍂 À récolter</button>
             <button id="gt-add-variety-btn" style="display:none;padding:5px 12px;border-radius:18px;border:1.5px solid var(--clay);background:none;font-size:11px;font-weight:700;cursor:pointer;color:var(--clay);">➕ Variété</button>
           </div>
+<input id="gt-search" type="text" placeholder="🔍 Rechercher…" style="padding:6px 12px;border-radius:18px;border:1.5px solid var(--line);background:var(--cream);font-size:12px;color:var(--ink);width:160px;outline:none;">
           <button id="garden-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;white-space:nowrap;">⚙ Gérer mon jardin</button>
         </div>
       </div>
@@ -1626,6 +1627,7 @@
             <input id="variety-search" type="text" placeholder="🔍 Rechercher une variété…" style="padding:9px 14px 9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-size:13.5px;color:var(--ink);width:230px;outline:none;">
           </div>
           <button id="reset-btn" style="background:var(--card); border:1px solid var(--clay); color:var(--clay-dark); border-radius:8px; padding:9px 16px; font-size:13.5px; font-weight:600; cursor:pointer; white-space:nowrap;">↺ Réinitialiser</button>
+<input id="gt-search" type="text" placeholder="🔍 Rechercher…" style="padding:6px 12px;border-radius:18px;border:1.5px solid var(--line);background:var(--cream);font-size:12px;color:var(--ink);width:160px;outline:none;">
           <button id="garden-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;white-space:nowrap;">⚙ Gérer mon jardin</button>
         </div>
       </div>
@@ -2266,6 +2268,11 @@ function toggleVariety(v, rowEl) {
   }
   syncRowStates();
   renderAll();
+  // Synchroniser avec le tableau de suivi du jardin
+  if (typeof gtSelectedFromPlan !== 'undefined') {
+    gtSelectedFromPlan = new Set([...selected.keys()]);
+    if (typeof renderGardenTable === 'function') renderGardenTable();
+  }
 }
 
 function removeVariety(name) {
@@ -2278,6 +2285,10 @@ document.getElementById('reset-btn').addEventListener('click', () => {
   selected.clear();
   syncRowStates();
   renderAll();
+  if (typeof gtSelectedFromPlan !== 'undefined') {
+    gtSelectedFromPlan = new Set();
+    if (typeof renderGardenTable === 'function') renderGardenTable();
+  }
 });
 
 // --- Selection reciproque : cliquer sur une planche / un plant du plan selectionne sa/ses variete(s) ---
@@ -4328,6 +4339,7 @@ const GT_KNOWN_STAGES = {
 const GT_MONTHS = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
 const GT_CUR_MONTH = new Date().getMonth() + 1;
 let gardenTracking = {};
+let gtSelectedFromPlan = new Set(); // filtrage depuis les plans SVG
 let gardenCustomVarieties = [];
 let gtFilter = 'all';
 let gtAdminMode = false;
@@ -4417,6 +4429,10 @@ function computeDates(cal, track) {
 
 // Filtrage
 function gtPassesFilter(cal, dates) {
+  // Filtre recherche texte
+  if (gtSearchTerm && !cal.name.toLowerCase().includes(gtSearchTerm)) return false;
+  // Filtre sélection depuis les plans
+  if (gtSelectedFromPlan.size > 0 && !gtSelectedFromPlan.has(cal.name)) return false;
   if (gtFilter === 'all') return true;
   const m = GT_CUR_MONTH;
   const t = gardenTracking[cal.name] || {};
@@ -4451,6 +4467,13 @@ function renderGardenTable() {
       const godets = t.godets ?? '';
       const planted = t.planted ?? '';
       const nameId = v.name.replace(/[^a-z0-9]/gi,'_');
+      // Icône plan
+      const vMeta = window.VARIETIES?.find(x => x.name.toLowerCase() === v.name.toLowerCase() || x.name.replace(/[éè]/g,'e').toLowerCase() === v.name.replace(/[éè]/g,'e').toLowerCase());
+      const vPlans = [...new Set((vMeta?.locations||[]).map(l=>l.plan))];
+      const planIcon = vPlans.includes('mandala')&&vPlans.includes('harpe') ? ' <span title="Mandala+Harpe" style="font-size:10px;opacity:.7;">🗺️</span>'
+        : vPlans.includes('mandala') ? ' <span title="Dans le Mandala" style="font-size:10px;opacity:.7;">🌀</span>'
+        : vPlans.includes('harpe') ? ' <span title="Dans la Harpe" style="font-size:10px;opacity:.7;">🎵</span>'
+        : vPlans.includes('serre') ? ' <span title="Dans la Serre" style="font-size:10px;opacity:.7;">🏠</span>' : '';
 
       let row = `<td>
         <span
@@ -4473,6 +4496,28 @@ function renderGardenTable() {
       for (let m = 1; m <= 12; m++) {
         const isCur = m === GT_CUR_MONTH;
         const badges = [];
+        const isLost = gardenTracking[v.name]?.lost;
+        if (isLost && gtAdminOpen) {
+          // Variété perdue : afficher badge sur tous les mois restants
+        }
+        if (isLost) {
+          // Afficher ❌ sur le mois du semis prévu ou de la perte
+          const lossCal = getGardenCalendar().find(cc => cc.name === v.name);
+          const lostAt = gardenTracking[v.name]?.lostAt || 'sow';
+          const lostLabels = {sow:'💀 Perdu (semis)', transplant:'💀 Perdu (repiquage)', plant:'💀 Perdu (plantation)', unknown:'💀 Perdu'};
+          const lostLabel = lostLabels[lostAt] || '💀 Perdu';
+          const lostMonths = lostAt === 'sow' ? (lossCal?.sow||[])
+            : lostAt === 'transplant' ? (lossCal?.transplant||[])
+            : lostAt === 'plant' ? (lossCal?.plant||[])
+            : (lossCal?.sow||[]);
+          if (lostMonths.includes(m)) badges.push(`<span class="gt-badge" style="background:#fef2f2;color:#991b1b;border:1px solid #fca5a5;" title="${lostLabel}">${lostLabel}</span>`);
+          // Garder les étapes réelles avant la perte
+          const t2 = gardenTracking[v.name] || {};
+          if (t2.sowMonth === m && lostAt !== 'sow') badges.push(gtBadge('gt-sa','🌱 Semé','sow',m,v.name,true));
+          if (t2.transplantMonth === m && lostAt !== 'transplant') badges.push(gtBadge('gt-ta','🌿 Repiqué','transplant',m,v.name,true));
+          row += `<td class="gt-cell${isCur?' gt-cur-month':''}">${badges.join('<br>')}</td>`;
+          continue;
+        }
 
         // SEMIS
         if (d.actualSow === m) {
@@ -4526,20 +4571,46 @@ function gtOpenPop(el, name, step, month, isDone) {
   pop.className = 'gt-popover';
   const monthOpts = GT_MONTHS.map((m,i) => `<option value="${i+1}" ${(month===i+1)?'selected':''}>${m}</option>`).join('');
   pop.innerHTML = `<h5>${isDone ? '✏️ Modifier' : '✓ Marquer comme'} ${labels[step]||step}</h5>
-    <select id="gt-pop-month"><option value="">Mois ?</option>${monthOpts}</select>
+    <select id="gt-pop-month" onclick="event.stopPropagation()"><option value="">— Choisir le mois —</option>${monthOpts}</select>
     <div class="gt-popover-btns">
-      <button class="gt-pop-ok" onclick="gtPopSave('${name}','${step}')">✓</button>
-      ${isDone ? `<button class="gt-pop-del" onclick="gtPopClear('${name}','${step}')">✕</button>` : ''}
+      <button class="gt-pop-ok" onclick="gtPopSave('${name.replace(/'/g,"\'")}','${step}')">✓ Valider</button>
+      ${isDone ? `<button class="gt-pop-del" onclick="gtPopClear('${name.replace(/'/g,"\'")}','${step}')">✕ Effacer</button>` : ''}
       <button class="gt-pop-cancel" onclick="gtClosePop()">Annuler</button>
-    </div>`;
+    </div>
+    <hr style="margin:8px 0;border:none;border-top:1px solid var(--line);">
+    <button onclick="gtMarkLost('${name.replace(/'/g,"\'")}','${step}');gtClosePop();" style="width:100%;padding:5px 8px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid #fca5a5;background:#fef2f2;color:#991b1b;text-align:left;">💀 Perdu à cette étape</button>`;
+  pop.addEventListener('click', e => e.stopPropagation()); // empêche fermeture sur clic interne
   el.closest('.gt-cell').appendChild(pop);
   gtOpenPopover = pop;
   // Fermer si clic dehors
-  setTimeout(() => document.addEventListener('click', gtClosePop, {once:true}), 100);
+  setTimeout(() => document.addEventListener('click', gtClosePop), 50);
 }
 
-function gtClosePop() {
+function gtClosePop(e) {
+  if (e && gtOpenPopover && gtOpenPopover.contains(e.target)) return;
   if (gtOpenPopover) { gtOpenPopover.remove(); gtOpenPopover = null; }
+  document.removeEventListener('click', gtClosePop);
+}
+
+function gtMarkLost(name, step) {
+  const stepLabels = {sow:'semis', transplant:'repiquage', plant:'plantation'};
+  const label = stepLabels[step] || 'une étape';
+  if (!confirm(`Marquer "${name}" comme perdu au ${label} ?`)) return;
+  if (!gardenTracking[name]) gardenTracking[name] = {};
+  gardenTracking[name].lost = true;
+  gardenTracking[name].lostAt = step || 'unknown';
+  // Effacer les étapes APRÈS la perte (garder celles d'avant)
+  if (step === 'sow') {
+    delete gardenTracking[name].sowMonth;
+    delete gardenTracking[name].transplantMonth;
+    delete gardenTracking[name].plantMonth;
+  } else if (step === 'transplant') {
+    delete gardenTracking[name].transplantMonth;
+    delete gardenTracking[name].plantMonth;
+  } else if (step === 'plant') {
+    delete gardenTracking[name].plantMonth;
+  }
+  renderGardenTable();
 }
 
 function gtPopSave(name, step) {
@@ -4574,41 +4645,47 @@ function gtSetNum(name, field, val) {
 function gtToggleAcc(el, nameId) {
   const body = document.getElementById('gt-acc-' + nameId);
   if (!body) return;
-  // Fermer les autres
-  document.querySelectorAll('.gt-acc-body.open').forEach(b => { if(b !== body) b.classList.remove('open'); });
+  document.querySelectorAll('.gt-acc-body.open').forEach(b => { if(b !== body) { b.classList.remove('open'); }});
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
-  if (!isOpen) {
-    // Récupérer le nom réel depuis data-gtname
-    const realName = el?.dataset?.gtname || el?.textContent?.trim();
-    // Chercher dans VARIETIES (comparaison insensible à la casse)
-    const vData = window.VARIETIES?.find(v =>
-      v.name.toLowerCase() === realName?.toLowerCase() ||
-      v.name.toLowerCase().includes(realName?.split(' ')[0]?.toLowerCase())
-    );
-    const cal = getGardenCalendar().find(c => c.name.toLowerCase() === realName?.toLowerCase());
+  if (!isOpen && !body._loaded) {
+    body._loaded = true;
+    const realName = el?.dataset?.gtname || '';
+    // Chercher la variété avec matching souple
+    const vData = window.VARIETIES?.find(v => {
+      const n1 = v.name.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
+      const n2 = realName.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
+      return n1 === n2 || n1.startsWith(n2.split(' ').slice(0,2).join(' '));
+    });
+    const cal = getGardenCalendar().find(cc => {
+      const n1 = cc.name.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
+      const n2 = realName.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
+      return n1 === n2;
+    });
     const t = gardenTracking[realName] || {};
-    if (vData || cal) {
-      const mlist = arr => (arr||[]).map(m => ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'][m-1]).join(', ');
-      body.innerHTML = `<div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:200px;">
-          ${vData?.desc ? `<p style="margin:0 0 8px;font-style:italic;">${vData.desc}</p>` : ''}
-          ${vData?.sun ? `<div>☀️ <strong>Exposition :</strong> ${vData.sun}</div>` : ''}
-          ${vData?.water ? `<div>💧 <strong>Arrosage :</strong> ${vData.water}</div>` : ''}
-          ${vData?.spacing ? `<div>📏 <strong>Espacement :</strong> ${vData.spacing}</div>` : ''}
-          ${vData?.companion ? `<div>🌿 <strong>Associations :</strong> ${vData.companion}</div>` : ''}
-          ${cal?.sow?.length ? `<div>🌱 <strong>Semis :</strong> ${mlist(cal.sow)}${t.sowMonth?' ✓ fait en '+GT_MONTHS[t.sowMonth-1]:''}</div>` : ''}
-          ${cal?.needsTransplant && cal?.transplant?.length ? `<div>🌿 <strong>Repiquage :</strong> ${mlist(cal.transplant)}${t.transplantMonth?' ✓ fait en '+GT_MONTHS[t.transplantMonth-1]:''}</div>` : ''}
-          ${cal?.plant?.length ? `<div>🌳 <strong>Plantation :</strong> ${mlist(cal.plant)}${t.plantMonth?' ✓ fait en '+GT_MONTHS[t.plantMonth-1]:''}</div>` : ''}
-          ${cal?.harvest?.length ? `<div>🍂 <strong>Récolte :</strong> ${mlist(cal.harvest)}</div>` : ''}
-          ${t.godets ? `<div>📦 <strong>Godets :</strong> ${t.godets}</div>` : ''}
-          ${t.planted ? `<div>🌳 <strong>Plantés :</strong> ${t.planted}</div>` : ''}
+    const mlist = arr => (arr||[]).map(m => GT_MONTHS[m-1]).join(', ');
+    // Localisation dans les potagers
+    const locs = (vData?.locations||[]).map(l => l.label).join(', ');
+    body.innerHTML = `<div style="display:flex;gap:16px;flex-wrap:wrap;padding:2px 0;">
+      <div style="flex:1;min-width:180px;font-size:13px;line-height:1.8;">
+        ${vData?.desc ? `<p style="margin:0 0 10px;font-style:italic;color:#5a5244;">${vData.desc}</p>` : ''}
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:start;">
+          ${vData?.sun ? `<span style="color:#9c8a6a;">☀️ Expo</span><span>${vData.sun}</span>` : ''}
+          ${vData?.water ? `<span style="color:#9c8a6a;">💧 Arrosage</span><span>${vData.water}</span>` : ''}
+          ${vData?.spacing ? `<span style="color:#9c8a6a;">📏 Espacement</span><span>${vData.spacing}</span>` : ''}
+          ${vData?.qty ? `<span style="color:#9c8a6a;">📦 Quantité</span><span>${vData.qty}</span>` : ''}
+          ${t.godets ? `<span style="color:#9c8a6a;">🌱 Godets</span><span>${t.godets}</span>` : ''}
+          ${t.planted ? `<span style="color:#9c8a6a;">🌳 Plantés</span><span>${t.planted}</span>` : ''}
+          ${locs ? `<span style="color:#9c8a6a;">📍 Lieu</span><span>${locs}</span>` : ''}
+          ${cal?.sow?.length ? `<span style="color:#9c8a6a;">🌱 Semis</span><span>${mlist(cal.sow)}${t.sowMonth?' <strong>(fait : '+GT_MONTHS[t.sowMonth-1]+')</strong>':''}</span>` : ''}
+          ${cal?.needsTransplant ? `<span style="color:#9c8a6a;">🌿 Repiquage</span><span>${mlist(cal.transplant||[])}${t.transplantMonth?' <strong>(fait : '+GT_MONTHS[t.transplantMonth-1]+')</strong>':''}</span>` : ''}
+          ${cal?.plant?.length ? `<span style="color:#9c8a6a;">🌳 Plantation</span><span>${mlist(cal.plant)}${t.plantMonth?' <strong>(fait : '+GT_MONTHS[t.plantMonth-1]+')</strong>':''}</span>` : ''}
+          ${cal?.harvest?.length ? `<span style="color:#9c8a6a;">🍂 Récolte</span><span>${mlist(cal.harvest)}</span>` : ''}
+          ${vData?.companion ? `<span style="color:#9c8a6a;">🤝 Associations</span><span style="font-size:12px;">${vData.companion}</span>` : ''}
         </div>
-        ${vData?.img ? `<img src="${vData.img}" alt="${vData.name||''}" style="width:120px;height:120px;object-fit:cover;border-radius:8px;flex-shrink:0;">` : ''}
-      </div>`;
-    } else {
-      body.innerHTML = '<p style="color:#9c8a6a;font-size:12px;margin:0;">Fiche technique non disponible.</p>';
-    }
+      </div>
+      ${vData?.img ? `<img src="${vData.img}" alt="${realName}" style="width:130px;height:130px;object-fit:cover;border-radius:10px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.15);">` : ''}
+    </div>`;
   }
 }
 
@@ -4720,6 +4797,16 @@ document.getElementById('garden-admin-btn')?.addEventListener('click', function(
   }
   renderGardenTable();
 });
+
+// Moteur de recherche garden tracker
+let gtSearchTerm = '';
+const gtSearchInput = document.getElementById('gt-search');
+if (gtSearchInput) {
+  gtSearchInput.addEventListener('input', function() {
+    gtSearchTerm = this.value.toLowerCase().trim();
+    renderGardenTable();
+  });
+}
 
 // Bouton ajouter variété
 // Cacher le bouton ajouter variété sauf en admin
