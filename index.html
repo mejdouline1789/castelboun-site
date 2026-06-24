@@ -2209,9 +2209,15 @@ function toggleVariety(v, rowEl) {
   }
   syncRowStates();
   renderAll();
-  // Synchroniser avec le tableau de suivi du jardin
+  // Synchroniser avec le tableau de suivi du jardin (mapping des noms)
   if (typeof gtSelectedFromPlan !== 'undefined') {
-    gtSelectedFromPlan = new Set([...selected.keys()]);
+    gtSelectedFromPlan = new Set();
+    for (const [varName] of selected) {
+      // Mapper le nom VARIETIES → nom GARDEN_CALENDAR
+      const calName = (typeof gtVarToCalMap !== 'undefined' && gtVarToCalMap[varName]) || varName;
+      gtSelectedFromPlan.add(calName);
+      gtSelectedFromPlan.add(varName); // ajouter les 2 pour couvrir les cas
+    }
     if (typeof renderGardenTable === 'function') renderGardenTable();
   }
 }
@@ -4253,7 +4259,46 @@ let gtFilter = 'all';
 let gtSearch = '';
 let gtOpenPop = null;
 let gtOpenAccs = new Set();
-let gtSelectedFromPlan = new Set(); // accordéons ouverts (persistance à re-render)
+let gtSelectedFromPlan = new Set();
+
+// Normalisation de nom pour correspondance floue
+function normName(n) {
+  return (n||'').toLowerCase()
+    .replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[îï]/g,'i')
+    .replace(/[ôö]/g,'o').replace(/[ùûü]/g,'u').replace(/[ç]/g,'c')
+    .replace(/[^a-z0-9 ]/g,' ').replace(/[ ]+/g,' ').trim();
+}
+
+// Table de correspondance : VARIETIES name → GARDEN_CALENDAR name (construit au chargement)
+let gtVarToCalMap = {}; // varName → calName
+let gtCalToVarMap = {}; // calName → varName
+
+function buildNameMaps() {
+  if (typeof VARIETIES === 'undefined') return;
+  const calList = allCal();
+  for (const v of VARIETIES) {
+    const vNorm = normName(v.name);
+    let best = null, bestScore = 0;
+    for (const cal of calList) {
+      const cNorm = normName(cal.name);
+      // Score : mots communs en partant du début
+      const vW = vNorm.split(' ');
+      const cW = cNorm.split(' ');
+      let score = 0;
+      for (let i = 0; i < Math.min(vW.length, cW.length); i++) {
+        if (vW[i] === cW[i] || vW[i].startsWith(cW[i].slice(0,4)) || cW[i].startsWith(vW[i].slice(0,4)))
+          score += (i === 0 ? 2 : 1); // 1er mot pèse double
+        else break;
+      }
+      if (score > bestScore && score >= 3) { bestScore = score; best = cal.name; }
+    }
+    if (best) {
+      gtVarToCalMap[v.name] = best;
+      gtCalToVarMap[best] = v.name;
+    }
+  }
+}
+ // accordéons ouverts (persistance à re-render)
 
 function allCal() { return [...GARDEN_CALENDAR, ...gardenCustom]; }
 
@@ -4319,7 +4364,12 @@ function computeDates(cal, t) {
 // ===== FILTRE =====
 function passes(cal, d) {
   if (gtSearch && !cal.name.toLowerCase().includes(gtSearch)) return false;
-  if (gtSelectedFromPlan?.size > 0 && !gtSelectedFromPlan.has(cal.name)) return false;
+  if (gtSelectedFromPlan?.size > 0) {
+    // Vérifier avec le nom exact ET avec la correspondance VARIETIES
+    const varEquiv = gtCalToVarMap[cal.name];
+    const found = gtSelectedFromPlan.has(cal.name) || (varEquiv && gtSelectedFromPlan.has(varEquiv));
+    if (!found) return false;
+  }
   if (gtFilter === 'all') return true;
   const t = gardenTracking[cal.name] || {};
   if (gtFilter === 's') return (cal.sow||[]).includes(GT_CUR) && !t.sowMonth;
@@ -4431,9 +4481,9 @@ function mkBadge(cls, label, step, month, name, done) {
 // ===== TROUVER VARIÉTÉ DANS VARIETIES =====
 function findMeta(name) {
   if (!window.VARIETIES) return null;
-  const n = name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim();
+  const n = name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/[ ]+/g,' ').trim();
   return VARIETIES.find(v => {
-    const m = v.name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim();
+    const m = v.name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/[ ]+/g,' ').trim();
     return m === n || m.startsWith(n.split(' ').slice(0,2).join(' '));
   });
 }
@@ -4705,11 +4755,13 @@ function applyDefaults() {
 }
 
 // Rendu immédiat avec les données par défaut (synchrone)
+buildNameMaps();
 applyDefaults();
 renderGardenTable();
 
 // Puis charger les données sauvegardées et re-rendre
 loadGardenData().then(() => {
+  buildNameMaps();
   applyDefaults();
   renderGardenTable();
 }).catch(() => {
