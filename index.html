@@ -4587,23 +4587,28 @@ document.getElementById('garden-admin-btn')?.addEventListener('click', function(
   const gt = document.getElementById('gt-section');
   const cl = document.getElementById('checklist-section');
   if (gtAdminMode) {
-    gt.style.display = '';
-    cl.style.display = 'none';
+    if (gt) gt.style.display = '';
+    if (cl) cl.style.display = 'none';
     this.textContent = '💾 Enregistrer et publier';
     this.style.color = 'var(--clay)';
     this.style.opacity = '1';
     this.style.fontWeight = '700';
+    this.style.border = '1px solid var(--clay)';
+    this.style.borderRadius = '6px';
+    this.style.padding = '4px 10px';
   } else {
-    // Enregistrer et publier
     saveGardenTracking(true);
     this.textContent = '⚙ Gérer mon jardin';
     this.style.color = '';
     this.style.opacity = '0.5';
     this.style.fontWeight = '';
+    this.style.border = '';
+    this.style.borderRadius = '';
+    this.style.padding = '4px';
     updateGardenPublicState();
   }
   renderGardenTable();
-}, true);
+});
 
 // Bouton ajouter variété
 document.getElementById('gt-add-variety-btn')?.addEventListener('click', () => {
@@ -4623,18 +4628,6 @@ loadGardenTracking().then(() => {
   renderGardenTable();
 });
 
-
-// Toggle vue checklist / tableau jardin
-document.getElementById('garden-admin-btn')?.addEventListener('click', function() {
-  const gt = document.getElementById('gt-section');
-  const cl = document.getElementById('checklist-section');
-  const isOpen = gt && gt.style.display !== 'none';
-  if (gt) gt.style.display = isOpen ? 'none' : '';
-  if (cl) cl.style.display = isOpen ? '' : 'none';
-  this.textContent = isOpen ? '⚙ Gérer mon jardin' : '✕ Fermer le tableau';
-  this.style.opacity = isOpen ? '0.5' : '1';
-  this.style.color = isOpen ? '' : 'var(--clay)';
-}, true); // capture phase pour override le listener garden_tracker
 
 </script>
 </body>
