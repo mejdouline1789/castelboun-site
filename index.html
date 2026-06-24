@@ -1592,6 +1592,7 @@
       <div style="display:flex;flex-direction:column;gap:4px;margin-left:auto;">
         <button type="button" id="cal-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;text-align:right;">⚙ Gérer l'agenda</button>
         <button type="button" id="dispo-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;text-align:right;">📍 Gérer les disponibilités</button>
+        <button type="button" id="resa-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;text-align:right;">📋 Gérer les réservations</button>
       </div>
     </div>
     <p class="ics-note">Compatible Google Calendar, Apple Calendar (iPhone), Samsung, FamilyWall — l'abonnement webcal se met à jour automatiquement.</p>
@@ -1865,6 +1866,19 @@
         <button class="evt-modal-cancel" type="button" id="dispo-close-btn">Fermer</button>
         <button class="evt-modal-delete" type="button" id="dispo-reset-btn">🗑 Tout effacer</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale admin RÉSERVATIONS -->
+<div class="admin-overlay" id="resa-admin-overlay">
+  <div class="admin-box" style="max-width:620px;">
+    <h3>📋 Gérer les réservations</h3>
+    <p style="font-size:12px;color:#9c8a6a;margin:0 0 14px;">Marquez une réservation comme <strong>Complet</strong> pour afficher un badge sur l'agenda.</p>
+    <div id="resa-admin-list" style="max-height:480px;overflow-y:auto;"></div>
+    <div class="evt-modal-btns" style="margin-top:16px;">
+      <button class="evt-modal-save" type="button" id="resa-admin-save-btn">💾 Sauvegarder</button>
+      <button class="evt-modal-cancel" type="button" id="resa-admin-close-btn">Fermer</button>
     </div>
   </div>
 </div>
@@ -2576,18 +2590,18 @@ function cellHtml(date, other) {
   if (isToday) classes += ' today';
   if (evts.length && !other) classes += ' has-event';
   if (ds === selectedDate) classes += ' selected';
-  const isCellFull = evts.some(e => e.status === 'full');
+  // Réservations pour ce jour
+  const resas = calReservations.filter(r => r.dateArrivee <= ds && (r.dateDepart || r.dateArrivee) >= ds);
+  const isCellFull = resas.some(r => r.resaStatus === 'complet');
   const pills = evts.slice(0, 2).map(e =>
     `<div class="cal-event-pill" style="background:${TYPE_COLORS[e.type]}22;color:${TYPE_COLORS[e.type]};border:1px solid ${TYPE_COLORS[e.type]}44;">${e.title}</div>`
   ).join('');
   const dejaResHtml = isCellFull
-    ? `<div style="font-size:9px;font-weight:700;color:#c0392b;text-align:center;line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">🍎 Déjà réservé</div>`
+    ? `<div style="font-size:9px;font-weight:700;color:#c0392b;text-align:center;line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">🍎 Complet</div>`
     : '';
-  // Réservations pour ce jour
-  const resas = calReservations.filter(r => r.dateArrivee <= ds && (r.dateDepart || r.dateArrivee) >= ds);
   const resaPills = resas.slice(0, 2).map(r =>
-    `<div class="resa-pill" style="background:${r.couleur||'#d1d5db'}33;color:${r.couleur||'#555'};border:1px solid ${r.couleur||'#d1d5db'}66;">
-      <div class="resa-dot" style="background:${r.couleur||'#d1d5db'}"></div>${r.groupe||'Réservation'}
+    `<div class="resa-pill" style="background:#1e3a5f;color:#fff;border:1px solid #2d5a8e;font-weight:600;">
+      <div class="resa-dot" style="background:${r.couleur||'#d1d5db'};border:1px solid rgba(255,255,255,.4);"></div>${r.groupe||'Réservation'}
     </div>`
   ).join('');
   const addBtn = adminMode ? `<button class="cal-admin-add" title="Ajouter">+</button>` : '';
@@ -3433,6 +3447,67 @@ function _syncDispoPw() {
   if (calAdminPw && !_dispoPw) _dispoPw = calAdminPw;
   if (_dispoPw && !calAdminPw) calAdminPw = _dispoPw;
 }
+
+
+// ===== ADMIN RÉSERVATIONS =====
+function _openResaAdmin() {
+  const overlay = document.getElementById('resa-admin-overlay');
+  if (!overlay) return;
+  _renderResaAdminList();
+  overlay.classList.add('visible');
+}
+
+function _renderResaAdminList() {
+  const el = document.getElementById('resa-admin-list');
+  if (!el) return;
+  if (!calReservations.length) {
+    el.innerHTML = '<p style="text-align:center;color:#9c8a6a;padding:20px;">Aucune réservation.</p>';
+    return;
+  }
+  const sorted = [...calReservations].sort((a,b) => (a.dateArrivee||'').localeCompare(b.dateArrivee||''));
+  el.innerHTML = sorted.map((r, i) => {
+    const globalI = calReservations.indexOf(r);
+    const names = (r.participants||[]).map(p=>p.name||p).filter(Boolean).join(', ');
+    const isComplet = r.resaStatus === 'complet';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:6px;background:var(--card);">
+      <span style="width:12px;height:12px;border-radius:50%;background:${r.couleur||'#d1d5db'};flex-shrink:0;border:2px solid rgba(0,0,0,.1);"></span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13.5px;font-weight:700;">${r.groupe||'—'}${names?' <span style="color:#9c8a6a;font-weight:400;font-size:12px;">· '+names+'</span>':''}</div>
+        <div style="font-size:11px;color:#9c8a6a;">${r.dateArrivee||''}${r.dateDepart&&r.dateDepart!==r.dateArrivee?' → '+r.dateDepart:''} · ${r.hebergement||'Hébergement non précisé'}</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0;">
+        <button onclick="_setResaStatus(${globalI},'ouvert')" style="padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid ${isComplet?'var(--line)':'#2d5a8e'};background:${isComplet?'transparent':'#1e3a5f'};color:${isComplet?'#9c8a6a':'white'};">Ouvert</button>
+        <button onclick="_setResaStatus(${globalI},'complet')" style="padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid ${isComplet?'#c0392b':'var(--line)'};background:${isComplet?'#c0392b':'transparent'};color:${isComplet?'white':'#9c8a6a'};">Complet</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function _setResaStatus(idx, status) {
+  if (idx < 0 || idx >= calReservations.length) return;
+  calReservations[idx].resaStatus = status;
+  _renderResaAdminList();
+  renderCalendar();
+}
+
+document.getElementById('resa-admin-btn')?.addEventListener('click', _openResaAdmin);
+
+document.getElementById('resa-admin-save-btn')?.addEventListener('click', async () => {
+  localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
+  await fetch('/.netlify/functions/data-api?type=reservations', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ password: ADMIN_PASSWORD, data: calReservations })
+  });
+  document.getElementById('resa-admin-overlay').classList.remove('visible');
+});
+
+document.getElementById('resa-admin-close-btn')?.addEventListener('click', () => {
+  document.getElementById('resa-admin-overlay').classList.remove('visible');
+});
+
+document.getElementById('resa-admin-overlay')?.addEventListener('click', e => {
+  if (e.target.id === 'resa-admin-overlay') document.getElementById('resa-admin-overlay').classList.remove('visible');
+});
 
 // ===== BOUTON ADMIN AGENDA =====
 let calAdminPw = null;
