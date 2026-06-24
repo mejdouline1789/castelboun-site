@@ -4252,7 +4252,8 @@ let gtAdminMode = false;
 let gtFilter = 'all';
 let gtSearch = '';
 let gtOpenPop = null;
-let gtOpenAccs = new Set(); // accordéons ouverts (persistance à re-render)
+let gtOpenAccs = new Set();
+let gtSelectedFromPlan = new Set(); // accordéons ouverts (persistance à re-render)
 
 function allCal() { return [...GARDEN_CALENDAR, ...gardenCustom]; }
 
@@ -4689,8 +4690,7 @@ function gtAddVariety() {
 }
 
 // ===== INIT =====
-loadGardenData().then(() => {
-  // Pré-remplir données connues (sans écraser l'existant)
+function applyDefaults() {
   for (const [name, counts] of Object.entries(GT_KNOWN_COUNTS)) {
     if (!gardenTracking[name]) gardenTracking[name] = {};
     if (counts.godets != null && gardenTracking[name].godets == null) gardenTracking[name].godets = counts.godets;
@@ -4698,10 +4698,21 @@ loadGardenData().then(() => {
   }
   for (const [name, stages] of Object.entries(GT_KNOWN_STAGES)) {
     if (!gardenTracking[name]) gardenTracking[name] = {};
-    for (const [k, v] of Object.entries(stages)) {
-      if (gardenTracking[name][k] == null) gardenTracking[name][k] = v;
+    for (const [sk, sv] of Object.entries(stages)) {
+      if (gardenTracking[name][sk] == null) gardenTracking[name][sk] = sv;
     }
   }
+}
+
+// Rendu immédiat avec les données par défaut (synchrone)
+applyDefaults();
+renderGardenTable();
+
+// Puis charger les données sauvegardées et re-rendre
+loadGardenData().then(() => {
+  applyDefaults();
+  renderGardenTable();
+}).catch(() => {
   renderGardenTable();
 });
 
