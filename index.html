@@ -1873,12 +1873,22 @@
 <!-- Modale admin RÉSERVATIONS -->
 <div class="admin-overlay" id="resa-admin-overlay">
   <div class="admin-box" style="max-width:620px;">
-    <h3>📋 Gérer les réservations</h3>
-    <p style="font-size:12px;color:#9c8a6a;margin:0 0 14px;">Marquez une réservation comme <strong>Complet</strong> pour afficher un badge sur l'agenda.</p>
-    <div id="resa-admin-list" style="max-height:480px;overflow-y:auto;"></div>
-    <div class="evt-modal-btns" style="margin-top:16px;">
-      <button class="evt-modal-save" type="button" id="resa-admin-save-btn">💾 Sauvegarder</button>
-      <button class="evt-modal-cancel" type="button" id="resa-admin-close-btn">Fermer</button>
+    <div id="resa-admin-auth">
+      <h3>🔒 Admin réservations</h3>
+      <div class="admin-pw-box">
+        <input type="password" id="resa-admin-pw" placeholder="Mot de passe" autocomplete="off">
+        <span style="color:#a32d2d;font-size:13px;display:none;" id="resa-admin-pw-err">Mot de passe incorrect</span>
+        <button class="admin-save" type="button" id="resa-admin-pw-ok">Connexion</button>
+      </div>
+    </div>
+    <div id="resa-admin-form" style="display:none;">
+      <h3>📋 Gérer les réservations</h3>
+      <p style="font-size:12px;color:#9c8a6a;margin:0 0 14px;">Marquez une réservation comme <strong>Complet</strong> pour afficher un badge sur l'agenda.</p>
+      <div id="resa-admin-list" style="max-height:480px;overflow-y:auto;"></div>
+      <div class="evt-modal-btns" style="margin-top:16px;">
+        <button class="evt-modal-save" type="button" id="resa-admin-save-btn">💾 Sauvegarder</button>
+        <button class="evt-modal-cancel" type="button" id="resa-admin-close-btn">Fermer</button>
+      </div>
     </div>
   </div>
 </div>
@@ -2600,7 +2610,7 @@ function cellHtml(date, other) {
     ? `<div style="font-size:9px;font-weight:700;color:#c0392b;text-align:center;line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">🍎 Complet</div>`
     : '';
   const resaPills = resas.slice(0, 2).map(r =>
-    `<div class="resa-pill" style="background:#1e3a5f;color:#fff;border:1px solid #2d5a8e;font-weight:600;">
+    `<div class="resa-pill" style="background:#1e3a5f;color:#fff;border:1px solid #2d5a8e;font-weight:600;width:100%;justify-content:center;">
       <div class="resa-dot" style="background:${r.couleur||'#d1d5db'};border:1px solid rgba(255,255,255,.4);"></div>${r.groupe||'Réservation'}
     </div>`
   ).join('');
@@ -3450,10 +3460,19 @@ function _syncDispoPw() {
 
 
 // ===== ADMIN RÉSERVATIONS =====
+let _resaAdminPw = null;
 function _openResaAdmin() {
   const overlay = document.getElementById('resa-admin-overlay');
   if (!overlay) return;
-  _renderResaAdminList();
+  if (_resaAdminPw || calAdminPw) {
+    _resaAdminPw = _resaAdminPw || calAdminPw;
+    document.getElementById('resa-admin-auth').style.display = 'none';
+    document.getElementById('resa-admin-form').style.display = '';
+    _renderResaAdminList();
+  } else {
+    document.getElementById('resa-admin-auth').style.display = '';
+    document.getElementById('resa-admin-form').style.display = 'none';
+  }
   overlay.classList.add('visible');
 }
 
@@ -3491,6 +3510,21 @@ function _setResaStatus(idx, status) {
 }
 
 document.getElementById('resa-admin-btn')?.addEventListener('click', _openResaAdmin);
+document.getElementById('resa-admin-pw-ok')?.addEventListener('click', () => {
+  const pw = document.getElementById('resa-admin-pw').value;
+  if (pw === ADMIN_PASSWORD) {
+    _resaAdminPw = pw;
+    document.getElementById('resa-admin-pw-err').style.display = 'none';
+    document.getElementById('resa-admin-auth').style.display = 'none';
+    document.getElementById('resa-admin-form').style.display = '';
+    _renderResaAdminList();
+  } else {
+    document.getElementById('resa-admin-pw-err').style.display = 'block';
+  }
+});
+document.getElementById('resa-admin-pw')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('resa-admin-pw-ok').click();
+});
 
 document.getElementById('resa-admin-save-btn')?.addEventListener('click', async () => {
   localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
