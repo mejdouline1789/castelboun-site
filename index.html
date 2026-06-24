@@ -144,61 +144,96 @@
 
   /* ===== GARDEN TRACKER ===== */
   .gt-table-wrap { overflow-x:auto; border-radius:12px; border:1.5px solid var(--line); margin-top:10px; }
-  .gt-table { border-collapse:collapse; width:100%; min-width:980px; font-size:12px; }
-  .gt-table th { background:var(--ink); color:var(--cream); padding:8px 5px; text-align:center; font-weight:600; font-size:11px; white-space:nowrap; position:sticky; top:0; z-index:2; }
-  .gt-table th:first-child { text-align:left; padding-left:12px; min-width:195px; position:sticky; left:0; z-index:3; }
-  .gt-table th:nth-child(2),.gt-table th:nth-child(3) { min-width:54px; }
-  .gt-table td { padding:3px 3px; border-bottom:1px solid var(--line); vertical-align:top; }
-  .gt-table td:first-child { padding:4px 10px; font-size:12px; font-weight:600; color:var(--ink); position:sticky; left:0; background:var(--card); z-index:1; }
-  .gt-table td:nth-child(2),.gt-table td:nth-child(3) { text-align:center; vertical-align:middle; }
-  .gt-table tr.gt-data-row:hover td { background:#fdf4ed88; }
-  .gt-table tr.gt-data-row:hover td:first-child { background:#fdf4ed; }
-  .gt-table .gt-cat-row td { background:var(--cream); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--clay); padding:5px 10px; }
-  .gt-cell { text-align:center; min-width:52px; position:relative; }
-  .gt-cur-month { background:#fffbeb !important; }
-  .gt-badge { display:inline-flex; align-items:center; border-radius:4px; padding:2px 5px; font-size:10px; font-weight:700; line-height:1.3; white-space:nowrap; }
-  .gt-badge.btn { cursor:pointer; }
-  .gt-badge.btn:hover { filter:brightness(.9); }
-  .gt-s  { background:#d1fae5; color:#065f46; border:1px solid #6ee7b7; }
-  .gt-t  { background:#fef3c7; color:#78350f; border:1px solid #fcd34d; }
-  .gt-p  { background:#ffedd5; color:#7c2d12; border:1px solid #fdba74; }
-  .gt-r  { background:#fce7f3; color:#9d174d; border:1px solid #f9a8d4; }
-  .gt-sa { background:#059669; color:white; border:1px solid #047857; }
-  .gt-ta { background:#d97706; color:white; border:1px solid #b45309; }
-  .gt-pa { background:#ea580c; color:white; border:1px solid #c2410c; }
-  .gt-lost { background:#fef2f2; color:#991b1b; border:1px solid #fca5a5; }
-  .gt-pop { position:absolute; z-index:600; background:white; border:1.5px solid var(--line); border-radius:10px;
-    box-shadow:0 8px 24px rgba(0,0,0,.2); padding:10px 12px; min-width:175px; top:calc(100% + 4px); left:50%; transform:translateX(-50%); }
-  .gt-pop h5 { font-size:11px; font-weight:700; color:var(--clay); margin:0 0 8px; }
-  .gt-pop select { width:100%; padding:5px 8px; border-radius:6px; border:1.5px solid var(--line); font-size:12px; background:var(--cream); margin-bottom:8px; }
-  .gt-pop-btns { display:flex; gap:5px; margin-bottom:6px; }
-  .gt-pop-btns button { flex:1; padding:5px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; border:none; }
-  .gt-pop-ok  { background:var(--clay); color:white; }
-  .gt-pop-del { background:#fed7aa; color:#7c2d12; }
-  .gt-pop-x   { background:var(--line); color:var(--ink); }
-  .gt-pop-lost { width:100%; padding:5px 8px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; border:1.5px solid #fca5a5; background:#fef2f2; color:#991b1b; text-align:left; }
-  .gt-ni { width:44px; border:1.5px solid var(--line); border-radius:5px; padding:3px 4px; text-align:center; font-size:12px; background:var(--cream); }
+  .gt-table { border-collapse:collapse; width:100%; min-width:1100px; font-size:11.5px; table-layout:fixed; }
+  .gt-table th { background:var(--ink); color:var(--cream); padding:7px 4px; text-align:center; font-weight:600; font-size:10px; white-space:nowrap; position:sticky; top:0; z-index:2; }
+  .gt-table th.th-var { text-align:left; padding-left:10px; width:180px; position:sticky; left:0; z-index:3; }
+  .gt-table th.th-emp { width:130px; }
+  .gt-table th.th-num { width:52px; }
+  .gt-table th.th-m   { width:60px; }
+  .gt-table td { padding:3px 3px; border-bottom:1px solid #e8e0d5; border-right:1px solid #e8e0d5; vertical-align:top; min-height:34px; }
+  .gt-table td.td-var { padding:4px 8px; font-size:11px; font-weight:600; color:var(--ink); position:sticky; left:0; background:var(--card); z-index:1; }
+  .gt-table td.td-emp { font-size:10px; color:#7c6e5c; padding:3px 5px; vertical-align:middle; }
+  .gt-table td.td-emp.planted { background:#d1fae5; color:#065f46; font-weight:600; }
+  .gt-table td.td-num { text-align:center; vertical-align:middle; }
+  .gt-table tr.gt-data-row:hover td.td-var { background:#fdf4ed; }
+  .gt-table .gt-cat-row td { background:#f5ede0; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--clay); padding:4px 10px; border:none; }
+  .gt-ni { width:38px; border:1.5px solid var(--line); border-radius:5px; padding:2px 3px; text-align:center; font-size:11px; background:var(--cream); }
   .gt-ni:focus { outline:none; border-color:var(--clay); }
-  .gt-name { cursor:pointer; }
-  .gt-name:hover { color:var(--clay); text-decoration:underline dotted; }
-  .gt-name.plan-sel { color:var(--clay); font-weight:700; }
-  .gt-acc { display:none; font-size:12px; font-weight:400; line-height:1.7; padding:8px 0 4px; border-top:1px solid var(--line); margin-top:4px; }
-  .gt-acc.open { display:block; }
-  .gt-acc-grid { display:grid; grid-template-columns:auto 1fr; gap:2px 10px; align-items:start; }
-  .gt-acc-grid .lbl { color:#9c8a6a; white-space:nowrap; }
-  .gt-acc img { width:110px; height:110px; object-fit:cover; border-radius:8px; float:right; margin:0 0 6px 10px; }
-  .gt-tooltip { display:none; position:fixed; z-index:1000; background:#1e293b; color:#f1f5f9; border-radius:10px;
-    padding:10px 13px; font-size:12px; line-height:1.7; box-shadow:0 8px 32px rgba(0,0,0,.35); max-width:280px; pointer-events:none; }
-  .gt-tooltip .tn { font-weight:700; font-size:13px; color:white; margin-bottom:5px; border-bottom:1px solid rgba(255,255,255,.2); padding-bottom:4px; }
-  .gt-tooltip .tr { display:flex; justify-content:space-between; gap:10px; }
-  .gt-tooltip .tl { color:#94a3b8; }
+
+  /* Cellules calendrier */
+  .gt-cell { text-align:center; position:relative; cursor:default; min-height:34px; padding:2px 2px; }
+  .gt-cell.cur { outline:2px solid var(--clay); outline-offset:-2px; }
+  .gt-cell.admin-click { cursor:pointer; }
+  .gt-cell.admin-click:hover { filter:brightness(.94); }
+  /* Périodes recommandées (fond) */
+  .gt-cell.bg-sow         { background:#d1fae5; }
+  .gt-cell.bg-transplant  { background:#fef3c7; }
+  .gt-cell.bg-plant       { background:#ffedd5; }
+  .gt-cell.bg-harvest     { background:#fce7f3; }
+  /* Périodes calculées (pointillés + fond + léger) */
+  .gt-cell.calc-transplant { background:#fefce8; outline:1px dashed #ca8a04; outline-offset:-2px; }
+  .gt-cell.calc-plant      { background:#fff7ed; outline:1px dashed #ea580c; outline-offset:-2px; }
+  .gt-cell.calc-harvest    { background:#fdf2f8; outline:1px dashed #db2777; outline-offset:-2px; }
+
+  /* Badges d'entrée */
+  .gt-entry { display:inline-block; border-radius:4px; padding:2px 4px; font-size:9px; font-weight:700; line-height:1.3; white-space:nowrap; margin:1px auto; }
+  .gt-e-sg  { background:#059669; color:white; }     /* Semé godet */
+  .gt-e-sd  { background:#10b981; color:white; }     /* Semis direct */
+  .gt-e-re  { background:#d97706; color:white; }     /* Repiqué */
+  .gt-e-pl  { background:#ea580c; color:white; }     /* Planté */
+  .gt-e-rc  { background:#db2777; color:white; }     /* Récolté */
+  .gt-e-pe  { background:#991b1b; color:white; }     /* Perdu */
+  .gt-e-wk  { font-size:8px; opacity:.85; }
+
+  /* Modal */
+  .gt-modal { display:none; position:fixed; inset:0; z-index:800; background:rgba(0,0,0,.5); align-items:center; justify-content:center; }
+  .gt-modal.open { display:flex; }
+  .gt-modal-box { background:var(--card); border-radius:16px; padding:22px 24px; max-width:380px; width:92%; box-shadow:0 20px 60px rgba(0,0,0,.35); }
+  .gt-modal-title { font-family:'Fraunces',serif; font-size:16px; font-weight:700; margin:0 0 6px; }
+  .gt-modal-sub { font-size:12px; color:#9c8a6a; margin:0 0 14px; }
+  .gt-action-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:12px; }
+  .gt-action-btn { padding:8px 6px; border-radius:8px; border:2px solid var(--line); background:var(--cream); font-size:12px; font-weight:600; text-align:center; cursor:pointer; transition:all .15s; }
+  .gt-action-btn:hover { border-color:var(--clay); }
+  .gt-action-btn.sel { border-color:var(--clay); background:#fdf4ed; color:var(--clay-dark); }
+  .gt-action-btn.sel-sg { border-color:#059669; background:#d1fae5; }
+  .gt-action-btn.sel-sd { border-color:#10b981; background:#dcfce7; }
+  .gt-action-btn.sel-re { border-color:#d97706; background:#fef3c7; }
+  .gt-action-btn.sel-pl { border-color:#ea580c; background:#ffedd5; }
+  .gt-action-btn.sel-rc { border-color:#db2777; background:#fce7f3; }
+  .gt-action-btn.sel-pe { border-color:#991b1b; background:#fef2f2; }
+  .gt-week-row { display:flex; gap:8px; align-items:center; margin-bottom:14px; font-size:12px; }
+  .gt-week-row label { display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:600; }
+  .gt-modal-btns { display:flex; gap:8px; }
+  .gt-modal-btns button { flex:1; padding:9px; border-radius:8px; border:none; font-size:13px; font-weight:700; cursor:pointer; }
+  .gt-mb-ok  { background:var(--clay); color:white; }
+  .gt-mb-del { background:#fce7f3; color:#9d174d; }
+  .gt-mb-x   { background:var(--line); color:var(--ink); }
+
+  /* Filtres */
   .gt-filters { display:flex; gap:6px; flex-wrap:wrap; }
-  .gt-fb { padding:5px 12px; border-radius:18px; border:1.5px solid var(--line); background:var(--card); font-size:11px; font-weight:700; cursor:pointer; color:var(--ink); }
+  .gt-fb { padding:5px 12px; border-radius:18px; border:1.5px solid var(--line); background:var(--card); font-size:11px; font-weight:700; cursor:pointer; color:var(--ink); transition:all .15s; }
+  .gt-fb:hover { border-color:var(--clay); }
   .gt-fb.on { background:var(--clay); color:white; border-color:var(--clay); }
   .gt-fb.fs.on { background:#059669; border-color:#059669; }
   .gt-fb.ft.on { background:#d97706; border-color:#d97706; }
   .gt-fb.fp.on { background:#ea580c; border-color:#ea580c; }
   .gt-fb.fr.on { background:#db2777; border-color:#db2777; }
+
+  /* Légende */
+  .gt-legend { display:flex; gap:10px; flex-wrap:wrap; font-size:10px; margin-top:6px; }
+  .gt-leg-item { display:flex; align-items:center; gap:4px; }
+  .gt-leg-swatch { width:12px; height:12px; border-radius:2px; flex-shrink:0; }
+
+  /* Tooltip */
+  .gt-tooltip { display:none; position:fixed; z-index:900; background:#1e293b; color:#f1f5f9; border-radius:8px;
+    padding:8px 12px; font-size:11px; line-height:1.6; box-shadow:0 8px 24px rgba(0,0,0,.35); max-width:250px; pointer-events:none; }
+
+  /* Var name */
+  .gt-varname { cursor:default; }
+  .gt-varname:hover { color:var(--clay); }
+  .gt-ancient-ico { font-size:9px; margin-left:3px; }
+
+  /* Formulaire ajout variété */
   .gt-av-form { display:none; background:var(--cream); border-radius:10px; border:1.5px solid var(--line); padding:14px; margin-top:10px; }
   .gt-av-form.open { display:block; }
   .gt-av-form h4 { font-size:13px; font-weight:700; color:var(--clay); margin:0 0 10px; }
@@ -1523,34 +1558,62 @@
       </div>
     </section>
 
-    <section>
-      <div class="detail-stack details-container" id="detail-stack" style="margin-bottom:12px;">
-        <p class="placeholder">Cliquez sur une variété ou une planche pour afficher ses informations.</p>
-      </div>
-    </section>
+    <!-- Fiches techniques supprimées - seront reconstruites ultérieurement -->
 
     <!-- TABLEAU DE SUIVI — vue principale -->
     
 <div class="gt-tooltip" id="gt-tooltip"></div>
+
+<!-- Modal saisie -->
+<div class="gt-modal" id="gt-modal">
+  <div class="gt-modal-box">
+    <div class="gt-modal-title" id="gt-modal-title">Saisir une action</div>
+    <div class="gt-modal-sub" id="gt-modal-sub"></div>
+    <div class="gt-action-grid">
+      <div class="gt-action-btn" data-action="seme_godet" onclick="gtSelectAction(this)">🌱 Semé en godet</div>
+      <div class="gt-action-btn" data-action="seme_direct" onclick="gtSelectAction(this)">🌱 Semis direct</div>
+      <div class="gt-action-btn" data-action="repique" onclick="gtSelectAction(this)">🔄 Repiqué</div>
+      <div class="gt-action-btn" data-action="plante" onclick="gtSelectAction(this)">🌳 Planté</div>
+      <div class="gt-action-btn" data-action="recolte" onclick="gtSelectAction(this)">🍂 Récolté</div>
+      <div class="gt-action-btn" data-action="perdu" onclick="gtSelectAction(this)">💀 Perdu</div>
+    </div>
+    <div class="gt-week-row">
+      <span>Semaine :</span>
+      <label><input type="radio" name="gtw" value="1"> S1</label>
+      <label><input type="radio" name="gtw" value="2"> S2</label>
+      <label><input type="radio" name="gtw" value="3"> S3</label>
+      <label><input type="radio" name="gtw" value="4"> S4</label>
+    </div>
+    <div class="gt-modal-btns">
+      <button class="gt-mb-x" onclick="gtModalClose()">Annuler</button>
+      <button class="gt-mb-del" id="gt-modal-del" onclick="gtModalDelete()" style="display:none">✕ Supprimer</button>
+      <button class="gt-mb-ok" onclick="gtModalSave()">✓ Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Formulaire ajout variété -->
 <div class="gt-av-form" id="gt-av-form">
-  <h4>Ajouter une variété</h4>
+  <h4>➕ Ajouter une variété</h4>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
     <div><label>Nom *</label><input type="text" id="av-name" placeholder="Ex: Radis Rose de Chine"></div>
     <div><label>Catégorie</label>
-      <select id="av-cat"><option>Tomates</option><option>Aubergines</option><option>Poivrons</option>
-      <option>Courges</option><option>Courgettes</option><option>Concombres</option><option>Melons</option>
-      <option>Salades</option><option>Herbes</option><option>Légumes racines</option><option>Oignons</option>
-      <option>Poireaux</option><option>Légumineuses</option><option>Fleurs</option><option>Autres</option></select>
+      <select id="av-cat"><option>Légumes</option><option>Aromates</option><option>Fleurs</option>
+      <option>Vivaces</option><option>Autres</option></select>
     </div>
     <div><label>Semis (mois)</label><div class="gt-mth-cbs" id="av-sow"></div></div>
     <div><label>Repiquage (mois)</label><div class="gt-mth-cbs" id="av-tra"></div></div>
     <div><label>Plantation (mois)</label><div class="gt-mth-cbs" id="av-pla"></div></div>
     <div><label>Récolte (mois)</label><div class="gt-mth-cbs" id="av-har"></div></div>
-    <div><label>Semis→Repiquage (sem.)</label><input type="number" id="av-stt" value="4" min="0"></div>
-    <div><label>Plantation→Récolte (sem.)</label><input type="number" id="av-pth" value="8" min="0"></div>
+    <div><label>Sem. semis→repiquage</label><input type="number" id="av-stt" value="6" min="0"></div>
+    <div><label>Sem. plantation→récolte</label><input type="number" id="av-pth" value="8" min="0"></div>
+    <div><label>Variété ancienne?</label>
+      <select id="av-anc"><option value="false">Non</option><option value="true">Oui</option></select>
+    </div>
+    <div><label>Emplacement suggéré</label><input type="text" id="av-emp" placeholder="Ex: Serre — bordure"></div>
   </div>
   <div style="display:flex;gap:8px;margin-top:10px;">
-    <button onclick="gtAddVariety()" style="background:var(--clay);color:white;border:none;border-radius:7px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">Ajouter</button>
+    <button onclick="gtAddVariety()" style="background:var(--clay);color:white;border:none;border-radius:7px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">✓ Ajouter</button>
     <button onclick="document.getElementById('gt-av-form').classList.remove('open')" style="background:var(--line);border:none;border-radius:7px;padding:8px 16px;font-size:12px;cursor:pointer;">Annuler</button>
   </div>
 </div>
@@ -1559,7 +1622,7 @@
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
         <div>
           <p class="panel-title" style="margin:0;">Nos légumes — Saison 2026</p>
-          <p class="panel-sub" style="margin:2px 0 0;font-size:12px;">Cliquez sur une variété pour la visualiser sur le plan et afficher sa fiche · Mode admin pour saisir vos étapes</p>
+          <p class="panel-sub" style="margin:2px 0 0;font-size:12px;">Cliquez sur une planche pour filtrer · Mode admin pour saisir vos étapes (🌱 = variété ancienne)</p>
         </div>
         <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
           <input id="gt-search" type="text" placeholder="🔍 Rechercher…" style="padding:6px 12px;border-radius:18px;border:1.5px solid var(--line);background:var(--cream);font-size:12px;color:var(--ink);width:150px;outline:none;">
@@ -1575,13 +1638,27 @@
           <button id="garden-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:.6;padding:4px;white-space:nowrap;">⚙ Gérer mon jardin</button>
         </div>
       </div>
+      <div class="gt-legend">
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#d1fae5;border:1px solid #6ee7b7"></div>Semis conseillé</div>
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#fef3c7;border:1px solid #fcd34d"></div>Repiquage conseillé</div>
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#ffedd5;border:1px solid #fdba74"></div>Plantation conseillée</div>
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#fce7f3;border:1px solid #f9a8d4"></div>Récolte conseillée</div>
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#dcfce7;border:1px dashed #059669"></div>Calculé (auto)</div>
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#d1fae5;border-left:3px solid #059669"></div>🌱 Variété ancienne</div>
+        <div class="gt-leg-item"><div class="gt-leg-swatch" style="background:#d1fae5;border:1px solid #059669"></div>📍 Emplacement planté (vert)</div>
+      </div>
       <div class="gt-table-wrap">
         <table class="gt-table">
           <thead>
             <tr>
-              <th>Variété</th><th>Godets</th><th>Plantés</th>
-              <th>Jan</th><th>Fév</th><th>Mar</th><th>Avr</th><th>Mai</th><th>Jun</th>
-              <th>Jul</th><th>Aoû</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Déc</th>
+              <th class="th-var">Variété</th>
+              <th class="th-emp">Emplacement</th>
+              <th class="th-num">Godets</th>
+              <th class="th-num">Plants</th>
+              <th class="th-m">Jan</th><th class="th-m">Fév</th><th class="th-m">Mar</th>
+              <th class="th-m">Avr</th><th class="th-m" style="background:#3d5c28;">Mai</th>
+              <th class="th-m">Jun</th><th class="th-m">Jul</th><th class="th-m">Aoû</th>
+              <th class="th-m">Sep</th><th class="th-m">Oct</th><th class="th-m">Nov</th><th class="th-m">Déc</th>
             </tr>
           </thead>
           <tbody id="gt-body"></tbody>
@@ -2092,44 +2169,60 @@
 <script>
 
 const VARIETIES = [
-  {cat:"Tomates (serre)", name:"Tomate Groseille champagne", qty:"5 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v1-1", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-2", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-3", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-4", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-5", label:"Serre — bande haute"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Petite tomate cerise jaune-rose, tres sucree, production abondante en grappes serrees comme des groseilles.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
-  {cat:"Tomates (serre)", name:"Tomate Noir de Crimee", qty:"4 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v2-1", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v2-2", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v2-3", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v2-4", label:"Serre — bande haute"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete ancienne russe, fruits aplatis cotelees rouge-pourpre presque noir a maturite, chair dense au gout fume et sucre.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Noire_Crimee-1.jpg", imgExact:true},
-  {cat:"Tomates (serre)", name:"Tomate Banana Leg", qty:"3 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v3-1", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v3-2", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v3-3", label:"Serre — bordure gauche"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete americaine creee par Tom Wagner en 1984, petits fruits allonges jaunes en forme de banane, chair peu juteuse mais savoureuse.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
+  {cat:"Tomates (serre)", name:"Tomate Groseille Champagne", qty:"5 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v1-1", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-2", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-3", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-4", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v1-5", label:"Serre — bande haute"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Petite tomate cerise jaune-rose, tres sucree, production abondante en grappes serrees comme des groseilles.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
+  {cat:"Tomates (serre)", name:"Tomate Noire de Crimée", qty:"4 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v2-1", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v2-2", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v2-3", label:"Serre — bande haute"}, {plan:"serre", id:"serre-v2-4", label:"Serre — bande haute"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete ancienne russe, fruits aplatis cotelees rouge-pourpre presque noir a maturite, chair dense au gout fume et sucre.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Noire_Crimee-1.jpg", imgExact:true},
+  {cat:"Tomates (serre)", name:"Tomate Banana Legs", qty:"3 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v3-1", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v3-2", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v3-3", label:"Serre — bordure gauche"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete americaine creee par Tom Wagner en 1984, petits fruits allonges jaunes en forme de banane, chair peu juteuse mais savoureuse.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
   {cat:"Tomates (serre)", name:"Tomate Green Zebra", qty:"6 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v4-1", label:"Serre — bordure gauche / coffrage"}, {plan:"serre", id:"serre-v4-2", label:"Serre — bordure gauche / coffrage"}, {plan:"serre", id:"serre-v4-3", label:"Serre — bordure gauche / coffrage"}, {plan:"serre", id:"serre-v4-4", label:"Serre — bordure gauche / coffrage"}, {plan:"serre", id:"serre-v4-5", label:"Serre — bordure gauche / coffrage"}, {plan:"serre", id:"serre-v4-6", label:"Serre — bordure gauche / coffrage"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete americaine de mi-saison, fruits verts zebres de jaune meme a maturite, chair vert emeraude dense et legerement acidulee.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Green_Zebra-600x503.jpg", imgExact:true},
   {cat:"Tomates (serre)", name:"Tomate Buissonnante", qty:"5 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v5-1", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v5-2", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v5-3", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v5-4", label:"Serre — bordure gauche"}, {plan:"serre", id:"serre-v5-5", label:"Serre — bordure gauche"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Port compact et determine, ideale en espace restreint, ne necessite pas de tuteurage important.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
-  {cat:"Tomates (serre)", name:"Tomate Coeur de boeuf", qty:"4 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v6-1", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v6-2", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v6-3", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v6-4", label:"Serre — coffrage"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Grosse tomate en forme de coeur, chair dense et peu de pepins, sucree et parfumee, ideale en salade et farcie.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/coeur-de-boeuf-rouge-2-scaled-600x450.jpg", imgExact:true},
-  {cat:"Tomates (serre)", name:"Tomate Grosse hative d'Orleans", qty:"1 plant", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v7-1", label:"Serre — bordure gauche"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete precoce traditionnelle du Loiret, fruits ronds rouges de bonne taille pour une variete hative.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
+  {cat:"Tomates (serre)", name:"Tomate Cœur de Bœuf Rouge", qty:"4 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v6-1", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v6-2", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v6-3", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v6-4", label:"Serre — coffrage"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Grosse tomate en forme de coeur, chair dense et peu de pepins, sucree et parfumee, ideale en salade et farcie.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/coeur-de-boeuf-rouge-2-scaled-600x450.jpg", imgExact:true},
+  {cat:"Tomates (serre)", name:"Tomate Grosse Hâtive d'Orléans", qty:"1 plant", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v7-1", label:"Serre — bordure gauche"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete precoce traditionnelle du Loiret, fruits ronds rouges de bonne taille pour une variete hative.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
   {cat:"Tomates (serre)", name:"Tomate Belle Bacchante", qty:"4 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v8-1", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v8-2", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v8-3", label:"Serre — coffrage"}, {plan:"serre", id:"serre-v8-4", label:"Serre — coffrage"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Variete a fruits allonges, bonne productivite, chair charnue et genereuse.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
-  {cat:"Tomates (serre)", name:"Tomate Royal des guineaux", qty:"12 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v9-1", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-2", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-3", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-4", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-5", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-6", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-7", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-8", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-9", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-10", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-11", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-12", label:"Serre — bordure droite"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Grosse tomate ancienne de jardin, bonne productivite, fruit rouge classique.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
+  {cat:"Tomates (serre)", name:"Tomate Royale des Guineaux", qty:"12 plants", spacing:"voir plan serre", locations:[{plan:"serre", id:"serre-v9-1", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-2", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-3", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-4", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-5", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-6", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-7", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-8", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-9", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-10", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-11", label:"Serre — bordure droite"}, {plan:"serre", id:"serre-v9-12", label:"Serre — bordure droite"}], companion:"Fait partie des 44 pieds de tomates de la serre 6x3m ; cliquez sur la serre verte du mandala pour voir le plan complet.", desc:"Grosse tomate ancienne de jardin, bonne productivite, fruit rouge classique.", sun:"Plein soleil", water:"Regulier au pied, eviter le feuillage", img:"https://djma.fr/wp-content/uploads/2026/01/web_Tomate-Tschernij-Prinz-.png", imgExact:false},
   // --- RACINES & APIACEES ---
   {cat:"Racines & Apiacees", name:"Carottes (godets)", qty:"9 godets", spacing:"~5 cm entre pieds, rangs tous les 20 cm", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4"}], companion:"Association classique avec les poireaux (planches 2-3 et 10).", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Carotte classique a racine orange conique, chair sucree, variete non precisee.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol garde frais"},
-  {cat:"Racines & Apiacees", name:"Carotte De Colmar a coeur rouge", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"A semer en relais des 9 godets, sur la meme planche 4 : succession dans le temps, pas besoin de nouvel emplacement.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:true, desc:"Variete alsacienne ancienne, racine courte et conique, chair rouge-orange vif, bonne tenue en sol lourd.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
+  {cat:"Racines & Apiacees", name:"Carotte De Colmar à Coeur Rouge", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"A semer en relais des 9 godets, sur la meme planche 4 : succession dans le temps, pas besoin de nouvel emplacement.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:true, desc:"Variete alsacienne ancienne, racine courte et conique, chair rouge-orange vif, bonne tenue en sol lourd.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
   {cat:"Racines & Apiacees", name:"Carotte Touchon", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"Semis echelonne sur la planche 4, 3-4 semaines apres la precedente.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Racine cylindrique sans coeur, orange uniforme, variete tres productive et de bonne conservation.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
-  {cat:"Racines & Apiacees", name:"Carotte Nantaise 2", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"Semis echelonne sur la planche 4.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Racine cylindrique a bout arrondi, chair tendre sans coeur fibreux, l'une des varietes les plus cultivees en France.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
+  {cat:"Racines & Apiacees", name:"Carotte Nantaise 2 Milan", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"Semis echelonne sur la planche 4.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Racine cylindrique a bout arrondi, chair tendre sans coeur fibreux, l'une des varietes les plus cultivees en France.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
   {cat:"Racines & Apiacees", name:"Carotte rouge sang", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"Semis echelonne sur la planche 4.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Racine longue d'un rouge profond, saveur sucree, variete ancienne riche en pigments.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
-  {cat:"Racines & Apiacees", name:"Carotte Kuttinger", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"Semis echelonne sur la planche 4, derniere variete pour cloturer la saison.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Variete jaune d'Europe centrale, racine cylindrique reguliere, chair douce.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
-  {cat:"Racines & Apiacees", name:"Panais de Guernesey", qty:"5 godets", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-7", label:"Mandala — Planche 7"}], companion:"Apiacee, suite logique du bloc carottes/celeris.", img:"https://djma.fr/wp-content/uploads/2026/01/web_panais-halblange-turga-30352.png", imgExact:false, desc:"Racine blanche longue a saveur sucree legerement anisee, bonne resistance au froid.", sun:"Plein soleil", water:"Regulier, sol frais en profondeur"},
-  {cat:"Racines & Apiacees", name:"Celeri rave a couper", qty:"12 godets", spacing:"~25 cm entre pieds", locations:[{plan:"mandala", id:"plank-5", label:"Mandala — Planche 5"}], companion:"Apiacee, aime la fraicheur, proche de la mare.", img:"https://djma.fr/wp-content/uploads/2026/01/web_celeri-rave-monarch-3301.png", imgExact:false, desc:"Feuilles aromatiques utilisees comme condiment, racine peu developpee contrairement au celeri-rave classique.", sun:"Soleil a mi-ombre", water:"Abondant et regulier (tres gourmand en eau)"},
-  {cat:"Racines & Apiacees", name:"Celeri branche Tell Utah", qty:"8 godets", spacing:"~30 cm entre pieds", locations:[{plan:"mandala", id:"plank-6", label:"Mandala — Planche 6"}], companion:"Apiacee, gourmand en eau.", img:"https://djma.fr/wp-content/uploads/2026/01/web_celeri-rave-monarch-3301.png", imgExact:false, desc:"Variete americaine classique a cotes charnues vert clair, croquante et peu fibreuse.", sun:"Soleil a mi-ombre", water:"Abondant et regulier"},
-  {cat:"Racines & Apiacees", name:"Betteraves", qty:"12 godets", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-13", label:"Mandala — Planche 13"}], companion:"Chenopodiacee neutre, bon tampon apres les PDT.", img:"https://djma.fr/wp-content/uploads/2026/01/web_betterave-rouge-noire-d-egypte-6689.png", imgExact:false, desc:"Racine ronde rouge, chair sucree, variete de jardin classique a cuire ou consommer crue rapee.", sun:"Plein soleil", water:"Regulier, modere"},
-  {cat:"Racines & Apiacees", name:"Navets de Milan", qty:"10 godets", spacing:"~15 cm entre pieds", locations:[{plan:"mandala", id:"plank-14", label:"Mandala — Planche 14"}], companion:"Brassicacee a cycle rapide.", img:"https://djma.fr/wp-content/uploads/2026/01/web_navet-jaune-boule-d-or-26697.png", imgExact:false, desc:"Navet rond blanc a collet violet, chair tendre, cycle de croissance rapide.", sun:"Soleil a mi-ombre", water:"Regulier, sol frais"},
+  {cat:"Racines & Apiacees", name:"Carotte Kütigger", qty:"a semer", spacing:"~5 cm entre pieds", locations:[{plan:"mandala", id:"plank-4", label:"Mandala — Planche 4 (semis echelonne)"}], companion:"Semis echelonne sur la planche 4, derniere variete pour cloturer la saison.", img:"https://djma.fr/wp-content/uploads/2026/01/web_carotte-de-colmar-a-coeur-rouge-42402.png", imgExact:false, desc:"Variete jaune d'Europe centrale, racine cylindrique reguliere, chair douce.", sun:"Plein soleil a mi-ombre", water:"Regulier, sol frais"},
+  {cat:"Racines & Apiacees", name:"Panais demi-long de Guernesey", qty:"5 godets", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-7", label:"Mandala — Planche 7"}], companion:"Apiacee, suite logique du bloc carottes/celeris.", img:"https://djma.fr/wp-content/uploads/2026/01/web_panais-halblange-turga-30352.png", imgExact:false, desc:"Racine blanche longue a saveur sucree legerement anisee, bonne resistance au froid.", sun:"Plein soleil", water:"Regulier, sol frais en profondeur"},
+  {cat:"Racines & Apiacees", name:"Céleri Vert à couper", qty:"12 godets", spacing:"~25 cm entre pieds", locations:[{plan:"mandala", id:"plank-5", label:"Mandala — Planche 5"}], companion:"Apiacee, aime la fraicheur, proche de la mare.", img:"https://djma.fr/wp-content/uploads/2026/01/web_celeri-rave-monarch-3301.png", imgExact:false, desc:"Feuilles aromatiques utilisees comme condiment, racine peu developpee contrairement au celeri-rave classique.", sun:"Soleil a mi-ombre", water:"Abondant et regulier (tres gourmand en eau)"},
+  {cat:"Racines & Apiacees", name:"Céleri-branche Tall Utah", qty:"8 godets", spacing:"~30 cm entre pieds", locations:[{plan:"mandala", id:"plank-6", label:"Mandala — Planche 6"}], companion:"Apiacee, gourmand en eau.", img:"https://djma.fr/wp-content/uploads/2026/01/web_celeri-rave-monarch-3301.png", imgExact:false, desc:"Variete americaine classique a cotes charnues vert clair, croquante et peu fibreuse.", sun:"Soleil a mi-ombre", water:"Abondant et regulier"},
+  {cat:"Racines & Apiacees", name:"Betterave rouge Crapaudine", qty:"12 godets", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-13", label:"Mandala — Planche 13"}], companion:"Chenopodiacee neutre, bon tampon apres les PDT.", img:"https://djma.fr/wp-content/uploads/2026/01/web_betterave-rouge-noire-d-egypte-6689.png", imgExact:false, desc:"Racine ronde rouge, chair sucree, variete de jardin classique a cuire ou consommer crue rapee.", sun:"Plein soleil", water:"Regulier, modere"},
+  {cat:"Racines & Apiacees", name:"Navet De Milan à collet rose", qty:"10 godets", spacing:"~15 cm entre pieds", locations:[{plan:"mandala", id:"plank-14", label:"Mandala — Planche 14"}], companion:"Brassicacee a cycle rapide.", img:"https://djma.fr/wp-content/uploads/2026/01/web_navet-jaune-boule-d-or-26697.png", imgExact:false, desc:"Navet rond blanc a collet violet, chair tendre, cycle de croissance rapide.", sun:"Soleil a mi-ombre", water:"Regulier, sol frais"},
 
+  // --- TOMATES MANDALA ---
+  {cat:"Tomates (mandala)", name:"Tomate — variétés mystères", qty:"~8-10 plants", spacing:"~50 cm entre pieds", locations:[{plan:"mandala", id:"plank-1", label:"Mandala — Planche 1"}], companion:"Variétés issues de semis non étiquetés, à découvrir à la récolte !", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/ananas-2-scaled-300x300.jpg", imgExact:false, desc:"Collection de plants de tomates non identifiés, plantés sur la planche 1 — la surprise sera au rendez-vous à la récolte !", sun:"Plein soleil", water:"Régulier au pied"},
+  
   // --- ALLIACEES ---
-  {cat:"Alliacees", name:"Oignons", qty:"19 godets", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-15", label:"Mandala — Planche 15"}], companion:"Fait tampon sanitaire avant le bloc Solanacees.", img:"https://djma.fr/wp-content/uploads/2026/01/web_oignon-jaune-de-stuttgart-26708.png", imgExact:false, desc:"Bulbe de variete de garde, peau cuivree, bonne conservation hivernale.", sun:"Plein soleil", water:"Modere, reduire en fin de cycle avant recolte"},
-  {cat:"Alliacees", name:"Poireaux (lot mandala)", qty:"~10-12 godets", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-10", label:"Mandala — Planche 10"}], companion:"Interplante avec ciboulette/persil. Encadre les PDT (planches 9 et 11).", img:"https://djma.fr/wp-content/uploads/2026/01/web_poireau-bleu-de-solaise-3321.png", imgExact:false, desc:"Allium a fut blanc, variete d'hiver classique, resistant au froid.", sun:"Soleil a mi-ombre", water:"Regulier"},
+  {cat:"Alliacees", name:"Oignon Jaune Dorata di Parma", qty:"~5 plants", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-15", label:"Mandala — Planche 15"}], companion:"Association avec carottes (repousse mouche).", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Oignon_Dorata-300x300.jpg", imgExact:false, desc:"Oignon doré aplati, doux, très bonne conservation.", sun:"Plein soleil", water:"Modéré", ancient:true},
+  {cat:"Alliacees", name:"Oignon Rouge de Genève", qty:"~5 plants", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-15", label:"Mandala — Planche 15"}], companion:"Association avec carottes.", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Oignon-rouge-de-Geneve-300x300.jpg", imgExact:false, desc:"Oignon rouge doux à belle couleur, saveur fine, bon en salade.", sun:"Plein soleil", water:"Modéré", ancient:true},
+  {cat:"Alliacees", name:"Oignon Blanc de Lisbonne", qty:"~5 plants", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-15", label:"Mandala — Planche 15"}], companion:"Association avec carottes.", img:"https://djma.fr/wp-content/uploads/2026/01/web_oignon-blanc-de-lisbonne.png", imgExact:false, desc:"Oignon blanc doux hâtif, frais ou séché.", sun:"Plein soleil", water:"Modéré", ancient:true},
+  {cat:"Alliacees", name:"Oignon jaune de Stuttgart", qty:"~4 plants", spacing:"~10 cm entre pieds", locations:[{plan:"mandala", id:"plank-15", label:"Mandala — Planche 15"}], companion:"Association avec carottes.", img:"https://djma.fr/wp-content/uploads/2026/01/web_oignon-jaune-de-stuttgart-26708.png", imgExact:false, desc:"Oignon jaune aplati, excellente conservation, arôme classique.", sun:"Plein soleil", water:"Modéré", ancient:true},
+  {cat:"Alliacees", name:"Poireau d'Elbeuf Éléphant", qty:"5-6 plants", spacing:"~15 cm entre pieds", locations:[{plan:"mandala", id:"plank-2", label:"Mandala — Planche 2"}], companion:"Association classique avec carottes.", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Poireau-elephant-de-carentanl-300x300.jpg", imgExact:false, desc:"Variété ancienne normande, très gros fût blanc, résistant au gel, récolte hiver.", sun:"Soleil à mi-ombre", water:"Régulier", ancient:true},
+  {cat:"Alliacees", name:"Poireau Saint Victor", qty:"5-6 plants", spacing:"~15 cm entre pieds", locations:[{plan:"mandala", id:"plank-3", label:"Mandala — Planche 3"}], companion:"Association classique avec carottes.", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Poireau-Saint-Victor-300x300.jpg", imgExact:false, desc:"Variété ancienne à feuillage violet-bleu, très rustique, tolère -15°C, récolte hiver-printemps.", sun:"Soleil à mi-ombre", water:"Régulier", ancient:true},
+  {cat:"Alliacees", name:"Poireaux (lot mandala — planche 10)", qty:"5-6 plants", spacing:"~15 cm entre pieds", locations:[{plan:"mandala", id:"plank-10", label:"Mandala — Planche 10"}], companion:"Encadre les PDT (planches 9 et 11).", img:"https://djma.fr/wp-content/uploads/2026/01/web_poireau-bleu-de-solaise-3321.png", imgExact:false, desc:"Poireaux d'hiver (Elbeuf + Saint Victor en mélange), planche 10 du mandala.", sun:"Soleil à mi-ombre", water:"Régulier"},
   {cat:"Alliacees", name:"Poireaux (surplus)", qty:"~15-17 godets", spacing:"~10 cm entre pieds", locations:[{plan:"harpe", id:"harpe-row9-m1", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m2", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m3", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m4", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m5", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m6", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m7", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m8", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m9", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m10", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m11", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m12", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m13", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m14", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m15", label:"Harpe — Rang 9"}, {plan:"harpe", id:"harpe-row9-m16", label:"Harpe — Rang 9"}], companion:"Reste d'espace harpe (rang 9) : Alliacee sans antagonisme avec les cucurbitacees voisines.", img:"https://djma.fr/wp-content/uploads/2026/01/web_poireau-bleu-de-solaise-3321.png", imgExact:false, desc:"Allium a fut blanc, variete d'hiver classique, resistant au froid.", sun:"Soleil a mi-ombre", water:"Regulier"},
 
+
+  // --- POMMES DE TERRE ---
+  {cat:"Pommes de terre", name:"Pomme de terre Truffette", qty:"~10-12 tubercules", spacing:"~30 cm entre pieds, 70 cm entre rangs", locations:[{plan:"mandala", id:"plank-9", label:"Mandala — Planche 9"}], companion:"Associée à Maïwen sur la même planche.", img:"https://djma.fr/wp-content/uploads/2026/01/web_pomme-de-terre-truffette.png", imgExact:false, desc:"Variété ancienne à petits tubercules bosselés, chair jaune fine, saveur noisette légèrement truffée.", sun:"Plein soleil", water:"Régulier", ancient:true},
+  {cat:"Pommes de terre", name:"Pomme de terre Maïwen", qty:"~10-12 tubercules", spacing:"~35 cm entre pieds, 75 cm entre rangs", locations:[{plan:"mandala", id:"plank-9", label:"Mandala — Planche 9"}], companion:"Associée à Truffette sur la même planche.", img:"https://djma.fr/wp-content/uploads/2026/01/web_pomme-de-terre-maiwen.png", imgExact:false, desc:"Variété à chair ferme, peau lisse, robuste et productive.", sun:"Plein soleil", water:"Régulier"},
+  {cat:"Pommes de terre", name:"Pomme de terre Charlotte", qty:"~15 tubercules", spacing:"~30 cm entre pieds, 70 cm entre rangs", locations:[{plan:"mandala", id:"plank-11", label:"Mandala — Planche 11"}], companion:"Légumineuses en précédent cultural idéal.", img:"https://djma.fr/wp-content/uploads/2026/01/web_pomme-de-terre-charlotte.png", imgExact:false, desc:"Chair ferme non farineuse, peau lisse jaune, excellente en salade ou vapeur.", sun:"Plein soleil", water:"Régulier"},
+  {cat:"Pommes de terre", name:"Pomme de terre Allians", qty:"~15 tubercules", spacing:"~30 cm entre pieds, 70 cm entre rangs", locations:[{plan:"mandala", id:"plank-12", label:"Mandala — Planche 12"}], companion:"Bonne résistance au mildiou.", img:"https://djma.fr/wp-content/uploads/2026/01/web_pomme-de-terre-allians.png", imgExact:false, desc:"Variété tolérante au mildiou, chair ferme, bonne conservation.", sun:"Plein soleil", water:"Régulier"},
   // --- BRASSICACEES ---
-  {cat:"Brassicacees", name:"Chou navet (rutabaga)", qty:"7 godets", spacing:"~30 cm entre pieds", locations:[{plan:"mandala", id:"plank-8", label:"Mandala — Planche 8"}], companion:"Bon voisin de la PDT, planche juste apres (9).", img:"https://djma.fr/wp-content/uploads/2026/01/web_chou-de-milan-gros-des-vertus-3304.png", imgExact:false, desc:"Racine charnue jaune orangee, chou d'hiver tres rustique au froid.", sun:"Plein soleil a mi-ombre", water:"Regulier"},
+  {cat:"Brassicacees", name:"Chou Navet Rutabaga", qty:"7 godets", spacing:"~30 cm entre pieds", locations:[{plan:"mandala", id:"plank-8", label:"Mandala — Planche 8"}], companion:"Bon voisin de la PDT, planche juste apres (9).", img:"https://djma.fr/wp-content/uploads/2026/01/web_chou-de-milan-gros-des-vertus-3304.png", imgExact:false, desc:"Racine charnue jaune orangee, chou d'hiver tres rustique au froid.", sun:"Plein soleil a mi-ombre", water:"Regulier"},
 
   // --- SOLANACEES ---
   {cat:"Solanacees", name:"Poivron Chocolat", qty:"6 godets", spacing:"~40 cm entre pieds", locations:[{plan:"mandala", id:"plank-16", label:"Mandala — Planche 16"}], companion:"Glissez du basilic entre les pieds (tres bon compagnon).", img:"https://djma.fr/wp-content/uploads/2026/01/web_piment-poivron-yolo-wonder-3324.png", imgExact:false, desc:"Fruit cubique virant du vert au brun chocolat a maturite, saveur douce et sucree.", sun:"Plein soleil, besoin de chaleur", water:"Regulier, sans exces"},
-  {cat:"Solanacees", name:"Poivron Yellow Wonder", qty:"8 godets", spacing:"~40 cm entre pieds", locations:[{plan:"mandala", id:"plank-16", label:"Mandala — Planche 16"}], companion:"Solanacee comme le poivron chocolat voisin : meme planche, le basilic interplante eloigne pucerons et aleurodes.", img:"https://djma.fr/wp-content/uploads/2026/01/web_piment-poivron-yolo-wonder-3324.png", imgExact:false, desc:"Variete nord-americaine tardive (Yolo Wonder), gros fruits cubiques jaunes, tres productive.", sun:"Plein soleil, besoin de chaleur", water:"Regulier, sans exces"},
-  {cat:"Solanacees", name:"Aubergine Barbatane", qty:"~9-10 plants (sur 15)", spacing:"~45 cm entre pieds", locations:[{plan:"mandala", id:"plank-17", label:"Mandala — Planche 17"}], companion:"Solanacee — tenue a distance des PDT et de la tomate.", desc:"Variete provencale traditionnelle (Barbantane), fruit allonge violet fonce, chair fine peu amere.", sun:"Plein soleil, besoin de chaleur", water:"Regulier", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/aubergine_barbantane-scaled-300x300.jpg", imgExact:true},
-  {cat:"Solanacees", name:"Aubergine Blanche ronde", qty:"~7-8 plants (sur 12)", spacing:"~45 cm entre pieds", locations:[{plan:"mandala", id:"plank-18", label:"Mandala — Planche 18"}], companion:"Solanacee tenue a distance des PDT et de la tomate, meme logique que l'Aubergine Barbatane voisine.", img:"https://djma.fr/wp-content/uploads/2026/01/web_aubergine-black-beauty-3095.png", imgExact:false, desc:"Fruit blanc rond en forme d'oeuf, peau fine, chair douce peu amere.", sun:"Plein soleil, besoin de chaleur", water:"Regulier"},
-  {cat:"Solanacees", name:"Aubergines (surplus)", qty:"10 plants", spacing:"~0,45 m entre pieds", locations:[{plan:"mandala", id:"mandala-band1-aubergine-1", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-2", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-3", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-4", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-5", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-6", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-7", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-8", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-9", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-10", label:"Mandala — Bande 1 (suite)"}], companion:"27 pieds ne tiennent pas sur 2 planches : le surplus continue la bande carton-paillage, apres les courges existantes.", img:"https://djma.fr/wp-content/uploads/2026/01/web_aubergine-black-beauty-3095.png", imgExact:false, desc:"Melange Barbatane et Blanche ronde, fruits allonges violet fonce ou blancs ronds selon le plant.", sun:"Plein soleil, besoin de chaleur", water:"Regulier"},
-  {cat:"Solanacees", name:"Tomates ananas", qty:"12 godets", spacing:"~0,5 m entre pieds (tuteurees)", locations:[{plan:"mandala", id:"mandala-band1-tomate-1", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-2", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-3", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-4", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-5", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-6", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-7", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-8", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-9", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-10", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-11", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-12", label:"Mandala — Bande 1 (suite)"}], companion:"Plantees a la suite des courges existantes sur la bande 1, espace encore disponible avant la planche 12.", desc:"Enorme tomate cotelee bicolore jaune et rouge, chair sucree peu acide, variete patrimoniale tres reputee en gout.", sun:"Plein soleil", water:"Regulier au pied, eviter de mouiller le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/ananas-2-scaled-300x300.jpg", imgExact:true},
+  {cat:"Solanacees", name:"Poivron Yolo Wonder", qty:"8 godets", spacing:"~40 cm entre pieds", locations:[{plan:"mandala", id:"plank-16", label:"Mandala — Planche 16"}], companion:"Solanacee comme le poivron chocolat voisin : meme planche, le basilic interplante eloigne pucerons et aleurodes.", img:"https://djma.fr/wp-content/uploads/2026/01/web_piment-poivron-yolo-wonder-3324.png", imgExact:false, desc:"Variete nord-americaine tardive (Yolo Wonder), gros fruits cubiques jaunes, tres productive.", sun:"Plein soleil, besoin de chaleur", water:"Regulier, sans exces"},
+  {cat:"Solanacees", name:"Aubergine de Barbantane", qty:"~9-10 plants (sur 15)", spacing:"~45 cm entre pieds", locations:[{plan:"mandala", id:"plank-17", label:"Mandala — Planche 17"}], companion:"Solanacee — tenue a distance des PDT et de la tomate.", desc:"Variete provencale traditionnelle (Barbantane), fruit allonge violet fonce, chair fine peu amere.", sun:"Plein soleil, besoin de chaleur", water:"Regulier", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/aubergine_barbantane-scaled-300x300.jpg", imgExact:true},
+  {cat:"Solanacees", name:"Aubergine Blanche Ronde à Œufs", qty:"~7-8 plants (sur 12)", spacing:"~45 cm entre pieds", locations:[{plan:"mandala", id:"plank-18", label:"Mandala — Planche 18"}], companion:"Solanacee tenue a distance des PDT et de la tomate, meme logique que l'Aubergine Barbatane voisine.", img:"https://djma.fr/wp-content/uploads/2026/01/web_aubergine-black-beauty-3095.png", imgExact:false, desc:"Fruit blanc rond en forme d'oeuf, peau fine, chair douce peu amere.", sun:"Plein soleil, besoin de chaleur", water:"Regulier"},
+  {cat:"Solanacees", name:"Aubergine de Barbantane", qty:"10 plants", spacing:"~0,45 m entre pieds", locations:[{plan:"mandala", id:"mandala-band1-aubergine-1", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-2", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-3", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-4", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-5", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-6", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-7", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-8", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-9", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-aubergine-10", label:"Mandala — Bande 1 (suite)"}], companion:"27 pieds ne tiennent pas sur 2 planches : le surplus continue la bande carton-paillage, apres les courges existantes.", img:"https://djma.fr/wp-content/uploads/2026/01/web_aubergine-black-beauty-3095.png", imgExact:false, desc:"Melange Barbatane et Blanche ronde, fruits allonges violet fonce ou blancs ronds selon le plant.", sun:"Plein soleil, besoin de chaleur", water:"Regulier"},
+  {cat:"Solanacees", name:"Tomate Ananas", qty:"12 godets", spacing:"~0,5 m entre pieds (tuteurees)", locations:[{plan:"mandala", id:"mandala-band1-tomate-1", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-2", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-3", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-4", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-5", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-6", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-7", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-8", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-9", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-10", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-11", label:"Mandala — Bande 1 (suite)"}, {plan:"mandala", id:"mandala-band1-tomate-12", label:"Mandala — Bande 1 (suite)"}], companion:"Plantees a la suite des courges existantes sur la bande 1, espace encore disponible avant la planche 12.", desc:"Enorme tomate cotelee bicolore jaune et rouge, chair sucree peu acide, variete patrimoniale tres reputee en gout.", sun:"Plein soleil", water:"Regulier au pied, eviter de mouiller le feuillage", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/ananas-2-scaled-300x300.jpg", imgExact:true},
 
+  {cat:"Cucurbitacees (serre)", name:"Concombre Lemon", qty:"4 plants", spacing:"~50 cm entre pieds", locations:[{plan:"serre", id:"serre-conc-1", label:"Serre — Rang concombre"}, {plan:"serre", id:"serre-conc-2", label:"Serre — Rang concombre"}, {plan:"serre", id:"serre-conc-3", label:"Serre — Rang concombre"}, {plan:"serre", id:"serre-conc-4", label:"Serre — Rang concombre"}], companion:"Excellent sous serre, association avec aneth.", img:"https://djma.fr/wp-content/uploads/2026/01/web_concombre-lemon.png", imgExact:false, desc:"Petit concombre rond jaune citronnée, peau fine, chair croquante et peu amère, idéal pour la serre.", sun:"Plein soleil", water:"Régulier, abondant", ancient:true},
+  
   // --- CUCURBITACEES (reexploitation des vides/perdus harpe + bande 2 mandala + rang 6) ---
   {cat:"Cucurbitacees", name:"Courgette Greyzini", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-1", label:"Harpe — emplacement vide reexploite"}], companion:"Collection de courgettes repartie dans les emplacements perdus/vides des rangs 1 a 3.", desc:"Type 'Grisette de Provence', chair blanche fine et tendre, demi-precoce, tres bon rendement.", sun:"Plein soleil", water:"Regulier, modere", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/COURGE-GREYSINI-Francois-Xavier-300x300.jpg", imgExact:true},
   {cat:"Cucurbitacees", name:"Courgette Blanche de Trieste", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-2", label:"Harpe — emplacement vide reexploite"}], companion:"Reoccupe un emplacement vide/perdu de la harpe, meme famille cucurbitacee que la culture initiale.", desc:"Courgette blanche courte au bout pointu, originaire d'Italie, port buissonnant, s'epaissit au centre ; chair plus sucree et savoureuse que la moyenne.", sun:"Plein soleil", water:"Modere, regulier", img:"https://djma.fr/wp-content/uploads/2024/01/51343-courgette-blanche-de-trieste-graine-bio.jpg", imgExact:true},
@@ -2141,17 +2234,17 @@ const VARIETIES = [
   {cat:"Cucurbitacees", name:"Courgette Bolognese", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-8", label:"Harpe — emplacement vide reexploite"}], companion:"Reoccupe un emplacement vide/perdu de la harpe, meme famille cucurbitacee que la culture initiale.", desc:"Forme ovale potelee, peau vert clair, fruit long de 15 a 20 cm, chair blanc-creme tendre.", sun:"Plein soleil", water:"Modere, regulier", img:"https://djma.fr/wp-content/uploads/2024/01/51341-courgette-bolognese-graine-bio.jpg", imgExact:true},
   {cat:"Cucurbitacees", name:"Courgette Jaune Daisy", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-9", label:"Harpe — emplacement vide reexploite"}], companion:"Reoccupe un emplacement vide/perdu de la harpe, meme famille cucurbitacee que la culture initiale.", img:"https://djma.fr/wp-content/uploads/2026/01/web_courgette-alberello-di-sarzana-26793.png", imgExact:false, desc:"Variete precoce non coureuse, port aere limitant les maladies fongiques, fruit jaune.", sun:"Plein soleil", water:"Regulier, modere"},
   {cat:"Cucurbitacees", name:"Courgette Black Beauty", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-10", label:"Harpe — emplacement vide reexploite"}], companion:"Reoccupe un emplacement vide/perdu de la harpe, meme famille cucurbitacee que la culture initiale.", desc:"Variete italienne buissonnante tres productive (Verte de Milan), fruit allonge vert fonce brillant (~25 cm), chair tendre.", sun:"Plein soleil", water:"Modere, regulier", img:"https://djma.fr/wp-content/uploads/2025/03/3308-courgette-black-beauty-graine-bio.jpg", imgExact:true},
-  {cat:"Cucurbitacees", name:"Courgette de Nice a fruit rond", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-11", label:"Harpe — emplacement vide reexploite"}], companion:"Dernier plant de la collection de courgettes, comble le dernier vide disponible des rangs 1 a 3.", img:"https://djma.fr/wp-content/uploads/2026/01/web_courgette-alberello-di-sarzana-26793.png", imgExact:false, desc:"Courgette ronde precoce et productive, non coureuse, chair fine et fondante, ne necessite pas de tuteur.", sun:"Plein soleil", water:"Regulier, modere"},
+  {cat:"Cucurbitacees", name:"Courgette de Nice à Fruits Ronds", qty:"1 plant", spacing:"reexploite un vide existant", locations:[{plan:"harpe", id:"harpe-gap-11", label:"Harpe — emplacement vide reexploite"}], companion:"Dernier plant de la collection de courgettes, comble le dernier vide disponible des rangs 1 a 3.", img:"https://djma.fr/wp-content/uploads/2026/01/web_courgette-alberello-di-sarzana-26793.png", imgExact:false, desc:"Courgette ronde precoce et productive, non coureuse, chair fine et fondante, ne necessite pas de tuteur.", sun:"Plein soleil", water:"Regulier, modere"},
   {cat:"Cucurbitacees", name:"Cornichon Petit de Paris", qty:"5 godets", spacing:"reexploite des vides existants", locations:[{plan:"harpe", id:"harpe-gap-12", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-13", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-14", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-15", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-16", label:"Harpe — emplacement vide reexploite"}], companion:"Comble la suite des vides, apres la collection de courgettes.", desc:"Petit fruit classique destine a la conserve au vinaigre, plante grimpante a treillager.", sun:"Plein soleil", water:"Regulier, abondant", img:"https://djma.fr/wp-content/uploads/2026/01/web_cornichon-petit-de-paris-51376.png", imgExact:true},
-  {cat:"Cucurbitacees", name:"Concombre long maraichers", qty:"12 godets", spacing:"~0,55 m entre pieds", locations:[{plan:"mandala", id:"mandala-band2-concombre-1", label:"Mandala — Bande 2 (fin pl.17 a deb. pl.20)"}, {plan:"mandala", id:"mandala-band2-concombre-2", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-3", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-4", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-5", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-6", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-7", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-8", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-9", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-10", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-11", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-12", label:"Mandala — Bande 2"}], companion:"Desormais sur la bande 2 corrigee (fin planche 17 a debut planche 20), entierement libre.", desc:"Long concombre vert fonce sans amertume, tres productif, plante grimpante a treillager.", sun:"Plein soleil", water:"Abondant et regulier", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2015/04/Concombre-Vert-Long-Maraicher-l-300x300.jpg", imgExact:true},
-  {cat:"Cucurbitacees", name:"Melon petit gris de Rennes", qty:"12 godets", spacing:"~0,8 m entre pieds", locations:[{plan:"harpe", id:"harpe-row6-melon-1", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-2", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-3", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-4", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-5", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-6", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-7", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-8", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-9", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-10", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-11", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-12", label:"Harpe — Rang 6"}], companion:"Le rang 6, jusqu'ici paille et non plante, est desormais entierement exploite.", desc:"Melon breton traditionnel a peau grise brodee, chair orange tres parfumee.", sun:"Plein soleil", water:"Modere, reduire a l'approche de la maturite", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/MelonPetitGrisRennes-300x300.jpg", imgExact:true},
-  {cat:"Cucurbitacees", name:"Melon de Noel", qty:"12 godets (7 rang 6 + 5 rang 8)", spacing:"entre rangs 1 m x entre pieds 0,8 m", locations:[{plan:"harpe", id:"harpe-row6-melon-13", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-14", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-15", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-16", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-17", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-18", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-19", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row8-m1", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m2", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m3", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m4", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m5", label:"Harpe — Rang 8"}], companion:"7 plants terminent le rang 6, les 5 derniers rejoignent le rang 8 (reste d'espace exploite).", img:"https://djma.fr/wp-content/uploads/2026/01/web_melon-charentais-3318.png", imgExact:false, desc:"Melon d'hiver a peau jaune lisse, chair blanc-vert, se conserve plusieurs mois apres recolte (d'ou son nom).", sun:"Plein soleil", water:"Modere"},
-  {cat:"Cucurbitacees", name:"Melon sucrine de Honfleur", qty:"12 godets (10 vides + 2 rang 8)", spacing:"reexploite des vides existants + rang 8", locations:[{plan:"harpe", id:"harpe-gap-17", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-18", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-19", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-20", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-21", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-22", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-23", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-24", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-25", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-26", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-row8-m6", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m7", label:"Harpe — Rang 8"}], companion:"Comble les 10 derniers vides des rangs (rang 5, emplacements du Luffa perdu) + 2 derniers plants sur le rang 8.", img:"https://djma.fr/wp-content/uploads/2026/01/web_melon-charentais-3318.png", imgExact:false, desc:"Melon ancien normand introduit au XVIIe siecle, peau brodee epaisse, bonne conservation apres recolte.", sun:"Plein soleil", water:"Modere"},
-  {cat:"Cucurbitacees", name:"Melon vieille France", qty:"12 godets", spacing:"entre rangs 1,5 m x entre pieds 0,8 m", locations:[{plan:"harpe", id:"harpe-row7-m1", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m2", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m3", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m4", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m5", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m6", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m7", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m8", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m9", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m10", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m11", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m12", label:"Harpe — Rang 7"}], companion:"Tout l'espace restant de la harpe est desormais exploite : ce nouveau rang 7 accueille les 12 plants en entier.", desc:"Melon juteux et tres parfume, culture facile en plein champ, cycle court adapte au nord de la Loire.", sun:"Plein soleil", water:"Modere", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Melon-Vieille-France-scaled-300x300.jpg", imgExact:true},
+  {cat:"Cucurbitacees", name:"Concombre Long vert Maraîcher", qty:"12 godets", spacing:"~0,55 m entre pieds", locations:[{plan:"mandala", id:"mandala-band2-concombre-1", label:"Mandala — Bande 2 (fin pl.17 a deb. pl.20)"}, {plan:"mandala", id:"mandala-band2-concombre-2", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-3", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-4", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-5", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-6", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-7", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-8", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-9", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-10", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-11", label:"Mandala — Bande 2"}, {plan:"mandala", id:"mandala-band2-concombre-12", label:"Mandala — Bande 2"}], companion:"Desormais sur la bande 2 corrigee (fin planche 17 a debut planche 20), entierement libre.", desc:"Long concombre vert fonce sans amertume, tres productif, plante grimpante a treillager.", sun:"Plein soleil", water:"Abondant et regulier", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2015/04/Concombre-Vert-Long-Maraicher-l-300x300.jpg", imgExact:true},
+  {cat:"Cucurbitacees", name:"Melon Petit Gris de Rennes", qty:"12 godets", spacing:"~0,8 m entre pieds", locations:[{plan:"harpe", id:"harpe-row6-melon-1", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-2", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-3", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-4", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-5", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-6", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-7", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-8", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-9", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-10", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-11", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-12", label:"Harpe — Rang 6"}], companion:"Le rang 6, jusqu'ici paille et non plante, est desormais entierement exploite.", desc:"Melon breton traditionnel a peau grise brodee, chair orange tres parfumee.", sun:"Plein soleil", water:"Modere, reduire a l'approche de la maturite", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/MelonPetitGrisRennes-300x300.jpg", imgExact:true},
+  {cat:"Cucurbitacees", name:"Melon de Noël Honeydew", qty:"12 godets (7 rang 6 + 5 rang 8)", spacing:"entre rangs 1 m x entre pieds 0,8 m", locations:[{plan:"harpe", id:"harpe-row6-melon-13", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-14", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-15", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-16", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-17", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-18", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row6-melon-19", label:"Harpe — Rang 6"}, {plan:"harpe", id:"harpe-row8-m1", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m2", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m3", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m4", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m5", label:"Harpe — Rang 8"}], companion:"7 plants terminent le rang 6, les 5 derniers rejoignent le rang 8 (reste d'espace exploite).", img:"https://djma.fr/wp-content/uploads/2026/01/web_melon-charentais-3318.png", imgExact:false, desc:"Melon d'hiver a peau jaune lisse, chair blanc-vert, se conserve plusieurs mois apres recolte (d'ou son nom).", sun:"Plein soleil", water:"Modere"},
+  {cat:"Cucurbitacees", name:"Melon sucrin de Honfleur", qty:"12 godets (10 vides + 2 rang 8)", spacing:"reexploite des vides existants + rang 8", locations:[{plan:"harpe", id:"harpe-gap-17", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-18", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-19", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-20", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-21", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-22", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-23", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-24", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-25", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-gap-26", label:"Harpe — emplacement vide reexploite"}, {plan:"harpe", id:"harpe-row8-m6", label:"Harpe — Rang 8"}, {plan:"harpe", id:"harpe-row8-m7", label:"Harpe — Rang 8"}], companion:"Comble les 10 derniers vides des rangs (rang 5, emplacements du Luffa perdu) + 2 derniers plants sur le rang 8.", img:"https://djma.fr/wp-content/uploads/2026/01/web_melon-charentais-3318.png", imgExact:false, desc:"Melon ancien normand introduit au XVIIe siecle, peau brodee epaisse, bonne conservation apres recolte.", sun:"Plein soleil", water:"Modere"},
+  {cat:"Cucurbitacees", name:"Melon Ancien Vieille France", qty:"12 godets", spacing:"entre rangs 1,5 m x entre pieds 0,8 m", locations:[{plan:"harpe", id:"harpe-row7-m1", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m2", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m3", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m4", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m5", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m6", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m7", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m8", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m9", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m10", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m11", label:"Harpe — Rang 7"}, {plan:"harpe", id:"harpe-row7-m12", label:"Harpe — Rang 7"}], companion:"Tout l'espace restant de la harpe est desormais exploite : ce nouveau rang 7 accueille les 12 plants en entier.", desc:"Melon juteux et tres parfume, culture facile en plein champ, cycle court adapte au nord de la Loire.", sun:"Plein soleil", water:"Modere", img:"https://www.millevarietesanciennes.org/wp-content/uploads/2023/01/Melon-Vieille-France-scaled-300x300.jpg", imgExact:true},
 
   // --- FEUILLES ---
-  {cat:"Feuilles", name:"Chicoree scarole", qty:"12 godets", spacing:"~30 cm entre pieds", locations:[{plan:"mandala", id:"plank-19", label:"Mandala — Planche 19"}], companion:"Referme le bloc Solanacees avant le retour aux feuilles.", desc:"Feuilles larges formant une pomme, leger gout amer, salade d'automne traditionnelle.", sun:"Soleil a mi-ombre", water:"Regulier", img:"https://djma.fr/wp-content/uploads/2026/01/chicoree-scarole-geante-maraichere.png", imgExact:true},
-  {cat:"Feuilles", name:"Epinard fraise", qty:"quelques plants", spacing:"~20 cm entre pieds", locations:[{plan:"mandala", id:"plank-20", label:"Mandala — Planche 20"}], companion:"Melange de feuilles a cycle court, juste avant le passage.", img:"https://djma.fr/wp-content/uploads/2026/01/web_epinard-matador-51385.png", imgExact:false, desc:"Feuillage comestible accompagne de petits fruits rouges decoratifs ressemblant a des fraises miniatures.", sun:"Mi-ombre a soleil", water:"Regulier"},
+  {cat:"Feuilles", name:"Chicorée Scarole Géante Maraichère", qty:"12 godets", spacing:"~30 cm entre pieds", locations:[{plan:"mandala", id:"plank-19", label:"Mandala — Planche 19"}], companion:"Referme le bloc Solanacees avant le retour aux feuilles.", desc:"Feuilles larges formant une pomme, leger gout amer, salade d'automne traditionnelle.", sun:"Soleil a mi-ombre", water:"Regulier", img:"https://djma.fr/wp-content/uploads/2026/01/chicoree-scarole-geante-maraichere.png", imgExact:true},
+  {cat:"Feuilles", name:"Épinard Fraise", qty:"quelques plants", spacing:"~20 cm entre pieds", locations:[{plan:"mandala", id:"plank-20", label:"Mandala — Planche 20"}], companion:"Melange de feuilles a cycle court, juste avant le passage.", img:"https://djma.fr/wp-content/uploads/2026/01/web_epinard-matador-51385.png", imgExact:false, desc:"Feuillage comestible accompagne de petits fruits rouges decoratifs ressemblant a des fraises miniatures.", sun:"Mi-ombre a soleil", water:"Regulier"},
   {cat:"Feuilles", name:"Roquette", qty:"a semer", spacing:"~15 cm entre rangs (semis dense)", locations:[{plan:"mandala", id:"plank-20", label:"Mandala — Planche 20"}], companion:"Cycle tres rapide, bon comblement entre deux cultures. Le surplus peut etre reseme en succession au meme endroit apres la premiere recolte.", img:"https://djma.fr/wp-content/uploads/2026/01/web_roquette-cultivee-51540.png", imgExact:false, desc:"Feuilles au gout poivre, cycle de croissance tres rapide, se ressème facilement.", sun:"Soleil a mi-ombre", water:"Regulier, monte vite en cas de secheresse"},
   {cat:"Feuilles", name:"Roquette sauvage", qty:"a semer", spacing:"~15 cm entre rangs (semis dense)", locations:[{plan:"harpe", id:"harpe-row10-m11", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m12", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m13", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m14", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m15", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m16", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m17", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m18", label:"Harpe — Rang 10"}], companion:"Dernier reste d'espace harpe (rang 10), apres la blette.", img:"https://djma.fr/wp-content/uploads/2026/01/web_roquette-cultivee-51540.png", imgExact:false, desc:"Variete plus vivace et plus piquante que la roquette cultivee classique, feuillage decoupe.", sun:"Soleil a mi-ombre", water:"Regulier, monte vite en cas de secheresse"},
   {cat:"Feuilles", name:"Blette Rhubarb Chard", qty:"a semer", spacing:"~30 cm entre pieds", locations:[{plan:"harpe", id:"harpe-row10-m1", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m2", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m3", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m4", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m5", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m6", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m7", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m8", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m9", label:"Harpe — Rang 10"}, {plan:"harpe", id:"harpe-row10-m10", label:"Harpe — Rang 10"}], companion:"Dernier reste d'espace harpe (rang 10) : Chenopodiacee, feuillage decoratif (cotes rouges).", desc:"Cotes colorees rouge, rose et jaune selon les pieds, feuillage decoratif et comestible.", sun:"Soleil a mi-ombre", water:"Regulier", img:"https://djma.fr/wp-content/uploads/2026/01/web_blette-rhubarb-chard-51243.png", imgExact:true},
@@ -4087,532 +4180,539 @@ if (resaForm) {
 }
 
 // ===== GARDEN TRACKER LOGIC =====
-// 90 variétés parsées
-const GARDEN_CALENDAR = [
-  {name:"Aneth Tétra Gold",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
-  {name:"Arachide de Virginie",cat:"Légumineuses",sow:[6],transplant:[],plant:[],harvest:[],needsTransplant:false,stt:0,ttp:3,pth:16,dth:null},
-  {name:"Artemisia annua",cat:"Fleurs",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:8,dth:null},
-  {name:"Artichaut Green Globe",cat:"Autres légumes",sow:[2],transplant:[5],plant:[6],harvest:[10, 11],needsTransplant:true,stt:12,ttp:8,pth:40,dth:null},
-  {name:"Aubergine Blanche Ronde à Œufs",cat:"Aubergines",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:12,dth:null},
-  {name:"Aubergine de Barbantane",cat:"Aubergines",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:12,dth:null},
-  {name:"Basilic cannelle",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
-  {name:"Basilic Géant Monstrueux Mammouth",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
-  {name:"Basilic Pourpre",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
-  {name:"Betterave rouge Crapaudine",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:12},
-  {name:"Capucine Impératrice des Indes",cat:"Fleurs",sow:[],transplant:[],plant:[5],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:4,dth:null},
-  {name:"Carotte de Carentan",cat:"Légumes racines",sow:[3],transplant:[5],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:14},
-  {name:"Céleri Vert à couper",cat:"Céleri",sow:[3],transplant:[5],plant:[7],harvest:[8, 9, 10, 11],needsTransplant:true,stt:8,ttp:4,pth:18,dth:null},
-  {name:"Céleri-branche Tall Utah",cat:"Céleri",sow:[3],transplant:[5],plant:[6, 7],harvest:[8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:18,dth:null},
-  {name:"Centaurée Barbeau",cat:"Fleurs",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
-  {name:"Chicorée Scarole",cat:"Autres",sow:[6],transplant:[],plant:[],harvest:[8, 10],needsTransplant:false,stt:0,ttp:0,pth:0,dth:10},
-  {name:"Chou Navet Rutabaga",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[1, 2, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
-  {name:"Ciboulette Commune (civette)",cat:"Herbes",sow:[5],transplant:[],plant:[],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
-  {name:"Concombre Lemon",cat:"Concombres",sow:[3],transplant:[4],plant:[5],harvest:[7, 8, 9],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Concombre Long vert Maraîcher",cat:"Concombres",sow:[5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Coquelicot Sauvage",cat:"Fleurs",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:6},
-  {name:"Coqueret du Pérou",cat:"Autres",sow:[5],transplant:[6],plant:[7],harvest:[11, 12],needsTransplant:true,stt:4,ttp:3,pth:8,dth:null},
-  {name:"Coriandre",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
-  {name:"Cornichon Petit de Paris",cat:"Concombres",sow:[5],transplant:[6],plant:[6],harvest:[7, 9],needsTransplant:true,stt:3,ttp:2,pth:5,dth:null},
-  {name:"Courge Banana Blue",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courge Butternut",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courge Cyclanthère",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courge Éponge",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courge Moschata Tancheese",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courge Pâtisson",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courge Pâtisson Blanc",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Courgette Alberello di Sarzana",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette Black Beauty",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette blanche de Trieste",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette Bolognese",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette de Nice à fruit rond",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette Gold Ruch",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette Greyzini",cat:"Courgettes",sow:[4],transplant:[5],plant:[5],harvest:[7, 9],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette Grimpante Ola Escaladora",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette jaune daisy",cat:"Courgettes",sow:[],transplant:[],plant:[],harvest:[],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette Striato d'Italia",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Courgette verte non coureuse des maraichers",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
-  {name:"Épinard Fraise",cat:"Autres",sow:[5],transplant:[],plant:[],harvest:[8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:0,dth:10},
-  {name:"Haricot Nain Autan",cat:"Légumineuses",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:false,stt:0,ttp:3,pth:8,dth:null},
-  {name:"Herbe à chat Cataire Citron",cat:"Herbes",sow:[5],transplant:[6],plant:[6],harvest:[7, 8, 9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:6,dth:null},
-  {name:"Laitue Batavia Goutte de Sang",cat:"Salades",sow:[3],transplant:[4],plant:[6],harvest:[7, 8, 9, 10, 11],needsTransplant:true,stt:4,ttp:0,pth:7,dth:null},
-  {name:"Laitue Pasquier",cat:"Salades",sow:[3],transplant:[4],plant:[6],harvest:[7, 8, 9, 10, 11],needsTransplant:true,stt:4,ttp:0,pth:7,dth:null},
-  {name:"Livèche",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:10,dth:null},
-  {name:"Melon Ancien Vieille France",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
-  {name:"Melon de Noël Honeydew",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
-  {name:"Melon Petit Gris de Rennes",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
-  {name:"Melon sucrin de Honfleur",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
-  {name:"Navet De Milan à collet rose",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
-  {name:"Nigelle de Damas",cat:"Fleurs",sow:[5],transplant:[],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
-  {name:"Oeillets de Poète",cat:"Fleurs",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:6,dth:null},
-  {name:"Oignon Blanc de Lisbonne",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
-  {name:"Oignon Jaune de Mazé",cat:"Oignons",sow:[3],transplant:[5],plant:[4],harvest:[8, 9],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
-  {name:"Oignon jaune de Stuttgart",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
-  {name:"Oignon Jaune Dorata di Parma",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
-  {name:"Oignon Rouge de Genève",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
-  {name:"Panais demi-long de Guernesey",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[1, 2, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:20},
-  {name:"Pastèque Sugar Baby",cat:"Pastèques",sow:[3],transplant:[5],plant:[6],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Pastèque Sugar Baby vague 2",cat:"Pastèques",sow:[5],transplant:[6],plant:[7],harvest:[11, 12],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-  {name:"Persil Géant d'Italie",cat:"Herbes",sow:[5],transplant:[],plant:[6],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
-  {name:"Persil plat commun",cat:"Herbes",sow:[5],transplant:[],plant:[6],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
-  {name:"Persil Tubéreux",cat:"Herbes",sow:[3],transplant:[],plant:[],harvest:[1, 2, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
-  {name:"Poireau d'Elbeuf Éléphant",cat:"Poireaux",sow:[2],transplant:[5],plant:[6],harvest:[1, 10, 11, 12],needsTransplant:true,stt:12,ttp:4,pth:18,dth:null},
-  {name:"Poireau Saint Victor",cat:"Poireaux",sow:[2],transplant:[5],plant:[6],harvest:[1, 10, 11, 12],needsTransplant:true,stt:12,ttp:4,pth:18,dth:null},
-  {name:"Poivron Chocolat",cat:"Poivrons",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:10,dth:null},
-  {name:"Poivron Yolo Wonder",cat:"Poivrons",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:10,dth:null},
-  {name:"Pomme de terre (mix)",cat:"Légumes racines",sow:[],transplant:[],plant:[3],harvest:[7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,dth:null},
-  {name:"Romarin officinal",cat:"Herbes",sow:[5],transplant:[7],plant:[8],harvest:[10, 11, 12],needsTransplant:true,stt:6,ttp:4,pth:8,dth:null},
-  {name:"Roquette",cat:"Autres",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:6},
-  {name:"Roquette sauvage",cat:"Autres",sow:[],transplant:[],plant:[],harvest:[],needsTransplant:false,stt:0,ttp:0,pth:0,dth:6},
-  {name:"Thé des jardins",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:8,dth:null},
-  {name:"Thym de Provence",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:6,dth:null},
-  {name:"Tomate Ananas",cat:"Tomates",sow:[5],transplant:[6],plant:[8],harvest:[10, 11, 12],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Banana Legs",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Belle Bacchante",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Bonne Fée",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Buissonnante",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate cerise Miel du mexique",cat:"Tomates",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Cœur de Bœuf Rouge",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Green Zebra",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Groseille Champagne",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Grosse Hâtive d'Orléans",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Noire de Crimée",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Tomate Royale des Guineaux",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
-  {name:"Trèfle incarnat",cat:"Légumineuses",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
-  {name:"Véritable Potimarron de Sainte-Marthe",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
-];
-
-
-// ===== CORRESPONDANCE VARIETIES → GARDEN_CALENDAR (explicite, one-to-many) =====
-const GT_VAR_TO_CAL = {
-  "Tomate Groseille champagne":["Tomate Groseille Champagne"],
-  "Tomate Noir de Crimee":["Tomate Noire de Crimée"],
-  "Tomate Banana Leg":["Tomate Banana Legs"],
-  "Tomate Green Zebra":["Tomate Green Zebra"],
-  "Tomate Buissonnante":["Tomate Buissonnante"],
-  "Tomate Coeur de boeuf":["Tomate Cœur de Bœuf Rouge"],
-  "Tomate Grosse hative d'Orleans":["Tomate Grosse Hâtive d'Orléans"],
-  "Tomate Belle Bacchante":["Tomate Belle Bacchante"],
-  "Tomate Royal des guineaux":["Tomate Royale des Guineaux"],
-  "Tomates ananas":["Tomate Ananas"],
-  "Carottes (godets)":["Carotte de Carentan"],
-  "Carotte De Colmar a coeur rouge":["Carotte de Carentan"],
-  "Carotte Touchon":["Carotte de Carentan"],
-  "Carotte Nantaise 2":["Carotte de Carentan"],
-  "Carotte rouge sang":["Carotte de Carentan"],
-  "Carotte Kuttinger":["Carotte de Carentan"],
-  "Panais de Guernesey":["Panais demi-long de Guernesey"],
-  "Betteraves":["Betterave rouge Crapaudine"],
-  "Navets de Milan":["Navet De Milan à collet rose"],
-  "Chou navet (rutabaga)":["Chou Navet Rutabaga"],
-  "Celeri rave a couper":["Céleri Vert à couper"],
-  "Celeri branche Tell Utah":["Céleri-branche Tall Utah"],
-  "Oignons":["Oignon Blanc de Lisbonne","Oignon Jaune de Mazé","Oignon jaune de Stuttgart","Oignon Jaune Dorata di Parma","Oignon Rouge de Genève"],
-  "Poireaux (lot mandala)":["Poireau d'Elbeuf Éléphant","Poireau Saint Victor"],
-  "Poireaux (surplus)":["Poireau d'Elbeuf Éléphant","Poireau Saint Victor"],
-  "Poivron Chocolat":["Poivron Chocolat"],
-  "Poivron Yellow Wonder":["Poivron Yolo Wonder"],
-  "Aubergine Barbatane":["Aubergine de Barbantane"],
-  "Aubergine Blanche ronde":["Aubergine Blanche Ronde à Œufs"],
-  "Aubergines (surplus)":["Aubergine de Barbantane","Aubergine Blanche Ronde à Œufs"],
-  "Courgette Greyzini":["Courgette Greyzini"],
-  "Courgette Blanche de Trieste":["Courgette blanche de Trieste"],
-  "Courgette Gold Rush":["Courgette Gold Ruch"],
-  "Courgette Alberello di Sarzana":["Courgette Alberello di Sarzana"],
-  "Courgette verte non coureuse des maraichers":["Courgette verte non coureuse des maraichers"],
-  "Courgette Grimpante Ola Escaladora":["Courgette Grimpante Ola Escaladora"],
-  "Courgette Striato d'Italia":["Courgette Striato d'Italia"],
-  "Courgette Bolognese":["Courgette Bolognese"],
-  "Courgette Jaune Daisy":["Courgette jaune daisy"],
-  "Courgette Black Beauty":["Courgette Black Beauty"],
-  "Courgette de Nice a fruit rond":["Courgette de Nice à fruit rond"],
-  "Cornichon Petit de Paris":["Cornichon Petit de Paris"],
-  "Concombre long maraichers":["Concombre Long vert Maraîcher"],
-  "Melon petit gris de Rennes":["Melon Petit Gris de Rennes"],
-  "Melon de Noel":["Melon de Noël Honeydew"],
-  "Melon sucrine de Honfleur":["Melon sucrin de Honfleur"],
-  "Melon vieille France":["Melon Ancien Vieille France"],
-  "Chicoree scarole":["Chicorée Scarole"],
-  "Epinard fraise":["Épinard Fraise"],
-  "Roquette":["Roquette"],
-  "Roquette sauvage":["Roquette sauvage"],
-  "Blette Rhubarb Chard":[],
-};
-// Table inverse : GARDEN_CALENDAR name → liste de VARIETIES names
-const GT_CAL_TO_VAR = {};
-Object.entries(GT_VAR_TO_CAL).forEach(([vn, cns]) => {
-  cns.forEach(cn => { if (!GT_CAL_TO_VAR[cn]) GT_CAL_TO_VAR[cn] = []; GT_CAL_TO_VAR[cn].push(vn); });
-});
-// Retourner les noms GARDEN_CALENDAR pour un nom VARIETIES
-function varToCalNames(varName) { return GT_VAR_TO_CAL[varName] || [varName]; }
-// no-op (anciennement buildNameMaps)
-function buildNameMaps() {}
-
-// ===== DONNÉES PRÉ-REMPLIES =====
-const GT_KNOWN_COUNTS = {
-  "Tomate Groseille Champagne":{planted:5},"Tomate Noire de Crimée":{planted:4},
-  "Tomate Banana Legs":{planted:3},"Tomate Green Zebra":{planted:6},
-  "Tomate Buissonnante":{planted:5},"Tomate Cœur de Bœuf Rouge":{planted:4},
-  "Tomate Grosse Hâtive d'Orléans":{planted:1},"Tomate Belle Bacchante":{planted:4},
-  "Tomate Royale des Guineaux":{planted:12},"Tomate Ananas":{godets:12},
-  "Panais demi-long de Guernesey":{godets:5},"Céleri Vert à couper":{godets:12},
-  "Céleri-branche Tall Utah":{godets:8},"Betterave rouge Crapaudine":{godets:12},
-  "Navet De Milan à collet rose":{godets:10},"Poivron Chocolat":{godets:6},
-  "Poivron Yolo Wonder":{godets:8},"Aubergine de Barbantane":{godets:10},
-  "Aubergine Blanche Ronde à Œufs":{godets:8},"Courgette Black Beauty":{planted:1},
-  "Courgette blanche de Trieste":{planted:1},"Courgette Gold Ruch":{planted:1},
-  "Courgette Alberello di Sarzana":{planted:1},"Courgette verte non coureuse des maraichers":{planted:1},
-  "Courgette Grimpante Ola Escaladora":{planted:1},"Courgette Striato d'Italia":{planted:1},
-  "Courgette Bolognese":{planted:1},"Courgette de Nice à fruit rond":{planted:1},
-  "Cornichon Petit de Paris":{godets:5},"Concombre Long vert Maraîcher":{godets:12},
-  "Melon Petit Gris de Rennes":{godets:12},"Melon de Noël Honeydew":{godets:12},
-  "Melon sucrin de Honfleur":{godets:12},"Melon Ancien Vieille France":{godets:12},
-};
-const GT_KNOWN_STAGES = {
-  "Tomate Banana Legs":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Belle Bacchante":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Bonne Fée":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Buissonnante":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Cœur de Bœuf Rouge":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Green Zebra":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Groseille Champagne":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Grosse Hâtive d'Orléans":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Noire de Crimée":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Royale des Guineaux":{sowMonth:2,transplantMonth:4,plantMonth:6},
-  "Tomate Ananas":{sowMonth:5,transplantMonth:6,plantMonth:8},
-  "Tomate cerise Miel du mexique":{sowMonth:5,transplantMonth:6},
-  "Poireau d'Elbeuf Éléphant":{sowMonth:2,transplantMonth:5,plantMonth:6},
-  "Poireau Saint Victor":{sowMonth:2,transplantMonth:5,plantMonth:6},
-  "Artichaut Green Globe":{sowMonth:2,transplantMonth:5,plantMonth:6},
-  "Céleri Vert à couper":{sowMonth:3,transplantMonth:5,plantMonth:7},
-  "Céleri-branche Tall Utah":{sowMonth:3,transplantMonth:5,plantMonth:6},
-  "Oignon Blanc de Lisbonne":{sowMonth:3,transplantMonth:5,plantMonth:6},
-  "Oignon Jaune de Mazé":{sowMonth:3,plantMonth:4},
-  "Oignon jaune de Stuttgart":{sowMonth:3,transplantMonth:5,plantMonth:6},
-  "Oignon Jaune Dorata di Parma":{sowMonth:3,transplantMonth:5,plantMonth:6},
-  "Oignon Rouge de Genève":{sowMonth:3,transplantMonth:5,plantMonth:6},
-  "Carotte de Carentan":{sowMonth:3,transplantMonth:5},
-  "Concombre Lemon":{sowMonth:3,plantMonth:5},
-  "Concombre Long vert Maraîcher":{sowMonth:5},
-  "Cornichon Petit de Paris":{sowMonth:5,transplantMonth:6},
-  "Courge Banana Blue":{sowMonth:4,plantMonth:6},
-  "Courge Butternut":{sowMonth:4,plantMonth:6},
-  "Courge Cyclanthère":{sowMonth:4,transplantMonth:5},
-  "Courge Éponge":{sowMonth:4,plantMonth:6},
-  "Courge Moschata Tancheese":{sowMonth:4,plantMonth:6},
-  "Courge Pâtisson":{sowMonth:4,plantMonth:6},
-  "Courge Pâtisson Blanc":{sowMonth:4,plantMonth:6},
-  "Véritable Potimarron de Sainte-Marthe":{sowMonth:4},
-  "Courgette Alberello di Sarzana":{sowMonth:5,transplantMonth:6},
-  "Courgette Black Beauty":{sowMonth:5,transplantMonth:6},
-  "Courgette blanche de Trieste":{sowMonth:5,transplantMonth:6},
-  "Courgette Bolognese":{sowMonth:5,transplantMonth:6},
-  "Courgette de Nice à fruit rond":{sowMonth:5,transplantMonth:6},
-  "Courgette Gold Ruch":{sowMonth:5,transplantMonth:6},
-  "Courgette Grimpante Ola Escaladora":{sowMonth:5,transplantMonth:6},
-  "Courgette Striato d'Italia":{sowMonth:5,transplantMonth:6},
-  "Courgette verte non coureuse des maraichers":{sowMonth:5,transplantMonth:6},
-  "Courgette Greyzini":{sowMonth:4},
-  "Aubergine Blanche Ronde à Œufs":{sowMonth:5,transplantMonth:6,plantMonth:8},
-  "Aubergine de Barbantane":{sowMonth:5,transplantMonth:6,plantMonth:8},
-  "Poivron Chocolat":{sowMonth:5,transplantMonth:6,plantMonth:8},
-  "Poivron Yolo Wonder":{sowMonth:5,transplantMonth:6,plantMonth:8},
-  "Pastèque Sugar Baby":{sowMonth:3,transplantMonth:5,plantMonth:6},
-  "Pastèque Sugar Baby vague 2":{sowMonth:5,transplantMonth:6},
-  "Laitue Batavia Goutte de Sang":{sowMonth:3,plantMonth:6},
-  "Laitue Pasquier":{sowMonth:3,plantMonth:6},
-  "Persil Géant d'Italie":{sowMonth:5,plantMonth:6},
-  "Persil plat commun":{sowMonth:5,plantMonth:6},
-  "Basilic cannelle":{sowMonth:5,transplantMonth:6,plantMonth:7},
-  "Basilic Géant Monstrueux Mammouth":{sowMonth:5,transplantMonth:6,plantMonth:7},
-  "Basilic Pourpre":{sowMonth:5,transplantMonth:6,plantMonth:7},
-  "Pomme de terre (mix)":{plantMonth:3},
-  "Haricot Nain Autan":{sowMonth:5,transplantMonth:6},
-  "Melon Ancien Vieille France":{sowMonth:5},
-  "Melon de Noël Honeydew":{sowMonth:5},
-  "Melon Petit Gris de Rennes":{sowMonth:5},
-  "Melon sucrin de Honfleur":{sowMonth:5},
+const GT_REF = {
+  "Tomate Ananas":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 bande tomates"},
+  "Tomate Banana Legs":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 tomates"},
+  "Tomate Belle Bacchante":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 tomates"},
+  "Tomate Bonne F\u00e9e":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:9,emplacement:"Serre \u2014 tomates"},
+  "Tomate Buissonnante":{ancient:false,cycle:"A",sow:[3],transplant:[4, 5],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:true,stt:8,ttp:3,pth:8,emplacement:"Serre \u2014 tomates"},
+  "Tomate cerise Miel du mexique":{ancient:true,cycle:"A",sow:[3, 4],transplant:[5],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:4,pth:10,emplacement:"Serre \u2014 tomates"},
+  "Tomate Cerise Poire Jaune":{ancient:true,cycle:"A",sow:[3, 4],transplant:[5],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:4,pth:9,emplacement:"Serre \u2014 tomates"},
+  "Tomate C\u0153ur de B\u0153uf Rouge":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:12,emplacement:"Serre \u2014 tomates"},
+  "Tomate Green Zebra":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 tomates"},
+  "Tomate Groseille Champagne":{ancient:true,cycle:"A",sow:[3, 4],transplant:[5],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:4,pth:9,emplacement:"Serre \u2014 tomates"},
+  "Tomate Grosse H\u00e2tive d'Orl\u00e9ans":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:9,emplacement:"Serre \u2014 tomates"},
+  "Tomate Noire de Crim\u00e9e":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:12,emplacement:"Serre \u2014 tomates"},
+  "Tomate Royale des Guineaux":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 tomates"},
+  "Tomate \u2014 vari\u00e9t\u00e9s myst\u00e8res":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Mandala \u2014 Planche 1"},
+  "Aubergine Blanche Ronde \u00e0 \u0152ufs":{ancient:true,cycle:"A",sow:[3],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:10,ttp:4,pth:14,emplacement:"Mandala \u2014 Planche 18"},
+  "Aubergine de Barbantane":{ancient:true,cycle:"A",sow:[3],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:10,ttp:4,pth:14,emplacement:"Mandala \u2014 Planche 17"},
+  "Poivron Chocolat":{ancient:true,cycle:"A",sow:[3],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:10,ttp:4,pth:16,emplacement:"Mandala \u2014 Planche 16"},
+  "Poivron Yolo Wonder":{ancient:false,cycle:"A",sow:[3],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:10,ttp:4,pth:14,emplacement:"Mandala \u2014 Planche 16"},
+  "Coqueret du P\u00e9rou":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[10, 11],needsTransplant:true,stt:10,ttp:4,pth:12,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courgette Alberello di Sarzana":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 4"},
+  "Courgette Black Beauty":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 10"},
+  "Courgette Blanche de Trieste":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 2"},
+  "Courgette Bolognese":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 8"},
+  "Courgette de Nice \u00e0 Fruits Ronds":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 11"},
+  "Courgette Gold Rush":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 3"},
+  "Courgette Greyzini":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 1"},
+  "Courgette Grimpante Ola Escaladora":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 6"},
+  "Courgette Jaune Daisy":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 9"},
+  "Courgette Striato d'Italia":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 7"},
+  "Courgette Verte Non Coureuse Des Maraichers":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9cart 5"},
+  "Courge Banana Blue":{ancient:true,cycle:"A",sow:[4],transplant:[6],plant:[5, 6],harvest:[9, 10, 11],needsTransplant:true,stt:5,ttp:4,pth:16,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courge Butternut":{ancient:false,cycle:"A",sow:[4],transplant:[6],plant:[5, 6],harvest:[9, 10, 11],needsTransplant:true,stt:5,ttp:4,pth:16,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courge Cyclanth\u00e8re":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6, 7],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:8,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courge \u00c9ponge":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[5, 6],harvest:[8, 9, 10],needsTransplant:true,stt:5,ttp:4,pth:16,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courge Moschata Tancheese":{ancient:false,cycle:"A",sow:[4],transplant:[6],plant:[5, 6],harvest:[9, 10, 11],needsTransplant:true,stt:5,ttp:4,pth:18,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courge P\u00e2tisson Blanc":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:2,pth:8,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "P\u00e2tisson Jaune":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:2,pth:8,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "V\u00e9ritable Potimarron de Sainte-Marthe":{ancient:true,cycle:"A",sow:[4],transplant:[6],plant:[5, 6],harvest:[9, 10, 11],needsTransplant:true,stt:5,ttp:4,pth:18,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Courge Halloween Apsen":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[5, 6],harvest:[10, 11],needsTransplant:true,stt:5,ttp:4,pth:18,emplacement:"Harpe \u2014 \u00e0 pr\u00e9voir"},
+  "Concombre Lemon":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Mandala \u2014 bande concombre"},
+  "Concombre Long vert Mara\u00eecher":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Mandala \u2014 bande concombre"},
+  "Cornichon Petit de Paris":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:2,pth:7,emplacement:"Harpe \u2014 \u00e9carts 12-16"},
+  "Melon Ancien Vieille France":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:14,emplacement:"Harpe \u2014 Rang 7"},
+  "Melon de No\u00ebl Honeydew":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[9, 10],needsTransplant:true,stt:4,ttp:4,pth:16,emplacement:"Harpe \u2014 Rang 6+8"},
+  "Melon Petit Gris de Rennes":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:12,emplacement:"Harpe \u2014 Rang 6"},
+  "Melon sucrin de Honfleur":{ancient:true,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:12,emplacement:"Harpe \u2014 Rang 8+\u00e9carts"},
+  "Past\u00e8que Sugar Baby":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9],needsTransplant:true,stt:4,ttp:4,pth:18,emplacement:"Serre \u2014 \u00e0 pr\u00e9voir"},
+  "Carotte De Colmar \u00e0 Coeur Rouge":{ancient:true,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Mandala \u2014 Planche 4"},
+  "Carotte de Carentan":{ancient:true,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Mandala \u2014 Planche 4"},
+  "Carotte K\u00fctigger":{ancient:true,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Mandala \u2014 Planche 4"},
+  "Carotte Nantaise 2 Milan":{ancient:false,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 4"},
+  "Carotte rouge sang":{ancient:true,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Mandala \u2014 Planche 4"},
+  "Carotte Touchon":{ancient:false,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 4"},
+  "Panais demi-long de Guernesey":{ancient:true,cycle:"B",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[2, 10],needsTransplant:false,stt:0,ttp:0,pth:20,emplacement:"Mandala \u2014 Planche 7"},
+  "C\u00e9leri Vert \u00e0 couper":{ancient:true,cycle:"B",sow:[3],transplant:[6],plant:[7],harvest:[8, 9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:14,emplacement:"Mandala \u2014 Planche 5"},
+  "C\u00e9leri-branche Tall Utah":{ancient:false,cycle:"B",sow:[3],transplant:[6],plant:[7],harvest:[8, 9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:14,emplacement:"Mandala \u2014 Planche 6"},
+  "Aneth T\u00e9tra Gold":{ancient:false,cycle:"A",sow:[4, 5, 6, 7],transplant:[],plant:[4, 5, 6, 7],harvest:[7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:6,emplacement:"Serre ou harpe \u2014 bordure"},
+  "Coriandre":{ancient:false,cycle:"A",sow:[4, 5, 6, 7],transplant:[],plant:[4, 5, 6, 7],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:4,ttp:0,pth:6,emplacement:"Serre \u2014 bordure ou potager"},
+  "Fenouil Officinal":{ancient:false,cycle:"V",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Hors-zone : isoler (all\u00e9lopathique)"},
+  "Fenouil Selma":{ancient:false,cycle:"A",sow:[4, 5, 6, 7],transplant:[],plant:[4, 5, 6, 7],harvest:[9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Harpe \u2014 rang \u00e0 pr\u00e9voir"},
+  "Carvi (Cumin des pr\u00e9s)":{ancient:false,cycle:"B",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[7, 8],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Bordure permanente"},
+  "Anis vert":{ancient:false,cycle:"A",sow:[5, 6],transplant:[],plant:[5, 6],harvest:[8, 9],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Serre \u2014 chaleur n\u00e9cessaire"},
+  "Persil G\u00e9ant d'Italie":{ancient:false,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[6, 7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Serre \u2014 bordure"},
+  "Persil plat commun":{ancient:false,cycle:"B",sow:[3, 4, 5, 6, 7],transplant:[],plant:[3, 4, 5, 6, 7],harvest:[6, 7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Serre ou mandala bordure"},
+  "Persil Tub\u00e9reux (\u00e0 grosse racine)":{ancient:false,cycle:"B",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[2, 10],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Mandala \u2014 bordure nord"},
+  "Cerfeuil Commun":{ancient:false,cycle:"A",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[4, 5, 6],needsTransplant:false,stt:0,ttp:0,pth:6,emplacement:"Serre \u2014 mi-ombre bordure"},
+  "Cerfeuil Tub\u00e9reux":{ancient:true,cycle:"B",sow:[8, 9],transplant:[],plant:[8, 9],harvest:[3, 4, 5],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Hors mandala \u2014 zone d\u00e9di\u00e9e"},
+  "Liv\u00e8che":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4],harvest:[7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:24,emplacement:"Hors mandala \u2014 zone vivaces"},
+  "Oignon Blanc de Lisbonne":{ancient:true,cycle:"B",sow:[3],transplant:[6],plant:[6],harvest:[8, 9],needsTransplant:true,stt:10,ttp:4,pth:14,emplacement:"Mandala \u2014 Planche 15"},
+  "Oignon Jaune de Maz\u00e9":{ancient:true,cycle:"B",sow:[3],transplant:[],plant:[4],harvest:[8, 9],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Mandala \u2014 Planche 15"},
+  "Oignon Jaune Dorata di Parma":{ancient:true,cycle:"B",sow:[3],transplant:[6],plant:[6],harvest:[8, 9],needsTransplant:true,stt:10,ttp:4,pth:16,emplacement:"Mandala \u2014 Planche 15"},
+  "Oignon jaune de Stuttgart":{ancient:true,cycle:"B",sow:[3],transplant:[6],plant:[6],harvest:[8, 9],needsTransplant:true,stt:10,ttp:4,pth:16,emplacement:"Mandala \u2014 Planche 15"},
+  "Oignon Rouge de Gen\u00e8ve":{ancient:true,cycle:"B",sow:[3],transplant:[6],plant:[6],harvest:[8, 9],needsTransplant:true,stt:10,ttp:4,pth:16,emplacement:"Mandala \u2014 Planche 15"},
+  "Poireau d'Elbeuf \u00c9l\u00e9phant":{ancient:true,cycle:"B",sow:[2, 3],transplant:[6, 7],plant:[6, 7],harvest:[4, 5, 6, 7, 8, 9, 10],needsTransplant:true,stt:12,ttp:5,pth:18,emplacement:"Mandala \u2014 Planche 2"},
+  "Poireau Saint Victor":{ancient:true,cycle:"B",sow:[2, 3],transplant:[6, 7],plant:[6, 7],harvest:[4, 11],needsTransplant:true,stt:12,ttp:5,pth:20,emplacement:"Mandala \u2014 Planche 3"},
+  "Poireaux (lot mandala)":{ancient:true,cycle:"B",sow:[2, 3],transplant:[6, 7],plant:[6, 7],harvest:[4, 5, 6, 7, 8, 9, 10],needsTransplant:true,stt:12,ttp:5,pth:18,emplacement:"Mandala \u2014 Planche 10"},
+  "Poireaux (surplus)":{ancient:true,cycle:"B",sow:[2, 3],transplant:[6, 7],plant:[6, 7],harvest:[4, 5, 6, 7, 8, 9, 10],needsTransplant:true,stt:12,ttp:5,pth:18,emplacement:"Harpe \u2014 Rang 9"},
+  "Ciboulette Commune (civette)":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[4, 11],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Serre \u2014 bordure permanente"},
+  "Artichaut Green Globe":{ancient:false,cycle:"V",sow:[2, 3],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:12,ttp:4,pth:20,emplacement:"Hors-zone : vivace \u2014 zone d\u00e9di\u00e9e"},
+  "Artichaut Imperial Star":{ancient:false,cycle:"V",sow:[2, 3],transplant:[5, 6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:10,ttp:4,pth:18,emplacement:"Hors-zone : vivace \u2014 zone d\u00e9di\u00e9e"},
+  "Chicor\u00e9e Scarole G\u00e9ante Maraich\u00e8re":{ancient:false,cycle:"A",sow:[6, 7, 8],transplant:[8, 9],plant:[8, 9],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:0,pth:8,emplacement:"Mandala \u2014 Planche 19"},
+  "Laitue Batavia Goutte de Sang":{ancient:true,cycle:"A",sow:[3, 4, 5, 6, 7, 8],transplant:[4, 5, 6, 7, 8],plant:[4, 5, 6, 7, 8],harvest:[4, 5, 6, 7, 8, 9, 10],needsTransplant:true,stt:4,ttp:0,pth:5,emplacement:"Serre \u2014 salades ou mandala"},
+  "Laitue Pasquier":{ancient:true,cycle:"A",sow:[3, 4, 5, 6, 7, 8],transplant:[4, 5, 6, 7, 8],plant:[4, 5, 6, 7, 8],harvest:[4, 5, 6, 7, 8, 9, 10],needsTransplant:true,stt:4,ttp:0,pth:5,emplacement:"Serre \u2014 salades ou mandala"},
+  "Achill\u00e9e Millefeuille \u00e0 Fleurs Blanches":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Bordure permanente zone 1"},
+  "Arnica Montana":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[6, 7, 8],needsTransplant:false,stt:0,ttp:0,pth:16,emplacement:"Hors-zone : zone m\u00e9dicinale d\u00e9di\u00e9e"},
+  "Camomille Matricaire":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure mandala ou harpe"},
+  "Val\u00e9riane officinale":{ancient:false,cycle:"V",sow:[4, 5],transplant:[],plant:[4],harvest:[7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Zone vivaces permanente"},
+  "Tournesol ramifi\u00e9":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[5, 6],harvest:[8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Harpe \u2014 bordure nord"},
+  "Tournesol Italian White":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[5, 6],harvest:[8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Harpe \u2014 bordure nord"},
+  "Tournesol Commun":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[5, 6],harvest:[8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Harpe \u2014 bordure nord"},
+  "Tournesol Pompon Gold Coin":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[5, 6],harvest:[8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Harpe \u2014 bordure nord"},
+  "Chrysanth\u00e8me comestible \u00e0 grandes fleurs":{ancient:false,cycle:"V",sow:[3, 4],transplant:[5],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:10,ttp:4,pth:12,emplacement:"Serre \u2014 bordure fleurs comestibles"},
+  "Basilic cannelle":{ancient:true,cycle:"A",sow:[3, 4],transplant:[6],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:8,emplacement:"Serre \u2014 basilic"},
+  "Basilic G\u00e9ant Monstrueux Mammouth":{ancient:false,cycle:"A",sow:[3, 4],transplant:[6],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:8,emplacement:"Serre \u2014 basilic"},
+  "Basilic Pourpre":{ancient:false,cycle:"A",sow:[3, 4],transplant:[6],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:8,emplacement:"Serre \u2014 basilic"},
+  "Thym de Provence":{ancient:false,cycle:"V",sow:[3, 4],transplant:[5, 6],plant:[6],harvest:[6, 7, 8],needsTransplant:true,stt:4,ttp:4,pth:16,emplacement:"Mandala \u2014 bordure permanente"},
+  "Romarin officinal":{ancient:false,cycle:"V",sow:[3, 4],transplant:[6],plant:[6],harvest:[],needsTransplant:true,stt:6,ttp:4,pth:16,emplacement:"Mandala \u2014 bordure (drainage essentiel)"},
+  "Sarriette annuelle":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Harpe \u2014 bordure haricots"},
+  "Herbe \u00e0 chat Cataire Citron":{ancient:false,cycle:"V",sow:[3, 4],transplant:[5],plant:[5, 6],harvest:[6, 7, 8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:10,emplacement:"Zone vivaces ou bordure"},
+  "Menthe Verte":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4],harvest:[5, 6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Pot enterr\u00e9 \u2014 contenir les rhizomes !"},
+  "Agastache Menthe Cor\u00e9enne":{ancient:false,cycle:"V",sow:[3, 4],transplant:[5, 6],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:true,stt:4,ttp:4,pth:12,emplacement:"Bordure mellif\u00e8re permanente"},
+  "Bergamote Sauvage Citron":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Zone vivaces ou bordure"},
+  "Bergamote sauvage":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Zone vivaces ou bordure"},
+  "Hysope Officinale":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Bordure brassicas (r\u00e9pulsif altises)"},
+  "Lavande Vraie":{ancient:false,cycle:"V",sow:[3, 4],transplant:[6],plant:[6],harvest:[6, 7, 8],needsTransplant:true,stt:4,ttp:4,pth:16,emplacement:"Hors-zone : drainage imp\u00e9ratif, zone sp\u00e9cifique"},
+  "Th\u00e9 des Jardins":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Zone aromatiques vivaces"},
+  "Origan Commun":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Bordure mandala permanente"},
+  "Origan de Gr\u00e8ce":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Bordure mandala permanente"},
+  "Roquette":{ancient:false,cycle:"A",sow:[3, 10],transplant:[],plant:[3, 10],harvest:[4, 11],needsTransplant:false,stt:0,ttp:0,pth:4,emplacement:"Serre \u2014 salade ou mandala P20"},
+  "Roquette sauvage":{ancient:false,cycle:"V",sow:[3, 4, 5, 6, 7, 8, 9],transplant:[],plant:[3, 4, 5, 6, 7, 8, 9],harvest:[4, 11],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Harpe \u2014 Rang 10 (vivace)"},
+  "Navet De Milan \u00e0 collet rose":{ancient:true,cycle:"A",sow:[3, 4, 5, 6, 7, 8],transplant:[],plant:[3, 4, 5, 6, 7, 8],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Mandala \u2014 Planche 14"},
+  "Chou Navet Rutabaga":{ancient:false,cycle:"B",sow:[5, 6],transplant:[],plant:[5, 6],harvest:[2, 10],needsTransplant:false,stt:0,ttp:0,pth:20,emplacement:"Mandala \u2014 Planche 8"},
+  "Cochl\u00e9aire Officinale":{ancient:false,cycle:"B",sow:[3, 4],transplant:[],plant:[3, 4, 8, 9],harvest:[4, 11],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure nord humide \u2014 adapt\u00e9 Normandie"},
+  "Haricot Nain Autan":{ancient:true,cycle:"A",sow:[5, 6],transplant:[],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Harpe \u2014 rang ou mandala bordure"},
+  "Arachide de Virginie":{ancient:false,cycle:"A",sow:[5],transplant:[7],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:0,pth:16,emplacement:"Serre OBLIGATOIRE \u2014 \u00e0 pr\u00e9voir"},
+  "Tr\u00e8fle incarnat":{ancient:false,cycle:"A",sow:[3, 4, 5, 6, 7, 8, 9],transplant:[],plant:[3, 4, 5, 6, 7, 8, 9],harvest:[5, 6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Engrais vert \u2014 entre cultures"},
+  "R\u00e9glisse Glabre":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[4, 5, 6],needsTransplant:false,stt:0,ttp:0,pth:24,emplacement:"Zone vivaces permanente \u2014 long terme"},
+  "Betterave rouge Crapaudine":{ancient:true,cycle:"B",sow:[4, 5, 6, 7],transplant:[],plant:[4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 13"},
+  "\u00c9pinard Fraise":{ancient:false,cycle:"A",sow:[4, 5, 6, 7],transplant:[],plant:[4],harvest:[8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:6,emplacement:"Mandala \u2014 Planche 20"},
+  "Blette Rhubarb Chard":{ancient:false,cycle:"B",sow:[4, 5, 6, 7],transplant:[],plant:[4, 5, 6, 7],harvest:[7, 8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Harpe \u2014 Rang 10"},
+  "Oseille Commune":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[4, 11],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Zone vivaces ou bordure"},
+  "Rhubarbe Victoria":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[4, 5],harvest:[4, 5, 6, 7],needsTransplant:false,stt:0,ttp:0,pth:24,emplacement:"Hors-zone : grande vivace \u2014 zone d\u00e9di\u00e9e"},
+  "Pomme de terre Truffette":{ancient:true,cycle:"A",sow:[],transplant:[],plant:[3, 4],harvest:[7, 8],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 9 (partage)"},
+  "Pomme de terre Ma\u00efwen":{ancient:false,cycle:"A",sow:[],transplant:[],plant:[3, 4],harvest:[7, 8],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 9 (partage)"},
+  "Pomme de terre Charlotte":{ancient:false,cycle:"A",sow:[],transplant:[],plant:[3, 4],harvest:[7, 8],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 11"},
+  "Pomme de terre Allians":{ancient:false,cycle:"A",sow:[],transplant:[],plant:[3, 4],harvest:[7, 8],needsTransplant:false,stt:0,ttp:0,pth:14,emplacement:"Mandala \u2014 Planche 12"},
+  "Capucine Imp\u00e9ratrice des Indes":{ancient:true,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Bordure serre et harpe \u2014 pi\u00e8ge pucerons"},
+  "Capucine Naine":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Bordure mandala \u2014 pi\u00e8ge pucerons"},
+  "Coquelicot Sauvage":{ancient:false,cycle:"A",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[5, 6, 7],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure libre \u2014 mellif\u00e8re"},
+  "Centaur\u00e9e Barbeau":{ancient:false,cycle:"A",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure mellif\u00e8re"},
+  "M\u00e9lange de fleurs mellif\u00e8res":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Harpe \u2014 bande mellif\u00e8re bordure"},
+  "Grande mauve \u00e0 fleurs rose-pourpre":{ancient:false,cycle:"V",sow:[3, 4, 5],transplant:[],plant:[4],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,emplacement:"Zone vivaces ou bordure"},
+  "Hibiscus Bissap \u00e0 Fleurs Rouges":{ancient:false,cycle:"A",sow:[4, 5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:14,emplacement:"Serre \u2014 chaleur n\u00e9cessaire"},
+  "Okra Gombo Clemson Spineless":{ancient:false,cycle:"A",sow:[5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:4,pth:12,emplacement:"Serre OBLIGATOIRE \u2014 chaleur tropicale"},
+  "Pimprenelle Petite":{ancient:false,cycle:"V",sow:[3, 4],transplant:[],plant:[3, 4],harvest:[4, 5, 6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:10,emplacement:"Bordure permanente vivace"},
+  "Gypsophile Snowflake":{ancient:false,cycle:"A",sow:[3, 4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure fleurs"},
+  "Immortelle \u00e0 Bract\u00e9e Roggli Riesen":{ancient:false,cycle:"A",sow:[3, 4],transplant:[5, 6],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:true,stt:6,ttp:4,pth:8,emplacement:"Bordure ou pot \u2014 fleurs s\u00e9ch\u00e9es"},
+  "Immortelle \u00e0 bract\u00e9e monstrueuse":{ancient:false,cycle:"A",sow:[3, 4],transplant:[5, 6],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:true,stt:6,ttp:4,pth:8,emplacement:"Bordure ou pot \u2014 fleurs s\u00e9ch\u00e9es"},
+  "Nigelle de Damas":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure mellif\u00e8re"},
+  "Oeillets de Po\u00e8te":{ancient:false,cycle:"B",sow:[5, 6],transplant:[9],plant:[9, 10],harvest:[4, 5, 6],needsTransplant:true,stt:4,ttp:4,pth:10,emplacement:"Bordure fleurs bisannuelle"},
 };
 
-// ===== ÉTAT =====
+
+// ===== ÉTAT GARDEN TRACKER =====
 const GT_MONTHS = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
-const GT_CUR = new Date().getMonth() + 1;
-let gardenTracking = {}, gardenCustom = [], gtAdminMode = false;
-let gtFilter = 'all', gtSearch = '', gtOpenPop = null, gtOpenAccs = new Set();
+const GT_CUR = new Date().getMonth() + 1; // 1-12
+let gardenTracking = {}; // {name: {godets, plants, entries:[{action,month,week}], lost:{atMonth,atStage}|null}}
+let gardenCustom   = []; // variétés custom ajoutées en admin
+let gtAdminMode    = false;
+let gtFilter       = 'all';
+let gtSearch       = '';
 let gtSelectedFromPlan = new Set();
-function allCal() { return [...GARDEN_CALENDAR, ...gardenCustom]; }
+let gtModalData    = {}; // contexte du modal ouvert
 
-// ===== STORAGE =====
-async function loadGardenData() {
-  try {
-    const r = await fetch('/.netlify/functions/data-api?type=garden');
-    if (r.ok) {
-      const d = await r.json() || {};
-      gardenTracking = d.tracking || {};
-      gardenCustom = d.customVarieties || [];
-      localStorage.setItem('castelboun_garden', JSON.stringify(d)); return;
-    }
-  } catch {}
-  try {
-    const d = JSON.parse(localStorage.getItem('castelboun_garden') || '{}');
-    gardenTracking = d.tracking || {}; gardenCustom = d.customVarieties || [];
-  } catch {}
-}
-async function saveGardenData() {
-  const d = { tracking: gardenTracking, customVarieties: gardenCustom };
-  localStorage.setItem('castelboun_garden', JSON.stringify(d));
-  try {
-    await fetch('/.netlify/functions/data-api?type=garden', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ password: ADMIN_PASSWORD, data: d })
-    });
-  } catch(e) {}
+// ===== NOMS CONNUS AVEC FLAG ANCIENT (depuis GT_REF) =====
+function gtIsAncient(name) { return GT_REF[name] && GT_REF[name].ancient === true; }
+function gtRef(name)       { return GT_REF[name] || null; }
+
+// ===== EMPLACEMENT =====
+function gtEmplacement(name) {
+  // Cherche d'abord dans VARIETIES (plan existant)
+  const vd = typeof VARIETIES !== 'undefined' && VARIETIES.find(v => v.name === name);
+  if (vd && vd.locations && vd.locations.length) {
+    const locs = [...new Set(vd.locations.map(l => l.label))];
+    return locs.join(', ');
+  }
+  // Sinon GT_REF suggestion
+  const ref = gtRef(name);
+  return ref ? ref.emplacement : '—';
 }
 
-// ===== CALCUL DATES =====
-function computeDates(cal, t) {
-  t = t || {};
+function gtIsPlanted(name) {
+  const t = gardenTracking[name];
+  if (!t || !t.entries) return false;
+  return t.entries.some(e => e.action === 'plante');
+}
+
+// ===== CALCUL STAGES DEPUIS ENTRIES =====
+function gtCalcStages(name) {
+  const ref = gtRef(name);
+  if (!ref) return {};
+  const t = gardenTracking[name] || {};
+  const entries = t.entries || [];
   const w2m = w => Math.round(w / 4.3);
-  let sowM = t.sowMonth || null, traM = t.transplantMonth || null, plaM = t.plantMonth || null;
-  if (sowM && !traM && cal.needsTransplant && cal.stt > 0) traM = Math.min(12, sowM + w2m(cal.stt));
-  if (traM && !plaM && cal.ttp > 0) plaM = Math.min(12, traM + w2m(cal.ttp));
-  if (sowM && !traM && !cal.needsTransplant && !plaM) plaM = sowM;
-  let harMs = [];
-  if (plaM && cal.pth) { const h = Math.min(12,plaM+w2m(cal.pth)); harMs=[...new Set([h,Math.min(12,h+1)])]; }
-  else if (sowM && cal.dth) { const h = Math.min(12,sowM+w2m(cal.dth)); harMs=[...new Set([h,Math.min(12,h+1)])]; }
-  else if (cal.harvest && cal.harvest.length) harMs = cal.harvest;
-  return { sowM, traM, plaM, harMs, actSow:t.sowMonth, actTra:t.transplantMonth, actPla:t.plantMonth };
+
+  // Trouver la dernière entrée par type
+  const last = (action) => entries.filter(e => e.action === action).sort((a,b) => b.month-a.month || b.week-a.week)[0];
+  const sowEntry = last('seme_godet') || last('seme_direct');
+  const traEntry = last('repique');
+  const plaEntry = last('plante');
+
+  const sowM = sowEntry ? sowEntry.month : null;
+  const traM = traEntry ? traEntry.month : null;
+  const plaM = plaEntry ? plaEntry.month : null;
+
+  // Calculer les étapes estimées
+  let calcTra = null, calcPla = null, calcHar = [];
+  if (sowM && !traM && ref.needsTransplant && ref.stt > 0)
+    calcTra = Math.min(12, sowM + w2m(ref.stt));
+  const effectiveTra = traM || calcTra;
+  if (effectiveTra && !plaM && ref.ttp > 0)
+    calcPla = Math.min(12, effectiveTra + w2m(ref.ttp));
+  if (!plaM && !traM && sowM && !ref.needsTransplant && ref.ttp === 0)
+    calcPla = sowM; // semis direct = plantation immédiate
+  const effectivePla = plaM || calcPla;
+  if (effectivePla && ref.pth > 0) {
+    const h = Math.min(12, effectivePla + w2m(ref.pth));
+    calcHar = [...new Set([h, Math.min(12, h+1)])];
+  } else if (!plaM && !traM && sowM && ref.pth === 0) {
+    calcHar = ref.harvest || [];
+  } else if (effectivePla && ref.pth === 0) {
+    calcHar = ref.harvest || [];
+  }
+
+  return { sowM, traM, plaM, calcTra, calcPla, calcHar };
 }
 
-// ===== FILTRE =====
-function passes(cal, d) {
-  if (gtSearch && !cal.name.toLowerCase().includes(gtSearch)) return false;
-  if (gtSelectedFromPlan && gtSelectedFromPlan.size > 0) {
-    // Vérifier avec la table de correspondance explicite
-    const varEquivs = GT_CAL_TO_VAR[cal.name] || [];
-    const found = gtSelectedFromPlan.has(cal.name) ||
-      varEquivs.some(v => gtSelectedFromPlan.has(v));
-    if (!found) return false;
+// ===== CLASSE FOND D'UNE CELLULE =====
+function gtCellBg(name, month, stages) {
+  const ref = gtRef(name);
+  if (!ref) return '';
+  const { sowM, traM, plaM, calcTra, calcPla, calcHar } = stages;
+  const t = gardenTracking[name] || {};
+  if (t.lost && t.lost.atMonth <= month) return '';
+  // Périodes recommandées (depuis GT_REF)
+  const inSow       = (ref.sow||[]).includes(month);
+  const inTra       = (ref.transplant||[]).includes(month);
+  const inPla       = (ref.plant||[]).includes(month);
+  const inHar       = (ref.harvest||[]).includes(month);
+  // Périodes calculées
+  const isCalcTra   = calcTra === month && !traM && sowM;
+  const isCalcPla   = calcPla === month && !plaM;
+  const isCalcHar   = (calcHar||[]).includes(month) && !plaM && (sowM || traM);
+  // Priorité : calculé > recommandé (les calculés overrident les recommandés)
+  if (isCalcHar) return 'calc-harvest';
+  if (isCalcPla)  return 'calc-plant';
+  if (isCalcTra)  return 'calc-transplant';
+  if (inHar) return 'bg-harvest';
+  if (inPla) return 'bg-plant';
+  if (inTra) return 'bg-transplant';
+  if (inSow) return 'bg-sow';
+  return '';
+}
+
+// ===== RENDU ENTRÉE DANS UNE CELLULE =====
+function gtCellEntry(name, month, stages) {
+  const t = gardenTracking[name] || {};
+  const entries = (t.entries || []).filter(e => e.month === month);
+  if (t.lost && t.lost.atMonth === month) {
+    return '<div class="gt-entry gt-e-pe">💀 ' + (t.lost.atStage || '') + '</div>';
+  }
+  if (!entries.length) return '';
+  const icons = { seme_godet:'🌱G', seme_direct:'🌱D', repique:'🔄', plante:'🌳', recolte:'🍂', perdu:'💀' };
+  const cls   = { seme_godet:'gt-e-sg', seme_direct:'gt-e-sd', repique:'gt-e-re', plante:'gt-e-pl', recolte:'gt-e-rc', perdu:'gt-e-pe' };
+  return entries.map(e =>
+    '<div class="gt-entry ' + (cls[e.action]||'') + '">'
+    + (icons[e.action]||'?')
+    + ' <span class="gt-e-wk">S' + e.week + '</span>'
+    + '</div>'
+  ).join('');
+}
+
+// ===== FILTRAGE =====
+function gtPasses(name) {
+  // Filtre texte
+  if (gtSearch && !name.toLowerCase().includes(gtSearch)) return false;
+  // Filtre plan
+  if (gtSelectedFromPlan.size > 0) {
+    const varEquivs = (typeof GT_CAL_TO_VAR !== 'undefined' && GT_CAL_TO_VAR[name]) || [];
+    if (!gtSelectedFromPlan.has(name) && !varEquivs.some(v => gtSelectedFromPlan.has(v))) return false;
   }
   if (gtFilter === 'all') return true;
-  const t = gardenTracking[cal.name] || {};
-  if (gtFilter === 's') return (cal.sow||[]).includes(GT_CUR) && !t.sowMonth;
-  if (gtFilter === 't') return d.traM === GT_CUR && t.sowMonth && !t.transplantMonth;
-  if (gtFilter === 'p') return d.plaM === GT_CUR && !t.plantMonth;
-  if (gtFilter === 'r') return (d.harMs||[]).includes(GT_CUR);
+  const ref = gtRef(name);
+  if (!ref) return gtFilter === 'all';
+  const stages = gtCalcStages(name);
+  const { sowM, traM, plaM, calcTra, calcPla } = stages;
+  const t = gardenTracking[name] || {};
+  if (t.lost) return false; // perdus exclus des filtres actifs
+
+  if (gtFilter === 's') {
+    // À semer : pas encore semé ET mois conseillé OU déjà passé sans avoir semé
+    if (sowM) return false;
+    return (ref.sow||[]).includes(GT_CUR) || (ref.sow||[]).some(m => m <= GT_CUR);
+  }
+  if (gtFilter === 't') {
+    // À repiquer : semé, pas encore repiqué, repiquage attendu ce mois ou dépassé
+    if (!sowM || traM || !ref.needsTransplant) return false;
+    return calcTra ? calcTra <= GT_CUR + 1 : (ref.transplant||[]).some(m => m <= GT_CUR + 1);
+  }
+  if (gtFilter === 'p') {
+    // À planter : prêt à planter (a semé/repiqué ou semis direct), plantation attendue ce mois
+    if (plaM) return false;
+    if (ref.needsTransplant) {
+      if (!traM) return false;
+      return calcPla ? calcPla <= GT_CUR + 1 : (ref.plant||[]).some(m => m <= GT_CUR + 1);
+    } else {
+      // Semis direct OU plantation directe
+      const canPlant = sowM || (!ref.needsTransplant && (ref.plant||[]).includes(GT_CUR));
+      if (!canPlant) return false;
+      return calcPla ? calcPla <= GT_CUR + 1 : (ref.plant||[]).some(m => m <= GT_CUR + 1);
+    }
+  }
+  if (gtFilter === 'r') {
+    // À récolter : planté, récolte attendue ce mois
+    if (!plaM) return false;
+    return (stages.calcHar||[]).includes(GT_CUR) || (ref.harvest||[]).includes(GT_CUR);
+  }
   return true;
+}
+
+// ===== OBTENIR TOUTES LES VARIÉTÉS À AFFICHER =====
+function gtAllVarieties() {
+  // GT_REF est la source principale de vérité
+  const refNames = Object.keys(GT_REF);
+  // Ajouter les variétés custom
+  const customNames = gardenCustom.map(v => v.name);
+  return [...refNames, ...customNames];
 }
 
 // ===== RENDU TABLEAU =====
 function renderGardenTable() {
   const tbody = document.getElementById('gt-body');
   if (!tbody) return;
-  const cats = [...new Set(allCal().map(v => v.cat))].sort();
+
+  const allNames = gtAllVarieties();
+  const filtered = allNames.filter(name => gtPasses(name));
+
+  // Grouper par catégorie (depuis VARIETIES ou GT_REF)
+  const catMap = {};
+  filtered.forEach(name => {
+    const vd = typeof VARIETIES !== 'undefined' && VARIETIES.find(v => v.name === name);
+    const cat = vd ? vd.cat : (GT_REF[name] ? 'Autres' : 'Autres');
+    if (!catMap[cat]) catMap[cat] = [];
+    catMap[cat].push(name);
+  });
+
   let html = '';
+  const cats = Object.keys(catMap).sort();
   for (const cat of cats) {
-    const filtered = allCal().filter(v => v.cat === cat && passes(v, computeDates(v, gardenTracking[v.name]||{})));
-    if (!filtered.length) continue;
-    html += '<tr class="gt-cat-row"><td colspan="15">' + cat + '</td></tr>';
-    for (const v of filtered) {
-      const t = gardenTracking[v.name] || {};
-      const d = computeDates(v, t);
-      const lost = t.lost;
-      const nid = v.name.replace(/[^a-z0-9]/gi,'_');
-      const isSelPlan = typeof selected !== 'undefined' && selected.has(v.name);
-      const accOpen = gtOpenAccs.has(v.name);
-      const vMeta = findMeta(v.name);
-      const plans = [...new Set((vMeta && vMeta.locations || []).map(l=>l.plan))];
-      const ico = plans.includes('mandala')&&plans.includes('harpe') ? ' 🗺️'
-        : plans.includes('mandala') ? ' 🌀' : plans.includes('harpe') ? ' 🎵'
-        : plans.includes('serre') ? ' 🏠' : '';
-      const accHtml = '<div class="gt-acc' + (accOpen?' open':'') + '" id="gt-acc-' + nid + '">'
-        + (accOpen ? renderAccBody(v.name) : '') + '</div>';
-      let row = '<td><span class="gt-name' + (isSelPlan?' plan-sel':'') + '" data-n="'
-        + v.name.replace(/"/g,'&quot;') + '" onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()"'
-        + ' onclick="gtNameClick(this)">' + v.name + ico + '</span>' + accHtml + '</td>';
-      const g = t.godets != null ? t.godets : '', p2 = t.planted != null ? t.planted : '';
-      row += '<td>' + (gtAdminMode
-        ? '<input class="gt-ni" type="number" min="0" value="' + g + '" placeholder="–" data-nid="' + nid + '" data-field="godets" oninput="gtSetNum(this)">'
-        : (g!==''?'<b>'+g+'</b>':'–')) + '</td>';
-      row += '<td>' + (gtAdminMode
-        ? '<input class="gt-ni" type="number" min="0" value="' + p2 + '" placeholder="–" data-nid="' + nid + '" data-field="planted" oninput="gtSetNum(this)">'
-        : (p2!==''?'<b>'+p2+'</b>':'–')) + '</td>';
-      for (let m = 1; m <= 12; m++) {
-        const badges = [];
-        if (lost) {
-          const lostAt = t.lostAt || 'sow';
-          const lostMs = lostAt==='sow'?(v.sow||[]):lostAt==='transplant'?(v.transplant||[]):(v.plant||[]);
-          const lostLabel = lostAt==='sow'?'💀 Perdu (semis)':lostAt==='transplant'?'💀 Perdu (repiquage)':'💀 Perdu (plantation)';
-          if (t.sowMonth===m && lostAt!=='sow') badges.push('<span class="gt-badge gt-sa">🌱 Semé</span>');
-          if (t.transplantMonth===m && lostAt!=='transplant') badges.push('<span class="gt-badge gt-ta">🌿 Repiqué</span>');
-          if (lostMs.includes(m)) badges.push('<span class="gt-badge gt-lost">'+lostLabel+'</span>');
-          row += '<td class="gt-cell">' + badges.join('<br>') + '</td>';
-          continue;
-        }
-        if (d.actSow===m) badges.push(mkBadge('gt-sa','🌱 Semé','sow',m,v.name,true));
-        else if (!d.actSow && (v.sow||[]).includes(m)) badges.push(mkBadge('gt-s','🌱 À semer','sow',m,v.name,false));
-        if (d.actTra===m) badges.push(mkBadge('gt-ta','🌿 Repiqué','transplant',m,v.name,true));
-        else if (!d.actTra && d.traM===m && d.sowM) badges.push(mkBadge('gt-t','🌿 À repiquer','transplant',m,v.name,false));
-        if (d.actPla===m) badges.push(mkBadge('gt-pa','🌳 Planté','plant',m,v.name,true));
-        else if (!d.actPla && d.plaM===m) badges.push(mkBadge('gt-p','🌳 À planter','plant',m,v.name,false));
-        if ((d.harMs||[]).includes(m)) badges.push('<span class="gt-badge gt-r">🍂 Récolte</span>');
-        row += '<td class="gt-cell' + (m===GT_CUR?' gt-cur-month':'') + '">' + badges.join('<br>') + '</td>';
-      }
-      html += '<tr class="gt-data-row">' + row + '</tr>';
+    html += '<tr class="gt-cat-row"><td colspan="16">' + cat + '</td></tr>';
+    for (const name of catMap[cat]) {
+      html += renderGardenRow(name);
     }
   }
   tbody.innerHTML = html;
 }
 
-function mkBadge(cls, label, step, month, name, done) {
-  if (!gtAdminMode) return '<span class="gt-badge ' + cls + '">' + label + '</span>';
-  return '<span class="gt-badge ' + cls + ' btn" onclick="event.stopPropagation();gtPopOpen(this,this.dataset.vn,this.dataset.st,' + month + ',' + done + ')" data-vn="' + name.replace(/"/g,'&quot;') + '" data-st="' + step + '">' + label + '</span>';
-}
-
-function findMeta(name) {
-  if (typeof VARIETIES === 'undefined') return null;
-  const n = name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/ +/g,' ').trim();
-  return VARIETIES.find(v => {
-    const m = v.name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/ +/g,' ').trim();
-    return m === n || m.startsWith(n.split(' ').slice(0,2).join(' '));
-  });
-}
-
-function renderAccBody(name) {
-  const vd = findMeta(name);
-  const cal = allCal().find(c => c.name === name);
+function renderGardenRow(name) {
+  const ref = gtRef(name);
   const t = gardenTracking[name] || {};
-  const ml = arr => (arr||[]).map(m => GT_MONTHS[m-1]).join(', ');
-  const locs = (vd && vd.locations || []).map(l=>l.label).join(', ');
-  let h = (vd && vd.img ? '<img src="' + vd.img + '" alt="">' : '');
-  h += (vd && vd.desc ? '<p style="font-style:italic;color:#5a5244;margin:0 0 8px;font-size:12px;">' + vd.desc + '</p>' : '');
-  h += '<div class="gt-acc-grid">';
-  if (vd && vd.sun) h += '<span class="lbl">☀️ Expo</span><span>' + vd.sun + '</span>';
-  if (vd && vd.water) h += '<span class="lbl">💧 Eau</span><span>' + vd.water + '</span>';
-  if (vd && vd.spacing) h += '<span class="lbl">📏 Espacement</span><span>' + vd.spacing + '</span>';
-  if (vd && vd.qty) h += '<span class="lbl">📦 Quantité</span><span>' + vd.qty + '</span>';
-  if (t.godets != null) h += '<span class="lbl">🌱 Godets</span><span>' + t.godets + '</span>';
-  if (t.planted != null) h += '<span class="lbl">🌳 Plantés</span><span>' + t.planted + '</span>';
-  if (locs) h += '<span class="lbl">📍 Lieu</span><span>' + locs + '</span>';
-  if (cal && cal.sow && cal.sow.length) h += '<span class="lbl">Semis</span><span>' + ml(cal.sow) + (t.sowMonth?' ✓ '+GT_MONTHS[t.sowMonth-1]:'') + '</span>';
-  if (cal && cal.needsTransplant) h += '<span class="lbl">Repiquage</span><span>' + ml(cal.transplant||[]) + (t.transplantMonth?' ✓ '+GT_MONTHS[t.transplantMonth-1]:'') + '</span>';
-  if (cal && cal.plant && cal.plant.length) h += '<span class="lbl">Plantation</span><span>' + ml(cal.plant) + (t.plantMonth?' ✓ '+GT_MONTHS[t.plantMonth-1]:'') + '</span>';
-  if (cal && cal.harvest && cal.harvest.length) h += '<span class="lbl">🍂 Récolte</span><span>' + ml(cal.harvest) + '</span>';
-  if (vd && vd.companion) h += '<span class="lbl">🤝 Assoc.</span><span style="font-size:11px;">' + vd.companion + '</span>';
-  h += '</div>';
-  return h;
+  const stages = gtCalcStages(name);
+  const ancient = gtIsAncient(name);
+  const planted = gtIsPlanted(name);
+  const empl = gtEmplacement(name);
+
+  const nid = name.replace(/[^a-z0-9]/gi, '_');
+  const isLost = !!t.lost;
+
+  // Icône ancienne variété
+  const aico = ancient ? '<span class="gt-ancient-ico" title="Variété ancienne">🌱</span>' : '';
+
+  // Colonne variété
+  let tdVar = '<td class="td-var">'
+    + '<span class="gt-varname" data-n="' + name.replace(/"/g,'&quot;') + '" onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()">'
+    + name + aico
+    + '</span></td>';
+
+  // Emplacement
+  const emplClass = 'td-emp' + (planted ? ' planted' : '');
+  let tdEmp = '<td class="' + emplClass + '">' + empl + '</td>';
+
+  // Godets
+  const g = t.godets != null ? t.godets : '';
+  let tdG = '<td class="td-num">';
+  if (gtAdminMode)
+    tdG += '<input class="gt-ni" type="number" min="0" value="' + g + '" placeholder="–" data-n="' + nid + '" data-f="godets" oninput="gtUpdateNum(this)">';
+  else
+    tdG += (g !== '' ? '<b>' + g + '</b>' : '—');
+  tdG += '</td>';
+
+  // Plants
+  const p = t.plants != null ? t.plants : '';
+  let tdP = '<td class="td-num">';
+  if (gtAdminMode)
+    tdP += '<input class="gt-ni" type="number" min="0" value="' + p + '" placeholder="–" data-n="' + nid + '" data-f="plants" oninput="gtUpdateNum(this)">';
+  else
+    tdP += (p !== '' ? '<b>' + p + '</b>' : '—');
+  tdP += '</td>';
+
+  // 12 mois
+  let tdMonths = '';
+  for (let m = 1; m <= 12; m++) {
+    if (isLost && t.lost.atMonth < m) {
+      tdMonths += '<td class="gt-cell' + (m===GT_CUR?' cur':'') + '"></td>';
+      continue;
+    }
+    const bg = gtCellBg(name, m, stages);
+    const entry = gtCellEntry(name, m, stages);
+    const classes = ['gt-cell', bg, m === GT_CUR ? 'cur' : '', gtAdminMode ? 'admin-click' : ''].filter(Boolean).join(' ');
+    const onclick = gtAdminMode ? ' onclick="gtOpenModal(\"' + nid + '\",' + m + ')"' : '';
+    const dataAttr = ' data-nid="' + nid + '" data-name="' + name.replace(/"/g,'&quot;') + '" data-month="' + m + '"';
+    tdMonths += '<td class="' + classes + '"' + onclick + dataAttr + '>' + entry + '</td>';
+  }
+
+  return '<tr class="gt-data-row">' + tdVar + tdEmp + tdG + tdP + tdMonths + '</tr>';
 }
 
-function gtNameClick(el) {
-  const name = el.dataset.n;
+// ===== INPUTS GODETS/PLANTS =====
+function gtUpdateNum(input) {
+  const nid = input.dataset.n;
+  const field = input.dataset.f;
+  const name = gtAllVarieties().find(n => n.replace(/[^a-z0-9]/gi,'_') === nid);
   if (!name) return;
-  const nid = name.replace(/[^a-z0-9]/gi,'_');
-  const body = document.getElementById('gt-acc-' + nid);
-  if (body) {
-    const wasOpen = gtOpenAccs.has(name);
-    gtOpenAccs.clear();
-    document.querySelectorAll('.gt-acc.open').forEach(b => b.classList.remove('open'));
-    if (!wasOpen) { gtOpenAccs.add(name); body.innerHTML = renderAccBody(name); body.classList.add('open'); }
-  }
-  if (typeof selected !== 'undefined' && typeof renderAll === 'function') {
-    const vd = findMeta(name);
-    if (vd) {
-      if (selected.has(name)) selected.delete(name); else selected.set(name, vd);
-      if (typeof syncRowStates === 'function') syncRowStates();
-      renderAll();
-      document.querySelectorAll('.gt-name').forEach(s => s.classList.toggle('plan-sel', selected.has(s.dataset.n)));
+  if (!gardenTracking[name]) gardenTracking[name] = { entries: [], lost: null };
+  const val = parseInt(input.value);
+  if (!isNaN(val) && val >= 0) gardenTracking[name][field] = val;
+  else delete gardenTracking[name][field];
+}
+
+// ===== MODAL SAISIE =====
+let _modalNid = null, _modalMonth = null, _modalName = null;
+
+function gtOpenModal(nid, month) {
+  if (!gtAdminMode) return;
+  const name = gtAllVarieties().find(n => n.replace(/[^a-z0-9]/gi,'_') === nid);
+  if (!name) return;
+  _modalNid = nid; _modalMonth = month; _modalName = name;
+  document.getElementById('gt-modal-title').textContent = name;
+  document.getElementById('gt-modal-sub').textContent = GT_MONTHS[month-1] + ' 2026';
+  // Reset sélections
+  document.querySelectorAll('.gt-action-btn').forEach(b => { b.className = 'gt-action-btn'; });
+  document.querySelectorAll('input[name="gtw"]').forEach(r => r.checked = false);
+  // Afficher / cacher bouton Supprimer
+  const t = gardenTracking[name] || {};
+  const hasEntry = (t.entries||[]).some(e => e.month === month) || (t.lost && t.lost.atMonth === month);
+  document.getElementById('gt-modal-del').style.display = hasEntry ? '' : 'none';
+  // Pré-remplir si entrée existante
+  if (hasEntry) {
+    const existing = (t.entries||[]).find(e => e.month === month);
+    if (existing) {
+      const btn = document.querySelector('.gt-action-btn[data-action="' + existing.action + '"]');
+      if (btn) gtSelectAction(btn);
+      const wk = document.querySelector('input[name="gtw"][value="' + existing.week + '"]');
+      if (wk) wk.checked = true;
+    } else if (t.lost && t.lost.atMonth === month) {
+      const btn = document.querySelector('.gt-action-btn[data-action="perdu"]');
+      if (btn) gtSelectAction(btn);
     }
   }
+  document.getElementById('gt-modal').classList.add('open');
 }
 
-// ===== POPOVER =====
-function gtPopOpen(el, name, step, month, isDone) {
-  if (gtOpenPop) { gtOpenPop.remove(); gtOpenPop = null; }
-  const pop = document.createElement('div');
-  pop.className = 'gt-pop';
-  pop.dataset.varName = name; pop.dataset.step = step;
-  const labels = {sow:'Semé',transplant:'Repiqué',plant:'Planté'};
-  const opts = GT_MONTHS.map((m,i) => '<option value="'+(i+1)+'"'+(month===i+1?' selected':'')+'>'+m+'</option>').join('');
-  pop.innerHTML = '<h5>'+(isDone?'✏️ Modifier':'✓ Marquer comme')+' '+(labels[step]||step)+'</h5>'
-    +'<select id="gt-pop-m" onclick="event.stopPropagation()"><option value="">— Choisir le mois —</option>'+opts+'</select>'
-    +'<div class="gt-pop-btns">'
-    +'<button class="gt-pop-ok" onclick="event.stopPropagation();gtPopSave()">✓ Valider</button>'
-    +(isDone?'<button class="gt-pop-del" onclick="event.stopPropagation();gtPopClear()">✕ Effacer</button>':'')
-    +'<button class="gt-pop-x" onclick="event.stopPropagation();gtPopClose()">Annuler</button>'
-    +'</div><hr style="margin:8px 0;border:none;border-top:1px solid var(--line);">'
-    +'<button class="gt-pop-lost" onclick="event.stopPropagation();gtPopLost()">💀 Perdu à cette étape</button>';
-  pop.addEventListener('click', e => e.stopPropagation());
-  el.closest('.gt-cell').appendChild(pop);
-  gtOpenPop = pop;
-  setTimeout(() => document.addEventListener('click', gtPopClose), 50);
+function gtSelectAction(btn) {
+  document.querySelectorAll('.gt-action-btn').forEach(b => { b.className = 'gt-action-btn'; });
+  const a = btn.dataset.action;
+  const clsMap = { seme_godet:'sel-sg', seme_direct:'sel-sd', repique:'sel-re', plante:'sel-pl', recolte:'sel-rc', perdu:'sel-pe' };
+  btn.className = 'gt-action-btn ' + (clsMap[a]||'sel');
 }
-function gtPopClose(e) {
-  if (e && gtOpenPop && gtOpenPop.contains(e.target)) return;
-  if (gtOpenPop) { gtOpenPop.remove(); gtOpenPop = null; }
-  document.removeEventListener('click', gtPopClose);
+
+function gtModalClose() {
+  document.getElementById('gt-modal').classList.remove('open');
+  _modalNid = null; _modalMonth = null; _modalName = null;
 }
-function gtPopSave() {
-  const pop = gtOpenPop; if (!pop) return;
-  const name = pop.dataset.varName, step = pop.dataset.step;
-  const m = parseInt(document.getElementById('gt-pop-m') && document.getElementById('gt-pop-m').value);
-  if (!m) { gtPopClose(); return; }
-  if (!gardenTracking[name]) gardenTracking[name] = {};
-  const key = step==='sow'?'sowMonth':step==='transplant'?'transplantMonth':'plantMonth';
-  gardenTracking[name][key] = m;
-  if (gardenTracking[name].lost) { delete gardenTracking[name].lost; delete gardenTracking[name].lostAt; }
-  if (step==='sow') { delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-  if (step==='transplant') delete gardenTracking[name].plantMonth;
-  gtPopClose(); renderGardenTable();
-}
-function gtPopClear() {
-  const pop = gtOpenPop; if (!pop) return;
-  const name = pop.dataset.varName, step = pop.dataset.step;
-  if (gardenTracking[name]) {
-    const key = step==='sow'?'sowMonth':step==='transplant'?'transplantMonth':'plantMonth';
-    delete gardenTracking[name][key];
-    if (step==='sow') { delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-    if (step==='transplant') delete gardenTracking[name].plantMonth;
+
+function gtModalSave() {
+  if (!_modalName || !_modalMonth) { gtModalClose(); return; }
+  const actionBtn = document.querySelector('.gt-action-btn.sel-sg, .gt-action-btn.sel-sd, .gt-action-btn.sel-re, .gt-action-btn.sel-pl, .gt-action-btn.sel-rc, .gt-action-btn.sel-pe');
+  const action = actionBtn ? actionBtn.dataset.action : null;
+  if (!action) { alert('Sélectionnez une action'); return; }
+  const weekEl = document.querySelector('input[name="gtw"]:checked');
+  const week = weekEl ? parseInt(weekEl.value) : 1;
+  const name = _modalName;
+
+  if (!gardenTracking[name]) gardenTracking[name] = { entries: [], lost: null };
+  const t = gardenTracking[name];
+
+  if (action === 'perdu') {
+    // Effacer entrées après ce mois, marquer perdu
+    const stageOfLoss = gtCurrentStage(name, _modalMonth);
+    t.entries = (t.entries||[]).filter(e => e.month < _modalMonth);
+    t.lost = { atMonth: _modalMonth, atStage: stageOfLoss, week };
+  } else {
+    // Effacer l'entrée existante du même mois
+    t.entries = (t.entries||[]).filter(e => e.month !== _modalMonth);
+    t.entries.push({ action, month: _modalMonth, week });
+    t.entries.sort((a,b) => a.month - b.month || a.week - b.week);
+    // Si on ressaisit une étape, effacer le statut perdu
+    if (t.lost && t.lost.atMonth >= _modalMonth) t.lost = null;
   }
-  gtPopClose(); renderGardenTable();
-}
-function gtPopLost() {
-  const pop = gtOpenPop; if (!pop) return;
-  const name = pop.dataset.varName, step = pop.dataset.step;
-  const labels = {sow:'semis',transplant:'repiquage',plant:'plantation'};
-  if (!confirm('Marquer "' + name + '" comme perdu au ' + (labels[step]||step) + ' ?')) return;
-  if (!gardenTracking[name]) gardenTracking[name] = {};
-  gardenTracking[name].lost = true; gardenTracking[name].lostAt = step;
-  if (step==='sow') { delete gardenTracking[name].sowMonth; delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-  else if (step==='transplant') { delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-  else if (step==='plant') delete gardenTracking[name].plantMonth;
-  gtPopClose(); renderGardenTable();
+  gtModalClose();
+  renderGardenTable();
 }
 
-// ===== INPUTS =====
-function gtSetNum(input) {
-  const nid = input.dataset.nid, field = input.dataset.field;
-  const cal = allCal().find(v => v.name.replace(/[^a-z0-9]/gi,'_') === nid);
-  if (!cal) return;
-  const n = parseInt(input.value);
-  if (!gardenTracking[cal.name]) gardenTracking[cal.name] = {};
-  if (!isNaN(n) && n >= 0) gardenTracking[cal.name][field] = n;
-  else delete gardenTracking[cal.name][field];
+function gtModalDelete() {
+  if (!_modalName || !_modalMonth) { gtModalClose(); return; }
+  const t = gardenTracking[_modalName];
+  if (t) {
+    t.entries = (t.entries||[]).filter(e => e.month !== _modalMonth);
+    if (t.lost && t.lost.atMonth === _modalMonth) t.lost = null;
+  }
+  gtModalClose();
+  renderGardenTable();
+}
+
+function gtCurrentStage(name, month) {
+  const t = gardenTracking[name] || {};
+  const entries = (t.entries||[]).filter(e => e.month <= month);
+  if (entries.some(e => e.action === 'plante')) return 'plantation';
+  if (entries.some(e => e.action === 'repique')) return 'repiquage';
+  if (entries.some(e => ['seme_godet','seme_direct'].includes(e.action))) return 'semis';
+  return 'semis';
 }
 
 // ===== TOOLTIP =====
 function gtTip(e, el) {
-  const name = el.dataset.n, vd = findMeta(name), cal = allCal().find(c => c.name===name);
-  const t = gardenTracking[name] || {}, tip = document.getElementById('gt-tooltip');
+  const name = el.dataset.n;
+  const ref = gtRef(name);
+  const tip = document.getElementById('gt-tooltip');
   if (!tip) return;
-  const ml = arr => (arr||[]).map(m=>GT_MONTHS[m-1]).join(', ');
-  let h = '<div class="tn">'+name+'</div>';
-  if (vd && vd.desc) h += '<div style="color:#94a3b8;font-size:11px;margin-bottom:3px;">'+vd.desc.slice(0,90)+'…</div>';
-  if (cal && cal.sow && cal.sow.length) h += '<div class="tr"><span class="tl">Semis</span><span>'+ml(cal.sow)+'</span></div>';
-  if (cal && cal.harvest && cal.harvest.length) h += '<div class="tr"><span class="tl">Récolte</span><span>'+ml(cal.harvest)+'</span></div>';
-  if (t.godets) h += '<div class="tr"><span class="tl">Godets</span><span>'+t.godets+'</span></div>';
-  if (t.planted) h += '<div class="tr"><span class="tl">Plantés</span><span>'+t.planted+'</span></div>';
-  tip.innerHTML = h; tip.style.display = 'block';
-  tip.style.left = Math.min(e.clientX+14, window.innerWidth-290)+'px';
-  tip.style.top = Math.min(e.clientY+14, window.innerHeight-200)+'px';
+  const ml = arr => (arr||[]).map(m => GT_MONTHS[m-1]).join(', ');
+  let h = '<b>' + name + '</b>';
+  if (ref) {
+    if (ref.sow && ref.sow.length) h += '<br>🌱 Semis : ' + ml(ref.sow);
+    if (ref.transplant && ref.transplant.length) h += '<br>🔄 Repiquage : ' + ml(ref.transplant);
+    if (ref.plant && ref.plant.length) h += '<br>🌳 Plantation : ' + ml(ref.plant);
+    if (ref.harvest && ref.harvest.length) h += '<br>🍂 Récolte : ' + ml(ref.harvest);
+    h += '<br>📍 ' + ref.emplacement;
+  }
+  tip.innerHTML = h;
+  tip.style.display = 'block';
+  tip.style.left = Math.min(e.clientX+12, window.innerWidth-260) + 'px';
+  tip.style.top = Math.min(e.clientY+12, window.innerHeight-180) + 'px';
 }
 function gtTipHide() { const t=document.getElementById('gt-tooltip'); if(t) t.style.display='none'; }
 
@@ -4620,29 +4720,100 @@ function gtTipHide() { const t=document.getElementById('gt-tooltip'); if(t) t.st
 document.querySelectorAll('.gt-fb').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.gt-fb').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on'); gtFilter = btn.dataset.f; renderGardenTable();
+    btn.classList.add('on');
+    gtFilter = btn.dataset.f;
+    renderGardenTable();
   });
 });
-const gtSrch = document.getElementById('gt-search');
-if (gtSrch) gtSrch.addEventListener('input', function() { gtSearch = this.value.toLowerCase().trim(); renderGardenTable(); });
+
+// Recherche
+const _srchInput = document.getElementById('gt-search');
+if (_srchInput) _srchInput.addEventListener('input', function() {
+  gtSearch = this.value.toLowerCase().trim();
+  renderGardenTable();
+});
+
+// Reset btn
+const _resetBtn = document.getElementById('reset-btn');
+if (_resetBtn) _resetBtn.addEventListener('click', () => {
+  // Reset sélection plan
+  if (typeof selected !== 'undefined') { selected.clear(); if (typeof syncRowStates === 'function') syncRowStates(); if (typeof renderAll === 'function') renderAll(); }
+  gtSelectedFromPlan = new Set();
+  // Reset recherche
+  gtSearch = '';
+  const srch = document.getElementById('gt-search');
+  if (srch) srch.value = '';
+  const vsrch = document.getElementById('variety-search');
+  if (vsrch) vsrch.value = '';
+  // Reset filtre
+  gtFilter = 'all';
+  document.querySelectorAll('.gt-fb').forEach(b => b.classList.remove('on'));
+  const allBtn = document.querySelector('.gt-fb[data-f="all"]');
+  if (allBtn) allBtn.classList.add('on');
+  renderGardenTable();
+});
 
 // ===== ADMIN =====
 document.getElementById('garden-admin-btn') && document.getElementById('garden-admin-btn').addEventListener('click', function() {
-  gtAdminMode = !gtAdminMode;
-  if (gtAdminMode) {
+  if (!gtAdminMode) {
+    // Demander le mot de passe
+    const pwd = prompt('Mot de passe admin :');
+    if (!pwd) return;
+    if (typeof ADMIN_PASSWORD === 'undefined' || pwd !== ADMIN_PASSWORD) {
+      alert('Mot de passe incorrect');
+      return;
+    }
+    gtAdminMode = true;
     this.textContent = '💾 Enregistrer';
     this.style.cssText = 'background:var(--clay);color:white;border:1.5px solid var(--clay);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;';
     const ab = document.getElementById('gt-add-btn'); if (ab) ab.style.display = '';
   } else {
-    saveGardenData();
+    // Enregistrer
+    gtSaveAll();
+    gtAdminMode = false;
     this.textContent = '⚙ Gérer mon jardin';
     this.style.cssText = 'background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:.6;padding:4px;';
     const ab = document.getElementById('gt-add-btn'); if (ab) ab.style.display = 'none';
   }
   renderGardenTable();
 });
-const gtAddBtn = document.getElementById('gt-add-btn');
-if (gtAddBtn) gtAddBtn.addEventListener('click', () => { const f=document.getElementById('gt-av-form'); if(f) f.classList.toggle('open'); });
+
+const _addBtn = document.getElementById('gt-add-btn');
+if (_addBtn) _addBtn.addEventListener('click', () => {
+  document.getElementById('gt-av-form').classList.toggle('open');
+});
+
+// ===== STORAGE =====
+async function gtLoadData() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=garden');
+    if (r.ok) {
+      const d = await r.json() || {};
+      gardenTracking = d.tracking || {};
+      gardenCustom   = d.customVarieties || [];
+      localStorage.setItem('castelboun_garden', JSON.stringify(d));
+      return;
+    }
+  } catch {}
+  try {
+    const d = JSON.parse(localStorage.getItem('castelboun_garden') || '{}');
+    gardenTracking = d.tracking || {};
+    gardenCustom   = d.customVarieties || [];
+  } catch { gardenTracking = {}; gardenCustom = []; }
+}
+
+async function gtSaveAll() {
+  const d = { tracking: gardenTracking, customVarieties: gardenCustom };
+  localStorage.setItem('castelboun_garden', JSON.stringify(d));
+  try {
+    const resp = await fetch('/.netlify/functions/data-api?type=garden', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: ADMIN_PASSWORD, data: d })
+    });
+    if (!resp.ok) console.error('Save failed:', resp.status);
+  } catch(e) { console.error('Save error:', e); }
+}
 
 // ===== AJOUTER VARIÉTÉ =====
 const GT_MF = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
@@ -4651,38 +4822,36 @@ const GT_MF = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','No
   GT_MF.forEach((m,i) => { el.innerHTML += '<label><input type="checkbox" value="'+(i+1)+'"> '+m+'</label>'; });
 });
 function gtAddVariety() {
-  const name = document.getElementById('av-name') && document.getElementById('av-name').value.trim();
+  const name = (document.getElementById('av-name')||{}).value && document.getElementById('av-name').value.trim();
   if (!name) { alert('Nom requis'); return; }
   const cbs = id => [...document.querySelectorAll('#'+id+' input:checked')].map(c=>parseInt(c.value));
-  gardenCustom.push({ name, cat:document.getElementById('av-cat').value||'Autres',
-    sow:cbs('av-sow'), transplant:cbs('av-tra'), plant:cbs('av-pla'), harvest:cbs('av-har'),
-    needsTransplant:cbs('av-tra').length>0,
-    stt:parseInt(document.getElementById('av-stt').value)||4,
-    ttp:3, pth:parseInt(document.getElementById('av-pth').value)||8, dth:null, custom:true });
+  const newRef = {
+    ancient: document.getElementById('av-anc').value === 'true',
+    cycle: 'A',
+    sow: cbs('av-sow'), transplant: cbs('av-tra'), plant: cbs('av-pla'), harvest: cbs('av-har'),
+    needsTransplant: cbs('av-tra').length > 0,
+    stt: parseInt((document.getElementById('av-stt')||{}).value)||6,
+    ttp: 4, pth: parseInt((document.getElementById('av-pth')||{}).value)||8,
+    emplacement: (document.getElementById('av-emp')||{}).value||'À définir'
+  };
+  GT_REF[name] = newRef;
+  gardenCustom.push({ name, cat: document.getElementById('av-cat').value||'Autres' });
   document.getElementById('av-name').value = '';
-  const f=document.getElementById('gt-av-form'); if(f) f.classList.remove('open');
+  document.getElementById('gt-av-form').classList.remove('open');
   renderGardenTable();
 }
 
+// ===== HOOK LOCMAP → TABLEAU =====
+// varToCalNames et GT_CAL_TO_VAR sont définis dans GT_VAR_TO_CAL block
+function varToCalNames(varName) { return (typeof GT_VAR_TO_CAL !== 'undefined' && GT_VAR_TO_CAL[varName]) || [varName]; }
+
 // ===== INIT =====
-function applyDefaults() {
-  for (const [name, counts] of Object.entries(GT_KNOWN_COUNTS)) {
-    if (!gardenTracking[name]) gardenTracking[name] = {};
-    if (counts.godets != null && gardenTracking[name].godets == null) gardenTracking[name].godets = counts.godets;
-    if (counts.planted != null && gardenTracking[name].planted == null) gardenTracking[name].planted = counts.planted;
-  }
-  for (const [name, stages] of Object.entries(GT_KNOWN_STAGES)) {
-    if (!gardenTracking[name]) gardenTracking[name] = {};
-    for (const [sk, sv] of Object.entries(stages)) {
-      if (gardenTracking[name][sk] == null) gardenTracking[name][sk] = sv;
-    }
-  }
-}
-// Rendu synchrone immédiat
-applyDefaults();
-renderGardenTable();
-// Puis chargement async + re-rendu
-loadGardenData().then(() => { applyDefaults(); renderGardenTable(); }).catch(() => { renderGardenTable(); });
+gtLoadData().then(() => { renderGardenTable(); }).catch(() => { renderGardenTable(); });
+
+// Fermer modal sur clic extérieur
+document.getElementById('gt-modal') && document.getElementById('gt-modal').addEventListener('click', function(e) {
+  if (e.target === this) gtModalClose();
+});
 
 
 </script>
