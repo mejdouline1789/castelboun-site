@@ -141,6 +141,75 @@
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 4px 14px;
   }
+
+  /* ===== GARDEN TRACKER ===== */
+  .gt-wrap { padding: 16px 0; }
+  .gt-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .gt-filter-btn { padding:6px 14px; border-radius:20px; border:1.5px solid var(--line); background:var(--card); font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; color:var(--ink); }
+  .gt-filter-btn.active { background:var(--clay); color:white; border-color:var(--clay); }
+  .gt-filter-btn.f-semer  { border-color:#1d9e75; }
+  .gt-filter-btn.f-semer.active  { background:#1d9e75; }
+  .gt-filter-btn.f-repiquer { border-color:#eab308; }
+  .gt-filter-btn.f-repiquer.active { background:#eab308; color:#2b2f24; }
+  .gt-filter-btn.f-planter { border-color:#f97316; }
+  .gt-filter-btn.f-planter.active { background:#f97316; }
+  .gt-filter-btn.f-recolter { border-color:#e11d48; }
+  .gt-filter-btn.f-recolter.active { background:#e11d48; }
+
+  .gt-table-wrap { overflow-x:auto; border-radius:12px; border:1.5px solid var(--line); }
+  .gt-table { border-collapse:collapse; width:100%; min-width:900px; font-size:12px; }
+  .gt-table th { background:var(--ink); color:var(--cream); padding:8px 6px; text-align:center; font-weight:600; font-size:11px; white-space:nowrap; position:sticky; top:0; z-index:2; }
+  .gt-table th:first-child { text-align:left; padding-left:12px; min-width:180px; position:sticky; left:0; z-index:3; }
+  .gt-table th:nth-child(2), .gt-table th:nth-child(3) { min-width:58px; }
+  .gt-table td { padding:4px 4px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .gt-table td:first-child { padding-left:10px; font-size:12px; font-weight:600; color:var(--ink); white-space:nowrap; position:sticky; left:0; background:var(--card); z-index:1; cursor:pointer; }
+  .gt-table td:first-child:hover { color:var(--clay); }
+  .gt-table td:nth-child(2), .gt-table td:nth-child(3) { text-align:center; }
+  .gt-table tr:hover td { background:#fdf4ed; }
+  .gt-table tr:hover td:first-child { background:#fdf4ed; }
+  .gt-table .cat-row td { background:var(--cream); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--clay); padding:6px 10px; }
+
+  /* Cellules calendrier */
+  .gt-cell { text-align:center; min-width:42px; }
+  .gt-badge { display:inline-block; border-radius:3px; padding:2px 4px; font-size:10px; font-weight:700; line-height:1.2; white-space:nowrap; }
+  .gt-s  { background:#d1fae5; color:#065f46; }  /* Semé prévu */
+  .gt-sa { background:#059669; color:white; }     /* Semé réel */
+  .gt-t  { background:#fef9c3; color:#713f12; }  /* Repiquage prévu */
+  .gt-ta { background:#ca8a04; color:white; }     /* Repiqué réel */
+  .gt-p  { background:#fed7aa; color:#7c2d12; }  /* Plantation prévue */
+  .gt-pa { background:#ea580c; color:white; }     /* Planté réel */
+  .gt-r  { background:#fce7f3; color:#9d174d; }  /* Récolte prévue */
+  .gt-ra { background:#db2777; color:white; }     /* Récolté réel */
+
+  /* Inputs godet/planté */
+  .gt-num-input { width:44px; border:1px solid var(--line); border-radius:5px; padding:3px 4px; text-align:center; font-size:12px; background:var(--cream); }
+
+  /* Tooltip variété */
+  .gt-variety-name { position:relative; display:inline; }
+  .gt-tooltip { display:none; position:fixed; z-index:1000; background:#1e293b; color:#f1f5f9; border-radius:10px; padding:12px 14px; font-size:12px; line-height:1.7; box-shadow:0 8px 32px rgba(0,0,0,.35); max-width:280px; pointer-events:none; }
+  .gt-tooltip .tt-name { font-weight:700; font-size:13px; color:white; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,.2); padding-bottom:5px; }
+  .gt-tooltip .tt-row { display:flex; justify-content:space-between; gap:12px; }
+  .gt-tooltip .tt-label { color:#94a3b8; }
+  .gt-tooltip .tt-val { color:#e2e8f0; font-weight:600; }
+
+  /* Modal saisie étape */
+  .gt-modal { display:none; position:fixed; inset:0; z-index:500; background:rgba(0,0,0,.5); align-items:center; justify-content:center; }
+  .gt-modal.open { display:flex; }
+  .gt-modal-box { background:var(--card); border-radius:16px; padding:24px; max-width:400px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,.3); }
+  .gt-modal-title { font-family:'Fraunces',serif; font-size:18px; font-weight:700; margin:0 0 16px; color:var(--ink); }
+  .gt-modal-btns { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .gt-modal-btns button { flex:1; padding:10px; border-radius:8px; border:none; font-size:13px; font-weight:700; cursor:pointer; }
+  .gt-btn-confirm { background:var(--clay); color:white; }
+  .gt-btn-cancel  { background:var(--line); color:var(--ink); }
+  .gt-btn-clear   { background:#fce7f3; color:#9d174d; }
+  .gt-step-btns { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+  .gt-step-btn { padding:10px; border-radius:8px; border:2px solid var(--line); background:var(--cream); cursor:pointer; font-size:13px; font-weight:600; text-align:center; transition:all .15s; }
+  .gt-step-btn.active, .gt-step-btn:hover { border-color:var(--clay); background:#fdf4ed; }
+  .gt-step-btn.gt-step-sa { border-color:#059669; background:#d1fae5; }
+  .gt-step-btn.gt-step-ta { border-color:#ca8a04; background:#fef9c3; }
+  .gt-step-btn.gt-step-pa { border-color:#ea580c; background:#fed7aa; }
+  .gt-step-btn.gt-step-ra { border-color:#db2777; background:#fce7f3; }
+
   .variety-row {
     display: flex;
     align-items: center;
@@ -1429,7 +1498,55 @@
       </div>
     </section>
 
-    <section>
+    <!-- Tableau de suivi du jardin -->
+    
+<!-- TOOLTIP VARIÉTÉ -->
+<div class="gt-tooltip" id="gt-tooltip"></div>
+
+<!-- MODAL SAISIE ÉTAPE -->
+<div class="gt-modal" id="gt-modal">
+  <div class="gt-modal-box">
+    <div class="gt-modal-title" id="gt-modal-title">Mettre à jour</div>
+    <div id="gt-modal-body"></div>
+    <div class="gt-modal-btns">
+      <button class="gt-btn-cancel" onclick="gtCloseModal()">Annuler</button>
+      <button class="gt-btn-clear" id="gt-btn-clear" onclick="gtClearSteps()">✕ Effacer</button>
+      <button class="gt-btn-confirm" id="gt-btn-confirm" onclick="gtSaveModal()">✓ Valider</button>
+    </div>
+  </div>
+</div>
+
+    <section id="gt-section" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+        <div>
+          <p class="panel-title">📋 Suivi du jardin — Saison 2026</p>
+          <p class="panel-sub" style="margin-bottom:0;">Cliquez sur une variété pour saisir vos étapes réelles.</p>
+        </div>
+        <div class="gt-filters">
+          <button class="gt-filter-btn active" data-filter="all">Toutes</button>
+          <button class="gt-filter-btn f-semer" data-filter="semer">🌱 À semer</button>
+          <button class="gt-filter-btn f-repiquer" data-filter="repiquer">🌿 À repiquer</button>
+          <button class="gt-filter-btn f-planter" data-filter="planter">🌳 À planter</button>
+          <button class="gt-filter-btn f-recolter" data-filter="recolter">🍂 À récolter</button>
+        </div>
+      </div>
+      <div class="gt-table-wrap">
+        <table class="gt-table">
+          <thead>
+            <tr>
+              <th>Variété</th>
+              <th>Godets</th>
+              <th>Plantés</th>
+              <th>Jan</th><th>Fév</th><th>Mar</th><th>Avr</th><th>Mai</th><th>Jun</th>
+              <th>Jul</th><th>Aoû</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Déc</th>
+            </tr>
+          </thead>
+          <tbody id="gt-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="checklist-section">
       <div class="search-reset-row" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
         <div>
           <p class="panel-title">Nos légumes</p>
@@ -1440,6 +1557,7 @@
             <input id="variety-search" type="text" placeholder="🔍 Rechercher une variété…" style="padding:9px 14px 9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-size:13.5px;color:var(--ink);width:230px;outline:none;">
           </div>
           <button id="reset-btn" style="background:var(--card); border:1px solid var(--clay); color:var(--clay-dark); border-radius:8px; padding:9px 16px; font-size:13.5px; font-weight:600; cursor:pointer; white-space:nowrap;">↺ Réinitialiser</button>
+          <button id="garden-admin-btn" style="background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:0.5;padding:4px;white-space:nowrap;">⚙ Gérer mon jardin</button>
         </div>
       </div>
       <div class="checklist-layout">
@@ -3919,6 +4037,453 @@ if (resaForm) {
     }
   });
 }
+
+// ===== GARDEN TRACKER LOGIC =====
+// 90 variétés parsées
+const GARDEN_CALENDAR = [
+  {name:"Aneth Tétra Gold",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
+  {name:"Arachide de Virginie",cat:"Légumineuses",sow:[6],transplant:[],plant:[],harvest:[],needsTransplant:false,stt:0,ttp:3,pth:16,dth:null},
+  {name:"Artemisia annua",cat:"Fleurs",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:8,dth:null},
+  {name:"Artichaut Green Globe",cat:"Autres légumes",sow:[2],transplant:[5],plant:[6],harvest:[10, 11],needsTransplant:true,stt:12,ttp:8,pth:40,dth:null},
+  {name:"Aubergine Blanche Ronde à Œufs",cat:"Aubergines",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:12,dth:null},
+  {name:"Aubergine de Barbantane",cat:"Aubergines",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:12,dth:null},
+  {name:"Basilic cannelle",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
+  {name:"Basilic Géant Monstrueux Mammouth",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
+  {name:"Basilic Pourpre",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
+  {name:"Betterave rouge Crapaudine",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:12},
+  {name:"Capucine Impératrice des Indes",cat:"Fleurs",sow:[],transplant:[],plant:[5],harvest:[6, 7, 8, 9, 10],needsTransplant:false,stt:0,ttp:0,pth:4,dth:null},
+  {name:"Carotte de Carentan",cat:"Légumes racines",sow:[3],transplant:[5],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:14},
+  {name:"Céleri Vert à couper",cat:"Céleri",sow:[3],transplant:[5],plant:[7],harvest:[8, 9, 10, 11],needsTransplant:true,stt:8,ttp:4,pth:18,dth:null},
+  {name:"Céleri-branche Tall Utah",cat:"Céleri",sow:[3],transplant:[5],plant:[6, 7],harvest:[8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:18,dth:null},
+  {name:"Centaurée Barbeau",cat:"Fleurs",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
+  {name:"Chicorée Scarole",cat:"Autres",sow:[6],transplant:[],plant:[],harvest:[8, 10],needsTransplant:false,stt:0,ttp:0,pth:0,dth:10},
+  {name:"Chou Navet Rutabaga",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[1, 2, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
+  {name:"Ciboulette Commune (civette)",cat:"Herbes",sow:[5],transplant:[],plant:[],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
+  {name:"Concombre Lemon",cat:"Concombres",sow:[3],transplant:[4],plant:[5],harvest:[7, 8, 9],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Concombre Long vert Maraîcher",cat:"Concombres",sow:[5],transplant:[6],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Coquelicot Sauvage",cat:"Fleurs",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:6},
+  {name:"Coqueret du Pérou",cat:"Autres",sow:[5],transplant:[6],plant:[7],harvest:[11, 12],needsTransplant:true,stt:4,ttp:3,pth:8,dth:null},
+  {name:"Coriandre",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:4,dth:null},
+  {name:"Cornichon Petit de Paris",cat:"Concombres",sow:[5],transplant:[6],plant:[6],harvest:[7, 9],needsTransplant:true,stt:3,ttp:2,pth:5,dth:null},
+  {name:"Courge Banana Blue",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courge Butternut",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courge Cyclanthère",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courge Éponge",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[8, 9, 10],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courge Moschata Tancheese",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courge Pâtisson",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courge Pâtisson Blanc",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Courgette Alberello di Sarzana",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette Black Beauty",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette blanche de Trieste",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette Bolognese",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette de Nice à fruit rond",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette Gold Ruch",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette Greyzini",cat:"Courgettes",sow:[4],transplant:[5],plant:[5],harvest:[7, 9],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette Grimpante Ola Escaladora",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette jaune daisy",cat:"Courgettes",sow:[],transplant:[],plant:[],harvest:[],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette Striato d'Italia",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Courgette verte non coureuse des maraichers",cat:"Courgettes",sow:[5],transplant:[6],plant:[6],harvest:[8, 10],needsTransplant:true,stt:3,ttp:2,pth:6,dth:null},
+  {name:"Épinard Fraise",cat:"Autres",sow:[5],transplant:[],plant:[],harvest:[8, 9, 10, 11],needsTransplant:false,stt:0,ttp:0,pth:0,dth:10},
+  {name:"Haricot Nain Autan",cat:"Légumineuses",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:false,stt:0,ttp:3,pth:8,dth:null},
+  {name:"Herbe à chat Cataire Citron",cat:"Herbes",sow:[5],transplant:[6],plant:[6],harvest:[7, 8, 9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:6,dth:null},
+  {name:"Laitue Batavia Goutte de Sang",cat:"Salades",sow:[3],transplant:[4],plant:[6],harvest:[7, 8, 9, 10, 11],needsTransplant:true,stt:4,ttp:0,pth:7,dth:null},
+  {name:"Laitue Pasquier",cat:"Salades",sow:[3],transplant:[4],plant:[6],harvest:[7, 8, 9, 10, 11],needsTransplant:true,stt:4,ttp:0,pth:7,dth:null},
+  {name:"Livèche",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:10,dth:null},
+  {name:"Melon Ancien Vieille France",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
+  {name:"Melon de Noël Honeydew",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
+  {name:"Melon Petit Gris de Rennes",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
+  {name:"Melon sucrin de Honfleur",cat:"Melons",sow:[5],transplant:[6],plant:[7],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:14,dth:null},
+  {name:"Navet De Milan à collet rose",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
+  {name:"Nigelle de Damas",cat:"Fleurs",sow:[5],transplant:[],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
+  {name:"Oeillets de Poète",cat:"Fleurs",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:6,dth:null},
+  {name:"Oignon Blanc de Lisbonne",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
+  {name:"Oignon Jaune de Mazé",cat:"Oignons",sow:[3],transplant:[5],plant:[4],harvest:[8, 9],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
+  {name:"Oignon jaune de Stuttgart",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
+  {name:"Oignon Jaune Dorata di Parma",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
+  {name:"Oignon Rouge de Genève",cat:"Oignons",sow:[3],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:10,ttp:4,pth:16,dth:null},
+  {name:"Panais demi-long de Guernesey",cat:"Légumes racines",sow:[5],transplant:[],plant:[],harvest:[1, 2, 12],needsTransplant:false,stt:0,ttp:0,pth:0,dth:20},
+  {name:"Pastèque Sugar Baby",cat:"Pastèques",sow:[3],transplant:[5],plant:[6],harvest:[9, 10],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Pastèque Sugar Baby vague 2",cat:"Pastèques",sow:[5],transplant:[6],plant:[7],harvest:[11, 12],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+  {name:"Persil Géant d'Italie",cat:"Herbes",sow:[5],transplant:[],plant:[6],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
+  {name:"Persil plat commun",cat:"Herbes",sow:[5],transplant:[],plant:[6],harvest:[7, 8, 9, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
+  {name:"Persil Tubéreux",cat:"Herbes",sow:[3],transplant:[],plant:[],harvest:[1, 2, 10, 11, 12],needsTransplant:false,stt:0,ttp:3,pth:6,dth:null},
+  {name:"Poireau d'Elbeuf Éléphant",cat:"Poireaux",sow:[2],transplant:[5],plant:[6],harvest:[1, 10, 11, 12],needsTransplant:true,stt:12,ttp:4,pth:18,dth:null},
+  {name:"Poireau Saint Victor",cat:"Poireaux",sow:[2],transplant:[5],plant:[6],harvest:[1, 10, 11, 12],needsTransplant:true,stt:12,ttp:4,pth:18,dth:null},
+  {name:"Poivron Chocolat",cat:"Poivrons",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:10,dth:null},
+  {name:"Poivron Yolo Wonder",cat:"Poivrons",sow:[5],transplant:[6],plant:[8],harvest:[11, 12],needsTransplant:true,stt:8,ttp:6,pth:10,dth:null},
+  {name:"Pomme de terre (mix)",cat:"Légumes racines",sow:[],transplant:[],plant:[3],harvest:[7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:12,dth:null},
+  {name:"Romarin officinal",cat:"Herbes",sow:[5],transplant:[7],plant:[8],harvest:[10, 11, 12],needsTransplant:true,stt:6,ttp:4,pth:8,dth:null},
+  {name:"Roquette",cat:"Autres",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:6},
+  {name:"Roquette sauvage",cat:"Autres",sow:[],transplant:[],plant:[],harvest:[],needsTransplant:false,stt:0,ttp:0,pth:0,dth:6},
+  {name:"Thé des jardins",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:4,ttp:3,pth:8,dth:null},
+  {name:"Thym de Provence",cat:"Herbes",sow:[5],transplant:[6],plant:[7],harvest:[8, 9, 10, 11, 12],needsTransplant:true,stt:4,ttp:3,pth:6,dth:null},
+  {name:"Tomate Ananas",cat:"Tomates",sow:[5],transplant:[6],plant:[8],harvest:[10, 11, 12],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Banana Legs",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Belle Bacchante",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Bonne Fée",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Buissonnante",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate cerise Miel du mexique",cat:"Tomates",sow:[5],transplant:[6],plant:[7],harvest:[9, 11],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Cœur de Bœuf Rouge",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Green Zebra",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Groseille Champagne",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Grosse Hâtive d'Orléans",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Noire de Crimée",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Tomate Royale des Guineaux",cat:"Tomates",sow:[2],transplant:[4],plant:[6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:6,ttp:5,pth:10,dth:null},
+  {name:"Trèfle incarnat",cat:"Légumineuses",sow:[5],transplant:[],plant:[],harvest:[7, 9],needsTransplant:false,stt:0,ttp:0,pth:0,dth:8},
+  {name:"Véritable Potimarron de Sainte-Marthe",cat:"Courges",sow:[4],transplant:[5],plant:[6],harvest:[9, 10, 11],needsTransplant:true,stt:4,ttp:3,pth:16,dth:null},
+];
+
+
+// ===== GARDEN TRACKER =====
+const GT_MONTHS = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+const GT_NOW = new Date();
+const GT_CUR_MONTH = GT_NOW.getMonth() + 1; // 1-12
+
+let gardenTracking = {}; // {varietyName: {sowDate, transplantDate, plantDate, godets, planted, notes}}
+let gtFilter = 'all';
+let gtAdminOpen = false;
+let gtModalVariety = null;
+
+// Charger depuis Blobs/localStorage
+async function loadGardenTracking() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=garden');
+    if (r.ok) {
+      gardenTracking = await r.json() || {};
+      localStorage.setItem('castelboun_garden', JSON.stringify(gardenTracking));
+      return;
+    }
+  } catch {}
+  try { gardenTracking = JSON.parse(localStorage.getItem('castelboun_garden') || '{}'); } catch {}
+}
+
+async function saveGardenTracking() {
+  localStorage.setItem('castelboun_garden', JSON.stringify(gardenTracking));
+  try {
+    await fetch('/.netlify/functions/data-api?type=garden', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ password: ADMIN_PASSWORD, data: gardenTracking })
+    });
+  } catch(e) { console.error('Garden save:', e); }
+}
+
+// Calculer les dates estimées à partir des dates réelles
+function computeDates(v, track) {
+  const t = track || {};
+  const cal = GARDEN_CALENDAR.find(c => c.name === v.name);
+  if (!cal) return {};
+
+  const w2m = weeks => Math.round(weeks / 4.3); // semaines → mois
+
+  let sowM = t.sowMonth || (cal.sow[0] || null);
+  let transM = t.transplantMonth || null;
+  let plantM = t.plantMonth || null;
+  let harvestMs = [];
+
+  // Si sow connu, calculer transplant estimé
+  if (sowM && !transM && cal.needsTransplant && cal.stt > 0) {
+    transM = Math.min(12, sowM + w2m(cal.stt));
+  }
+  // Si transplant connu, calculer plant estimé
+  if (transM && !plantM && cal.ttp > 0) {
+    plantM = Math.min(12, transM + w2m(cal.ttp));
+  }
+  // Si sow sans transplant (semis direct), calculer plant
+  if (sowM && !transM && !plantM && !cal.needsTransplant && cal.ttp === 0 && !cal.dth) {
+    plantM = sowM; // semis direct = plantation
+  }
+  // Calculer récolte
+  if (plantM && cal.pth) {
+    const h = Math.min(12, plantM + w2m(cal.pth));
+    harvestMs = [h, Math.min(12, h+1)];
+  } else if (sowM && cal.dth) {
+    const h = Math.min(12, sowM + w2m(cal.dth));
+    harvestMs = [h, Math.min(12, h+1)];
+  } else if (cal.harvest.length) {
+    harvestMs = cal.harvest;
+  }
+
+  return {
+    sowMonth: sowM,
+    transplantMonth: transM,
+    plantMonth: plantM,
+    harvestMonths: harvestMs,
+    actualSow: t.sowMonth,
+    actualTransplant: t.transplantMonth,
+    actualPlant: t.plantMonth,
+  };
+}
+
+// Filtrer les variétés selon le mois actuel
+function gtPassesFilter(v, dates) {
+  if (gtFilter === 'all') return true;
+  const m = GT_CUR_MONTH;
+  const t = gardenTracking[v.name] || {};
+  if (gtFilter === 'semer') {
+    const cal = GARDEN_CALENDAR.find(c => c.name === v.name);
+    return cal && cal.sow.includes(m) && !t.sowMonth;
+  }
+  if (gtFilter === 'repiquer') {
+    return dates.transplantMonth === m && t.sowMonth && !t.transplantMonth;
+  }
+  if (gtFilter === 'planter') {
+    return dates.plantMonth === m && !t.plantMonth;
+  }
+  if (gtFilter === 'recolter') {
+    return (dates.harvestMonths || []).includes(m);
+  }
+  return true;
+}
+
+// Rendu du tableau
+function renderGardenTable() {
+  const wrap = document.getElementById('gt-table-body');
+  if (!wrap) return;
+
+  const categories = [...new Set(GARDEN_CALENDAR.map(v => v.cat))].sort();
+  let html = '';
+
+  for (const cat of categories) {
+    const vars = GARDEN_CALENDAR.filter(v => v.cat === cat);
+    const filtered = vars.filter(v => {
+      const t = gardenTracking[v.name] || {};
+      const dates = computeDates(v, t);
+      return gtPassesFilter(v, dates);
+    });
+    if (!filtered.length) continue;
+
+    html += `<tr class="cat-row"><td colspan="15">${cat}</td></tr>`;
+
+    for (const v of filtered) {
+      const t = gardenTracking[v.name] || {};
+      const dates = computeDates(v, t);
+      const vData = window.VARIETIES?.find(x => x.name === v.name);
+
+      // Colonnes godet/planté
+      const godets = t.godets !== undefined ? t.godets : '';
+      const planted = t.planted !== undefined ? t.planted : '';
+
+      let rowHtml = `<td>
+        <span class="gt-variety-name"
+          data-variety="${v.name.replace(/"/g,'&quot;')}"
+          onmouseenter="gtShowTooltip(event,this)"
+          onmouseleave="gtHideTooltip()"
+          ${gtAdminOpen ? `onclick="gtOpenModal('${v.name.replace(/'/g,"\'")}')"` : ''}
+          style="${gtAdminOpen ? 'cursor:pointer;' : ''}"
+        >${v.name}</span>
+      </td>`;
+      rowHtml += `<td>${gtAdminOpen
+        ? `<input class="gt-num-input" type="number" min="0" value="${godets}" onchange="gtUpdateNum('${v.name.replace(/'/g,"\'")}',' godets',this.value)" placeholder="–">`
+        : (godets !== '' ? godets : '–')}</td>`;
+      rowHtml += `<td>${gtAdminOpen
+        ? `<input class="gt-num-input" type="number" min="0" value="${planted}" onchange="gtUpdateNum('${v.name.replace(/'/g,"\'")}',' planted',this.value)" placeholder="–">`
+        : (planted !== '' ? planted : '–')}</td>`;
+
+      // 12 mois
+      for (let m = 1; m <= 12; m++) {
+        const badges = [];
+        const isCurrentMonth = m === GT_CUR_MONTH;
+
+        if (dates.actualSow === m) badges.push('<span class="gt-badge gt-sa">🌱 Semé</span>');
+        else if (dates.sowMonth === m && !dates.actualSow) badges.push('<span class="gt-badge gt-s">🌱 Semis</span>');
+
+        if (dates.actualTransplant === m) badges.push('<span class="gt-badge gt-ta">🌿 Repiqué</span>');
+        else if (dates.transplantMonth === m && !dates.actualTransplant) badges.push('<span class="gt-badge gt-t">🌿 Repic.</span>');
+
+        if (dates.actualPlant === m) badges.push('<span class="gt-badge gt-pa">🌳 Planté</span>');
+        else if (dates.plantMonth === m && !dates.actualPlant) badges.push('<span class="gt-badge gt-p">🌳 Plant.</span>');
+
+        if ((dates.harvestMonths || []).includes(m)) badges.push('<span class="gt-badge gt-r">🍂 Récolte</span>');
+
+        rowHtml += `<td class="gt-cell" style="${isCurrentMonth ? 'background:#fff8e1;' : ''}">${badges.join('<br>')}</td>`;
+      }
+
+      html += `<tr>${rowHtml}</tr>`;
+    }
+  }
+
+  wrap.innerHTML = html;
+}
+
+// Tooltip
+function gtShowTooltip(e, el) {
+  const name = el.dataset.variety;
+  const vData = window.VARIETIES?.find(x => x.name === name);
+  const cal = GARDEN_CALENDAR.find(c => c.name === name);
+  const t = gardenTracking[name] || {};
+  const tooltip = document.getElementById('gt-tooltip');
+  if (!tooltip) return;
+
+  const months = (arr) => arr.map(m => GT_MONTHS[m-1]).join(', ');
+
+  let content = `<div class="tt-name">${name}</div>`;
+  if (vData) {
+    if (vData.family) content += `<div class="tt-row"><span class="tt-label">Famille</span><span class="tt-val">${vData.family}</span></div>`;
+    if (vData.water) content += `<div class="tt-row"><span class="tt-label">Arrosage</span><span class="tt-val">${vData.water}</span></div>`;
+    if (vData.spacing) content += `<div class="tt-row"><span class="tt-label">Espacement</span><span class="tt-val">${vData.spacing}</span></div>`;
+    if (vData.companions) content += `<div class="tt-row"><span class="tt-label">Comp.</span><span class="tt-val">${vData.companions}</span></div>`;
+    if (vData.diseases) content += `<div class="tt-row"><span class="tt-label">Maladies</span><span class="tt-val">${vData.diseases}</span></div>`;
+  }
+  if (cal) {
+    if (cal.sow.length) content += `<div class="tt-row"><span class="tt-label">Semis</span><span class="tt-val">${months(cal.sow)}</span></div>`;
+    if (cal.needsTransplant && cal.transplant.length) content += `<div class="tt-row"><span class="tt-label">Repiquage</span><span class="tt-val">${months(cal.transplant)}</span></div>`;
+    if (cal.plant.length) content += `<div class="tt-row"><span class="tt-label">Plantation</span><span class="tt-val">${months(cal.plant)}</span></div>`;
+    if (cal.harvest.length) content += `<div class="tt-row"><span class="tt-label">Récolte</span><span class="tt-val">${months(cal.harvest)}</span></div>`;
+  }
+  if (t.godets || t.planted) {
+    content += `<div class="tt-row"><span class="tt-label">En godets</span><span class="tt-val">${t.godets||'–'}</span></div>`;
+    content += `<div class="tt-row"><span class="tt-label">Plantés</span><span class="tt-val">${t.planted||'–'}</span></div>`;
+  }
+
+  tooltip.innerHTML = content;
+  tooltip.style.display = 'block';
+  // Position
+  const x = Math.min(e.clientX + 14, window.innerWidth - 300);
+  const y = Math.min(e.clientY + 14, window.innerHeight - 200);
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+function gtHideTooltip() {
+  const t = document.getElementById('gt-tooltip');
+  if (t) t.style.display = 'none';
+}
+
+// Modal saisie
+function gtOpenModal(name) {
+  gtModalVariety = name;
+  const t = gardenTracking[name] || {};
+  const cal = GARDEN_CALENDAR.find(c => c.name === name);
+  const modal = document.getElementById('gt-modal');
+  document.getElementById('gt-modal-title').textContent = name;
+  const months = GT_MONTHS.map((m,i) => `<option value="${i+1}" ${(t.sowMonth===i+1)?'selected':''}>${m}</option>`).join('');
+
+  let body = `
+    <div style="margin-bottom:12px;">
+      <p style="font-size:12px;color:#9c8a6a;margin:0 0 10px;">Sélectionnez les étapes réalisées :</p>
+      <div class="gt-step-btns">
+        <div class="gt-step-btn ${t.sowMonth?'gt-step-sa':''}" onclick="gtToggleStep(this,'sow')">
+          🌱 Semé<br>
+          <select class="gt-num-input" id="gt-sow-month" style="margin-top:4px;width:80px;" onclick="event.stopPropagation()">
+            <option value="">Mois?</option>${months}
+          </select>
+        </div>
+        ${cal?.needsTransplant ? `<div class="gt-step-btn ${t.transplantMonth?'gt-step-ta':''}" onclick="gtToggleStep(this,'transplant')">
+          🌿 Repiqué<br>
+          <select class="gt-num-input" id="gt-transplant-month" style="margin-top:4px;width:80px;" onclick="event.stopPropagation()">
+            <option value="">Mois?</option>${GT_MONTHS.map((m,i) => `<option value="${i+1}" ${(t.transplantMonth===i+1)?'selected':''}>${m}</option>`).join('')}
+          </select>
+        </div>` : '<div></div>'}
+        <div class="gt-step-btn ${t.plantMonth?'gt-step-pa':''}" onclick="gtToggleStep(this,'plant')">
+          🌳 Planté<br>
+          <select class="gt-num-input" id="gt-plant-month" style="margin-top:4px;width:80px;" onclick="event.stopPropagation()">
+            <option value="">Mois?</option>${GT_MONTHS.map((m,i) => `<option value="${i+1}" ${(t.plantMonth===i+1)?'selected':''}>${m}</option>`).join('')}
+          </select>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:8px;border:2px solid var(--line);border-radius:8px;font-size:12px;font-weight:600;">
+          <span>📦 Plants</span>
+          <label style="font-weight:400;">Godets <input class="gt-num-input" id="gt-godets" type="number" value="${t.godets||''}" style="width:50px;" min="0"></label>
+          <label style="font-weight:400;">Plantés <input class="gt-num-input" id="gt-planted" type="number" value="${t.planted||''}" style="width:50px;" min="0"></label>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('gt-modal-body').innerHTML = body;
+  modal.classList.add('open');
+}
+
+function gtToggleStep(el, step) { el.classList.toggle('active'); }
+
+function gtCloseModal() {
+  document.getElementById('gt-modal').classList.remove('open');
+  gtModalVariety = null;
+}
+
+function gtClearSteps() {
+  if (!gtModalVariety) return;
+  delete gardenTracking[gtModalVariety];
+  saveGardenTracking();
+  renderGardenTable();
+  gtCloseModal();
+}
+
+function gtSaveModal() {
+  if (!gtModalVariety) return;
+  const t = gardenTracking[gtModalVariety] || {};
+  const sowM = parseInt(document.getElementById('gt-sow-month')?.value) || null;
+  const transM = parseInt(document.getElementById('gt-transplant-month')?.value) || null;
+  const plantM = parseInt(document.getElementById('gt-plant-month')?.value) || null;
+  const godets = parseInt(document.getElementById('gt-godets')?.value) || null;
+  const planted = parseInt(document.getElementById('gt-planted')?.value) || null;
+
+  gardenTracking[gtModalVariety] = {
+    ...t,
+    sowMonth: sowM,
+    transplantMonth: transM,
+    plantMonth: plantM,
+    godets: godets,
+    planted: planted,
+  };
+  // Nettoyer les null
+  Object.keys(gardenTracking[gtModalVariety]).forEach(k => {
+    if (gardenTracking[gtModalVariety][k] === null) delete gardenTracking[gtModalVariety][k];
+  });
+  if (!Object.keys(gardenTracking[gtModalVariety]).length) delete gardenTracking[gtModalVariety];
+
+  saveGardenTracking();
+  renderGardenTable();
+  gtCloseModal();
+}
+
+function gtUpdateNum(name, field, val) {
+  if (!gardenTracking[name]) gardenTracking[name] = {};
+  const n = parseInt(val);
+  if (!isNaN(n) && n >= 0) gardenTracking[name][field.trim()] = n;
+  else delete gardenTracking[name][field.trim()];
+  if (!Object.keys(gardenTracking[name]).length) delete gardenTracking[name];
+  saveGardenTracking();
+}
+
+// Filtres
+document.querySelectorAll('.gt-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gt-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    gtFilter = btn.dataset.filter;
+    renderGardenTable();
+  });
+});
+
+// Bouton admin jardin
+document.getElementById('garden-admin-btn')?.addEventListener('click', () => {
+  gtAdminOpen = !gtAdminOpen;
+  const btn = document.getElementById('garden-admin-btn');
+  btn.textContent = gtAdminOpen ? '🔓 Mode admin actif' : '⚙ Gérer mon jardin';
+  btn.style.opacity = gtAdminOpen ? '1' : '0.5';
+  btn.style.color = gtAdminOpen ? 'var(--clay)' : '';
+  renderGardenTable();
+});
+
+// Charger et afficher
+loadGardenTracking().then(() => renderGardenTable());
+
+// Fermer modal sur clic extérieur
+document.getElementById('gt-modal')?.addEventListener('click', e => {
+  if (e.target.id === 'gt-modal') gtCloseModal();
+});
+
+
+// Toggle vue checklist / tableau jardin
+document.getElementById('garden-admin-btn')?.addEventListener('click', function() {
+  const gt = document.getElementById('gt-section');
+  const cl = document.getElementById('checklist-section');
+  const isOpen = gt && gt.style.display !== 'none';
+  if (gt) gt.style.display = isOpen ? 'none' : '';
+  if (cl) cl.style.display = isOpen ? '' : 'none';
+  this.textContent = isOpen ? '⚙ Gérer mon jardin' : '✕ Fermer le tableau';
+  this.style.opacity = isOpen ? '0.5' : '1';
+  this.style.color = isOpen ? '' : 'var(--clay)';
+}, true); // capture phase pour override le listener garden_tracker
 
 </script>
 </body>
