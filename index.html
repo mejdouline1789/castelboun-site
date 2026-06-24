@@ -155,11 +155,8 @@
   .gt-table tr.gt-data-row:hover td:first-child { background:#fdf4ed; }
   .gt-table .gt-cat-row td { background:var(--cream); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--clay); padding:5px 10px; }
   .gt-cell { text-align:center; min-width:52px; position:relative; }
-  .gt-cur-month td { background:#fffbeb !important; }
-  .gt-cur-month td:first-child { background:#fffbeb !important; }
-
-  /* Badges */
-  .gt-badge { display:inline-flex; align-items:center; justify-content:center; border-radius:4px; padding:2px 5px; font-size:10px; font-weight:700; line-height:1.3; white-space:nowrap; }
+  .gt-cur-month { background:#fffbeb !important; }
+  .gt-badge { display:inline-flex; align-items:center; border-radius:4px; padding:2px 5px; font-size:10px; font-weight:700; line-height:1.3; white-space:nowrap; }
   .gt-badge.btn { cursor:pointer; }
   .gt-badge.btn:hover { filter:brightness(.9); }
   .gt-s  { background:#d1fae5; color:#065f46; border:1px solid #6ee7b7; }
@@ -170,8 +167,6 @@
   .gt-ta { background:#d97706; color:white; border:1px solid #b45309; }
   .gt-pa { background:#ea580c; color:white; border:1px solid #c2410c; }
   .gt-lost { background:#fef2f2; color:#991b1b; border:1px solid #fca5a5; }
-
-  /* Popover */
   .gt-pop { position:absolute; z-index:600; background:white; border:1.5px solid var(--line); border-radius:10px;
     box-shadow:0 8px 24px rgba(0,0,0,.2); padding:10px 12px; min-width:175px; top:calc(100% + 4px); left:50%; transform:translateX(-50%); }
   .gt-pop h5 { font-size:11px; font-weight:700; color:var(--clay); margin:0 0 8px; }
@@ -182,41 +177,28 @@
   .gt-pop-del { background:#fed7aa; color:#7c2d12; }
   .gt-pop-x   { background:var(--line); color:var(--ink); }
   .gt-pop-lost { width:100%; padding:5px 8px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; border:1.5px solid #fca5a5; background:#fef2f2; color:#991b1b; text-align:left; }
-
-  /* Num inputs */
   .gt-ni { width:44px; border:1.5px solid var(--line); border-radius:5px; padding:3px 4px; text-align:center; font-size:12px; background:var(--cream); }
   .gt-ni:focus { outline:none; border-color:var(--clay); }
-
-  /* Nom variété cliquable */
   .gt-name { cursor:pointer; }
   .gt-name:hover { color:var(--clay); text-decoration:underline dotted; }
   .gt-name.plan-sel { color:var(--clay); font-weight:700; }
-
-  /* Accordéon */
   .gt-acc { display:none; font-size:12px; font-weight:400; line-height:1.7; padding:8px 0 4px; border-top:1px solid var(--line); margin-top:4px; }
   .gt-acc.open { display:block; }
   .gt-acc-grid { display:grid; grid-template-columns:auto 1fr; gap:2px 10px; align-items:start; }
   .gt-acc-grid .lbl { color:#9c8a6a; white-space:nowrap; }
   .gt-acc img { width:110px; height:110px; object-fit:cover; border-radius:8px; float:right; margin:0 0 6px 10px; }
-
-  /* Tooltip */
   .gt-tooltip { display:none; position:fixed; z-index:1000; background:#1e293b; color:#f1f5f9; border-radius:10px;
     padding:10px 13px; font-size:12px; line-height:1.7; box-shadow:0 8px 32px rgba(0,0,0,.35); max-width:280px; pointer-events:none; }
   .gt-tooltip .tn { font-weight:700; font-size:13px; color:white; margin-bottom:5px; border-bottom:1px solid rgba(255,255,255,.2); padding-bottom:4px; }
   .gt-tooltip .tr { display:flex; justify-content:space-between; gap:10px; }
   .gt-tooltip .tl { color:#94a3b8; }
-
-  /* Filtres */
   .gt-filters { display:flex; gap:6px; flex-wrap:wrap; }
-  .gt-fb { padding:5px 12px; border-radius:18px; border:1.5px solid var(--line); background:var(--card); font-size:11px; font-weight:700; cursor:pointer; color:var(--ink); transition:all .15s; }
-  .gt-fb:hover { border-color:var(--clay); }
+  .gt-fb { padding:5px 12px; border-radius:18px; border:1.5px solid var(--line); background:var(--card); font-size:11px; font-weight:700; cursor:pointer; color:var(--ink); }
   .gt-fb.on { background:var(--clay); color:white; border-color:var(--clay); }
   .gt-fb.fs.on { background:#059669; border-color:#059669; }
   .gt-fb.ft.on { background:#d97706; border-color:#d97706; }
   .gt-fb.fp.on { background:#ea580c; border-color:#ea580c; }
   .gt-fb.fr.on { background:#db2777; border-color:#db2777; }
-
-  /* Formulaire ajout variété */
   .gt-av-form { display:none; background:var(--cream); border-radius:10px; border:1.5px solid var(--line); padding:14px; margin-top:10px; }
   .gt-av-form.open { display:block; }
   .gt-av-form h4 { font-size:13px; font-weight:700; color:var(--clay); margin:0 0 10px; }
@@ -1094,42 +1076,76 @@
 <circle cx="545.6" cy="127.8" r="5" fill="#9ecf4a" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Concombre Lemon &middot; 14 pieds &middot; entre rangs (bordure/limite) ~0,5 m x entre pieds 0,8 m &middot; Plantee sur la bande paillee qui longe la bordure : reduit la concurrence avec les planches et profite du paillage contre les adventices."/>
 </g>
 <g id="mandala-band1-new" class="band-new">
-<circle id="mandala-band1-tomate-1" cx="558.6" cy="144.8" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (1/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-2" cx="573.4" cy="147.6" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (2/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-3" cx="588.0" cy="150.9" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (3/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-4" cx="602.4" cy="154.9" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (4/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-5" cx="616.7" cy="159.4" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (5/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-6" cx="630.8" cy="164.6" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (6/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-7" cx="644.7" cy="170.3" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (7/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-8" cx="658.3" cy="176.7" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (8/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-9" cx="671.6" cy="183.5" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (9/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-10" cx="684.6" cy="191.0" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (10/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-11" cx="697.4" cy="198.9" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (11/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-tomate-12" cx="709.7" cy="207.4" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (12/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
-<circle id="mandala-band1-aubergine-1" cx="720.5" cy="215.5" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (1/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-2" cx="731.1" cy="223.9" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (2/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-3" cx="741.2" cy="232.8" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (3/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-4" cx="751.1" cy="242.0" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (4/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-5" cx="760.6" cy="251.6" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (5/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-6" cx="769.7" cy="261.6" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (6/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-7" cx="778.5" cy="271.8" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (7/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-8" cx="786.8" cy="282.4" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (8/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-9" cx="794.8" cy="293.3" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (9/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
-<circle id="mandala-band1-aubergine-10" cx="802.3" cy="304.5" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (10/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="558.6" cy="144.8" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-1" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (1/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="558.6" cy="144.8" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (1/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="573.4" cy="147.6" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-2" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (2/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="573.4" cy="147.6" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (2/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="588.0" cy="150.9" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-3" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (3/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="588.0" cy="150.9" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (3/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="602.4" cy="154.9" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-4" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (4/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="602.4" cy="154.9" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (4/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="616.7" cy="159.4" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-5" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (5/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="616.7" cy="159.4" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (5/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="630.8" cy="164.6" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-6" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (6/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="630.8" cy="164.6" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (6/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="644.7" cy="170.3" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-7" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (7/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="644.7" cy="170.3" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (7/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="658.3" cy="176.7" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-8" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (8/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="658.3" cy="176.7" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (8/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="671.6" cy="183.5" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-9" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (9/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="671.6" cy="183.5" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (9/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="684.6" cy="191.0" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-10" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (10/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="684.6" cy="191.0" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (10/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="697.4" cy="198.9" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-11" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (11/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="697.4" cy="198.9" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (11/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="709.7" cy="207.4" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-tomate-12" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (12/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="709.7" cy="207.4" r="5" fill="#e0744a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Tomate ananas &middot; entre rangs ~0,5 m x entre pieds 0.5 m &middot; (12/12) &middot; Continue la bande paillee apres les courges existantes : profite du meme paillage anti-adventices, a l'ecart des planches de PDT."/>
+<circle cx="720.5" cy="215.5" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-1" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (1/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="720.5" cy="215.5" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (1/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="731.1" cy="223.9" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-2" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (2/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="731.1" cy="223.9" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (2/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="741.2" cy="232.8" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-3" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (3/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="741.2" cy="232.8" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (3/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="751.1" cy="242.0" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-4" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (4/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="751.1" cy="242.0" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (4/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="760.6" cy="251.6" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-5" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (5/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="760.6" cy="251.6" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (5/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="769.7" cy="261.6" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-6" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (6/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="769.7" cy="261.6" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (6/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="778.5" cy="271.8" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-7" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (7/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="778.5" cy="271.8" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (7/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="786.8" cy="282.4" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-8" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (8/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="786.8" cy="282.4" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (8/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="794.8" cy="293.3" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-9" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (9/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="794.8" cy="293.3" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (9/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="802.3" cy="304.5" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band1-aubergine-10" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (10/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
+<circle cx="802.3" cy="304.5" r="5" fill="#5b3a78" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Aubergine (surplus) &middot; entre rangs ~0,5 m x entre pieds 0.45 m &middot; (10/10) &middot; 27 pieds ne tiennent pas sur 2 planches : le surplus rejoint la bande paillee, en bout de bande pour limiter le contact avec les autres Solanacees."/>
 </g>
 <g id="mandala-band2-new" class="band-new">
-<circle id="mandala-band2-concombre-1" cx="606.1" cy="844.0" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (1/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-2" cx="590.2" cy="848.5" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (2/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-3" cx="574.2" cy="852.3" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (3/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-4" cx="558.0" cy="855.3" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (4/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-5" cx="541.6" cy="857.6" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (5/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-6" cx="525.2" cy="859.1" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (6/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-7" cx="508.7" cy="859.9" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (7/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-8" cx="492.2" cy="859.9" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (8/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-9" cx="475.7" cy="859.2" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (9/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-10" cx="459.3" cy="857.7" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (10/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-11" cx="443.0" cy="855.5" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (11/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
-<circle id="mandala-band2-concombre-12" cx="426.7" cy="852.5" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (12/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="606.1" cy="844.0" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-1" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (1/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="606.1" cy="844.0" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (1/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="590.2" cy="848.5" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-2" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (2/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="590.2" cy="848.5" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (2/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="574.2" cy="852.3" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-3" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (3/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="574.2" cy="852.3" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (3/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="558.0" cy="855.3" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-4" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (4/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="558.0" cy="855.3" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (4/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="541.6" cy="857.6" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-5" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (5/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="541.6" cy="857.6" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (5/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="525.2" cy="859.1" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-6" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (6/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="525.2" cy="859.1" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (6/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="508.7" cy="859.9" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-7" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (7/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="508.7" cy="859.9" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (7/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="492.2" cy="859.9" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-8" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (8/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="492.2" cy="859.9" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (8/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="475.7" cy="859.2" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-9" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (9/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="475.7" cy="859.2" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (9/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="459.3" cy="857.7" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-10" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (10/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="459.3" cy="857.7" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (10/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="443.0" cy="855.5" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-11" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (11/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="443.0" cy="855.5" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (11/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="426.7" cy="852.5" r="12" fill="transparent" style="cursor:pointer" class="hoverable recommended-pt" id="mandala-band2-concombre-12" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (12/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
+<circle cx="426.7" cy="852.5" r="5" fill="#7fae3a" stroke="#2f3b2a" stroke-width="1" class="hoverable recommended-pt-dot" pointer-events="none" data-tip="Concombre long maraichers &middot; entre rangs ~0,5 m x entre pieds 0,55 m &middot; (12/12) &middot; Bande desormais entierement libre (corrigee fin pl.17 a deb. pl.20) : cucurbitacee a l'ecart des aubergines et poivrons voisins."/>
 </g>
 <g id="mandala-serre" class="hoverable" data-tip="Serre 6x3 m &middot; Tomates &middot; 44 pieds (complete)">
 <polygon points="736.9,804.3 849.2,663.6 778.9,607.5 666.6,748.1" fill="#2bbfa0" fill-opacity="0.75" stroke="#1b6f5c" stroke-width="2"/>
@@ -1516,9 +1532,8 @@
     <!-- TABLEAU DE SUIVI — vue principale -->
     
 <div class="gt-tooltip" id="gt-tooltip"></div>
-
 <div class="gt-av-form" id="gt-av-form">
-  <h4>➕ Ajouter une variété</h4>
+  <h4>Ajouter une variété</h4>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
     <div><label>Nom *</label><input type="text" id="av-name" placeholder="Ex: Radis Rose de Chine"></div>
     <div><label>Catégorie</label>
@@ -1532,11 +1547,10 @@
     <div><label>Plantation (mois)</label><div class="gt-mth-cbs" id="av-pla"></div></div>
     <div><label>Récolte (mois)</label><div class="gt-mth-cbs" id="av-har"></div></div>
     <div><label>Semis→Repiquage (sem.)</label><input type="number" id="av-stt" value="4" min="0"></div>
-    <div><label>Repiquage→Plantation (sem.)</label><input type="number" id="av-ttp" value="3" min="0"></div>
     <div><label>Plantation→Récolte (sem.)</label><input type="number" id="av-pth" value="8" min="0"></div>
   </div>
   <div style="display:flex;gap:8px;margin-top:10px;">
-    <button onclick="gtAddVariety()" style="background:var(--clay);color:white;border:none;border-radius:7px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">✓ Ajouter</button>
+    <button onclick="gtAddVariety()" style="background:var(--clay);color:white;border:none;border-radius:7px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">Ajouter</button>
     <button onclick="document.getElementById('gt-av-form').classList.remove('open')" style="background:var(--line);border:none;border-radius:7px;padding:8px 16px;font-size:12px;cursor:pointer;">Annuler</button>
   </div>
 </div>
@@ -2209,14 +2223,12 @@ function toggleVariety(v, rowEl) {
   }
   syncRowStates();
   renderAll();
-  // Synchroniser avec le tableau de suivi du jardin (mapping des noms)
+  // Synchroniser avec le tableau de suivi du jardin
   if (typeof gtSelectedFromPlan !== 'undefined') {
     gtSelectedFromPlan = new Set();
     for (const [varName] of selected) {
-      // Mapper le nom VARIETIES → nom GARDEN_CALENDAR
-      const calName = (typeof gtVarToCalMap !== 'undefined' && gtVarToCalMap[varName]) || varName;
-      gtSelectedFromPlan.add(calName);
-      gtSelectedFromPlan.add(varName); // ajouter les 2 pour couvrir les cas
+      const calNames = typeof varToCalNames === 'function' ? varToCalNames(varName) : [varName];
+      calNames.forEach(n => gtSelectedFromPlan.add(n));
     }
     if (typeof renderGardenTable === 'function') renderGardenTable();
   }
@@ -2265,9 +2277,8 @@ Object.keys(locMap).forEach(id => {
     if (typeof gtSelectedFromPlan !== 'undefined') {
       gtSelectedFromPlan = new Set();
       for (const [varName] of selected) {
-        const calName = (typeof gtVarToCalMap !== 'undefined' && gtVarToCalMap[varName]) || varName;
-        gtSelectedFromPlan.add(calName);
-        gtSelectedFromPlan.add(varName);
+        const calNames = typeof varToCalNames === 'function' ? varToCalNames(varName) : [varName];
+        calNames.forEach(n => gtSelectedFromPlan.add(n));
       }
       if (typeof renderGardenTable === 'function') renderGardenTable();
     }
@@ -4171,27 +4182,91 @@ const GARDEN_CALENDAR = [
 ];
 
 
-// ===== DONNÉES CONNUES =====
-const GT_KNOWN_COUNTS = {
-  "Tomate Groseille Champagne":{planted:5}, "Tomate Noire de Crimée":{planted:4},
-  "Tomate Banana Legs":{planted:3}, "Tomate Green Zebra":{planted:6},
-  "Tomate Buissonnante":{planted:5}, "Tomate Cœur de Bœuf Rouge":{planted:4},
-  "Tomate Grosse Hâtive d'Orléans":{planted:1}, "Tomate Belle Bacchante":{planted:4},
-  "Tomate Royale des Guineaux":{planted:12}, "Tomate Ananas":{godets:12},
-  "Panais demi-long de Guernesey":{godets:5}, "Céleri Vert à couper":{godets:12},
-  "Céleri-branche Tall Utah":{godets:8}, "Betterave rouge Crapaudine":{godets:12},
-  "Navet De Milan à collet rose":{godets:10}, "Poivron Chocolat":{godets:6},
-  "Poivron Yolo Wonder":{godets:8}, "Aubergine de Barbantane":{godets:10},
-  "Aubergine Blanche Ronde à Œufs":{godets:8}, "Courgette Black Beauty":{planted:1},
-  "Courgette blanche de Trieste":{planted:1}, "Courgette Gold Ruch":{planted:1},
-  "Courgette Alberello di Sarzana":{planted:1}, "Courgette verte non coureuse des maraichers":{planted:1},
-  "Courgette Grimpante Ola Escaladora":{planted:1}, "Courgette Striato d'Italia":{planted:1},
-  "Courgette Bolognese":{planted:1}, "Courgette de Nice à fruit rond":{planted:1},
-  "Cornichon Petit de Paris":{godets:5}, "Concombre Long vert Maraîcher":{godets:12},
-  "Melon Petit Gris de Rennes":{godets:12}, "Melon de Noël Honeydew":{godets:12},
-  "Melon sucrin de Honfleur":{godets:12}, "Melon Ancien Vieille France":{godets:12},
+// ===== CORRESPONDANCE VARIETIES → GARDEN_CALENDAR (explicite, one-to-many) =====
+const GT_VAR_TO_CAL = {
+  "Tomate Groseille champagne":["Tomate Groseille Champagne"],
+  "Tomate Noir de Crimee":["Tomate Noire de Crimée"],
+  "Tomate Banana Leg":["Tomate Banana Legs"],
+  "Tomate Green Zebra":["Tomate Green Zebra"],
+  "Tomate Buissonnante":["Tomate Buissonnante"],
+  "Tomate Coeur de boeuf":["Tomate Cœur de Bœuf Rouge"],
+  "Tomate Grosse hative d'Orleans":["Tomate Grosse Hâtive d'Orléans"],
+  "Tomate Belle Bacchante":["Tomate Belle Bacchante"],
+  "Tomate Royal des guineaux":["Tomate Royale des Guineaux"],
+  "Tomates ananas":["Tomate Ananas"],
+  "Carottes (godets)":["Carotte de Carentan"],
+  "Carotte De Colmar a coeur rouge":["Carotte de Carentan"],
+  "Carotte Touchon":["Carotte de Carentan"],
+  "Carotte Nantaise 2":["Carotte de Carentan"],
+  "Carotte rouge sang":["Carotte de Carentan"],
+  "Carotte Kuttinger":["Carotte de Carentan"],
+  "Panais de Guernesey":["Panais demi-long de Guernesey"],
+  "Betteraves":["Betterave rouge Crapaudine"],
+  "Navets de Milan":["Navet De Milan à collet rose"],
+  "Chou navet (rutabaga)":["Chou Navet Rutabaga"],
+  "Celeri rave a couper":["Céleri Vert à couper"],
+  "Celeri branche Tell Utah":["Céleri-branche Tall Utah"],
+  "Oignons":["Oignon Blanc de Lisbonne","Oignon Jaune de Mazé","Oignon jaune de Stuttgart","Oignon Jaune Dorata di Parma","Oignon Rouge de Genève"],
+  "Poireaux (lot mandala)":["Poireau d'Elbeuf Éléphant","Poireau Saint Victor"],
+  "Poireaux (surplus)":["Poireau d'Elbeuf Éléphant","Poireau Saint Victor"],
+  "Poivron Chocolat":["Poivron Chocolat"],
+  "Poivron Yellow Wonder":["Poivron Yolo Wonder"],
+  "Aubergine Barbatane":["Aubergine de Barbantane"],
+  "Aubergine Blanche ronde":["Aubergine Blanche Ronde à Œufs"],
+  "Aubergines (surplus)":["Aubergine de Barbantane","Aubergine Blanche Ronde à Œufs"],
+  "Courgette Greyzini":["Courgette Greyzini"],
+  "Courgette Blanche de Trieste":["Courgette blanche de Trieste"],
+  "Courgette Gold Rush":["Courgette Gold Ruch"],
+  "Courgette Alberello di Sarzana":["Courgette Alberello di Sarzana"],
+  "Courgette verte non coureuse des maraichers":["Courgette verte non coureuse des maraichers"],
+  "Courgette Grimpante Ola Escaladora":["Courgette Grimpante Ola Escaladora"],
+  "Courgette Striato d'Italia":["Courgette Striato d'Italia"],
+  "Courgette Bolognese":["Courgette Bolognese"],
+  "Courgette Jaune Daisy":["Courgette jaune daisy"],
+  "Courgette Black Beauty":["Courgette Black Beauty"],
+  "Courgette de Nice a fruit rond":["Courgette de Nice à fruit rond"],
+  "Cornichon Petit de Paris":["Cornichon Petit de Paris"],
+  "Concombre long maraichers":["Concombre Long vert Maraîcher"],
+  "Melon petit gris de Rennes":["Melon Petit Gris de Rennes"],
+  "Melon de Noel":["Melon de Noël Honeydew"],
+  "Melon sucrine de Honfleur":["Melon sucrin de Honfleur"],
+  "Melon vieille France":["Melon Ancien Vieille France"],
+  "Chicoree scarole":["Chicorée Scarole"],
+  "Epinard fraise":["Épinard Fraise"],
+  "Roquette":["Roquette"],
+  "Roquette sauvage":["Roquette sauvage"],
+  "Blette Rhubarb Chard":[],
 };
+// Table inverse : GARDEN_CALENDAR name → liste de VARIETIES names
+const GT_CAL_TO_VAR = {};
+Object.entries(GT_VAR_TO_CAL).forEach(([vn, cns]) => {
+  cns.forEach(cn => { if (!GT_CAL_TO_VAR[cn]) GT_CAL_TO_VAR[cn] = []; GT_CAL_TO_VAR[cn].push(vn); });
+});
+// Retourner les noms GARDEN_CALENDAR pour un nom VARIETIES
+function varToCalNames(varName) { return GT_VAR_TO_CAL[varName] || [varName]; }
+// no-op (anciennement buildNameMaps)
+function buildNameMaps() {}
 
+// ===== DONNÉES PRÉ-REMPLIES =====
+const GT_KNOWN_COUNTS = {
+  "Tomate Groseille Champagne":{planted:5},"Tomate Noire de Crimée":{planted:4},
+  "Tomate Banana Legs":{planted:3},"Tomate Green Zebra":{planted:6},
+  "Tomate Buissonnante":{planted:5},"Tomate Cœur de Bœuf Rouge":{planted:4},
+  "Tomate Grosse Hâtive d'Orléans":{planted:1},"Tomate Belle Bacchante":{planted:4},
+  "Tomate Royale des Guineaux":{planted:12},"Tomate Ananas":{godets:12},
+  "Panais demi-long de Guernesey":{godets:5},"Céleri Vert à couper":{godets:12},
+  "Céleri-branche Tall Utah":{godets:8},"Betterave rouge Crapaudine":{godets:12},
+  "Navet De Milan à collet rose":{godets:10},"Poivron Chocolat":{godets:6},
+  "Poivron Yolo Wonder":{godets:8},"Aubergine de Barbantane":{godets:10},
+  "Aubergine Blanche Ronde à Œufs":{godets:8},"Courgette Black Beauty":{planted:1},
+  "Courgette blanche de Trieste":{planted:1},"Courgette Gold Ruch":{planted:1},
+  "Courgette Alberello di Sarzana":{planted:1},"Courgette verte non coureuse des maraichers":{planted:1},
+  "Courgette Grimpante Ola Escaladora":{planted:1},"Courgette Striato d'Italia":{planted:1},
+  "Courgette Bolognese":{planted:1},"Courgette de Nice à fruit rond":{planted:1},
+  "Cornichon Petit de Paris":{godets:5},"Concombre Long vert Maraîcher":{godets:12},
+  "Melon Petit Gris de Rennes":{godets:12},"Melon de Noël Honeydew":{godets:12},
+  "Melon sucrin de Honfleur":{godets:12},"Melon Ancien Vieille France":{godets:12},
+};
 const GT_KNOWN_STAGES = {
   "Tomate Banana Legs":{sowMonth:2,transplantMonth:4,plantMonth:6},
   "Tomate Belle Bacchante":{sowMonth:2,transplantMonth:4,plantMonth:6},
@@ -4260,56 +4335,10 @@ const GT_KNOWN_STAGES = {
 
 // ===== ÉTAT =====
 const GT_MONTHS = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
-const GT_CUR = new Date().getMonth() + 1; // 1-12
-
-let gardenTracking = {};
-let gardenCustom = [];
-let gtAdminMode = false;
-let gtFilter = 'all';
-let gtSearch = '';
-let gtOpenPop = null;
-let gtOpenAccs = new Set();
+const GT_CUR = new Date().getMonth() + 1;
+let gardenTracking = {}, gardenCustom = [], gtAdminMode = false;
+let gtFilter = 'all', gtSearch = '', gtOpenPop = null, gtOpenAccs = new Set();
 let gtSelectedFromPlan = new Set();
-
-// Normalisation de nom pour correspondance floue
-function normName(n) {
-  return (n||'').toLowerCase()
-    .replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[îï]/g,'i')
-    .replace(/[ôö]/g,'o').replace(/[ùûü]/g,'u').replace(/[ç]/g,'c')
-    .replace(/[^a-z0-9 ]/g,' ').replace(/[ ]+/g,' ').trim();
-}
-
-// Table de correspondance : VARIETIES name → GARDEN_CALENDAR name (construit au chargement)
-let gtVarToCalMap = {}; // varName → calName
-let gtCalToVarMap = {}; // calName → varName
-
-function buildNameMaps() {
-  if (typeof VARIETIES === 'undefined') return;
-  const calList = allCal();
-  for (const v of VARIETIES) {
-    const vNorm = normName(v.name);
-    let best = null, bestScore = 0;
-    for (const cal of calList) {
-      const cNorm = normName(cal.name);
-      // Score : mots communs en partant du début
-      const vW = vNorm.split(' ');
-      const cW = cNorm.split(' ');
-      let score = 0;
-      for (let i = 0; i < Math.min(vW.length, cW.length); i++) {
-        if (vW[i] === cW[i] || vW[i].startsWith(cW[i].slice(0,4)) || cW[i].startsWith(vW[i].slice(0,4)))
-          score += (i === 0 ? 2 : 1); // 1er mot pèse double
-        else break;
-      }
-      if (score > bestScore && score >= 3) { bestScore = score; best = cal.name; }
-    }
-    if (best) {
-      gtVarToCalMap[v.name] = best;
-      gtCalToVarMap[best] = v.name;
-    }
-  }
-}
- // accordéons ouverts (persistance à re-render)
-
 function allCal() { return [...GARDEN_CALENDAR, ...gardenCustom]; }
 
 // ===== STORAGE =====
@@ -4320,64 +4349,48 @@ async function loadGardenData() {
       const d = await r.json() || {};
       gardenTracking = d.tracking || {};
       gardenCustom = d.customVarieties || [];
-      localStorage.setItem('castelboun_garden', JSON.stringify(d));
-      return;
+      localStorage.setItem('castelboun_garden', JSON.stringify(d)); return;
     }
   } catch {}
   try {
     const d = JSON.parse(localStorage.getItem('castelboun_garden') || '{}');
-    gardenTracking = d.tracking || {};
-    gardenCustom = d.customVarieties || [];
+    gardenTracking = d.tracking || {}; gardenCustom = d.customVarieties || [];
   } catch {}
 }
-
 async function saveGardenData() {
   const d = { tracking: gardenTracking, customVarieties: gardenCustom };
   localStorage.setItem('castelboun_garden', JSON.stringify(d));
   try {
     await fetch('/.netlify/functions/data-api?type=garden', {
-      method: 'POST', headers: {'Content-Type':'application/json'},
+      method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ password: ADMIN_PASSWORD, data: d })
     });
-  } catch(e) { console.error('Garden save:', e); }
+  } catch(e) {}
 }
 
 // ===== CALCUL DATES =====
 function computeDates(cal, t) {
   t = t || {};
   const w2m = w => Math.round(w / 4.3);
-  let sowM = t.sowMonth || null;
-  let traM = t.transplantMonth || null;
-  let plaM = t.plantMonth || null;
-
-  if (sowM && !traM && cal.needsTransplant && cal.stt > 0)
-    traM = Math.min(12, sowM + w2m(cal.stt));
-  if (traM && !plaM && cal.ttp > 0)
-    plaM = Math.min(12, traM + w2m(cal.ttp));
-  if (sowM && !traM && !cal.needsTransplant && !plaM)
-    plaM = sowM;
-
+  let sowM = t.sowMonth || null, traM = t.transplantMonth || null, plaM = t.plantMonth || null;
+  if (sowM && !traM && cal.needsTransplant && cal.stt > 0) traM = Math.min(12, sowM + w2m(cal.stt));
+  if (traM && !plaM && cal.ttp > 0) plaM = Math.min(12, traM + w2m(cal.ttp));
+  if (sowM && !traM && !cal.needsTransplant && !plaM) plaM = sowM;
   let harMs = [];
-  if (plaM && cal.pth) {
-    const h = Math.min(12, plaM + w2m(cal.pth));
-    harMs = [...new Set([h, Math.min(12,h+1)])];
-  } else if (sowM && cal.dth) {
-    const h = Math.min(12, sowM + w2m(cal.dth));
-    harMs = [...new Set([h, Math.min(12,h+1)])];
-  } else if (cal.harvest?.length) {
-    harMs = cal.harvest;
-  }
-  return { sowM, traM, plaM, harMs,
-    actSow: t.sowMonth, actTra: t.transplantMonth, actPla: t.plantMonth };
+  if (plaM && cal.pth) { const h = Math.min(12,plaM+w2m(cal.pth)); harMs=[...new Set([h,Math.min(12,h+1)])]; }
+  else if (sowM && cal.dth) { const h = Math.min(12,sowM+w2m(cal.dth)); harMs=[...new Set([h,Math.min(12,h+1)])]; }
+  else if (cal.harvest && cal.harvest.length) harMs = cal.harvest;
+  return { sowM, traM, plaM, harMs, actSow:t.sowMonth, actTra:t.transplantMonth, actPla:t.plantMonth };
 }
 
 // ===== FILTRE =====
 function passes(cal, d) {
   if (gtSearch && !cal.name.toLowerCase().includes(gtSearch)) return false;
-  if (gtSelectedFromPlan?.size > 0) {
-    // Vérifier avec le nom exact ET avec la correspondance VARIETIES
-    const varEquiv = gtCalToVarMap[cal.name];
-    const found = gtSelectedFromPlan.has(cal.name) || (varEquiv && gtSelectedFromPlan.has(varEquiv));
+  if (gtSelectedFromPlan && gtSelectedFromPlan.size > 0) {
+    // Vérifier avec la table de correspondance explicite
+    const varEquivs = GT_CAL_TO_VAR[cal.name] || [];
+    const found = gtSelectedFromPlan.has(cal.name) ||
+      varEquivs.some(v => gtSelectedFromPlan.has(v));
     if (!found) return false;
   }
   if (gtFilter === 'all') return true;
@@ -4385,7 +4398,7 @@ function passes(cal, d) {
   if (gtFilter === 's') return (cal.sow||[]).includes(GT_CUR) && !t.sowMonth;
   if (gtFilter === 't') return d.traM === GT_CUR && t.sowMonth && !t.transplantMonth;
   if (gtFilter === 'p') return d.plaM === GT_CUR && !t.plantMonth;
-  if (gtFilter === 'r') return d.harMs?.includes(GT_CUR);
+  if (gtFilter === 'r') return (d.harMs||[]).includes(GT_CUR);
   return true;
 }
 
@@ -4395,16 +4408,10 @@ function renderGardenTable() {
   if (!tbody) return;
   const cats = [...new Set(allCal().map(v => v.cat))].sort();
   let html = '';
-
   for (const cat of cats) {
-    const vars = allCal().filter(v => v.cat === cat);
-    const filtered = vars.filter(v => {
-      const t = gardenTracking[v.name] || {};
-      return passes(v, computeDates(v, t));
-    });
+    const filtered = allCal().filter(v => v.cat === cat && passes(v, computeDates(v, gardenTracking[v.name]||{})));
     if (!filtered.length) continue;
-    html += `<tr class="gt-cat-row"><td colspan="15">${cat}</td></tr>`;
-
+    html += '<tr class="gt-cat-row"><td colspan="15">' + cat + '</td></tr>';
     for (const v of filtered) {
       const t = gardenTracking[v.name] || {};
       const d = computeDates(v, t);
@@ -4412,115 +4419,87 @@ function renderGardenTable() {
       const nid = v.name.replace(/[^a-z0-9]/gi,'_');
       const isSelPlan = typeof selected !== 'undefined' && selected.has(v.name);
       const accOpen = gtOpenAccs.has(v.name);
-
-      // Icône plan
       const vMeta = findMeta(v.name);
-      const plans = [...new Set((vMeta?.locations||[]).map(l=>l.plan))];
+      const plans = [...new Set((vMeta && vMeta.locations || []).map(l=>l.plan))];
       const ico = plans.includes('mandala')&&plans.includes('harpe') ? ' 🗺️'
         : plans.includes('mandala') ? ' 🌀' : plans.includes('harpe') ? ' 🎵'
         : plans.includes('serre') ? ' 🏠' : '';
-
-      // Colonne nom + accordéon
-      const accHtml = `<div class="gt-acc${accOpen?' open':''}" id="gt-acc-${nid}">${accOpen ? renderAccBody(v.name) : ''}</div>`;
-      let row = `<td>
-        <span class="gt-name${isSelPlan?' plan-sel':''}" data-n="${v.name.replace(/"/g,'&quot;')}"
-          onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()"
-          onclick="gtNameClick(this)">${v.name}${ico}</span>
-        ${accHtml}
-      </td>`;
-
-      // Godets / Plantés
-      const g = t.godets ?? '', p2 = t.planted ?? '';
-      row += `<td>${gtAdminMode
-        ? `<input class="gt-ni" type="number" min="0" value="${g}" placeholder="–" oninput="gtSetNum(this,'${nid}','godets')" data-nid="${nid}">`
-        : (g!==''?`<b>${g}</b>`:'–')}</td>`;
-      row += `<td>${gtAdminMode
-        ? `<input class="gt-ni" type="number" min="0" value="${p2}" placeholder="–" oninput="gtSetNum(this,'${nid}','planted')" data-nid="${nid}">`
-        : (p2!==''?`<b>${p2}</b>`:'–')}</td>`;
-
-      // 12 mois
+      const accHtml = '<div class="gt-acc' + (accOpen?' open':'') + '" id="gt-acc-' + nid + '">'
+        + (accOpen ? renderAccBody(v.name) : '') + '</div>';
+      let row = '<td><span class="gt-name' + (isSelPlan?' plan-sel':'') + '" data-n="'
+        + v.name.replace(/"/g,'&quot;') + '" onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()"'
+        + ' onclick="gtNameClick(this)">' + v.name + ico + '</span>' + accHtml + '</td>';
+      const g = t.godets != null ? t.godets : '', p2 = t.planted != null ? t.planted : '';
+      row += '<td>' + (gtAdminMode
+        ? '<input class="gt-ni" type="number" min="0" value="' + g + '" placeholder="–" data-nid="' + nid + '" data-field="godets" oninput="gtSetNum(this)">'
+        : (g!==''?'<b>'+g+'</b>':'–')) + '</td>';
+      row += '<td>' + (gtAdminMode
+        ? '<input class="gt-ni" type="number" min="0" value="' + p2 + '" placeholder="–" data-nid="' + nid + '" data-field="planted" oninput="gtSetNum(this)">'
+        : (p2!==''?'<b>'+p2+'</b>':'–')) + '</td>';
       for (let m = 1; m <= 12; m++) {
         const badges = [];
-
         if (lost) {
-          // Affiche badge perdu sur le mois correspondant à l'étape perdue
           const lostAt = t.lostAt || 'sow';
-          const lostMs = lostAt==='sow' ? (v.sow||[]) : lostAt==='transplant' ? (v.transplant||[]) : (v.plant||[]);
-          const lostLabel = lostAt==='sow' ? '💀 Perdu (semis)' : lostAt==='transplant' ? '💀 Perdu (repiquage)' : '💀 Perdu (plantation)';
-          // Étapes réelles AVANT la perte
-          if (t.sowMonth===m && lostAt!=='sow') badges.push(`<span class="gt-badge gt-sa">🌱 Semé</span>`);
-          if (t.transplantMonth===m && lostAt!=='transplant') badges.push(`<span class="gt-badge gt-ta">🌿 Repiqué</span>`);
-          if (lostMs.includes(m)) badges.push(`<span class="gt-badge gt-lost">${lostLabel}</span>`);
-          row += `<td class="gt-cell">${badges.join('<br>')}</td>`;
+          const lostMs = lostAt==='sow'?(v.sow||[]):lostAt==='transplant'?(v.transplant||[]):(v.plant||[]);
+          const lostLabel = lostAt==='sow'?'💀 Perdu (semis)':lostAt==='transplant'?'💀 Perdu (repiquage)':'💀 Perdu (plantation)';
+          if (t.sowMonth===m && lostAt!=='sow') badges.push('<span class="gt-badge gt-sa">🌱 Semé</span>');
+          if (t.transplantMonth===m && lostAt!=='transplant') badges.push('<span class="gt-badge gt-ta">🌿 Repiqué</span>');
+          if (lostMs.includes(m)) badges.push('<span class="gt-badge gt-lost">'+lostLabel+'</span>');
+          row += '<td class="gt-cell">' + badges.join('<br>') + '</td>';
           continue;
         }
-
-        // Mode normal
-        if (d.actSow===m)
-          badges.push(mkBadge('gt-sa','🌱 Semé','sow',m,v.name,true));
-        else if (!d.actSow && (v.sow||[]).includes(m))
-          badges.push(mkBadge('gt-s','🌱 À semer','sow',m,v.name,false));
-
-        if (d.actTra===m)
-          badges.push(mkBadge('gt-ta','🌿 Repiqué','transplant',m,v.name,true));
-        else if (!d.actTra && d.traM===m && d.sowM)
-          badges.push(mkBadge('gt-t','🌿 À repiquer','transplant',m,v.name,false));
-
-        if (d.actPla===m)
-          badges.push(mkBadge('gt-pa','🌳 Planté','plant',m,v.name,true));
-        else if (!d.actPla && d.plaM===m)
-          badges.push(mkBadge('gt-p','🌳 À planter','plant',m,v.name,false));
-
-        if (d.harMs.includes(m))
-          badges.push(`<span class="gt-badge gt-r">🍂 Récolte</span>`);
-
-        row += `<td class="gt-cell${m===GT_CUR?' gt-cur-month':''}">${badges.join('<br>')}</td>`;
+        if (d.actSow===m) badges.push(mkBadge('gt-sa','🌱 Semé','sow',m,v.name,true));
+        else if (!d.actSow && (v.sow||[]).includes(m)) badges.push(mkBadge('gt-s','🌱 À semer','sow',m,v.name,false));
+        if (d.actTra===m) badges.push(mkBadge('gt-ta','🌿 Repiqué','transplant',m,v.name,true));
+        else if (!d.actTra && d.traM===m && d.sowM) badges.push(mkBadge('gt-t','🌿 À repiquer','transplant',m,v.name,false));
+        if (d.actPla===m) badges.push(mkBadge('gt-pa','🌳 Planté','plant',m,v.name,true));
+        else if (!d.actPla && d.plaM===m) badges.push(mkBadge('gt-p','🌳 À planter','plant',m,v.name,false));
+        if ((d.harMs||[]).includes(m)) badges.push('<span class="gt-badge gt-r">🍂 Récolte</span>');
+        row += '<td class="gt-cell' + (m===GT_CUR?' gt-cur-month':'') + '">' + badges.join('<br>') + '</td>';
       }
-      html += `<tr class="gt-data-row">${row}</tr>`;
+      html += '<tr class="gt-data-row">' + row + '</tr>';
     }
   }
   tbody.innerHTML = html;
 }
 
 function mkBadge(cls, label, step, month, name, done) {
-  if (!gtAdminMode) return `<span class="gt-badge ${cls}">${label}</span>`;
-  const safe = name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-  return `<span class="gt-badge ${cls} btn" onclick="event.stopPropagation();gtPopOpen(this,'${safe}','${step}',${month},${done})">${label}</span>`;
+  if (!gtAdminMode) return '<span class="gt-badge ' + cls + '">' + label + '</span>';
+  return '<span class="gt-badge ' + cls + ' btn" onclick="event.stopPropagation();gtPopOpen(this,this.dataset.vn,this.dataset.st,' + month + ',' + done + ')" data-vn="' + name.replace(/"/g,'&quot;') + '" data-st="' + step + '">' + label + '</span>';
 }
 
-// ===== TROUVER VARIÉTÉ DANS VARIETIES =====
 function findMeta(name) {
-  if (!window.VARIETIES) return null;
-  const n = name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/[ ]+/g,' ').trim();
+  if (typeof VARIETIES === 'undefined') return null;
+  const n = name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/ +/g,' ').trim();
   return VARIETIES.find(v => {
-    const m = v.name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/[ ]+/g,' ').trim();
+    const m = v.name.toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/ +/g,' ').trim();
     return m === n || m.startsWith(n.split(' ').slice(0,2).join(' '));
   });
 }
 
-// ===== ACCORDÉON =====
 function renderAccBody(name) {
   const vd = findMeta(name);
   const cal = allCal().find(c => c.name === name);
   const t = gardenTracking[name] || {};
   const ml = arr => (arr||[]).map(m => GT_MONTHS[m-1]).join(', ');
-  const locs = (vd?.locations||[]).map(l=>l.label).join(', ');
-  return `${vd?.img ? `<img src="${vd.img}" alt="">` : ''}
-    ${vd?.desc ? `<p style="font-style:italic;color:#5a5244;margin:0 0 8px;font-size:12px;">${vd.desc}</p>` : ''}
-    <div class="gt-acc-grid">
-      ${vd?.sun ? `<span class="lbl">☀️ Expo</span><span>${vd.sun}</span>` : ''}
-      ${vd?.water ? `<span class="lbl">💧 Eau</span><span>${vd.water}</span>` : ''}
-      ${vd?.spacing ? `<span class="lbl">📏 Espacement</span><span>${vd.spacing}</span>` : ''}
-      ${vd?.qty ? `<span class="lbl">📦 Quantité</span><span>${vd.qty}</span>` : ''}
-      ${t.godets!=null ? `<span class="lbl">🌱 Godets</span><span>${t.godets}</span>` : ''}
-      ${t.planted!=null ? `<span class="lbl">🌳 Plantés</span><span>${t.planted}</span>` : ''}
-      ${locs ? `<span class="lbl">📍 Lieu</span><span>${locs}</span>` : ''}
-      ${cal?.sow?.length ? `<span class="lbl">Semis</span><span>${ml(cal.sow)}${t.sowMonth?' ✓ '+GT_MONTHS[t.sowMonth-1]:''}</span>` : ''}
-      ${cal?.needsTransplant ? `<span class="lbl">Repiquage</span><span>${ml(cal.transplant||[])}${t.transplantMonth?' ✓ '+GT_MONTHS[t.transplantMonth-1]:''}</span>` : ''}
-      ${cal?.plant?.length ? `<span class="lbl">Plantation</span><span>${ml(cal.plant)}${t.plantMonth?' ✓ '+GT_MONTHS[t.plantMonth-1]:''}</span>` : ''}
-      ${cal?.harvest?.length ? `<span class="lbl">🍂 Récolte</span><span>${ml(cal.harvest)}</span>` : ''}
-      ${vd?.companion ? `<span class="lbl">🤝 Assoc.</span><span style="font-size:11px;">${vd.companion}</span>` : ''}
-    </div>`;
+  const locs = (vd && vd.locations || []).map(l=>l.label).join(', ');
+  let h = (vd && vd.img ? '<img src="' + vd.img + '" alt="">' : '');
+  h += (vd && vd.desc ? '<p style="font-style:italic;color:#5a5244;margin:0 0 8px;font-size:12px;">' + vd.desc + '</p>' : '');
+  h += '<div class="gt-acc-grid">';
+  if (vd && vd.sun) h += '<span class="lbl">☀️ Expo</span><span>' + vd.sun + '</span>';
+  if (vd && vd.water) h += '<span class="lbl">💧 Eau</span><span>' + vd.water + '</span>';
+  if (vd && vd.spacing) h += '<span class="lbl">📏 Espacement</span><span>' + vd.spacing + '</span>';
+  if (vd && vd.qty) h += '<span class="lbl">📦 Quantité</span><span>' + vd.qty + '</span>';
+  if (t.godets != null) h += '<span class="lbl">🌱 Godets</span><span>' + t.godets + '</span>';
+  if (t.planted != null) h += '<span class="lbl">🌳 Plantés</span><span>' + t.planted + '</span>';
+  if (locs) h += '<span class="lbl">📍 Lieu</span><span>' + locs + '</span>';
+  if (cal && cal.sow && cal.sow.length) h += '<span class="lbl">Semis</span><span>' + ml(cal.sow) + (t.sowMonth?' ✓ '+GT_MONTHS[t.sowMonth-1]:'') + '</span>';
+  if (cal && cal.needsTransplant) h += '<span class="lbl">Repiquage</span><span>' + ml(cal.transplant||[]) + (t.transplantMonth?' ✓ '+GT_MONTHS[t.transplantMonth-1]:'') + '</span>';
+  if (cal && cal.plant && cal.plant.length) h += '<span class="lbl">Plantation</span><span>' + ml(cal.plant) + (t.plantMonth?' ✓ '+GT_MONTHS[t.plantMonth-1]:'') + '</span>';
+  if (cal && cal.harvest && cal.harvest.length) h += '<span class="lbl">🍂 Récolte</span><span>' + ml(cal.harvest) + '</span>';
+  if (vd && vd.companion) h += '<span class="lbl">🤝 Assoc.</span><span style="font-size:11px;">' + vd.companion + '</span>';
+  h += '</div>';
+  return h;
 }
 
 function gtNameClick(el) {
@@ -4528,36 +4507,19 @@ function gtNameClick(el) {
   if (!name) return;
   const nid = name.replace(/[^a-z0-9]/gi,'_');
   const body = document.getElementById('gt-acc-' + nid);
-
-  // Toggle accordéon
   if (body) {
     const wasOpen = gtOpenAccs.has(name);
     gtOpenAccs.clear();
-    if (!wasOpen) {
-      gtOpenAccs.add(name);
-      body.innerHTML = renderAccBody(name);
-      body.classList.add('open');
-    } else {
-      body.classList.remove('open');
-    }
-    // Fermer les autres
-    document.querySelectorAll('.gt-acc.open').forEach(b => {
-      if (b !== body) b.classList.remove('open');
-    });
+    document.querySelectorAll('.gt-acc.open').forEach(b => b.classList.remove('open'));
+    if (!wasOpen) { gtOpenAccs.add(name); body.innerHTML = renderAccBody(name); body.classList.add('open'); }
   }
-
-  // Highlight sur le plan (sans re-render du tableau)
   if (typeof selected !== 'undefined' && typeof renderAll === 'function') {
     const vd = findMeta(name);
     if (vd) {
-      if (selected.has(name)) selected.delete(name);
-      else selected.set(name, vd);
+      if (selected.has(name)) selected.delete(name); else selected.set(name, vd);
       if (typeof syncRowStates === 'function') syncRowStates();
       renderAll();
-      // Mettre à jour la classe plan-sel sans re-render complet
-      document.querySelectorAll('.gt-name').forEach(span => {
-        span.classList.toggle('plan-sel', selected.has(span.dataset.n));
-      });
+      document.querySelectorAll('.gt-name').forEach(s => s.classList.toggle('plan-sel', selected.has(s.dataset.n)));
     }
   }
 }
@@ -4565,92 +4527,69 @@ function gtNameClick(el) {
 // ===== POPOVER =====
 function gtPopOpen(el, name, step, month, isDone) {
   if (gtOpenPop) { gtOpenPop.remove(); gtOpenPop = null; }
-
   const pop = document.createElement('div');
   pop.className = 'gt-pop';
-  pop.dataset.varName = name;
-  pop.dataset.step = step;
-
+  pop.dataset.varName = name; pop.dataset.step = step;
   const labels = {sow:'Semé',transplant:'Repiqué',plant:'Planté'};
-  const opts = GT_MONTHS.map((m,i) => `<option value="${i+1}"${(month===i+1)?' selected':''}>${m}</option>`).join('');
-
-  pop.innerHTML = `<h5>${isDone?'✏️ Modifier':'✓ Marquer comme'} ${labels[step]||step}</h5>
-    <select id="gt-pop-m" onclick="event.stopPropagation()">
-      <option value="">— Choisir le mois —</option>${opts}
-    </select>
-    <div class="gt-pop-btns">
-      <button class="gt-pop-ok" onclick="event.stopPropagation();gtPopSave()">✓ Valider</button>
-      ${isDone ? '<button class="gt-pop-del" onclick="event.stopPropagation();gtPopClear()">✕ Effacer</button>' : ''}
-      <button class="gt-pop-x" onclick="event.stopPropagation();gtPopClose()">Annuler</button>
-    </div>
-    <hr style="margin:8px 0;border:none;border-top:1px solid var(--line);">
-    <button class="gt-pop-lost" onclick="event.stopPropagation();gtPopLost()">💀 Perdu à cette étape</button>`;
-
+  const opts = GT_MONTHS.map((m,i) => '<option value="'+(i+1)+'"'+(month===i+1?' selected':'')+'>'+m+'</option>').join('');
+  pop.innerHTML = '<h5>'+(isDone?'✏️ Modifier':'✓ Marquer comme')+' '+(labels[step]||step)+'</h5>'
+    +'<select id="gt-pop-m" onclick="event.stopPropagation()"><option value="">— Choisir le mois —</option>'+opts+'</select>'
+    +'<div class="gt-pop-btns">'
+    +'<button class="gt-pop-ok" onclick="event.stopPropagation();gtPopSave()">✓ Valider</button>'
+    +(isDone?'<button class="gt-pop-del" onclick="event.stopPropagation();gtPopClear()">✕ Effacer</button>':'')
+    +'<button class="gt-pop-x" onclick="event.stopPropagation();gtPopClose()">Annuler</button>'
+    +'</div><hr style="margin:8px 0;border:none;border-top:1px solid var(--line);">'
+    +'<button class="gt-pop-lost" onclick="event.stopPropagation();gtPopLost()">💀 Perdu à cette étape</button>';
   pop.addEventListener('click', e => e.stopPropagation());
   el.closest('.gt-cell').appendChild(pop);
   gtOpenPop = pop;
   setTimeout(() => document.addEventListener('click', gtPopClose), 50);
 }
-
 function gtPopClose(e) {
   if (e && gtOpenPop && gtOpenPop.contains(e.target)) return;
   if (gtOpenPop) { gtOpenPop.remove(); gtOpenPop = null; }
   document.removeEventListener('click', gtPopClose);
 }
-
 function gtPopSave() {
-  const pop = gtOpenPop;
-  if (!pop) return;
-  const name = pop.dataset.varName;
-  const step = pop.dataset.step;
-  const m = parseInt(document.getElementById('gt-pop-m')?.value);
+  const pop = gtOpenPop; if (!pop) return;
+  const name = pop.dataset.varName, step = pop.dataset.step;
+  const m = parseInt(document.getElementById('gt-pop-m') && document.getElementById('gt-pop-m').value);
   if (!m) { gtPopClose(); return; }
   if (!gardenTracking[name]) gardenTracking[name] = {};
-  const key = step==='sow' ? 'sowMonth' : step==='transplant' ? 'transplantMonth' : 'plantMonth';
+  const key = step==='sow'?'sowMonth':step==='transplant'?'transplantMonth':'plantMonth';
   gardenTracking[name][key] = m;
-  // Effacer les étapes suivantes si on recule
+  if (gardenTracking[name].lost) { delete gardenTracking[name].lost; delete gardenTracking[name].lostAt; }
   if (step==='sow') { delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-  if (step==='transplant') { delete gardenTracking[name].plantMonth; }
-  gtPopClose();
-  renderGardenTable();
+  if (step==='transplant') delete gardenTracking[name].plantMonth;
+  gtPopClose(); renderGardenTable();
 }
-
 function gtPopClear() {
-  const pop = gtOpenPop;
-  if (!pop) return;
-  const name = pop.dataset.varName;
-  const step = pop.dataset.step;
+  const pop = gtOpenPop; if (!pop) return;
+  const name = pop.dataset.varName, step = pop.dataset.step;
   if (gardenTracking[name]) {
-    const key = step==='sow' ? 'sowMonth' : step==='transplant' ? 'transplantMonth' : 'plantMonth';
+    const key = step==='sow'?'sowMonth':step==='transplant'?'transplantMonth':'plantMonth';
     delete gardenTracking[name][key];
     if (step==='sow') { delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-    if (step==='transplant') { delete gardenTracking[name].plantMonth; }
+    if (step==='transplant') delete gardenTracking[name].plantMonth;
   }
-  gtPopClose();
-  renderGardenTable();
+  gtPopClose(); renderGardenTable();
 }
-
 function gtPopLost() {
-  const pop = gtOpenPop;
-  if (!pop) return;
-  const name = pop.dataset.varName;
-  const step = pop.dataset.step;
-  const labels = {sow:'semis', transplant:'repiquage', plant:'plantation'};
+  const pop = gtOpenPop; if (!pop) return;
+  const name = pop.dataset.varName, step = pop.dataset.step;
+  const labels = {sow:'semis',transplant:'repiquage',plant:'plantation'};
   if (!confirm('Marquer "' + name + '" comme perdu au ' + (labels[step]||step) + ' ?')) return;
   if (!gardenTracking[name]) gardenTracking[name] = {};
-  gardenTracking[name].lost = true;
-  gardenTracking[name].lostAt = step;
-  // Effacer les étapes après la perte
+  gardenTracking[name].lost = true; gardenTracking[name].lostAt = step;
   if (step==='sow') { delete gardenTracking[name].sowMonth; delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
   else if (step==='transplant') { delete gardenTracking[name].transplantMonth; delete gardenTracking[name].plantMonth; }
-  else if (step==='plant') { delete gardenTracking[name].plantMonth; }
-  gtPopClose();
-  renderGardenTable();
+  else if (step==='plant') delete gardenTracking[name].plantMonth;
+  gtPopClose(); renderGardenTable();
 }
 
-// ===== INPUTS NUM =====
-function gtSetNum(input, nid, field) {
-  // Trouver le nom de la variété depuis le nid
+// ===== INPUTS =====
+function gtSetNum(input) {
+  const nid = input.dataset.nid, field = input.dataset.field;
   const cal = allCal().find(v => v.name.replace(/[^a-z0-9]/gi,'_') === nid);
   if (!cal) return;
   const n = parseInt(input.value);
@@ -4661,21 +4600,17 @@ function gtSetNum(input, nid, field) {
 
 // ===== TOOLTIP =====
 function gtTip(e, el) {
-  const name = el.dataset.n;
-  const vd = findMeta(name);
-  const cal = allCal().find(c => c.name === name);
-  const t = gardenTracking[name] || {};
-  const tip = document.getElementById('gt-tooltip');
+  const name = el.dataset.n, vd = findMeta(name), cal = allCal().find(c => c.name===name);
+  const t = gardenTracking[name] || {}, tip = document.getElementById('gt-tooltip');
   if (!tip) return;
   const ml = arr => (arr||[]).map(m=>GT_MONTHS[m-1]).join(', ');
-  let h = `<div class="tn">${name}</div>`;
-  if (vd?.desc) h += `<div style="color:#94a3b8;font-size:11px;margin-bottom:3px;">${vd.desc.slice(0,90)}…</div>`;
-  if (cal?.sow?.length) h += `<div class="tr"><span class="tl">Semis</span><span>${ml(cal.sow)}</span></div>`;
-  if (cal?.harvest?.length) h += `<div class="tr"><span class="tl">Récolte</span><span>${ml(cal.harvest)}</span></div>`;
-  if (t.godets) h += `<div class="tr"><span class="tl">Godets</span><span>${t.godets}</span></div>`;
-  if (t.planted) h += `<div class="tr"><span class="tl">Plantés</span><span>${t.planted}</span></div>`;
-  tip.innerHTML = h;
-  tip.style.display = 'block';
+  let h = '<div class="tn">'+name+'</div>';
+  if (vd && vd.desc) h += '<div style="color:#94a3b8;font-size:11px;margin-bottom:3px;">'+vd.desc.slice(0,90)+'…</div>';
+  if (cal && cal.sow && cal.sow.length) h += '<div class="tr"><span class="tl">Semis</span><span>'+ml(cal.sow)+'</span></div>';
+  if (cal && cal.harvest && cal.harvest.length) h += '<div class="tr"><span class="tl">Récolte</span><span>'+ml(cal.harvest)+'</span></div>';
+  if (t.godets) h += '<div class="tr"><span class="tl">Godets</span><span>'+t.godets+'</span></div>';
+  if (t.planted) h += '<div class="tr"><span class="tl">Plantés</span><span>'+t.planted+'</span></div>';
+  tip.innerHTML = h; tip.style.display = 'block';
   tip.style.left = Math.min(e.clientX+14, window.innerWidth-290)+'px';
   tip.style.top = Math.min(e.clientY+14, window.innerHeight-200)+'px';
 }
@@ -4685,67 +4620,47 @@ function gtTipHide() { const t=document.getElementById('gt-tooltip'); if(t) t.st
 document.querySelectorAll('.gt-fb').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.gt-fb').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    gtFilter = btn.dataset.f;
-    renderGardenTable();
+    btn.classList.add('on'); gtFilter = btn.dataset.f; renderGardenTable();
   });
 });
-
-// Recherche
-const gtSrchInput = document.getElementById('gt-search');
-if (gtSrchInput) {
-  gtSrchInput.addEventListener('input', function() {
-    gtSearch = this.value.toLowerCase().trim();
-    renderGardenTable();
-  });
-}
+const gtSrch = document.getElementById('gt-search');
+if (gtSrch) gtSrch.addEventListener('input', function() { gtSearch = this.value.toLowerCase().trim(); renderGardenTable(); });
 
 // ===== ADMIN =====
-document.getElementById('garden-admin-btn')?.addEventListener('click', function() {
+document.getElementById('garden-admin-btn') && document.getElementById('garden-admin-btn').addEventListener('click', function() {
   gtAdminMode = !gtAdminMode;
   if (gtAdminMode) {
     this.textContent = '💾 Enregistrer';
     this.style.cssText = 'background:var(--clay);color:white;border:1.5px solid var(--clay);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;';
-    document.getElementById('gt-add-btn')?.style.setProperty('display','');
+    const ab = document.getElementById('gt-add-btn'); if (ab) ab.style.display = '';
   } else {
     saveGardenData();
     this.textContent = '⚙ Gérer mon jardin';
     this.style.cssText = 'background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:.6;padding:4px;';
-    document.getElementById('gt-add-btn')?.style.setProperty('display','none');
+    const ab = document.getElementById('gt-add-btn'); if (ab) ab.style.display = 'none';
   }
   renderGardenTable();
 });
-
-document.getElementById('gt-add-btn')?.addEventListener('click', () => {
-  document.getElementById('gt-av-form')?.classList.toggle('open');
-});
+const gtAddBtn = document.getElementById('gt-add-btn');
+if (gtAddBtn) gtAddBtn.addEventListener('click', () => { const f=document.getElementById('gt-av-form'); if(f) f.classList.toggle('open'); });
 
 // ===== AJOUTER VARIÉTÉ =====
-const MONTHS_F = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+const GT_MF = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
 ['av-sow','av-tra','av-pla','av-har'].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
-  MONTHS_F.forEach((m,i) => {
-    el.innerHTML += `<label><input type="checkbox" value="${i+1}"> ${m}</label>`;
-  });
+  const el = document.getElementById(id); if (!el) return;
+  GT_MF.forEach((m,i) => { el.innerHTML += '<label><input type="checkbox" value="'+(i+1)+'"> '+m+'</label>'; });
 });
-
 function gtAddVariety() {
-  const name = document.getElementById('av-name')?.value.trim();
+  const name = document.getElementById('av-name') && document.getElementById('av-name').value.trim();
   if (!name) { alert('Nom requis'); return; }
-  const cbs = id => [...document.querySelectorAll(`#${id} input:checked`)].map(c=>parseInt(c.value));
-  const v = {
-    name, cat: document.getElementById('av-cat')?.value||'Autres',
-    sow: cbs('av-sow'), transplant: cbs('av-tra'), plant: cbs('av-pla'), harvest: cbs('av-har'),
-    needsTransplant: cbs('av-tra').length > 0,
-    stt: parseInt(document.getElementById('av-stt')?.value)||4,
-    ttp: parseInt(document.getElementById('av-ttp')?.value)||3,
-    pth: parseInt(document.getElementById('av-pth')?.value)||8,
-    dth: null, custom: true
-  };
-  gardenCustom.push(v);
+  const cbs = id => [...document.querySelectorAll('#'+id+' input:checked')].map(c=>parseInt(c.value));
+  gardenCustom.push({ name, cat:document.getElementById('av-cat').value||'Autres',
+    sow:cbs('av-sow'), transplant:cbs('av-tra'), plant:cbs('av-pla'), harvest:cbs('av-har'),
+    needsTransplant:cbs('av-tra').length>0,
+    stt:parseInt(document.getElementById('av-stt').value)||4,
+    ttp:3, pth:parseInt(document.getElementById('av-pth').value)||8, dth:null, custom:true });
   document.getElementById('av-name').value = '';
-  document.getElementById('gt-av-form')?.classList.remove('open');
+  const f=document.getElementById('gt-av-form'); if(f) f.classList.remove('open');
   renderGardenTable();
 }
 
@@ -4763,20 +4678,11 @@ function applyDefaults() {
     }
   }
 }
-
-// Rendu immédiat avec les données par défaut (synchrone)
-buildNameMaps();
+// Rendu synchrone immédiat
 applyDefaults();
 renderGardenTable();
-
-// Puis charger les données sauvegardées et re-rendre
-loadGardenData().then(() => {
-  buildNameMaps();
-  applyDefaults();
-  renderGardenTable();
-}).catch(() => {
-  renderGardenTable();
-});
+// Puis chargement async + re-rendu
+loadGardenData().then(() => { applyDefaults(); renderGardenTable(); }).catch(() => { renderGardenTable(); });
 
 
 </script>
