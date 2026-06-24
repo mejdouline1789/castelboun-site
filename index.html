@@ -1570,7 +1570,6 @@
         <button class="cal-detail-close" id="detail-close-btn" type="button">✕</button>
       </div>
       <div class="cal-detail-grid" id="detail-grid"></div>
-      <button class="cal-resa-btn" id="detail-resa-btn" type="button">Réserver ma place 🌱</button>
     </div>
 
     <!-- Export ICS + webcal + admin agenda -->
@@ -1834,10 +1833,10 @@
         <div class="evt-field" style="margin-bottom:10px;">
           <label>Statut *</label>
           <select id="dp-status" style="padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:white;font-size:14px;width:100%;">
-            <option value="normandie">🍎 En Normandie</option>
+            <option value="normandie">🏰 En Normandie</option>
             <option value="paris">🗼 À Paris</option>
             <option value="voilier">⛵ Stage voilier</option>
-            <option value="formation">🎓 Formation</option>
+            <option value="formation">📚 Formation</option>
             <option value="vacances">🏖️ Vacances</option>
             <option value="travaux">🔨 Travaux</option>
           </select>
@@ -2577,9 +2576,13 @@ function cellHtml(date, other) {
   if (isToday) classes += ' today';
   if (evts.length && !other) classes += ' has-event';
   if (ds === selectedDate) classes += ' selected';
+  const isCellFull = evts.some(e => e.status === 'full');
   const pills = evts.slice(0, 2).map(e =>
     `<div class="cal-event-pill" style="background:${TYPE_COLORS[e.type]}22;color:${TYPE_COLORS[e.type]};border:1px solid ${TYPE_COLORS[e.type]}44;">${e.title}</div>`
   ).join('');
+  const dejaResHtml = isCellFull
+    ? `<div style="font-size:9px;font-weight:700;color:#c0392b;text-align:center;line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">🍎 Déjà réservé</div>`
+    : '';
   // Réservations pour ce jour
   const resas = calReservations.filter(r => r.dateArrivee <= ds && (r.dateDepart || r.dateArrivee) >= ds);
   const resaPills = resas.slice(0, 2).map(r =>
@@ -2592,8 +2595,12 @@ function cellHtml(date, other) {
   const dispo = getDispoForDate(ds);
   const dispoIcon = dispo ? `<span style="position:absolute;top:3px;right:4px;font-size:11px;line-height:1;">${DISPO_ICONS[dispo]||''}</span>` : '';
   const dispoBorder = '';
-  const dispoBg = dispo === 'normandie' ? 'box-shadow:inset 0 3px 0 0 #1d9e75;' : '';
-  return `<div class="${classes}" style="${dispoBg}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${resaPills}${dispoIcon}${addBtn}</div>`;
+  const dispoBg = dispo === 'normandie'
+    ? 'box-shadow:inset 0 3px 0 0 #1d9e75;'
+    : ['vacances','formation','voilier','travaux'].includes(dispo)
+      ? 'box-shadow:inset 0 3px 0 0 #c0392b;'
+      : '';
+  return `<div class="${classes}" style="${dispoBg}" data-date="${ds}"><div class="cal-day-num">${date.getDate()}</div>${pills}${resaPills}${dejaResHtml}${dispoIcon}${addBtn}</div>`;
 }
 
 function renderListView() {
@@ -2634,7 +2641,7 @@ function showDispoDetail(dateStr, status) {
   document.getElementById('detail-title').textContent = formatDateFR(dateStr);
   document.getElementById('detail-dates').textContent = '';
   const msgs = {
-    normandie: "Nous sommes en Normandie, au Domaine Castelboun ! N'hésitez pas à venir, nous serions ravis de vous accueillir !",
+    normandie: "Nous sommes en Normandie, au Domaine Castelboun ! N'hésitez pas à nous contacter.",
     paris: "Nous sommes à Paris ce jour-là.",
     voilier: "Nous sommes en stage voilier, donc peu disponibles.",
     formation: "Nous sommes en formation ce jour-là.",
@@ -2650,10 +2657,6 @@ function showDispoDetail(dateStr, status) {
         <div style="font-size:13.5px;color:#5a5244;line-height:1.6;">${msgs[status]||''}</div>
       </div>
     </div>`;
-  const btn = document.getElementById('detail-resa-btn');
-  btn.textContent = status === 'normandie' ? 'Faire une demande de visite 🌱' : 'Nous contacter';
-  btn.disabled = false;
-  btn.onclick = () => document.getElementById('resa-form-live').scrollIntoView({behavior:'smooth'});
   document.getElementById('cal-detail').classList.add('visible');
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   renderMonthGrid();
@@ -2718,7 +2721,7 @@ function showDayDetail(dateStr) {
       // jauge places supprimée
       `<div style="display:flex;gap:8px;">
         ${adminMode ? `<button type="button" onclick="event.stopPropagation();openEventModal('${e.id}')" style="background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:600;">✏️ Modifier</button>` : ''}
-        <button type="button" onclick="event.stopPropagation();openResaForEvent({id:'${e.id}',title:${JSON.stringify(e.title)},dateStart:'${e.dateStart}',dateEnd:'${e.dateEnd||''}',activities:${JSON.stringify(e.activities||'')}})" style="flex:1;background:var(--clay);color:white;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:700;">Réserver ma place 🌱</button>
+
       </div>`,
     ].filter(Boolean).join('');
     return `<div style="grid-column:1/-1;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px;">
@@ -2734,9 +2737,7 @@ function showDayDetail(dateStr) {
     </div>`;
   }).join('');
 
-  document.getElementById('detail-grid').innerHTML = topHtml + evtHtml + resaHtml;
-  document.getElementById('detail-resa-btn').style.display = 'none';
-  document.getElementById('cal-detail').classList.add('visible');
+  document.getElementById('detail-grid').innerHTML = topHtml + evtHtml + resaHtml;  document.getElementById('cal-detail').classList.add('visible');
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   if (calView === 'month') renderMonthGrid();
 }
@@ -2744,6 +2745,7 @@ function showDayDetail(dateStr) {
 async function _deleteResaBtn(idx) {
   const i = parseInt(idx);
   if (i < 0 || i >= calReservations.length) return;
+  const deletedResa = calReservations[i]; // sauvegarder avant suppression
   calReservations = calReservations.filter((_, j) => j !== i);
   localStorage.setItem('castelboun_reservations', JSON.stringify(calReservations));
   try {
@@ -2753,6 +2755,11 @@ async function _deleteResaBtn(idx) {
       body: JSON.stringify({ password: ADMIN_PASSWORD, data: calReservations })
     });
     if (!r.ok) throw new Error('HTTP ' + r.status);
+    // Supprimer aussi de Google Calendar
+    fetch('/api/gcal-sync', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ action: 'delete', event: deletedResa })
+    }).catch(() => {});
   } catch(e) {
     console.error('Erreur sauvegarde suppression:', e);
     alert('Suppression locale OK, mais erreur de synchronisation. Rafraîchissez et réessayez.');
@@ -2848,12 +2855,6 @@ function showDetail(id) {
     </div>`;
   }
   document.getElementById('detail-grid').innerHTML = grid;
-  const btn = document.getElementById('detail-resa-btn');
-  const isFull = e.status === 'full' || (e.max && (e.taken||0) >= e.max);
-  const isClosed = e.status === 'closed';
-  btn.textContent = isFull ? 'Complet' : isClosed ? 'Fermé aux réservations' : 'Réserver ma place 🌱';
-  btn.disabled = isFull || isClosed;
-  btn.onclick = () => openResaForEvent(e);
   document.getElementById('cal-detail').classList.add('visible');
   document.getElementById('cal-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
   if (calView === 'month') renderMonthGrid();
@@ -3779,6 +3780,7 @@ if (resaForm) {
         body: JSON.stringify({ password: ADMIN_PASSWORD, data: calReservations })
       });
       if (!saveR.ok) console.error('Blobs save failed:', saveR.status, await saveR.text());
+
 
       // 3. Màj des places de l'événement associé
       if (evenement && typeof calEvents !== 'undefined') {
