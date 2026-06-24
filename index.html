@@ -2261,6 +2261,16 @@ Object.keys(locMap).forEach(id => {
     });
     syncRowStates();
     renderAll();
+    // Synchroniser avec le tableau de suivi du jardin
+    if (typeof gtSelectedFromPlan !== 'undefined') {
+      gtSelectedFromPlan = new Set();
+      for (const [varName] of selected) {
+        const calName = (typeof gtVarToCalMap !== 'undefined' && gtVarToCalMap[varName]) || varName;
+        gtSelectedFromPlan.add(calName);
+        gtSelectedFromPlan.add(varName);
+      }
+      if (typeof renderGardenTable === 'function') renderGardenTable();
+    }
   });
 });
 
