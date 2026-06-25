@@ -5971,11 +5971,9 @@ function renderGardenRow(name) {
   // Icône ancienne variété
   const aico = ancient ? '<span class="gt-ancient-ico" title="Variété ancienne">🌱</span>' : '';
 
-  // Colonne variété (clic = toggle fiche accordéon)
-  const nameEsc = name.replace(/'/g,"\u0027").replace(/"/g,'&quot;');
+  // Colonne variété — data-n stocke le nom, event delegation gère le clic
   let tdVar = '<td class="td-var">'
     + '<span class="gt-varname" data-n="' + name.replace(/"/g,'&quot;') + '"'
-    + ' onclick="gtToggleFiche(' + JSON.stringify(name) + ')"'
     + ' onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()">'
     + name + aico
     + '</span></td>';
@@ -6375,7 +6373,14 @@ let gtOpenFiche = null; // nom de la variété dont la fiche est ouverte
 function gtToggleFiche(name) {
   const nid = name.replace(/[^a-z0-9]/gi, '_');
   const ficheRow = document.getElementById('fiche-' + nid);
-  if (!ficheRow) return;
+  if (!ficheRow) {
+    console.warn('fiche-row not found for:', name, 'nid:', nid);
+    return;
+  }
+  // Peupler si vide (sécurité : au cas où renderGardenTable n'a pas rempli)
+  if (!ficheRow.cells[0] || !ficheRow.cells[0].innerHTML.trim()) {
+    ficheRow.cells[0].innerHTML = gtBuildFiche(name);
+  }
   if (gtOpenFiche === name) {
     ficheRow.classList.remove('open');
     gtOpenFiche = null;
@@ -6427,7 +6432,7 @@ function gtBuildFiche(name) {
 <div class="gt-fiche">
   <div class="gt-fiche-header">
     <div class="gt-fiche-title">${name}${ancient}</div>
-    <button class="gt-fiche-close" onclick="gtToggleFiche(${JSON.stringify(name)})">✕</button>
+    <button class="gt-fiche-close" data-close-fiche="1">✕</button>
   </div>
   <div class="gt-fiche-grid">
     <div>${img}</div>
@@ -6587,9 +6592,31 @@ document.getElementById('gt-modal') && document.getElementById('gt-modal').addEv
   if (e.target === this) gtModalClose();
 });
 
-// EVENT DELEGATION pour cellules calendrier (évite les problèmes de quotes dans onclick)
+// EVENT DELEGATION unique — gère les clics sur :
+//  1. .gt-varname  → toggle accordéon fiche
+//  2. td[data-nid] → saisie admin cellule calendrier
+//  3. .gt-fiche-close → fermer la fiche ouverte
 const gtBodyEl = document.getElementById('gt-body');
 if (gtBodyEl) gtBodyEl.addEventListener('click', function(e) {
+  // 1. Clic sur le nom d'une variété → ouvre/ferme la fiche
+  const varspan = e.target.closest('.gt-varname');
+  if (varspan) {
+    const rawName = varspan.getAttribute('data-n');
+    if (rawName) {
+      // data-n contient les &quot; encodés HTML — récupère la valeur décodée
+      const tn = document.createElement('span');
+      tn.innerHTML = rawName;
+      gtToggleFiche(tn.textContent || tn.innerText);
+    }
+    return; // ne pas traiter comme clic de cellule
+  }
+  // 2. Clic sur le bouton fermer de la fiche
+  const closeBtn = e.target.closest('.gt-fiche-close');
+  if (closeBtn) {
+    if (gtOpenFiche) gtToggleFiche(gtOpenFiche);
+    return;
+  }
+  // 3. Clic sur cellule calendrier (mode admin uniquement)
   if (!gtAdminMode) return;
   const td = e.target.closest('td[data-nid]');
   if (!td) return;
