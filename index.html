@@ -233,6 +233,51 @@
   .gt-varname:hover { color:var(--clay); }
   .gt-ancient-ico { font-size:9px; margin-left:3px; }
 
+
+  /* ===== FICHE TECHNIQUE ACCORDÉON ===== */
+  .gt-fiche-row { display:none; }
+  .gt-fiche-row.open { display:table-row; }
+  .gt-fiche-row td { padding:0; border-bottom:3px solid var(--clay); }
+  .gt-fiche { background:linear-gradient(135deg,#faf7f2 0%,#f0e9df 100%); padding:18px 20px; }
+  .gt-fiche-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .gt-fiche-title { font-family:'Fraunces',serif; font-size:18px; font-weight:700; color:var(--clay-dark); }
+  .gt-fiche-close { background:none; border:none; font-size:18px; cursor:pointer; color:#9c8a6a; }
+  .gt-fiche-close:hover { color:var(--clay); }
+  .gt-fiche-grid { display:grid; grid-template-columns:140px 1fr; gap:14px; }
+  .gt-fiche-photo { width:140px; height:140px; object-fit:cover; border-radius:12px; border:2px solid var(--line); display:block; }
+  .gt-fiche-photo-ph { width:140px; height:140px; border-radius:12px; border:2px solid var(--line); background:#e8e0d5; display:flex; align-items:center; justify-content:center; font-size:40px; }
+  .gt-fiche-main { display:flex; flex-direction:column; gap:8px; }
+  .gt-fiche-desc { font-size:12px; color:#5c4a30; line-height:1.6; font-style:italic; margin:0; }
+  .gt-fiche-pills { display:flex; flex-wrap:wrap; gap:5px; }
+  .gt-pill { display:inline-flex; align-items:center; gap:4px; padding:3px 9px; border-radius:12px; font-size:11px; font-weight:600; white-space:nowrap; }
+  .gt-pill-cycle { background:#e0f2fe; color:#0369a1; }
+  .gt-pill-cons { background:#f0fdf4; color:#166534; }
+  .gt-pill-sol { background:#fefce8; color:#854d0e; }
+  .gt-pill-h { background:#f9f0ff; color:#6b21a8; }
+  .gt-pill-eau { background:#e0f2fe; color:#075985; }
+  .gt-pill-sun { background:#fff7ed; color:#9a3412; }
+  .gt-fiche-calendar { background:white; border-radius:10px; padding:10px 12px; margin-top:10px; border:1px solid #e8e0d5; }
+  .gt-fiche-calendar h5 { font-size:11px; font-weight:700; color:var(--clay); text-transform:uppercase; letter-spacing:.07em; margin:0 0 6px; }
+  .gt-fiche-cal-row { display:flex; gap:6px; flex-wrap:wrap; font-size:11px; }
+  .gt-fiche-cal-item { display:flex; align-items:center; gap:4px; }
+  .gt-fiche-cal-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .gt-fiche-sections { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+  .gt-fiche-section { background:white; border-radius:10px; padding:10px 12px; border:1px solid #e8e0d5; }
+  .gt-fiche-section.full { grid-column:1/-1; }
+  .gt-fiche-section h5 { font-size:10px; font-weight:700; color:var(--clay); text-transform:uppercase; letter-spacing:.07em; margin:0 0 5px; }
+  .gt-fiche-section p { font-size:11px; color:#5c4a30; line-height:1.55; margin:0; }
+  .gt-fiche-tags { display:flex; flex-wrap:wrap; gap:4px; }
+  .gt-fiche-tag { padding:2px 7px; border-radius:8px; font-size:10px; font-weight:600; }
+  .gt-fiche-tag-ami { background:#d1fae5; color:#065f46; }
+  .gt-fiche-tag-ennemi { background:#fee2e2; color:#991b1b; }
+  .gt-fiche-tag-alert { background:#fef3c7; color:#92400e; }
+  .gt-varname { cursor:pointer; }
+  .gt-varname:hover { color:var(--clay); text-decoration:underline; }
+  @media (max-width:700px) {
+    .gt-fiche-grid { grid-template-columns:1fr; }
+    .gt-fiche-sections { grid-template-columns:1fr; }
+  }
+
   /* Formulaire ajout variété */
   .gt-av-form { display:none; background:var(--cream); border-radius:10px; border:1.5px solid var(--line); padding:14px; margin-top:10px; }
   .gt-av-form.open { display:block; }
@@ -1379,11 +1424,11 @@
 </g>
 <g id="harpe-row-4" class="harpe-row">
 <line x1="323.2" y1="530.0" x2="323.2" y2="204.4" stroke="#7a6a45" stroke-width="1" stroke-dasharray="2,3"/>
-<circle cx="323.2" cy="530.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="323.2" cy="508.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="323.2" cy="486.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="323.2" cy="464.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="323.2" cy="442.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="323.2" cy="530.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="323.2" cy="508.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="323.2" cy="486.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="323.2" cy="464.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="323.2" cy="442.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 5/5 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
 <circle cx="323.2" cy="415.6" r="4.5" fill="#bf5b04" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Potimarron &middot; 7/9 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.2 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
 <circle cx="323.2" cy="389.2" r="4.5" fill="#bf5b04" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Potimarron &middot; 7/9 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.2 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
 <circle cx="323.2" cy="362.8" r="4.5" fill="#e0e0e0" stroke="#999" stroke-width="1" class="hoverable" data-tip="Potimarron &middot; 7/9 vivants &middot; entre rangs 1,5 m du rang 3 x entre pieds 1.2 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; perdu"/>
@@ -1397,13 +1442,13 @@
 </g>
 <g id="harpe-row-5" class="harpe-row">
 <line x1="301.2" y1="530.0" x2="301.2" y2="257.2" stroke="#7a6a45" stroke-width="1" stroke-dasharray="2,3"/>
-<circle cx="301.2" cy="530.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="301.2" cy="508.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="301.2" cy="486.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="301.2" cy="464.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="301.2" cy="442.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="301.2" cy="420.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
-<circle cx="301.2" cy="398.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Blanc &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="530.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="508.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="486.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="464.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="442.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="420.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
+<circle cx="301.2" cy="398.0" r="4.5" fill="#c0a830" stroke="#2f3b2a" stroke-width="1" class="hoverable" data-tip="Patisson Jaune &middot; 7/7 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 1.0 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; vivant"/>
 <circle cx="301.2" cy="380.4" r="4.5" fill="#e0e0e0" stroke="#999" stroke-width="1" class="hoverable" data-tip="Luffa &middot; 1/8 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 0.8 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; perdu"/>
 <circle cx="301.2" cy="362.8" r="4.5" fill="#e0e0e0" stroke="#999" stroke-width="1" class="hoverable" data-tip="Luffa &middot; 1/8 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 0.8 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; perdu"/>
 <circle cx="301.2" cy="345.2" r="4.5" fill="#e0e0e0" stroke="#999" stroke-width="1" class="hoverable" data-tip="Luffa &middot; 1/8 vivants &middot; entre rangs 1 m du rang 4 x entre pieds 0.8 m &middot; Cucurbitacee regroupee avec les autres courges du potager harpe : memes besoins (plein soleil, sol riche), facilite la rotation future. &middot; perdu"/>
@@ -1575,7 +1620,7 @@
       <div class="gt-action-btn" data-action="seme_direct" onclick="gtSelectAction(this)">🌱 Semis direct</div>
       <div class="gt-action-btn" data-action="repique" onclick="gtSelectAction(this)">🔄 Repiqué</div>
       <div class="gt-action-btn" data-action="plante" onclick="gtSelectAction(this)">🌳 Planté</div>
-      <div class="gt-action-btn" data-action="recolte" onclick="gtSelectAction(this)">🍂 Récolté</div>
+      <div class="gt-action-btn" data-action="recolte" onclick="gtSelectAction(this)">🧺 Récolté</div>
       <div class="gt-action-btn" data-action="perdu" onclick="gtSelectAction(this)">💀 Perdu</div>
     </div>
     <div class="gt-week-row">
@@ -1657,7 +1702,7 @@
               <th class="th-num">Godets</th>
               <th class="th-num">Plants</th>
               <th class="th-m">Jan</th><th class="th-m">Fév</th><th class="th-m">Mar</th>
-              <th class="th-m">Avr</th><th class="th-m" style="background:#3d5c28;">Mai</th>
+              <th class="th-m">Avr</th><th class="th-m">Mai</th>
               <th class="th-m">Jun</th><th class="th-m">Jul</th><th class="th-m">Aoû</th>
               <th class="th-m">Sep</th><th class="th-m">Oct</th><th class="th-m">Nov</th><th class="th-m">Déc</th>
             </tr>
@@ -4323,6 +4368,1368 @@ const GT_REF = {
   "Nigelle de Damas":{ancient:false,cycle:"A",sow:[4, 5],transplant:[],plant:[4, 5],harvest:[6, 7, 8, 9],needsTransplant:false,stt:0,ttp:0,pth:8,emplacement:"Bordure mellif\u00e8re"},
   "Oeillets de Po\u00e8te":{ancient:false,cycle:"B",sow:[5, 6],transplant:[9],plant:[9, 10],harvest:[4, 5, 6],needsTransplant:true,stt:4,ttp:4,pth:10,emplacement:"Bordure fleurs bisannuelle"},
 };
+const GT_DETAIL = {
+  "Tomate Ananas":{
+    cons:4,ep:70,er:80,h:150,pp:5,
+    sol:"Riche, bien drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, oignon, persil",ennemis:"Fenouil, chou, pomme de terre",
+    mal:"Mildiou : cuivre pr\u00e9ventif, a\u00e9ration ; Botrytis : taille gourmands ; Pucerons : savon noir",eau:"Moyen (arrosage au pied)",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands, palissage hebdomadaire",boost:"Paillis+compost, purin d'ortie, basilic en bordure",
+    gr:"Ao\u00fbt-Sept",mult:"Semis en godets + bouturage gourmands",rot:"4 ans (Solanac\u00e9es)",
+    use:"Fruit cru en salade, jus ; bicolore jaune-rouge, chair douce peu acide",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Tomate Banana Legs":{
+    cons:4,ep:60,er:80,h:150,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, ciboulette",ennemis:"Fenouil, brassicas",
+    mal:"Mildiou : cuivre ; Botrytis : a\u00e9rer",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Compost fond de trou, purin d'ortie, paillis",
+    gr:"Sept-Oct",mult:"Semis + bouturage gourmands",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomate oblongue jaune p\u00e2le, douce, faible acidit\u00e9 ; crue ou sauce",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Belle Bacchante":{
+    cons:4,ep:60,er:80,h:150,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, oignon, carotte",ennemis:"Fenouil, brassicas",
+    mal:"Mildiou : cuivre ; Fusicoccum : taille nette",eau:"Moyen",sun:"Plein soleil",
+    care:"\u00c9bourgeonnage, tuteurage",boost:"Paillis, compost, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomate rouge taille moyenne, tr\u00e8s productive ; sauce, cru",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Bonne F\u00e9e":{
+    cons:4,ep:50,er:70,h:130,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, semi-d\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, oignon",ennemis:"Fenouil",
+    mal:"Mildiou, Fusariose : rotation stricte, drainage",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage l\u00e9ger, pincement limit\u00e9",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept",mult:"Semis",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomate rouge mi-saison, polyvalente",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr-Mai",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Buissonnante":{
+    cons:4,ep:40,er:60,h:60,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Buissonnante sans tuteur",
+    amis:"Basilic, persil, oignon",ennemis:"Fenouil, brassicas",
+    mal:"Mildiou, Botrytis : a\u00e9rer ; Pucerons : savon noir",eau:"Moyen",sun:"Plein soleil",
+    care:"Peu d'entretien, pincement facultatif",boost:"Paillis, compost, association basilic",
+    gr:"Ao\u00fbt-Sept",mult:"Semis",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomates rondes enti\u00e8res ; compacte, balcon et jardin",
+    sow_t:"Mars",tra_t:"Avr-Mai",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Tomate cerise Miel du mexique":{
+    cons:4,ep:60,er:80,h:200,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte",ennemis:"Fenouil",
+    mal:"Mildiou : a\u00e9rer, cuivre ; Botrytis : \u00e9viter humidit\u00e9 feuilles",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands, palissage",boost:"Paillis, compost, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Cerise orange-jaune tr\u00e8s sucr\u00e9e ; crue ap\u00e9ritif, salades",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Cerise Poire Jaune":{
+    cons:4,ep:60,er:80,h:180,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, oignon, ciboulette",ennemis:"Fenouil",
+    mal:"Mildiou, Botrytis : a\u00e9rer, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Compost fond de trou, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Cerise jaune en poire, douce, sucr\u00e9e ; crue",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate C\u0153ur de B\u0153uf Rouge":{
+    cons:4,ep:70,er:80,h:160,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, oignon",ennemis:"Fenouil, brassicas",
+    mal:"Mildiou : cuivre, a\u00e9ration ; Fendillement : arrosage r\u00e9gulier",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage renforc\u00e9 (fruits lourds), suppression gourmands",boost:"Paillis, compost, purin d'ortie, ail r\u00e9pulsif",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Fruit charnu tr\u00e8s peu de graines, faible acidit\u00e9 ; cru en tranches, farcis, coulis",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Green Zebra":{
+    cons:4,ep:60,er:80,h:150,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, persil",ennemis:"Fenouil, brassicas",
+    mal:"Mildiou : cuivre, a\u00e9ration ; Pucerons : savon noir",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomate verte stri\u00e9e, acidul\u00e9e ; salade, crue",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Groseille Champagne":{
+    cons:4,ep:60,er:80,h:200,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, oignon",ennemis:"Fenouil",
+    mal:"Mildiou, Botrytis : a\u00e9rer abondamment",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Compost, paillis, purin ortie",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomates minuscules jaune-champagne ; crue, confiture",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Grosse H\u00e2tive d'Orl\u00e9ans":{
+    cons:4,ep:60,er:80,h:150,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, oignon",ennemis:"Fenouil",
+    mal:"Mildiou : cuivre, a\u00e9ration ; Botrytis : taille",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Compost fond de trou, paillis, purin d'ortie",
+    gr:"Sept",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Grosse rouge h\u00e2tive, m\u00fbrissement pr\u00e9coce pour Normandie",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Noire de Crim\u00e9e":{
+    cons:4,ep:70,er:80,h:160,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, carotte, ciboulette",ennemis:"Fenouil, brassicas",
+    mal:"Mildiou : cuivre pr\u00e9ventif ; Fendillement : arrosage constant",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage renforc\u00e9, suppression gourmands",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Noire-pourpre, tr\u00e8s sucr\u00e9e, aromatique ; salade, crue, coulis",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate Royale des Guineaux":{
+    cons:4,ep:60,er:80,h:170,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur, ind\u00e9termin\u00e9e",
+    amis:"Basilic, oignon, carotte",ennemis:"Fenouil, chou",
+    mal:"Mildiou, Botrytis : a\u00e9rer, cuivre ; Pucerons",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis + bouturage",rot:"4 ans (Solanac\u00e9es)",
+    use:"Tomate rouge ronde productive ; sauce, cru universel",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Tomate \u2014 vari\u00e9t\u00e9s myst\u00e8res":{
+    cons:4,ep:50,er:80,h:150,pp:5,
+    sol:"Riche, drain\u00e9",mode:"Tuteur (pr\u00e9voir)",
+    amis:"Basilic, carotte",ennemis:"Fenouil",
+    mal:"Mildiou : cuivre pr\u00e9ventif",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage, suppression gourmands",boost:"Paillis, compost",
+    gr:"\u00c0 la r\u00e9colte",mult:"Semis (vari\u00e9t\u00e9s inconnues)",rot:"4 ans (Solanac\u00e9es)",
+    use:"Surprise ! Vari\u00e9t\u00e9s non \u00e9tiquet\u00e9es ; usage selon le type",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Aubergine Blanche Ronde \u00e0 \u0152ufs":{
+    cons:5,ep:60,er:70,h:80,pp:5,
+    sol:"Riche, chaud",mode:"Tuteur l\u00e9ger (serre recommand\u00e9e)",
+    amis:"Basilic, poivron, tomate",ennemis:"Fenouil, pomme de terre",
+    mal:"Doryphore : filet insect ; Araign\u00e9e rouge : humidifier",eau:"Moyen",sun:"Plein soleil (serre Normandie)",
+    care:"Arrosage r\u00e9gulier, paillage, taille \u00e0 4-5 tiges",boost:"Serre ou tunnel ESSENTIEL Normandie ; compost, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis godets",rot:"4 ans (Solanac\u00e9es)",
+    use:"Petites blanches en forme d'\u0153uf ; saut\u00e9es, grill\u00e9es, farcies",
+    sow_t:"Mars (sous abri)",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Aubergine de Barbantane":{
+    cons:5,ep:60,er:70,h:100,pp:5,
+    sol:"Riche, chaud",mode:"Tuteur (serre recommand\u00e9e)",
+    amis:"Basilic, poivron, tomate",ennemis:"Fenouil, pomme de terre",
+    mal:"Doryphore : filet ; Araign\u00e9e rouge : humidifier ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil (serre Normandie)",
+    care:"Arrosage r\u00e9gulier, paillage, taille",boost:"Serre ou tunnel ESSENTIEL Normandie ; compost riche",
+    gr:"Sept-Oct",mult:"Semis godets",rot:"4 ans (Solanac\u00e9es)",
+    use:"Allong\u00e9e noire violac\u00e9e, chair ferme ; grill\u00e9e, moussaka, ratatouille",
+    sow_t:"Mars (sous abri)",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Poivron Chocolat":{
+    cons:4,ep:50,er:60,h:80,pp:5,
+    sol:"Riche, chaud",mode:"Tuteur (serre recommand\u00e9e)",
+    amis:"Basilic, carotte, tomate",ennemis:"Fenouil, brassicas",
+    mal:"Pucerons : savon noir ; Araign\u00e9e rouge : humidifier",eau:"Moyen",sun:"Plein soleil (serre Normandie)",
+    care:"Arrosage r\u00e9gulier, tuteurage l\u00e9ger",boost:"Serre/tunnel fortement conseill\u00e9 Normandie ; compost, paillis",
+    gr:"Oct",mult:"Semis godets",rot:"4 ans (Solanac\u00e9es)",
+    use:"Rouge-brun \u00e0 maturit\u00e9, chair douce chocolat\u00e9e ; cru, farci, grill\u00e9",
+    sow_t:"Mars (sous abri)",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Poivron Yolo Wonder":{
+    cons:4,ep:50,er:60,h:80,pp:5,
+    sol:"Riche, chaud",mode:"Tuteur (serre recommand\u00e9e)",
+    amis:"Basilic, carotte, tomate",ennemis:"Fenouil, brassicas",
+    mal:"Pucerons : savon noir ; Araign\u00e9e rouge : humidifier",eau:"Moyen",sun:"Plein soleil (serre Normandie)",
+    care:"Arrosage r\u00e9gulier, tuteurage",boost:"Serre/tunnel fortement conseill\u00e9 Normandie ; compost, paillis",
+    gr:"Oct",mult:"Semis godets",rot:"4 ans (Solanac\u00e9es)",
+    use:"Gros rouge \u00e0 maturit\u00e9, chair \u00e9paisse douce ; cru, farci, grill\u00e9",
+    sow_t:"Mars (sous abri)",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Courgette Alberello di Sarzana":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante/coureuse",
+    amis:"Radis, capucine, aneth, oignon",ennemis:"Pomme de terre, fenouil",
+    mal:"O\u00efdium : bicarbonate, soufre ; Mildiou : cuivre ; Pucerons",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, paillage, r\u00e9colte r\u00e9guli\u00e8re",boost:"Buttes, compost, purin d'ortie, paillage paille",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Italienne claire stri\u00e9e allong\u00e9e ; saut\u00e9e, grill\u00e9e, crue",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Black Beauty":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Radis, capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Verte fonc\u00e9e classique, polyvalente",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Blanche de Trieste":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth, oignon",ennemis:"Pomme de terre, fenouil",
+    mal:"O\u00efdium : bicarbonate ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, paillage",boost:"Compost, paillis, purin ortie",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Ronde blanche, savoureuse ; farcies, grill\u00e9es",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Bolognese":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth, oignon",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage pied, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis paille",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Ovale potel\u00e9e verte clair ; saut\u00e9e, farcie",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette de Nice \u00e0 Fruits Ronds":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Radis, capucine",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : bicarbonate ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, r\u00e9colter jeune (5-7cm) pour farcir",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Ronde verte ; farcie enti\u00e8re, vapeur, soupe",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Gold Rush":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Jaune d\u00e9corative et savoureuse",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Greyzini":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, oignon",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Grise stri\u00e9e, saveur douce",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Grimpante Ola Escaladora":{
+    cons:6,ep:80,er:150,h:200,pp:5,
+    sol:"Meuble, riche",mode:"Grimpante, treillis/treille",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration favoris\u00e9e par la hauteur",eau:"Moyen",sun:"Plein soleil",
+    care:"Palissage r\u00e9gulier, arrosage pied",boost:"Treillis permet bonne a\u00e9ration, r\u00e9duit maladies ; compost",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Grimpante, fruits allong\u00e9s ; cuisin\u00e9e comme courgette classique",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Jaune Daisy":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Jaune ronde type p\u00e2tisson, d\u00e9corative et savoureuse",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Striato d'Italia":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth, oignon",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre pr\u00e9ventif",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage pied, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Stri\u00e9e verte-blanc, savoureuse, vari\u00e9t\u00e9 italienne ancienne",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courgette Verte Non Coureuse Des Maraichers":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante compacte",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage base, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis",
+    gr:"Sept",mult:"Semis direct ou godet",rot:"3-4 ans (Cucurbitac\u00e9es)",
+    use:"Verte productive r\u00e9f\u00e9rence mara\u00eechage, polyvalente",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Courge Banana Blue":{
+    cons:6,ep:120,er:150,h:200,pp:5,
+    sol:"Meuble, riche",mode:"Coureuse, beaucoup d'espace",
+    amis:"Ma\u00efs, haricot, capucine, aneth",ennemis:"Pomme de terre, fenouil",
+    mal:"O\u00efdium fin saison : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Paillage, laisser courir, surveiller limaces",boost:"Buttes Hugelkultur, compost riche, paillage paille \u00e9paisse",
+    gr:"Oct-Nov",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Grosse bleue cylindrique, chair orange ; soupe, gratin, four. Conservation 6 mois",
+    sow_t:"Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Sept \u2014 Nov"
+  },
+  "Courge Butternut":{
+    cons:6,ep:100,er:120,h:150,pp:5,
+    sol:"Meuble, riche",mode:"Coureuse ou buissonnante",
+    amis:"Ma\u00efs, haricot, capucine",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Paillage, tailler \u00e0 2-3 tiges",boost:"Compost, paillis, buttes",
+    gr:"Oct-Nov",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Chair orange sucr\u00e9e, conservation 6+ mois ; soupe, pur\u00e9e, gratin",
+    sow_t:"Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Sept \u2014 Nov"
+  },
+  "Courge Cyclanth\u00e8re":{
+    cons:4,ep:50,er:150,h:300,pp:5,
+    sol:"Bien drain\u00e9, riche",mode:"Grimpante vigoureuse, treillis/pergola",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : a\u00e9ration favoris\u00e9e par hauteur ; Limaces",eau:"Moyen",sun:"Plein soleil",
+    care:"Palissage r\u00e9gulier, arrosage r\u00e9gulier en \u00e9t\u00e9",boost:"Treillis haut (3m), serre d\u00e9marrage recommand\u00e9e Normandie",
+    gr:"Oct",mult:"Semis godet (d\u00e9marrage serre)",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Petits fruits \u00e9pineux : crus farcis ou cuits ; remplace haricot vert",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Fin juin \u2014 Juil",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Courge \u00c9ponge":{
+    cons:5,ep:100,er:150,h:300,pp:5,
+    sol:"Riche, chaud",mode:"Grimpante, treillis",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Palissage, arrosage r\u00e9gulier",boost:"Serre d\u00e9marrage recommand\u00e9e Normandie ; compost riche",
+    gr:"Oct",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Verte en cuisine (saut\u00e9) ou s\u00e9ch\u00e9e comme \u00e9ponge naturelle",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Courge Moschata Tancheese":{
+    cons:6,ep:100,er:150,h:200,pp:5,
+    sol:"Meuble, riche",mode:"Coureuse",
+    amis:"Ma\u00efs, haricot",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Paillage, laisser courir",boost:"Compost, paillis \u00e9pais",
+    gr:"Oct-Nov",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Beige, chair orang\u00e9e, excellente conservation ; soupe, tarte",
+    sow_t:"Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Sept \u2014 Nov"
+  },
+  "Courge P\u00e2tisson Blanc":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth, ma\u00efs",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : bicarbonate, soufre ; Limaces",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage pied, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis, purin d'ortie",
+    gr:"Sept-Oct",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Blanc d\u00e9coratif, chair fine ; farci, vapeur, soupe",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "P\u00e2tisson Jaune":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Meuble, riche",mode:"Buissonnante",
+    amis:"Capucine, aneth",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Arrosage pied, r\u00e9colte r\u00e9guli\u00e8re",boost:"Compost, paillis",
+    gr:"Sept-Oct",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Jaune d'or d\u00e9coratif et comestible ; farci, gratin\u00e9",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "V\u00e9ritable Potimarron de Sainte-Marthe":{
+    cons:5,ep:100,er:150,h:200,pp:5,
+    sol:"Meuble, riche",mode:"Coureuse",
+    amis:"Ma\u00efs, haricot, capucine",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre fin saison ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Paillage, laisser courir 2-3 tiges",boost:"Buttes, compost riche, paillis \u00e9pais",
+    gr:"Oct-Nov",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Chair orange sucr\u00e9e go\u00fbt ch\u00e2taigne ; soupe, pur\u00e9e, gratin. Conservation 4-6 mois",
+    sow_t:"Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Sept \u2014 Nov"
+  },
+  "Courge Halloween Apsen":{
+    cons:5,ep:100,er:150,h:200,pp:5,
+    sol:"Meuble, riche",mode:"Coureuse",
+    amis:"Ma\u00efs, haricot",ennemis:"Pomme de terre",
+    mal:"O\u00efdium, Mildiou : a\u00e9ration",eau:"Moyen",sun:"Plein soleil",
+    care:"Paillage, laisser courir",boost:"Compost, paillis",
+    gr:"Oct-Nov",mult:"Achet\u00e9e en plant (non multiplicable)",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Orange d\u00e9corative type Jack-o-lantern ; soupe, pur\u00e9e",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Oct \u2014 Nov"
+  },
+  "Concombre Lemon":{
+    cons:6,ep:50,er:80,h:150,pp:5,
+    sol:"Meuble, riche, bien drain\u00e9",mode:"Grimpant, treillis / sous serre",
+    amis:"Radis, aneth, capucine",ennemis:"Pomme de terre, sauge",
+    mal:"O\u00efdium : soufre, bicarbonate ; Mildiou : cuivre ; Araign\u00e9e rouge",eau:"Moyen-\u00c9lev\u00e9",sun:"Plein soleil (serre Normandie)",
+    care:"Arrosage r\u00e9gulier, palissage, r\u00e9colter avant jaunissement",boost:"Sous serre ou tunnel recommand\u00e9 Normandie",
+    gr:"Ao\u00fbt-Sept",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Petits ronds jaunes citronn\u00e9s, peau fine ; crus, marin\u00e9s",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Concombre Long vert Mara\u00eecher":{
+    cons:6,ep:50,er:80,h:180,pp:5,
+    sol:"Meuble, riche",mode:"Grimpant, treillis / sous serre",
+    amis:"Radis, aneth, capucine",ennemis:"Pomme de terre, sauge",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen-\u00c9lev\u00e9",sun:"Plein soleil (serre Normandie)",
+    care:"Arrosage r\u00e9gulier, palissage",boost:"Sous abri am\u00e9liore rendement Normandie",
+    gr:"Ao\u00fbt-Sept",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Long vert classique, productif ; salade, cru, marin\u00e9",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Cornichon Petit de Paris":{
+    cons:6,ep:40,er:80,h:150,pp:5,
+    sol:"Meuble, riche, bien drain\u00e9",mode:"Grimpant, treillis",
+    amis:"Radis, aneth, capucine",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"\u00c9lev\u00e9",sun:"Plein soleil",
+    care:"Arrosage fr\u00e9quent, palissage, r\u00e9colte tous les 2 jours",boost:"Palissage favorise a\u00e9ration",
+    gr:"Ao\u00fbt-Sept",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Petits cornichons croquants, r\u00e9colter \u00e0 5-8 cm ; conserve au vinaigre",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Melon Ancien Vieille France":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Sablonneuse, bien drain\u00e9",mode:"Coureuse, sous abri/tunnel OBLIGATOIRE",
+    amis:"Sarriette, ma\u00efs",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre, bicarbonate ; Mildiou : cuivre ; Botrytis",eau:"Moyen-\u00c9lev\u00e9",sun:"Plein soleil + chaleur (serre/tunnel INDISPENSABLE)",
+    care:"Pincement \u00e0 2-3 tiges, laisser 2-3 fruits/pied",boost:"Tunnel/serre OBLIGATOIRE Normandie",
+    gr:"Sept-Oct",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Tr\u00e8s parfum\u00e9 ; consommation fra\u00eeche",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin (sous abri)",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Melon de No\u00ebl Honeydew":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Sablonneuse, bien drain\u00e9",mode:"Coureuse, sous tunnel",
+    amis:"Sarriette",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil (tunnel Normandie)",
+    care:"Pincement, limitation fruits",boost:"Tunnel/serre INDISPENSABLE Normandie",
+    gr:"Oct",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Chair blanche douce ; conservation longue (jusqu'en d\u00e9cembre)",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin (sous abri)",har_t:"Sept \u2014 Oct"
+  },
+  "Melon Petit Gris de Rennes":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Sablonneuse, bien drain\u00e9",mode:"Coureuse, sous abri",
+    amis:"Sarriette, ma\u00efs",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre ; Botrytis",eau:"Moyen",sun:"Plein soleil (tunnel Normandie)",
+    care:"Pincement, 2-3 fruits/pied, paillis noir",boost:"Vari\u00e9t\u00e9 adapt\u00e9e Ouest France ; tunnel conseill\u00e9",
+    gr:"Sept",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Gris \u00e0 chair orang\u00e9e, tr\u00e8s parfum\u00e9 ; frais",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin (sous abri)",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Melon sucrin de Honfleur":{
+    cons:6,ep:80,er:100,h:60,pp:5,
+    sol:"Sablonneuse, bien drain\u00e9",mode:"Coureuse, sous abri",
+    amis:"Sarriette",ennemis:"Pomme de terre",
+    mal:"O\u00efdium : soufre ; Mildiou : cuivre",eau:"Moyen",sun:"Plein soleil (tunnel Normandie)",
+    care:"Pincement, paillis noir",boost:"Vari\u00e9t\u00e9 normande ! ; tunnel recommand\u00e9",
+    gr:"Sept",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Normand, tr\u00e8s parfum\u00e9 ; frais",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin (sous abri)",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Past\u00e8que Sugar Baby":{
+    cons:5,ep:100,er:150,h:50,pp:5,
+    sol:"Sablonneuse, tr\u00e8s chaude",mode:"Coureuse, serre OBLIGATOIRE",
+    amis:"Aneth, ma\u00efs",ennemis:"Pomme de terre, brassicas",
+    mal:"O\u00efdium : soufre ; Anthracnose : rotation",eau:"Moyen",sun:"Plein soleil + chaleur (serre OBLIGATOIRE)",
+    care:"Pincement, 1-2 fruits/pied, paillis plastique noir",boost:"SERRE OBLIGATOIRE Normandie",
+    gr:"Sept",mult:"Semis godet",rot:"4 ans (Cucurbitac\u00e9es)",
+    use:"Chair rouge sucr\u00e9e ; frais, jus, cocktails",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin (serre)",har_t:"Ao\u00fbt \u2014 Sept"
+  },
+  "Carotte De Colmar \u00e0 Coeur Rouge":{
+    cons:3,ep:5,er:30,h:40,pp:1,
+    sol:"Meuble, profonde, sans cailloux",mode:"Semis direct, rang",
+    amis:"Poireau, oignon, laitue, tomate",ennemis:"Fenouil, aneth, pomme de terre",
+    mal:"Mouche de la carotte : filet insect ; Alternariose : rotation",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, binage, filet anti-insectes",boost:"Association poireaux/oignons masque odeur, repousse mouche",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Courte orange \u00e0 c\u0153ur blanc, douce ; crue, cuite, jus",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Carotte de Carentan":{
+    cons:3,ep:5,er:30,h:40,pp:1,
+    sol:"Meuble, profonde",mode:"Semis direct",
+    amis:"Poireau, oignon, laitue",ennemis:"Fenouil",
+    mal:"Mouche de la carotte : filet ; Alternariose : rotation",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, filet anti-insectes",boost:"Association oignon/poireau",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Cylindrique orange, tendre ; crue, cuite, jus, conserves",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Carotte K\u00fctigger":{
+    cons:3,ep:5,er:30,h:40,pp:1,
+    sol:"Meuble, profonde",mode:"Semis direct",
+    amis:"Poireau, oignon",ennemis:"Fenouil",
+    mal:"Mouche de la carotte : filet",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, filet",boost:"Association oignon/poireau",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Suisse ancienne, longue, bonne conservation ; crue, cuite",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Carotte Nantaise 2 Milan":{
+    cons:3,ep:5,er:30,h:40,pp:1,
+    sol:"Meuble, profonde",mode:"Semis direct",
+    amis:"Poireau, oignon",ennemis:"Fenouil",
+    mal:"Mouche de la carotte : filet",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, filet",boost:"Association oignon/poireau",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Demi-longue nantaise, douce, peu de c\u0153ur ; crue, cuite",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Carotte rouge sang":{
+    cons:3,ep:5,er:30,h:40,pp:1,
+    sol:"Meuble, profonde",mode:"Semis direct",
+    amis:"Poireau, oignon",ennemis:"Fenouil",
+    mal:"Mouche de la carotte : filet",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, filet",boost:"Association oignon/poireau",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Rouge sang profond, riche en anthocyanes ; crue, cuite",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Carotte Touchon":{
+    cons:3,ep:5,er:30,h:40,pp:1,
+    sol:"Meuble, profonde",mode:"Semis direct",
+    amis:"Poireau, oignon",ennemis:"Fenouil",
+    mal:"Mouche de la carotte : filet",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, filet",boost:"Association oignon/poireau",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Cylindrique sans c\u0153ur, pr\u00e9coce, tr\u00e8s productive ; crue, cuite",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Panais demi-long de Guernesey":{
+    cons:2,ep:10,er:30,h:60,pp:5,
+    sol:"Profonde, meuble, sans cailloux",mode:"Semis direct",
+    amis:"Oignon, l\u00e9gumineuses",ennemis:"Fenouil",
+    mal:"Mouche de la carotte : filet",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien, laisser en place jusqu'apr\u00e8s gel",boost:"Le gel am\u00e9liore la saveur",
+    gr:"Nov-D\u00e9c (2e ann\u00e9e)",mult:"Semis direct, graines fra\u00eeches",rot:"3 ans",
+    use:"Racine blanche sucr\u00e9e apr\u00e8s gel ; pur\u00e9e, gratins, soupe, r\u00f4ti",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Oct \u2014 F\u00e9v"
+  },
+  "C\u00e9leri Vert \u00e0 couper":{
+    cons:5,ep:25,er:40,h:60,pp:2,
+    sol:"Fra\u00eeche, riche, humide",mode:"Droit en planche",
+    amis:"Tomate, haricot, poireau",ennemis:"Fenouil, ma\u00efs, pomme de terre",
+    mal:"Septoriose : a\u00e9ration, rotation ; Mildiou : cuivre ; Sclerotinia : rotation",eau:"\u00c9lev\u00e9",sun:"Soleil \u00e0 mi-ombre",
+    care:"Arrosage r\u00e9gulier, ne pas laisser s\u00e9cher",boost:"Paillis pour conserver humidit\u00e9 ; compost riche",
+    gr:"Nov (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Tiges et feuilles aromatiques ; assaisonnement soupe, salades, s\u00e9ch\u00e9",
+    sow_t:"Mars (sous abri)",tra_t:"Juin",pl_t:"Juil",har_t:"Ao\u00fbt \u2014 Nov"
+  },
+  "C\u00e9leri-branche Tall Utah":{
+    cons:5,ep:30,er:40,h:80,pp:2,
+    sol:"Fra\u00eeche, riche, humide",mode:"Droit en planche",
+    amis:"Tomate, haricot, poireau",ennemis:"Fenouil, ma\u00efs",
+    mal:"Septoriose : a\u00e9ration, rotation ; Mildiou : cuivre",eau:"\u00c9lev\u00e9",sun:"Plein soleil",
+    care:"Arrosage r\u00e9gulier, butter tiges pour blanchir",boost:"Paillis pour humidit\u00e9 ; compost riche",
+    gr:"Nov (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Tiges croquantes ; crudit\u00e9s, soupe, cuisson",
+    sow_t:"Mars (sous abri)",tra_t:"Juin",pl_t:"Juil",har_t:"Ao\u00fbt \u2014 Nov"
+  },
+  "Betterave rouge Crapaudine":{
+    cons:6,ep:15,er:30,h:40,pp:3,
+    sol:"L\u00e9g\u00e8re, profonde, bien drain\u00e9e",mode:"Semis direct rang",
+    amis:"Oignon, chou, laitue, ciboulette",ennemis:"Haricot",
+    mal:"Cercosporiose : rotation, a\u00e9ration ; Mildiou betterave : cuivre",eau:"Faible-Moyen",sun:"Plein soleil",
+    care:"\u00c9claircissage, binage, ne pas laisser s\u00e9cher",boost:"Compost bien d\u00e9compos\u00e9",
+    gr:"Oct (2e ann\u00e9e)",mult:"Semis direct",rot:"4 ans (Amaranthac\u00e9es)",
+    use:"Longue cylindrique rouge, douce ; cuite, crue r\u00e2p\u00e9e, jus, pickles",
+    sow_t:"Avr \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Navet De Milan \u00e0 collet rose":{
+    cons:4,ep:15,er:30,h:30,pp:1,
+    sol:"Fra\u00eeche, meuble, riche",mode:"Semis direct rang",
+    amis:"Pois, haricot, chou",ennemis:"Tomate, oignon, fenouil",
+    mal:"Altises : filet (trous foliaires) ; Hernie du chou : rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"\u00c9claircissage, filet anti-insectes",boost:"Semis successifs mars-ao\u00fbt",
+    gr:"Oct (2e ann\u00e9e)",mult:"Semis direct",rot:"4 ans (Brassicac\u00e9es)",
+    use:"Blanc \u00e0 collet rose, doux ; crue, cuite, soupe",
+    sow_t:"Mars \u2014 Ao\u00fbt",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Chou Navet Rutabaga":{
+    cons:4,ep:40,er:50,h:60,pp:1,
+    sol:"Fra\u00eeche, meuble",mode:"Semis direct ou repiquage",
+    amis:"Pois, haricot, laitue",ennemis:"Tomate, oignon, fenouil",
+    mal:"Hernie du chou : rotation stricte (4 ans) ; Altises : filet ; Mildiou",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter l\u00e9g\u00e8rement, arrosage r\u00e9gulier",boost:"Le gel am\u00e9liore la saveur sucr\u00e9e",
+    gr:"Nov (2e ann\u00e9e)",mult:"Semis direct",rot:"4 ans (Brassicac\u00e9es)",
+    use:"Racine orange-jaune, chair sucr\u00e9e apr\u00e8s gel ; pur\u00e9e, soupe, r\u00f4ti",
+    sow_t:"Mai \u2014 Juin",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Oct \u2014 F\u00e9v"
+  },
+  "Oignon Blanc de Lisbonne":{
+    cons:2,ep:10,er:25,h:30,pp:3,
+    sol:"Meuble, bien drain\u00e9e",mode:"Rang\u00e9e ou botte",
+    amis:"Carotte, laitue, fraise, tomate",ennemis:"L\u00e9gumineuses, brassicas",
+    mal:"Mildiou : cuivre ; Mouche de l'oignon : filet ; Fusarium : rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"Binage, d\u00e9sherbage, ne pas arroser avant r\u00e9colte",boost:"Association carottes (repousse mouche)",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es), 4 ans sans alliac\u00e9es",
+    use:"Doux blanc h\u00e2tif, consommation fra\u00eeche ou s\u00e9ch\u00e9",
+    sow_t:"F\u00e9v \u2014 Avr (printemps) ou Ao\u00fbt \u2014 Sept (automne)",tra_t:"Avr \u2014 Mai",pl_t:"F\u00e9v \u2014 Avr (bulbilles)",har_t:"Juil \u2014 Sept"
+  },
+  "Oignon Jaune de Maz\u00e9":{
+    cons:2,ep:10,er:25,h:30,pp:3,
+    sol:"Meuble, bien drain\u00e9e",mode:"Rang\u00e9e",
+    amis:"Carotte, laitue, fraise",ennemis:"L\u00e9gumineuses, brassicas",
+    mal:"Mildiou, Mouche oignon : filet, rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"Binage, d\u00e9sherbage",boost:"Association carotte",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin",rot:"2 ans (Alliac\u00e9es)",
+    use:"Jaune longue conservation (6-8 mois) ; cuisine universelle",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr \u2014 Mai",pl_t:"Mai \u2014 Juin",har_t:"Ao\u00fbt \u2014 Sept"
+  },
+  "Oignon Jaune Dorata di Parma":{
+    cons:2,ep:10,er:25,h:30,pp:3,
+    sol:"Meuble, bien drain\u00e9e",mode:"Rang\u00e9e",
+    amis:"Carotte, laitue",ennemis:"L\u00e9gumineuses, brassicas",
+    mal:"Mildiou, Mouche oignon : filet, rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"Binage, d\u00e9sherbage",boost:"Association carotte",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es)",
+    use:"Dor\u00e9, doux, bonne conservation ; cuisine italienne et universelle",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr \u2014 Mai",pl_t:"Mai \u2014 Juin",har_t:"Ao\u00fbt \u2014 Sept"
+  },
+  "Oignon jaune de Stuttgart":{
+    cons:2,ep:10,er:25,h:30,pp:3,
+    sol:"Meuble, bien drain\u00e9e",mode:"Rang\u00e9e",
+    amis:"Carotte, laitue",ennemis:"L\u00e9gumineuses",
+    mal:"Mildiou, Mouche oignon : filet, rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"Binage, d\u00e9sherbage",boost:"Association carotte",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es)",
+    use:"Aplati jaune, excellente conservation ; cuisine universelle",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr \u2014 Mai",pl_t:"Mai \u2014 Juin",har_t:"Ao\u00fbt \u2014 Sept"
+  },
+  "Oignon Rouge de Gen\u00e8ve":{
+    cons:2,ep:10,er:25,h:30,pp:3,
+    sol:"Meuble, bien drain\u00e9e",mode:"Rang\u00e9e",
+    amis:"Carotte, laitue",ennemis:"L\u00e9gumineuses, brassicas",
+    mal:"Mildiou, Mouche oignon : filet, rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"Binage, d\u00e9sherbage",boost:"Association carotte",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es)",
+    use:"Rouge doux, belle couleur ; salade, cru, pickles",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Avr \u2014 Mai",pl_t:"Mai \u2014 Juin",har_t:"Ao\u00fbt \u2014 Sept"
+  },
+  "Poireau d'Elbeuf \u00c9l\u00e9phant":{
+    cons:2,ep:15,er:30,h:50,pp:5,
+    sol:"Meuble, riche",mode:"Rang\u00e9e, planter profond",
+    amis:"Carotte, c\u00e9leri, laitue",ennemis:"L\u00e9gumineuses (pois, f\u00e8ve)",
+    mal:"Rouille du poireau : a\u00e9ration, cuivre ; Mildiou : rotation ; Teigne : filet",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter tiges, arrosage r\u00e9gulier",boost:"Plantation profonde pour blanchir ; compost riche",
+    gr:"Oct-Nov (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es), 4 ans sans alliac\u00e9es",
+    use:"F\u00fbt blanc \u00e9pais, doux, fondant ; soupe, quiche, gratin",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Juin \u2014 Juil",pl_t:"Juin \u2014 Juil",har_t:"Oct \u2014 Avr"
+  },
+  "Poireau Saint Victor":{
+    cons:2,ep:15,er:30,h:50,pp:5,
+    sol:"Meuble, riche",mode:"Rang\u00e9e, planter profond",
+    amis:"Carotte, c\u00e9leri, laitue",ennemis:"L\u00e9gumineuses",
+    mal:"Rouille : a\u00e9ration, cuivre ; Mildiou : rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter tiges, arrosage",boost:"Poireau d'hiver tr\u00e8s rustique (-15\u00b0C) ; compost riche",
+    gr:"Oct-Nov (2e ann\u00e9e)",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es)",
+    use:"Poireau d'hiver violet-bleu, tr\u00e8s r\u00e9sistant gel ; soupe, gratin",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Juin \u2014 Juil",pl_t:"Juin \u2014 Juil",har_t:"Nov \u2014 Avr"
+  },
+  "Ciboulette Commune (civette)":{
+    cons:4,ep:20,er:30,h:30,pp:3,
+    sol:"Ordinaire, bien drain\u00e9",mode:"Touffes, bordure",
+    amis:"Carotte, tomate, rose",ennemis:"Oignon, l\u00e9gumineuses",
+    mal:"Rouille : rare ; Mildiou : rares",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper r\u00e9guli\u00e8rement, diviser tous 3 ans",boost:"Vivace permanente : bordure du potager",
+    gr:"Juil-Ao\u00fbt",mult:"Division de touffes, semis",rot:"Vivace (renouveler tous 5 ans)",
+    use:"Feuilles fra\u00eeches, fleurs comestibles ; fromage frais, soupe, salade",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct ou godet",har_t:"Avr \u2014 Nov (permanent)"
+  },
+  "Poireaux (lot mandala)":{
+    cons:2,ep:15,er:30,h:50,pp:5,
+    sol:"Meuble, riche",mode:"Rang\u00e9e",
+    amis:"Carotte, c\u00e9leri",ennemis:"L\u00e9gumineuses",
+    mal:"Rouille : a\u00e9ration, cuivre",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter tiges, arrosage",boost:"Compost riche, plantation profonde",
+    gr:"Oct-Nov",mult:"Semis fin, repiquage",rot:"2 ans (Alliac\u00e9es)",
+    use:"F\u00fbt blanc fondant ; soupe, quiche, gratin",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Juin \u2014 Juil",pl_t:"Juin \u2014 Juil",har_t:"Oct \u2014 Avr"
+  },
+  "Poireaux (surplus)":{
+    cons:2,ep:10,er:25,h:50,pp:5,
+    sol:"Meuble, riche",mode:"Rang\u00e9e harpe",
+    amis:"Carotte, c\u00e9leri",ennemis:"L\u00e9gumineuses",
+    mal:"Rouille : a\u00e9ration",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter tiges",boost:"Compost riche",
+    gr:"Oct-Nov",mult:"Repiquage",rot:"2 ans",
+    use:"Idem poireaux lot",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Juin \u2014 Juil",pl_t:"Juin \u2014 Juil",har_t:"Oct \u2014 Avr"
+  },
+  "Pomme de terre Truffette":{
+    cons:0,ep:30,er:70,h:60,pp:10,
+    sol:"Meuble, acide, l\u00e9g\u00e8re",mode:"Rang, butt\u00e9e",
+    amis:"Haricot, chou, ma\u00efs",ennemis:"Tomate, aubergine, fenouil",
+    mal:"Mildiou : sensible - cuivre pr\u00e9ventif ; Gale : rotation ; Doryphore",eau:"Moyen",sun:"Plein soleil",
+    care:"Buttage 2-3 fois, surveillance mildiou",boost:"Vari\u00e9t\u00e9 ancienne bossel\u00e9e ; compost automne",
+    gr:"Ao\u00fbt",mult:"Conserver petits tubercules",rot:"4 ans minimum (Solanac\u00e9es) !",
+    use:"Petits tubercules bossel\u00e9s, chair jaune fine, go\u00fbt noisette/truffe ; vapeur, r\u00f4tis entiers",
+    sow_t:"\u2014",tra_t:"\u2014",pl_t:"Mars \u2014 Avr (tubercules)",har_t:"Juil \u2014 Ao\u00fbt"
+  },
+  "Pomme de terre Ma\u00efwen":{
+    cons:0,ep:35,er:75,h:70,pp:10,
+    sol:"Meuble, fra\u00eeche",mode:"Rang, butt\u00e9e",
+    amis:"Haricot, chou",ennemis:"Tomate, aubergine",
+    mal:"Mildiou : cuivre ; Gale : rotation ; Doryphore",eau:"Moyen",sun:"Plein soleil",
+    care:"Buttage, surveillance mildiou",boost:"Vari\u00e9t\u00e9 robuste ; compost automne",
+    gr:"Juil-Ao\u00fbt",mult:"Conserver tubercules sains",rot:"4 ans minimum !",
+    use:"Chair ferme, bonne conservation ; vapeur, four, gratin",
+    sow_t:"\u2014",tra_t:"\u2014",pl_t:"Mars \u2014 Avr (tubercules)",har_t:"Juil \u2014 Ao\u00fbt"
+  },
+  "Pomme de terre Charlotte":{
+    cons:0,ep:30,er:70,h:70,pp:10,
+    sol:"Meuble, fra\u00eeche",mode:"Rang, butt\u00e9e",
+    amis:"Haricot, chou, ma\u00efs",ennemis:"Tomate, aubergine",
+    mal:"Mildiou : cuivre ; Gale : rotation ; Doryphore",eau:"Moyen",sun:"Plein soleil",
+    care:"Buttage 2-3 fois",boost:"Compost automne",
+    gr:"Juil-Ao\u00fbt",mult:"Conserver tubercules sains",rot:"4 ans minimum !",
+    use:"Chair ferme non farineuse, peau lisse jaune ; vapeur, salade, raclette",
+    sow_t:"\u2014",tra_t:"\u2014",pl_t:"Mars \u2014 Avr (tubercules)",har_t:"Juil \u2014 Ao\u00fbt"
+  },
+  "Pomme de terre Allians":{
+    cons:0,ep:30,er:70,h:70,pp:10,
+    sol:"Meuble, acide, profonde",mode:"Rang, butt\u00e9e",
+    amis:"Haricot, chou, ma\u00efs",ennemis:"Tomate, aubergine, poivron, fenouil",
+    mal:"Mildiou : tol\u00e9rant - cuivre pr\u00e9ventif ; Gale : rotation ; Doryphore",eau:"Moyen",sun:"Plein soleil",
+    care:"Buttage 2-3 fois, filet doryphore",boost:"Vari\u00e9t\u00e9 r\u00e9sistante mildiou",
+    gr:"Juil-Ao\u00fbt",mult:"Conserver tubercules sains",rot:"4 ans minimum !",
+    use:"Chair ferme, bonne conservation ; vapeur, soupe, frite, gratin",
+    sow_t:"\u2014",tra_t:"\u2014",pl_t:"Mars \u2014 Avr (tubercules)",har_t:"Juil \u2014 Ao\u00fbt"
+  },
+  "Chicor\u00e9e Scarole G\u00e9ante Maraich\u00e8re":{
+    cons:5,ep:30,er:40,h:30,pp:1,
+    sol:"Fra\u00eeche, riche",mode:"Semis direct ou repiquage",
+    amis:"Tomate, chou, radis",ennemis:"Aucune",
+    mal:"Mildiou, Botrytis en humidit\u00e9 : a\u00e9ration, espacement",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Lier feuilles pour blanchir, prot\u00e9ger du gel s\u00e9v\u00e8re",boost:"Blanchiment (lier) am\u00e9liore amertume",
+    gr:"D\u00e9c (2e ann\u00e9e)",mult:"Semis direct",rot:"5 ans (Ast\u00e9rac\u00e9es)",
+    use:"Larges feuilles l\u00e9g\u00e8rement am\u00e8res ; salade, brais\u00e9e, chips",
+    sow_t:"Juin \u2014 Ao\u00fbt",tra_t:"Ao\u00fbt \u2014 Sept",pl_t:"Ao\u00fbt \u2014 Sept",har_t:"Sept \u2014 Nov"
+  },
+  "\u00c9pinard Fraise":{
+    cons:4,ep:30,er:40,h:100,pp:1,
+    sol:"Ordinaire, ensoleill\u00e9e",mode:"Dress\u00e9, tr\u00e8s d\u00e9coratif",
+    amis:"Chou, pois, navet",ennemis:"Pomme de terre",
+    mal:"Mildiou : rare ; Pucerons : savon noir",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien, laisser fruits m\u00fbrir",boost:"Tr\u00e8s d\u00e9coratif ; graines comme quinoa",
+    gr:"Oct",mult:"Semis direct (se ress\u00e8me)",rot:"4 ans (Amaranthac\u00e9es)",
+    use:"Petits fruits rouges sucr\u00e9s + feuilles ; cru, jus, confiture",
+    sow_t:"Avr \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Roquette":{
+    cons:5,ep:15,er:25,h:30,pp:1,
+    sol:"Fra\u00eeche, ordinaire",mode:"Semis direct, rang",
+    amis:"Tomate, radis, carotte",ennemis:"Fraise",
+    mal:"Altises (trous feuilles) : filet ; Mildiou : a\u00e9rer",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper r\u00e9guli\u00e8rement avant mont\u00e9e, filet anti-altises",boost:"Semis toutes 3 semaines pour production continue ; mi-ombre en \u00e9t\u00e9",
+    gr:"Juin-Oct",mult:"Semis direct (se ress\u00e8me facilement)",rot:"4 ans (Brassicac\u00e9es)",
+    use:"Feuilles poivr\u00e9es piquantes ; salade, pizza, pesto",
+    sow_t:"Mars \u2014 Oct",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Avr \u2014 Nov (quasi-permanent)"
+  },
+  "Roquette sauvage":{
+    cons:5,ep:20,er:30,h:40,pp:1,
+    sol:"Drain\u00e9, ordinaire",mode:"Semis direct, vivace",
+    amis:"Tomate, radis, carotte",ennemis:"Fraise",
+    mal:"Altises : filet ; Mildiou : rare",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper avant floraison, se r\u00e9g\u00e9n\u00e8re",boost:"Vivace = plantation permanente ; plus rustique",
+    gr:"Juil-Oct",mult:"Semis direct (se ress\u00e8me abondamment)",rot:"Vivace (Brassicac\u00e9es)",
+    use:"Allong\u00e9es tr\u00e8s piquantes ; salade, pizza, sauce",
+    sow_t:"Mars \u2014 Sept",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Avr \u2014 Nov (permanent)"
+  },
+  "Blette Rhubarb Chard":{
+    cons:5,ep:30,er:40,h:60,pp:3,
+    sol:"Fra\u00eeche, riche",mode:"Semis direct ou godet",
+    amis:"Chou, haricot, laitue",ennemis:"Betterave, pomme de terre",
+    mal:"Mildiou : rotation ; Cercosporiose : a\u00e9ration, cuivre",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper tiges du bas pour favoriser nouvelles pousses",boost:"Tr\u00e8s productive et belle ; garde-manger automne-hiver",
+    gr:"Oct (2e ann\u00e9e)",mult:"Semis direct",rot:"4-5 ans (Amaranthac\u00e9es)",
+    use:"Tiges rouges vives, feuilles vertes ; tiges farcies, gratin\u00e9es, feuilles saut\u00e9es",
+    sow_t:"Avr \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Nov"
+  },
+  "Coqueret du P\u00e9rou":{
+    cons:4,ep:60,er:80,h:100,pp:1,
+    sol:"Meuble, drain\u00e9",mode:"Tuteur l\u00e9ger",
+    amis:"Tomate, basilic",ennemis:"Fenouil",
+    mal:"Pucerons : savon noir ; Mildiou : a\u00e9ration",eau:"Moyen",sun:"Plein soleil",
+    care:"Tuteurage l\u00e9ger, arrosage mod\u00e9r\u00e9",boost:"Compost, paillis, sous abri de d\u00e9marrage",
+    gr:"Oct-Nov",mult:"Semis godet",rot:"4 ans (Solanac\u00e9es)",
+    use:"Petits fruits jaunes dans capsule, acidul\u00e9s sucr\u00e9s ; confiture, tarte, cru",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Oct \u2014 Nov"
+  },
+  "Basilic cannelle":{
+    cons:5,ep:30,er:40,h:50,pp:1,
+    sol:"L\u00e9g\u00e8re, drain\u00e9e, chaude",mode:"Buissonnant",
+    amis:"Tomate, poivron, aubergine, chou",ennemis:"Sauge",
+    mal:"Botrytis : a\u00e9rer ; Mildiou basilic : \u00e9viter eau sur feuilles",eau:"Moyen",sun:"Plein soleil",
+    care:"Couper avant floraison, pincer sommet",boost:"Planter avant tomates ; compost l\u00e9ger, chaleur sol",
+    gr:"Ao\u00fbt-Sept",mult:"Semis, bouturage dans l'eau",rot:"Annuelle (Normandie)",
+    use:"Feuilles au parfum cannelle ; cuisine fusion, cocktails, desserts",
+    sow_t:"Mars \u2014 Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Basilic G\u00e9ant Monstrueux Mammouth":{
+    cons:5,ep:40,er:50,h:60,pp:1,
+    sol:"L\u00e9g\u00e8re, drain\u00e9e, chaude",mode:"Grande plante",
+    amis:"Tomate, poivron, aubergine",ennemis:"Sauge",
+    mal:"Mildiou basilic ; Botrytis : a\u00e9rer",eau:"Moyen",sun:"Plein soleil",
+    care:"Couper avant floraison pour grandes feuilles",boost:"Grandes feuilles tr\u00e8s utiles pour pesto ; compost l\u00e9ger",
+    gr:"Ao\u00fbt-Sept",mult:"Semis",rot:"Annuelle (Normandie)",
+    use:"Grandes feuilles (10-15cm), ar\u00f4me intense ; pesto, pizza, salade",
+    sow_t:"Mars \u2014 Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Basilic Pourpre":{
+    cons:5,ep:30,er:40,h:50,pp:1,
+    sol:"L\u00e9g\u00e8re, drain\u00e9e, chaude",mode:"Buissonnant violet",
+    amis:"Tomate, poivron",ennemis:"Sauge",
+    mal:"Mildiou ; Botrytis : a\u00e9rer",eau:"Moyen",sun:"Plein soleil",
+    care:"Couper avant floraison",boost:"D\u00e9coratif et comestible ; vinaigre de basilic violet",
+    gr:"Ao\u00fbt-Sept",mult:"Semis",rot:"Annuelle (Normandie)",
+    use:"Feuilles violettes ; vinaigre color\u00e9, pesto violet, d\u00e9coratif",
+    sow_t:"Mars \u2014 Avr",tra_t:"Juin",pl_t:"Fin mai \u2014 Juin",har_t:"Juil \u2014 Oct"
+  },
+  "Thym de Provence":{
+    cons:3,ep:25,er:35,h:30,pp:3,
+    sol:"L\u00e9g\u00e8re, calcaire, s\u00e8che",mode:"Couvre-sol arbustif",
+    amis:"Chou, courgette, aubergine, poivron",ennemis:"Aucune",
+    mal:"Mildiou : rare si drainage ; Araign\u00e9e rouge",eau:"Faible (x\u00e9rophyte)",sun:"Plein soleil",
+    care:"Tailler l\u00e9g\u00e8rement apr\u00e8s floraison, \u00e9viter eau stagnante",boost:"Bordure permanente ; s\u00e9cher pour ar\u00f4me maximal",
+    gr:"Juin-Ao\u00fbt",mult:"Division, bouturage ao\u00fbt\u00e9, semis",rot:"Vivace si drainage (10+ ans)",
+    use:"Tiges, feuilles ; cuisine m\u00e9diterran\u00e9enne, bouquets garnis, tisane",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai \u2014 Juin",pl_t:"Juin",har_t:"Juin \u2014 Ao\u00fbt (permanent)"
+  },
+  "Romarin officinal":{
+    cons:3,ep:60,er:80,h:100,pp:3,
+    sol:"L\u00e9g\u00e8re, calcaire, s\u00e8che",mode:"Arbuste vivace",
+    amis:"Chou, haricot, sauge, carotte",ennemis:"Aucune",
+    mal:"Mildiou/Botrytis : drainage ESSENTIEL Normandie",eau:"Faible",sun:"Plein soleil, abri",
+    care:"Tailler l\u00e9g\u00e8rement apr\u00e8s floraison, DRAINAGE ESSENTIEL Normandie",boost:"DRAINAGE parfait CRUCIAL Normandie ; bouturage facile",
+    gr:"Avr-Juin",mult:"Bouturage tiges ao\u00fbt\u00e9es (m\u00e9thode principale)",rot:"Vivace si drainage (15+ ans)",
+    use:"Tiges feuill\u00e9es parfum\u00e9es ; m\u00e9diterran\u00e9en, marinades, huiles, tisane",
+    sow_t:"Mars \u2014 Avr",tra_t:"Juin",pl_t:"Juin",har_t:"Toute l'ann\u00e9e (feuilles permanentes)"
+  },
+  "Sarriette annuelle":{
+    cons:3,ep:20,er:30,h:30,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Petite plante dress\u00e9e",
+    amis:"L\u00e9gumineuses (haricot, pois, f\u00e8ve), chou",ennemis:"Oignon",
+    mal:"Peu de maladies",eau:"Faible",sun:"Plein soleil",
+    care:"Couper avant floraison, semis successifs",boost:"Compagne traditionnelle des haricots",
+    gr:"Sept",mult:"Semis direct",rot:"3 ans (Lamiac\u00e9es)",
+    use:"Feuilles aromatiques poivr\u00e9es ; haricots verts, charcuterie, tisane",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juin \u2014 Oct"
+  },
+  "Menthe Verte":{
+    cons:3,ep:30,er:50,h:50,pp:5,
+    sol:"Fra\u00eeche, riche (s'adapte)",mode:"Rhizomateuse CONTENIR en pot",
+    amis:"Tomate, chou",ennemis:"Autre menthe",
+    mal:"Rouille : a\u00e9ration, division ; Mildiou : rare",eau:"Moyen-\u00c9lev\u00e9",sun:"Mi-ombre \u00e0 soleil",
+    care:"CONTENIR les rhizomes (pot enterr\u00e9 ou barri\u00e8re), couper",boost:"INVASION ASSUR\u00c9E si non contenue ; conteneur OBLIGATOIRE",
+    gr:"Juil-Sept",mult:"Division de rhizomes (principale m\u00e9thode)",rot:"Vivace (permanent dans son pot)",
+    use:"Feuilles fra\u00eeches/s\u00e9ch\u00e9es ; menthe, mojito, salade, couscous, chocolat",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct ou division",har_t:"Mai \u2014 Oct"
+  },
+  "Herbe \u00e0 chat Cataire Citron":{
+    cons:4,ep:40,er:60,h:60,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Touffe dress\u00e9e",
+    amis:"Tomate, l\u00e9gumes (r\u00e9pulsif pucerons, doryphore)",ennemis:"Aucune",
+    mal:"Peu de maladies ; Probl\u00e8me : chats !",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Prot\u00e9ger de chats (grillage), couper apr\u00e8s floraison",boost:"Repousse pucerons et doryphores ; attire pollinisateurs",
+    gr:"Sept",mult:"Division, semis",rot:"Vivace (permanent)",
+    use:"M\u00e9dicinale (calmant) ; tisane citron ; jeu chats",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai",pl_t:"Mai \u2014 Juin",har_t:"Juin \u2014 Oct"
+  },
+  "Agastache Menthe Cor\u00e9enne":{
+    cons:3,ep:40,er:60,h:80,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Touffe dress\u00e9e",
+    amis:"L\u00e9gumes divers",ennemis:"Aucune",
+    mal:"Mildiou : a\u00e9rer",eau:"Faible",sun:"Plein soleil",
+    care:"Couper apr\u00e8s floraison, paillis hivernal",boost:"Excellent attracteur pollinisateurs",
+    gr:"Sept",mult:"Division, semis",rot:"Vivace (paillis hivernal)",
+    use:"Feuilles anis\u00e9es ; tisane, cocktails, cuisine asiatique",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai \u2014 Juin",pl_t:"Mai \u2014 Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Origan Commun":{
+    cons:4,ep:25,er:35,h:40,pp:3,
+    sol:"Calcaire, s\u00e8che, drain\u00e9e",mode:"Couvre-sol, arbustif bas",
+    amis:"Tomate, chou, concombre",ennemis:"Aucune",
+    mal:"Peu de maladies si sol drain\u00e9",eau:"Faible",sun:"Plein soleil",
+    care:"Tailler l\u00e9g\u00e8rement apr\u00e8s floraison, drainage essentiel",boost:"Permanent ; s\u00e9cher pour ar\u00f4me maximal ; compagne tomates",
+    gr:"Ao\u00fbt",mult:"Division, bouturage, semis",rot:"Vivace si drainage",
+    use:"Feuilles s\u00e9ch\u00e9es ; pizza, p\u00e2tes, viandes grill\u00e9es",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Godet avr-mai",har_t:"Juin \u2014 Sept (permanent)"
+  },
+  "Origan de Gr\u00e8ce":{
+    cons:4,ep:25,er:35,h:40,pp:3,
+    sol:"Calcaire, s\u00e8che, drain\u00e9e",mode:"Couvre-sol",
+    amis:"Tomate, chou, concombre",ennemis:"Aucune",
+    mal:"Peu de maladies si drain\u00e9",eau:"Faible",sun:"Plein soleil",
+    care:"Tailler l\u00e9g\u00e8rement, drainage ESSENTIEL Normandie",boost:"Ar\u00f4me plus intense ; couper avant floraison",
+    gr:"Ao\u00fbt",mult:"Division, bouturage",rot:"Vivace si drainage",
+    use:"Ar\u00f4me tr\u00e8s intense ; pizza, grillades, cuisine m\u00e9diterran\u00e9enne",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Godet avr-mai",har_t:"Juin \u2014 Sept (permanent)"
+  },
+  "Persil G\u00e9ant d'Italie":{
+    cons:3,ep:20,er:30,h:50,pp:1,
+    sol:"Fra\u00eeche, riche, humus",mode:"Semis direct ou godet",
+    amis:"Asperge, tomate, oignon, chou",ennemis:"Laitue",
+    mal:"Mildiou : rotation, a\u00e9ration ; Septoriose : arrosage pied",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Arrosage r\u00e9gulier, prot\u00e9ger du gel",boost:"Semis sous abri pour avancer ; s\u00e9chage ou cong\u00e9lation",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin, repiquage ou direct",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Feuilles plates tr\u00e8s parfum\u00e9es ; condiment universel, taboul\u00e9, persillade",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct ou godet",har_t:"Juin \u2014 D\u00e9c"
+  },
+  "Persil plat commun":{
+    cons:3,ep:20,er:30,h:40,pp:1,
+    sol:"Fra\u00eeche, riche",mode:"Semis direct ou godet",
+    amis:"Tomate, asperge, oignon",ennemis:"Laitue",
+    mal:"Mildiou, Septoriose : rotation",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Arrosage r\u00e9gulier",boost:"Semis toutes 6 semaines pour production continue",
+    gr:"Ao\u00fbt (2e ann\u00e9e)",mult:"Semis fin",rot:"3-4 ans (Apiac\u00e9es)",
+    use:"Condiment universel ; bouquets garnis",
+    sow_t:"Mars \u2014 Juil",tra_t:"\u2014",pl_t:"Direct ou godet",har_t:"Juin \u2014 D\u00e9c"
+  },
+  "Cerfeuil Commun":{
+    cons:2,ep:15,er:25,h:40,pp:1,
+    sol:"Fra\u00eeche, humus",mode:"Semis direct, mi-ombre",
+    amis:"Radis, laitue, carotte",ennemis:"Fenouil",
+    mal:"Pucerons : savon noir ; rare",eau:"Moyen",sun:"Mi-ombre",
+    care:"Semis successifs, couper avant mont\u00e9e graines",boost:"Id\u00e9al sous arbres ; se ress\u00e8me naturellement",
+    gr:"Juin / Oct",mult:"Semis direct (fragile \u00e0 transplanter)",rot:"2 ans (Apiac\u00e9es)",
+    use:"Feuilles anis\u00e9es d\u00e9licates ; cru (perdre parfum cuisson), soupe froide",
+    sow_t:"Mars \u2014 Avr ou Ao\u00fbt \u2014 Sept",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Avr \u2014 Juin / Oct \u2014 Nov"
+  },
+  "Aneth T\u00e9tra Gold":{
+    cons:3,ep:20,er:30,h:80,pp:1,
+    sol:"Drain\u00e9, ordinaire",mode:"Semis direct rang",
+    amis:"Concombre, chou, carotte, tomate",ennemis:"Fenouil (hybridation), oignon",
+    mal:"Pucerons : savon noir",eau:"Faible",sun:"Plein soleil",
+    care:"\u00c9claircissage, \u00e9viter transplantation, couper avant floraison",boost:"Semis successifs toutes 3 semaines ; se ress\u00e8me naturellement",
+    gr:"Ao\u00fbt-Sept",mult:"Semis direct (ne pas transplanter)",rot:"3 ans (Apiac\u00e9es)",
+    use:"Feuilles (saumon, concombre, vinaigre) ; graines \u00e9pice",
+    sow_t:"Avr \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Oct"
+  },
+  "Coriandre":{
+    cons:4,ep:15,er:25,h:50,pp:1,
+    sol:"Drain\u00e9, ordinaire",mode:"Semis direct, rang",
+    amis:"Anis, cerfeuil, carotte",ennemis:"Fenouil",
+    mal:"O\u00efdium en chaleur : a\u00e9ration",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Semis successifs, couper r\u00e9guli\u00e8rement",boost:"Semis toutes 3 semaines ; se ress\u00e8me",
+    gr:"Juil-Ao\u00fbt",mult:"Semis direct",rot:"4 ans (Apiac\u00e9es)",
+    use:"Feuilles fra\u00eeches (asiatique, mexicain) ; graines \u00e9pice (cari, pain d'\u00e9pices)",
+    sow_t:"Avr \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juin \u2014 Oct"
+  },
+  "Fenouil Officinal":{
+    cons:4,ep:40,er:60,h:150,pp:1,
+    sol:"Drain\u00e9, calcaire",mode:"Vivace droit, isol\u00e9",
+    amis:"Aucune (all\u00e9lopathique !)",ennemis:"TOUT LE JARDIN (all\u00e9lopathique !)",
+    mal:"Pucerons noirs : savon noir",eau:"Faible",sun:"Plein soleil",
+    care:"Laisser remonter, couper tiges mortes en automne, diviser tous 3 ans",boost:"En bordure ISOL\u00c9E du jardin ; ne pas mettre pr\u00e8s des l\u00e9gumes !",
+    gr:"Sept",mult:"Division ou semis",rot:"Vivace (Apiac\u00e9es) - tenir isol\u00e9 !",
+    use:"Tiges, feuilles, graines aromatis\u00e9es ; tisane, poisson, salades",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place isol\u00e9",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Fenouil Selma":{
+    cons:4,ep:25,er:40,h:40,pp:1,
+    sol:"Drain\u00e9, frais",mode:"Semis direct, butter le bulbe",
+    amis:"Laitue, c\u00e9leri",ennemis:"ISOLER (all\u00e9lopathique l\u00e9ger)",
+    mal:"O\u00efdium : soufre",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter bulbe, arrosage r\u00e9gulier",boost:"Semis \u00e9chelonn\u00e9s avr-juil ; butter pour blanchir",
+    gr:"Sept",mult:"Semis direct",rot:"4 ans (Apiac\u00e9es)",
+    use:"Bulbe fenouil, chair anis\u00e9e ; cru en salade, brais\u00e9, gratin",
+    sow_t:"Avr \u2014 Juil",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Sept \u2014 Nov"
+  },
+  "Lavande Vraie":{
+    cons:4,ep:40,er:60,h:60,pp:3,
+    sol:"Calcaire, s\u00e8che, tr\u00e8s drain\u00e9e",mode:"Arbustive",
+    amis:"L\u00e9gumes (r\u00e9pulsif pucerons, mouches, mites)",ennemis:"Aucune",
+    mal:"Botrytis : DRAINAGE ESSENTIEL Normandie",eau:"Faible",sun:"Plein soleil total",
+    care:"Tailler apr\u00e8s floraison (ne pas couper vieux bois), sable au pied",boost:"DRAINAGE parfait CRUCIAL Normandie ; sable sous la touffe",
+    gr:"Ao\u00fbt",mult:"Bouturage ao\u00fbt\u00e9 (m\u00e9thode principale)",rot:"Vivace si drainage (10+ ans)",
+    use:"Fleurs m\u00e9dicinales et parfum\u00e9es ; tisane, sachets, cuisine proven\u00e7ale",
+    sow_t:"Mars \u2014 Avr",tra_t:"Juin",pl_t:"Juin",har_t:"Juin \u2014 Ao\u00fbt"
+  },
+  "Hysope Officinale":{
+    cons:3,ep:30,er:40,h:60,pp:3,
+    sol:"Calcaire, s\u00e8che, drain\u00e9e",mode:"Arbustive semi-ligneuse",
+    amis:"Chou, chou-fleur, raisin (repousse altises)",ennemis:"Radis, ail",
+    mal:"Mildiou : rare si bien drain\u00e9 ; Botrytis : Normandie humide",eau:"Faible",sun:"Plein soleil",
+    care:"Tailler l\u00e9g\u00e8rement, drainage essentiel",boost:"R\u00e9pulsif altises sur brassicas ; attracteur abeilles",
+    gr:"Ao\u00fbt-Sept",mult:"Division, bouturage, semis",rot:"Vivace si drainage (10 ans)",
+    use:"Feuilles aromatiques am\u00e8res-\u00e9pic\u00e9es ; digestif, charcuterie, tisane, liqueur",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Avr-Mai direct",har_t:"Juin \u2014 Sept"
+  },
+  "Capucine Imp\u00e9ratrice des Indes":{
+    cons:4,ep:30,er:50,h:200,pp:3,
+    sol:"Pauvre \u00e0 ordinaire, bien drain\u00e9",mode:"Grimpante, couvre-sol",
+    amis:"Tomate, chou, concombre (r\u00e9pulsif + pi\u00e8ge pucerons)",ennemis:"Aucune",
+    mal:"Pucerons NOIRS (plante pi\u00e8ge intentionnelle)",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien, ne pas engraisser",boost:"PI\u00c8GE \u00e0 pucerons noirs ; comestible enti\u00e8re",
+    gr:"Oct",mult:"Semis direct, graines fra\u00eeches",rot:"Annuelle (Tropaeolac\u00e9es)",
+    use:"Feuilles, fleurs, boutons (c\u00e2pres) ; salade, c\u00e2pres marin\u00e9es",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juin \u2014 Oct"
+  },
+  "Capucine Naine":{
+    cons:4,ep:25,er:35,h:30,pp:3,
+    sol:"Pauvre \u00e0 ordinaire, bien drain\u00e9",mode:"Compacte, buissonnante",
+    amis:"Tomate, chou, concombre",ennemis:"Aucune",
+    mal:"Pucerons : pi\u00e8ges intentionnels",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien, ne pas engraisser",boost:"Pi\u00e8ge pucerons ; id\u00e9ale en pot ou bordure",
+    gr:"Oct",mult:"Semis direct",rot:"Annuelle",
+    use:"Fleurs et feuilles comestibles ; salade, garniture",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juin \u2014 Oct"
+  },
+  "Tournesol ramifi\u00e9":{
+    cons:5,ep:50,er:80,h:150,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Dress\u00e9, tuteur par vent",
+    amis:"Concombre, ma\u00efs, cucurbitac\u00e9es, l\u00e9gumineuses",ennemis:"Pomme de terre (n\u00e9matodes)",
+    mal:"Rouille : rare ; Botrytis fleur : humidit\u00e9 Normandie",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien, arroser jeunes plants",boost:"Attire pollinisateurs ; graines nourrissent oiseaux hiver",
+    gr:"Sept-Oct",mult:"Semis direct",rot:"5 ans (Ast\u00e9rac\u00e9es)",
+    use:"Graines comestibles (ol\u00e9agineux) ; grill\u00e9es, huile ; fleur d\u00e9corative",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Mai \u2014 Juin direct",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Tournesol Italian White":{
+    cons:5,ep:40,er:60,h:130,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Dress\u00e9, ramifi\u00e9",
+    amis:"Concombre, cucurbitac\u00e9es",ennemis:"Pomme de terre",
+    mal:"Botrytis : a\u00e9rer ; Rouille : rare",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien",boost:"Attracteur pollinisateurs et abeilles",
+    gr:"Sept-Oct",mult:"Semis direct",rot:"5 ans (Ast\u00e9rac\u00e9es)",
+    use:"Fleurs cr\u00e8me-blanc d\u00e9coratives ; graines ol\u00e9agineuses",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Mai \u2014 Juin direct",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Tournesol Commun":{
+    cons:5,ep:50,er:80,h:200,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Tige dress\u00e9e unique",
+    amis:"Concombre, ma\u00efs",ennemis:"Pomme de terre",
+    mal:"Botrytis sur t\u00eate : humidit\u00e9 Normandie",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien",boost:"Haie brise-vent temporaire \u00e9t\u00e9 ; graines pour oiseaux",
+    gr:"Sept-Oct",mult:"Semis direct",rot:"5 ans (Ast\u00e9rac\u00e9es)",
+    use:"Graines riches huile et prot\u00e9ines ; grill\u00e9es, huile, oiseaux",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Mai \u2014 Juin direct",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Tournesol Pompon Gold Coin":{
+    cons:5,ep:30,er:50,h:60,pp:1,
+    sol:"Drain\u00e9, ordinaire",mode:"Compact, buissonnant",
+    amis:"L\u00e9gumes, cucurbitac\u00e9es",ennemis:"Pomme de terre",
+    mal:"Botrytis : a\u00e9rer Normandie",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien",boost:"Compact, id\u00e9al en bordure ; attracteur pollinisateurs",
+    gr:"Sept-Oct",mult:"Semis direct",rot:"5 ans (Ast\u00e9rac\u00e9es)",
+    use:"Mini-fleurs d\u00e9coratives pompons ; graines ol\u00e9agineuses",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Mai \u2014 Juin direct",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Achill\u00e9e Millefeuille \u00e0 Fleurs Blanches":{
+    cons:3,ep:30,er:40,h:60,pp:3,
+    sol:"Drain\u00e9, pauvre \u00e0 ordinaire",mode:"Touffe, couvre-sol",
+    amis:"Tout le jardin (g\u00e9n\u00e9raliste)",ennemis:"Aucune",
+    mal:"Peu de maladies",eau:"Faible",sun:"Plein soleil",
+    care:"Couper apr\u00e8s floraison, diviser tous 3 ans",boost:"Purin d'achill\u00e9e active compost et booste racines voisins",
+    gr:"Sept",mult:"Division de touffes",rot:"Vivace (permanent)",
+    use:"Feuilles m\u00e9dicinales (h\u00e9mostatique, anti-inflammatoire) ; tisane",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct ou godet",har_t:"Juin \u2014 Sept"
+  },
+  "Camomille Matricaire":{
+    cons:3,ep:15,er:25,h:40,pp:1,
+    sol:"Drain\u00e9, ordinaire",mode:"Semis direct, se ress\u00e8me",
+    amis:"Chou, oignon, bl\u00e9, tomate",ennemis:"Aucune",
+    mal:"Peu de maladies",eau:"Faible",sun:"Plein soleil",
+    care:"Se ress\u00e8me seule, couper pour prolonger floraison",boost:"Purin de camomille fortifie les voisins ; attracteur auxiliaires",
+    gr:"Juil-Sept",mult:"Semis direct ou r\u00e9cup\u00e9rer t\u00eates",rot:"3 ans (Ast\u00e9rac\u00e9es)",
+    use:"Fleurs m\u00e9dicinales (antispasmodique, calmant) ; tisane, bain de bouche",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juin \u2014 Sept"
+  },
+  "Hibiscus Bissap \u00e0 Fleurs Rouges":{
+    cons:4,ep:60,er:80,h:150,pp:5,
+    sol:"Riche, drain\u00e9e, chaude",mode:"Arbustive, abri Normandie",
+    amis:"L\u00e9gumes tropicaux, ma\u00efs",ennemis:"Aucune",
+    mal:"Pucerons : savon noir ; Mildiou : humidit\u00e9 Normandie",eau:"Moyen",sun:"Plein soleil + chaleur",
+    care:"Abri ou serre Normandie, arrosage r\u00e9gulier",boost:"Serre ou abri tr\u00e8s chaud Normandie ; compost riche",
+    gr:"Oct",mult:"Semis godet",rot:"Annuelle Normandie",
+    use:"Calices rouges s\u00e9ch\u00e9s ; bissap (boisson), confiture, gel\u00e9e",
+    sow_t:"Avr \u2014 Mai",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Immortelle \u00e0 Bract\u00e9e Roggli Riesen":{
+    cons:4,ep:25,er:35,h:60,pp:3,
+    sol:"L\u00e9g\u00e8re, s\u00e8che, bien drain\u00e9e",mode:"Dress\u00e9e",
+    amis:"L\u00e9gumes (attracteur pollinisateurs)",ennemis:"Aucune",
+    mal:"Botrytis si humidit\u00e9 Normandie : a\u00e9rer",eau:"Faible",sun:"Plein soleil",
+    care:"Couper avant \u00e9panouissement total pour s\u00e9chage",boost:"Cueillir avant pleine ouverture pour meilleure conservation s\u00e9ch\u00e9e",
+    gr:"Sept",mult:"Semis sous abri",rot:"Annuelle",
+    use:"Fleurs s\u00e9ch\u00e9es d\u00e9coratives ; bouquets \u00e9ternels",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai \u2014 Juin",pl_t:"Mai \u2014 Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Immortelle \u00e0 bract\u00e9e monstrueuse":{
+    cons:4,ep:25,er:35,h:70,pp:3,
+    sol:"L\u00e9g\u00e8re, s\u00e8che, drain\u00e9e",mode:"Dress\u00e9e, grande",
+    amis:"L\u00e9gumes (attracteur)",ennemis:"Aucune",
+    mal:"Botrytis : a\u00e9rer Normandie",eau:"Faible",sun:"Plein soleil",
+    care:"Couper avant \u00e9panouissement",boost:"Grandes fleurs pour bouquets amples",
+    gr:"Sept",mult:"Semis sous abri",rot:"Annuelle",
+    use:"Grandes fleurs s\u00e9ch\u00e9es d\u00e9coratives",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai \u2014 Juin",pl_t:"Mai \u2014 Juin",har_t:"Juil \u2014 Sept"
+  },
+  "Arnica Montana":{
+    cons:2,ep:20,er:30,h:30,pp:3,
+    sol:"Acide, pauvre, bien drain\u00e9 (SANS calcaire !)",mode:"Touffe de montagne",
+    amis:"Aucune v\u00e9g\u00e9tale de potager",ennemis:"Calcaire (MORTEL pour l'arnica !)",
+    mal:"Sol calcaire = mort ; sinon peu de maladies",eau:"Faible",sun:"Plein soleil",
+    care:"Sol acide IMP\u00c9RATIF, ne pas fumer, ne pas calciner",boost:"Sol acide Normandie souvent adapt\u00e9 ; JAMAIS de calcaire",
+    gr:"Ao\u00fbt",mult:"Division d\u00e9licate, semis difficile",rot:"Vivace si sol acide",
+    use:"Fleurs m\u00e9dicinales (traumatologie, anti-inflammatoire) - EXTERNE uniquement !",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct ou godet",har_t:"Juin \u2014 Ao\u00fbt"
+  },
+  "Val\u00e9riane officinale":{
+    cons:3,ep:30,er:50,h:120,pp:5,
+    sol:"Riche, fra\u00eeche, profonde",mode:"Dress\u00e9e",
+    amis:"L\u00e9gumes en g\u00e9n\u00e9ral (attire vers de terre)",ennemis:"Aucune",
+    mal:"Peu de maladies",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Diviser tous 3 ans, couper tiges apr\u00e8s floraison",boost:"Racines = compost excellent attracteur lombrics",
+    gr:"Ao\u00fbt",mult:"Division ou semis",rot:"Vivace (permanent)",
+    use:"Racines m\u00e9dicinales (anxiolytique) ; tisane, usage pharmaceutique",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Oct"
+  },
+  "Rhubarbe Victoria":{
+    cons:3,ep:100,er:120,h:100,pp:10,
+    sol:"Riche, profonde, fra\u00eeche",mode:"Grande vivace",
+    amis:"Chou (repousse pucerons)",ennemis:"Aucune",
+    mal:"Pourriture couronne : drainage, pas de fumure directe",eau:"\u00c9lev\u00e9",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper tiges florales IMM\u00c9DIATEMENT, ne r\u00e9colter qu'1-2 ans apr\u00e8s plantation",boost:"Ne pas r\u00e9colter la 1\u00e8re ann\u00e9e ; compost chaque automne",
+    gr:"Ao\u00fbt-Sept (2e ann\u00e9e)",mult:"Division de souche",rot:"Vivace (20+ ans)",
+    use:"P\u00e9tioles rouges acidul\u00e9s (FEUILLES TOXIQUES !) ; tarte, confiture, crumble, jus",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Godet ou division",har_t:"Avr \u2014 Juil"
+  },
+  "Oseille Commune":{
+    cons:4,ep:30,er:40,h:50,pp:5,
+    sol:"Fra\u00eeche, acide, fertile",mode:"Touffe persistante",
+    amis:"Fraise, ail, ciboulette",ennemis:"Persil",
+    mal:"Peu de maladies ; Pucerons : savon noir",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper tiges florales pour prolonger production, diviser tous 3 ans",boost:"Vivace productrice d\u00e8s printemps ; diviser pour multiplier",
+    gr:"Ao\u00fbt",mult:"Division, semis",rot:"Vivace (permanent)",
+    use:"Feuilles acidul\u00e9es (oxalic) ; soupe froide, sauce poisson, salade",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Avr \u2014 Nov"
+  },
+  "Haricot Nain Autan":{
+    cons:3,ep:10,er:40,h:40,pp:3,
+    sol:"L\u00e9g\u00e8re, fra\u00eeche, sol chaud",mode:"Buissonnant nain",
+    amis:"Carotte, concombre, chou, c\u00e9leri, ma\u00efs",ennemis:"Oignon, ail, fenouil, bette",
+    mal:"Anthracnose : rotation, \u00e9viter eau feuilles ; Bruche : sarriette ; Pucerons",eau:"Moyen",sun:"Plein soleil",
+    care:"Butter l\u00e9g\u00e8rement, semer chaud (>15\u00b0C)",boost:"Association sarriette (repousse bruche) ; semer quand sol chaud",
+    gr:"Sept",mult:"Laisser gousses s\u00e9cher sur plant",rot:"3 ans (Fabac\u00e9es)",
+    use:"Gousses tendres vertes cuites ; grains secs en soupe, rago\u00fbt",
+    sow_t:"Mai \u2014 Juin",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Sept"
+  },
+  "Tr\u00e8fle incarnat":{
+    cons:3,ep:10,er:25,h:50,pp:1,
+    sol:"Ordinaire \u00e0 pauvre",mode:"Semis direct, engrais vert",
+    amis:"Toutes cultures (fixateur azote)",ennemis:"Aucune",
+    mal:"Peu de maladies",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Faucher avant grenaison pour enfouir",boost:"Engrais vert EXCELLENT : fixe azote 100-200 kg N/ha",
+    gr:"Juil (si grain)",mult:"Semis direct",rot:"Engrais vert : ne pas inclure rotation",
+    use:"Fleurs comestibles (salade, tisane) ; surtout engrais vert et butinage abeilles",
+    sow_t:"Mars \u2014 Sept",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Mai \u2014 Oct"
+  },
+  "Artichaut Green Globe":{
+    cons:2,ep:100,er:120,h:150,pp:10,
+    sol:"Riche, profonde, drain\u00e9e",mode:"Grande vivace",
+    amis:"F\u00e9verole, pois, tomate",ennemis:"Aucune",
+    mal:"Puceron noir : savon noir, ortie ; Botrytis : a\u00e9rer",eau:"Moyen-\u00c9lev\u00e9",sun:"Plein soleil",
+    care:"Couper tiges apr\u00e8s r\u00e9colte, pailler base en hiver OBLIGATOIRE Normandie",boost:"PAILLIS HIVERNALE OBLIGATOIRE Normandie ; compost riche",
+    gr:"Sept (2e ann\u00e9e)",mult:"Division de cardes (rejets basaux)",rot:"Vivace (renouveler tous 5 ans)",
+    use:"Capitule charnu (fond + feuilles) ; vapeur, vinaigrette, barigoule",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Artichaut Imperial Star":{
+    cons:2,ep:100,er:120,h:150,pp:10,
+    sol:"Riche, profonde",mode:"Grande plante",
+    amis:"F\u00e9verole, pois",ennemis:"Aucune",
+    mal:"Puceron noir : savon noir ; Botrytis : a\u00e9rer",eau:"Moyen-\u00c9lev\u00e9",sun:"Plein soleil",
+    care:"Paillis hivernal, couper tiges",boost:"Seul artichaut \u00e0 produire la 1\u00e8re ann\u00e9e ! ; compost riche",
+    gr:"Sept",mult:"Division ou semis annuel",rot:"Vivace si paillis hivernal",
+    use:"Capitule ; vapeur, vinaigrette",
+    sow_t:"F\u00e9v \u2014 Mars",tra_t:"Mai \u2014 Juin",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Pimprenelle Petite":{
+    cons:4,ep:30,er:40,h:50,pp:3,
+    sol:"Calcaire, s\u00e8che, drain\u00e9e",mode:"Couvre-sol, touffe",
+    amis:"L\u00e9gumes et aromates (couvre-sol)",ennemis:"Aucune",
+    mal:"Peu de maladies ; tr\u00e8s rustique",eau:"Faible",sun:"Soleil \u00e0 mi-ombre",
+    care:"Peu d'entretien, couper avant floraison, diviser tous 5 ans",boost:"Vivace permanente ; r\u00e9siste s\u00e9cheresse",
+    gr:"Juil-Ao\u00fbt",mult:"Division, semis direct",rot:"Vivace (permanent)",
+    use:"Feuilles go\u00fbt concombre-noisette ; salade, vinaigrette, fromage frais",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Avr \u2014 Oct"
+  },
+  "Cerfeuil Tub\u00e9reux":{
+    cons:2,ep:10,er:25,h:50,pp:5,
+    sol:"Meuble, profonde, fra\u00eeche",mode:"Semis direct automne",
+    amis:"Laitue, poireau",ennemis:"Fenouil",
+    mal:"Peu ; Fonte semis : drainage",eau:"Faible",sun:"Mi-ombre \u00e0 plein soleil",
+    care:"Peu d'entretien, laisser en place tout l'hiver",boost:"Semer en automne OBLIGATOIRE (froid n\u00e9cessaire germination)",
+    gr:"Juin (2e ann\u00e9e)",mult:"Semis automne",rot:"1-2 ans (graines fragiles)",
+    use:"Tubercule blanc sucr\u00e9 go\u00fbt ch\u00e2taigne-noisette ; vapeur, saut\u00e9, pur\u00e9e",
+    sow_t:"Ao\u00fbt \u2014 Sept (semis automnal uniquement)",tra_t:"\u2014",pl_t:"Direct en place automne",har_t:"Mars \u2014 Mai"
+  },
+  "Liv\u00e8che":{
+    cons:4,ep:60,er:80,h:200,pp:5,
+    sol:"Fra\u00eeche, riche, profonde",mode:"Grande vivace dress\u00e9e",
+    amis:"Tomate, l\u00e9gumineuses",ennemis:"Rien",
+    mal:"O\u00efdium fin saison : rare ; Pucerons",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Diviser tous 3 ans, couper apr\u00e8s gel, tr\u00e8s rustique",boost:"Vivace permanente : bordure ; peu d'entretien",
+    gr:"Ao\u00fbt-Sept",mult:"Division de souche ou semis automne",rot:"Vivace (10+ ans)",
+    use:"Feuilles saveur c\u00e9leri-fenouil ; soupe, rago\u00fbt, pot-au-feu",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct ou godet",har_t:"Juil \u2014 Oct"
+  },
+  "Persil Tub\u00e9reux (\u00e0 grosse racine)":{
+    cons:3,ep:20,er:30,h:40,pp:5,
+    sol:"Profonde, meuble, sans cailloux",mode:"Semis direct rang",
+    amis:"Tomate, oignon",ennemis:"Laitue",
+    mal:"Mildiou, Septoriose : rotation",eau:"Moyen",sun:"Plein soleil",
+    care:"\u00c9claircissage, laisser en place tout l'hiver",boost:"Le gel am\u00e9liore la saveur ; ne pas tailler les feuilles",
+    gr:"Ao\u00fbt-Sept (2e ann\u00e9e)",mult:"Semis direct",rot:"3 ans (Apiac\u00e9es)",
+    use:"Racine blanche (comme panais doux) + feuilles aromatiques ; soupe, rago\u00fbt",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Oct \u2014 F\u00e9v"
+  },
+  "R\u00e9glisse Glabre":{
+    cons:3,ep:50,er:80,h:150,pp:10,
+    sol:"Profonde, fertile, ensoleill\u00e9e",mode:"Vivace drageonnante",
+    amis:"Aucune",ennemis:"Aucune",
+    mal:"Peu de maladies",eau:"Moyen",sun:"Plein soleil",
+    care:"Peu d'entretien, patience (3 ans avant r\u00e9colte racines)",boost:"Sol profond et meuble ; patience n\u00e9cessaire",
+    gr:"Ao\u00fbt-Sept",mult:"Bouturage de racines, semis",rot:"Vivace (permanent)",
+    use:"Racines m\u00e9dicinales (adoucissant, anti-inflammatoire) ; infusion, confiserie",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Godet avr-mai",har_t:"Avr \u2014 Juin (floraison)"
+  },
+  "M\u00e9lange de fleurs mellif\u00e8res":{
+    cons:3,ep:0,er:0,h:0,pp:1,
+    sol:"Ordinaire",mode:"Semis direct bandes",
+    amis:"Tout le jardin (attracteur auxiliaires)",ennemis:"Aucune",
+    mal:"Variable selon esp\u00e8ces",eau:"Faible",sun:"Plein soleil",
+    care:"Faucher progressivement",boost:"Bandes mellif\u00e8res = auxiliaires du jardin",
+    gr:"Sept-Oct",mult:"R\u00e9cup\u00e9rer graines",rot:"Laisser en place plusieurs ann\u00e9es",
+    use:"Nectar, habitat auxiliaires",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juin \u2014 Oct"
+  },
+  "Gypsophile Snowflake":{
+    cons:3,ep:20,er:30,h:60,pp:3,
+    sol:"Calcaire, bien drain\u00e9",mode:"L\u00e9g\u00e8re, tige",
+    amis:"L\u00e9gumes (d\u00e9coration)",ennemis:"Aucune",
+    mal:"Peu de maladies",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien",boost:"D\u00e9coratif en bouquets ; attire pollinisateurs",
+    gr:"Sept",mult:"Semis direct",rot:"3 ans",
+    use:"Fleurs blanches d\u00e9coratives ; bouquets secs et frais",
+    sow_t:"Mars \u2014 Mai",tra_t:"\u2014",pl_t:"Avr-Mai direct",har_t:"Juin \u2014 Sept"
+  },
+  "Grande mauve \u00e0 fleurs rose-pourpre":{
+    cons:4,ep:40,er:60,h:150,pp:5,
+    sol:"Drain\u00e9, ordinaire",mode:"Dress\u00e9e ou semi-coureuse",
+    amis:"L\u00e9gumes divers",ennemis:"Aucune",
+    mal:"Rouille : a\u00e9ration",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien",boost:"Mellif\u00e8re et m\u00e9dicinale ; se ress\u00e8me",
+    gr:"Sept",mult:"Semis direct, se ress\u00e8me",rot:"Bisannuelle/vivace",
+    use:"Feuilles et fleurs adoucissantes ; tisane, salade de fleurs",
+    sow_t:"Mars \u2014 Mai",tra_t:"\u2014",pl_t:"Avr direct",har_t:"Juin \u2014 Sept"
+  },
+  "Okra Gombo Clemson Spineless":{
+    cons:2,ep:50,er:70,h:120,pp:3,
+    sol:"Riche, chaude, drain\u00e9e",mode:"Dress\u00e9, SERRE OBLIGATOIRE",
+    amis:"Ma\u00efs, basilic",ennemis:"Pomme de terre",
+    mal:"Fusarium : rotation ; Pucerons",eau:"\u00c9lev\u00e9",sun:"Plein soleil + chaleur (>20\u00b0C) - SERRE OBLIGATOIRE",
+    care:"Arrosage r\u00e9gulier, chaleur constante",boost:"SERRE OBLIGATOIRE Normandie ; paillis noir chauffant",
+    gr:"Oct",mult:"Semis godet sous chaleur",rot:"Annuelle tropicale",
+    use:"Gousses jeunes (<10cm) ; saut\u00e9, friture, curry, gumbo",
+    sow_t:"Mai (sous abri chaud)",tra_t:"Juin",pl_t:"Juin (serre)",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+  "Arachide de Virginie":{
+    cons:2,ep:30,er:50,h:30,pp:5,
+    sol:"Sablonneuse, l\u00e9g\u00e8re, chaude",mode:"Coureuse basse, SERRE",
+    amis:"Ma\u00efs, courge",ennemis:"L\u00e9gumes \u00e0 forte concurrence",
+    mal:"Cercosporiose : rotation",eau:"Moyen",sun:"Plein soleil + chaleur (SERRE OBLIGATOIRE)",
+    care:"Butter quand fleurs pointent sol (gynophores)",boost:"SERRE OBLIGATOIRE Normandie ; paillis noir chauffant",
+    gr:"Oct",mult:"Semis godet chaud",rot:"2 ans (Fabac\u00e9es)",
+    use:"Graines riches ol\u00e9agineuses ; torr\u00e9fi\u00e9es, beurre d'arachide",
+    sow_t:"Mai (sous abri chaud)",tra_t:"Juil",pl_t:"Juil (serre)",har_t:"Sept \u2014 Oct"
+  },
+  "Carvi (Cumin des pr\u00e9s)":{
+    cons:3,ep:20,er:30,h:60,pp:1,
+    sol:"Drain\u00e9, calcaire",mode:"Semis direct, se ress\u00e8me",
+    amis:"Carotte, chou",ennemis:"Fenouil",
+    mal:"Rare : o\u00efdium",eau:"Faible",sun:"Plein soleil",
+    care:"Peu d'entretien, laisser monter en graines",boost:"Plante mellif\u00e8re ; se ress\u00e8me",
+    gr:"Juil (2e ann\u00e9e)",mult:"Semis direct",rot:"3 ans (Apiac\u00e9es)",
+    use:"Graines aromatiques ; pain, choucroute, fromage, tisane digestive",
+    sow_t:"Avr \u2014 Mai",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Juil \u2014 Ao\u00fbt"
+  },
+  "Anis vert":{
+    cons:3,ep:20,er:30,h:50,pp:1,
+    sol:"L\u00e9g\u00e8re, chaude, drain\u00e9e",mode:"Semis direct en place",
+    amis:"Coriandre, carotte",ennemis:"Fenouil",
+    mal:"Pucerons : savon noir",eau:"Faible",sun:"Plein soleil, chaleur",
+    care:"Peu d'entretien, laisser m\u00fbrir graines",boost:"Sol chaud ESSENTIEL ; d\u00e9marrage sous abri conseill\u00e9",
+    gr:"Sept",mult:"Semis direct (chaleur n\u00e9cessaire)",rot:"3 ans (Apiac\u00e9es)",
+    use:"Graines aromatiques ; confiserie, pain, tisane, liqueur",
+    sow_t:"Mai \u2014 Juin",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Ao\u00fbt \u2014 Sept"
+  },
+  "Bergamote Sauvage Citron":{
+    cons:3,ep:40,er:60,h:80,pp:3,
+    sol:"Fra\u00eeche, ordinaire",mode:"Touffe dress\u00e9e",
+    amis:"L\u00e9gumes (attracteur)",ennemis:"Aucune",
+    mal:"Mildiou : a\u00e9rer",eau:"Faible-Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper apr\u00e8s floraison, diviser tous 3 ans",boost:"Excellente plante h\u00f4te d'auxiliaires",
+    gr:"Sept",mult:"Division, semis",rot:"Vivace (permanent)",
+    use:"Feuilles et fleurs parfum\u00e9es citron-bergamote ; th\u00e9, tisane",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Godet avr",har_t:"Juin \u2014 Sept"
+  },
+  "Bergamote sauvage":{
+    cons:3,ep:40,er:60,h:80,pp:3,
+    sol:"Fra\u00eeche, ordinaire",mode:"Touffe dress\u00e9e",
+    amis:"L\u00e9gumes (attracteur)",ennemis:"Aucune",
+    mal:"Mildiou : a\u00e9rer",eau:"Faible-Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Couper apr\u00e8s floraison, diviser tous 3 ans",boost:"Attracteur pollinisateurs et papillons",
+    gr:"Sept",mult:"Division, semis",rot:"Vivace (permanent)",
+    use:"Feuilles et fleurs aromatiques ; tisane, cuisine, d\u00e9coration",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Godet avr",har_t:"Juin \u2014 Sept"
+  },
+  "Th\u00e9 des Jardins":{
+    cons:3,ep:30,er:50,h:60,pp:3,
+    sol:"Drain\u00e9, ordinaire",mode:"Touffe dress\u00e9e",
+    amis:"L\u00e9gumes divers",ennemis:"Aucune",
+    mal:"Mildiou possible Normandie : a\u00e9rer",eau:"Faible",sun:"Plein soleil",
+    care:"Couper apr\u00e8s floraison",boost:"S\u00e9cher tiges pour th\u00e9 tisane maison",
+    gr:"Sept",mult:"Division, semis",rot:"Vivace (paillis hivernal)",
+    use:"Feuilles s\u00e9ch\u00e9es ; th\u00e9 jardin, infusion digestive",
+    sow_t:"Mars \u2014 Avr",tra_t:"\u2014",pl_t:"Avr-Mai godet",har_t:"Juil \u2014 Sept"
+  },
+  "Cochl\u00e9aire Officinale":{
+    cons:3,ep:10,er:20,h:20,pp:1,
+    sol:"Fra\u00eeche, argileuse m\u00eame",mode:"Semis direct, bordure humide",
+    amis:"L\u00e9gumes d'hiver",ennemis:"Aucune",
+    mal:"Limaces sur jeunes plants : cendres",eau:"Moyen",sun:"Mi-ombre \u00e0 soleil",
+    care:"Peu d'entretien, rustique",boost:"Id\u00e9ale bordure nord humide Normandie ; production hivernale rare",
+    gr:"Juin (2e ann\u00e9e)",mult:"Semis direct",rot:"Bisannuelle",
+    use:"Feuilles piquantes riches en vitamine C ; salade hivernale, condiment",
+    sow_t:"Mars \u2014 Avr ou Ao\u00fbt \u2014 Sept",tra_t:"\u2014",pl_t:"Direct en place",har_t:"Nov \u2014 Avr"
+  },
+  "Laitue Batavia Goutte de Sang":{
+    cons:6,ep:25,er:35,h:25,pp:1,
+    sol:"Fra\u00eeche, riche",mode:"Semis direct ou plants",
+    amis:"Carotte, radis, chou, fraise",ennemis:"C\u00e9leri, persil",
+    mal:"Mildiou de la laitue : a\u00e9ration, rotation ; Limaces ; Pucerons",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Arrosage r\u00e9gulier, semis successifs toutes 3 semaines",boost:"Semis successifs ; mi-ombre \u00e9t\u00e9",
+    gr:"Juil-Sept",mult:"Semis direct, laisser une t\u00eate monter",rot:"6 ans (Ast\u00e9rac\u00e9es)",
+    use:"Croquante tach\u00e9e rouge ; toutes salades, wraps",
+    sow_t:"Mars \u2014 Ao\u00fbt",tra_t:"Avr \u2014 Ao\u00fbt",pl_t:"Direct ou godet",har_t:"Avr \u2014 Oct"
+  },
+  "Laitue Pasquier":{
+    cons:6,ep:25,er:35,h:25,pp:1,
+    sol:"Fra\u00eeche, riche",mode:"Semis direct ou plants",
+    amis:"Carotte, radis, chou",ennemis:"C\u00e9leri, persil",
+    mal:"Mildiou : a\u00e9ration ; Limaces",eau:"Moyen",sun:"Soleil \u00e0 mi-ombre",
+    care:"Arrosage r\u00e9gulier, semis successifs",boost:"Semis successifs",
+    gr:"Juil-Sept",mult:"Semis direct",rot:"6 ans (Ast\u00e9rac\u00e9es)",
+    use:"Batavia verte ; salade, wrap",
+    sow_t:"Mars \u2014 Ao\u00fbt",tra_t:"Avr \u2014 Ao\u00fbt",pl_t:"Direct ou godet",har_t:"Avr \u2014 Oct"
+  },
+  "Chrysanth\u00e8me comestible \u00e0 grandes fleurs":{
+    cons:3,ep:40,er:60,h:80,pp:5,
+    sol:"Drain\u00e9, ordinaire",mode:"Dress\u00e9",
+    amis:"L\u00e9gumes de saison",ennemis:"Aucune",
+    mal:"Mildiou : cuivre, a\u00e9ration ; Pucerons",eau:"Faible-Moyen",sun:"Plein soleil",
+    care:"Couper pour favoriser repousses",boost:"Hiverner en pot sous abri Normandie ; d\u00e9coratif et comestible",
+    gr:"Oct",mult:"Bouturage ou semis",rot:"Vivace tendre (annuelle Normandie)",
+    use:"Feuilles et fleurs ; cuisine asiatique, p\u00e9tales en salade, feuilles saut\u00e9es",
+    sow_t:"Mars \u2014 Avr",tra_t:"Mai",pl_t:"Juin",har_t:"Ao\u00fbt \u2014 Oct"
+  },
+};
 
 
 // ===== ÉTAT GARDEN TRACKER =====
@@ -4434,7 +5841,7 @@ function gtCellEntry(name, month, stages) {
     return '<div class="gt-entry gt-e-pe">💀 ' + (t.lost.atStage || '') + '</div>';
   }
   if (!entries.length) return '';
-  const icons = { seme_godet:'🌱G', seme_direct:'🌱D', repique:'🔄', plante:'🌳', recolte:'🍂', perdu:'💀' };
+  const icons = { seme_godet:'🌱G', seme_direct:'🌱D', repique:'🔄', plante:'🌳', recolte:'🧺', perdu:'💀' };
   const cls   = { seme_godet:'gt-e-sg', seme_direct:'gt-e-sd', repique:'gt-e-re', plante:'gt-e-pl', recolte:'gt-e-rc', perdu:'gt-e-pe' };
   return entries.map(e =>
     '<div class="gt-entry ' + (cls[e.action]||'') + '">'
@@ -4509,24 +5916,45 @@ function renderGardenTable() {
   const allNames = gtAllVarieties();
   const filtered = allNames.filter(name => gtPasses(name));
 
-  // Grouper par catégorie (depuis VARIETIES ou GT_REF)
+  // Grouper par catégorie nouvelle (GT_CATEGORY)
+  const CAT_ORDER = [
+    '🍅 Tomates','🫑 Aubergines & Poivrons','🥔 Pommes de terre',
+    '🥒 Courgettes','🎃 Courges','🍈 Concombres & Melons',
+    '🥕 Légumes-racines','🧅 Oignons & Alliacées','🥗 Salades & Feuilles',
+    '🫘 Légumineuses','🌱 Vivaces comestibles','🌍 Exotiques',
+    '🌿 Aromates','🌸 Fleurs & Compagnes','💊 Médicinales','🥗 Autres légumes'
+  ];
   const catMap = {};
   filtered.forEach(name => {
-    const vd = typeof VARIETIES !== 'undefined' && VARIETIES.find(v => v.name === name);
-    const cat = vd ? vd.cat : (GT_REF[name] ? 'Autres' : 'Autres');
+    const cat = gtGetCat(name);
     if (!catMap[cat]) catMap[cat] = [];
     catMap[cat].push(name);
   });
 
   let html = '';
-  const cats = Object.keys(catMap).sort();
+  const cats = CAT_ORDER.filter(cat => catMap[cat]);
+  // Ajouter catégories non listées à la fin
+  Object.keys(catMap).filter(cat => !cats.includes(cat)).forEach(cat => cats.push(cat));
   for (const cat of cats) {
+    if (!catMap[cat] || !catMap[cat].length) continue;
     html += '<tr class="gt-cat-row"><td colspan="16">' + cat + '</td></tr>';
     for (const name of catMap[cat]) {
       html += renderGardenRow(name);
+      const nid = name.replace(/[^a-z0-9]/gi,'_');
+      html += '<tr class="gt-fiche-row" id="fiche-' + nid + '"><td colspan="16"></td></tr>';
     }
   }
   tbody.innerHTML = html;
+  // Peupler les fiches technique
+  document.querySelectorAll('.gt-fiche-row').forEach(row => {
+    const name = filtered.find(n => 'fiche-' + n.replace(/[^a-z0-9]/gi,'_') === row.id);
+    if (name) row.cells[0].innerHTML = gtBuildFiche(name);
+  });
+  // Si une fiche était ouverte, la rouvrir
+  if (gtOpenFiche) {
+    const fr = document.getElementById('fiche-' + gtOpenFiche.replace(/[^a-z0-9]/gi,'_'));
+    if (fr) fr.classList.add('open');
+  }
 }
 
 function renderGardenRow(name) {
@@ -4543,9 +5971,12 @@ function renderGardenRow(name) {
   // Icône ancienne variété
   const aico = ancient ? '<span class="gt-ancient-ico" title="Variété ancienne">🌱</span>' : '';
 
-  // Colonne variété
+  // Colonne variété (clic = toggle fiche accordéon)
+  const nameEsc = name.replace(/'/g,"\u0027").replace(/"/g,'&quot;');
   let tdVar = '<td class="td-var">'
-    + '<span class="gt-varname" data-n="' + name.replace(/"/g,'&quot;') + '" onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()">'
+    + '<span class="gt-varname" data-n="' + name.replace(/"/g,'&quot;') + '"'
+    + ' onclick="gtToggleFiche(' + JSON.stringify(name) + ')"'
+    + ' onmouseenter="gtTip(event,this)" onmouseleave="gtTipHide()">'
     + name + aico
     + '</span></td>';
 
@@ -4586,7 +6017,9 @@ function renderGardenRow(name) {
     tdMonths += '<td class="' + classes + '"' + onclick + dataAttr + '>' + entry + '</td>';
   }
 
-  return '<tr class="gt-data-row">' + tdVar + tdEmp + tdG + tdP + tdMonths + '</tr>';
+  const nid2 = name.replace(/[^a-z0-9]/gi,'_');
+  const dataRowHtml = '<tr class="gt-data-row">' + tdVar + tdEmp + tdG + tdP + tdMonths + '</tr>';
+  return dataRowHtml;
 }
 
 // ===== INPUTS GODETS/PLANTS =====
@@ -4840,6 +6273,221 @@ function gtAddVariety() {
   document.getElementById('av-name').value = '';
   document.getElementById('gt-av-form').classList.remove('open');
   renderGardenTable();
+}
+
+
+// ===== CATÉGORIES =====
+const GT_CATEGORY = {
+  // LÉGUMES - Solanacées
+  "Tomate Ananas":"🍅 Tomates","Tomate Banana Legs":"🍅 Tomates","Tomate Belle Bacchante":"🍅 Tomates",
+  "Tomate Bonne Fée":"🍅 Tomates","Tomate Buissonnante":"🍅 Tomates","Tomate cerise Miel du mexique":"🍅 Tomates",
+  "Tomate Cerise Poire Jaune":"🍅 Tomates","Tomate Cœur de Bœuf Rouge":"🍅 Tomates","Tomate Green Zebra":"🍅 Tomates",
+  "Tomate Groseille Champagne":"🍅 Tomates","Tomate Grosse Hâtive d'Orléans":"🍅 Tomates","Tomate Noire de Crimée":"🍅 Tomates",
+  "Tomate Royale des Guineaux":"🍅 Tomates","Tomate — variétés mystères":"🍅 Tomates",
+  "Aubergine Blanche Ronde à Œufs":"🫑 Aubergines & Poivrons","Aubergine de Barbantane":"🫑 Aubergines & Poivrons",
+  "Poivron Chocolat":"🫑 Aubergines & Poivrons","Poivron Yolo Wonder":"🫑 Aubergines & Poivrons",
+  "Coqueret du Pérou":"🫑 Aubergines & Poivrons",
+  // Pommes de terre
+  "Pomme de terre Truffette":"🥔 Pommes de terre","Pomme de terre Maïwen":"🥔 Pommes de terre",
+  "Pomme de terre Charlotte":"🥔 Pommes de terre","Pomme de terre Allians":"🥔 Pommes de terre",
+  // Cucurbitacées - Courgettes
+  "Courgette Alberello di Sarzana":"🥒 Courgettes","Courgette Black Beauty":"🥒 Courgettes",
+  "Courgette Blanche de Trieste":"🥒 Courgettes","Courgette Bolognese":"🥒 Courgettes",
+  "Courgette de Nice à Fruits Ronds":"🥒 Courgettes","Courgette Gold Rush":"🥒 Courgettes",
+  "Courgette Greyzini":"🥒 Courgettes","Courgette Grimpante Ola Escaladora":"🥒 Courgettes",
+  "Courgette Jaune Daisy":"🥒 Courgettes","Courgette Striato d'Italia":"🥒 Courgettes",
+  "Courgette Verte Non Coureuse Des Maraichers":"🥒 Courgettes",
+  // Courges
+  "Courge Banana Blue":"🎃 Courges","Courge Butternut":"🎃 Courges","Courge Cyclanthère":"🎃 Courges",
+  "Courge Éponge":"🎃 Courges","Courge Moschata Tancheese":"🎃 Courges","Courge Pâtisson Blanc":"🎃 Courges",
+  "Pâtisson Jaune":"🎃 Courges","Véritable Potimarron de Sainte-Marthe":"🎃 Courges","Courge Halloween Apsen":"🎃 Courges",
+  // Concombres & melons
+  "Concombre Lemon":"🍈 Concombres & Melons","Concombre Long vert Maraîcher":"🍈 Concombres & Melons",
+  "Cornichon Petit de Paris":"🍈 Concombres & Melons","Melon Ancien Vieille France":"🍈 Concombres & Melons",
+  "Melon de Noël Honeydew":"🍈 Concombres & Melons","Melon Petit Gris de Rennes":"🍈 Concombres & Melons",
+  "Melon sucrin de Honfleur":"🍈 Concombres & Melons","Pastèque Sugar Baby":"🍈 Concombres & Melons",
+  // Racines
+  "Carotte De Colmar à Coeur Rouge":"🥕 Légumes-racines","Carotte de Carentan":"🥕 Légumes-racines",
+  "Carotte Kütigger":"🥕 Légumes-racines","Carotte Nantaise 2 Milan":"🥕 Légumes-racines",
+  "Carotte rouge sang":"🥕 Légumes-racines","Carotte Touchon":"🥕 Légumes-racines",
+  "Panais demi-long de Guernesey":"🥕 Légumes-racines","Céleri Vert à couper":"🥕 Légumes-racines",
+  "Céleri-branche Tall Utah":"🥕 Légumes-racines","Betterave rouge Crapaudine":"🥕 Légumes-racines",
+  "Navet De Milan à collet rose":"🥕 Légumes-racines","Chou Navet Rutabaga":"🥕 Légumes-racines",
+  "Persil Tubéreux (à grosse racine)":"🥕 Légumes-racines","Cerfeuil Tubéreux":"🥕 Légumes-racines",
+  // Alliacées
+  "Oignon Blanc de Lisbonne":"🧅 Oignons & Alliacées","Oignon Jaune de Mazé":"🧅 Oignons & Alliacées",
+  "Oignon Jaune Dorata di Parma":"🧅 Oignons & Alliacées","Oignon jaune de Stuttgart":"🧅 Oignons & Alliacées",
+  "Oignon Rouge de Genève":"🧅 Oignons & Alliacées","Poireau d'Elbeuf Éléphant":"🧅 Oignons & Alliacées",
+  "Poireau Saint Victor":"🧅 Oignons & Alliacées","Poireaux (lot mandala)":"🧅 Oignons & Alliacées",
+  "Poireaux (surplus)":"🧅 Oignons & Alliacées","Ciboulette Commune (civette)":"🧅 Oignons & Alliacées",
+  // Salades & Feuilles
+  "Chicorée Scarole Géante Maraichère":"🥗 Salades & Feuilles","Épinard Fraise":"🥗 Salades & Feuilles",
+  "Roquette":"🥗 Salades & Feuilles","Roquette sauvage":"🥗 Salades & Feuilles","Blette Rhubarb Chard":"🥗 Salades & Feuilles",
+  "Laitue Batavia Goutte de Sang":"🥗 Salades & Feuilles","Laitue Pasquier":"🥗 Salades & Feuilles",
+  // Légumineuses
+  "Haricot Nain Autan":"🫘 Légumineuses","Trèfle incarnat":"🫘 Légumineuses","Arachide de Virginie":"🫘 Légumineuses",
+  // Vivaces comestibles
+  "Artichaut Green Globe":"🌱 Vivaces comestibles","Artichaut Imperial Star":"🌱 Vivaces comestibles",
+  "Rhubarbe Victoria":"🌱 Vivaces comestibles","Oseille Commune":"🌱 Vivaces comestibles",
+  "Pimprenelle Petite":"🌱 Vivaces comestibles","Livèche":"🌱 Vivaces comestibles","Réglisse Glabre":"🌱 Vivaces comestibles",
+  "Coqueret du Pérou":"🌱 Vivaces comestibles",
+  // Aromates
+  "Basilic cannelle":"🌿 Aromates","Basilic Géant Monstrueux Mammouth":"🌿 Aromates","Basilic Pourpre":"🌿 Aromates",
+  "Thym de Provence":"🌿 Aromates","Romarin officinal":"🌿 Aromates","Sarriette annuelle":"🌿 Aromates",
+  "Menthe Verte":"🌿 Aromates","Herbe à chat Cataire Citron":"🌿 Aromates","Origan Commun":"🌿 Aromates",
+  "Origan de Grèce":"🌿 Aromates","Persil Géant d'Italie":"🌿 Aromates","Persil plat commun":"🌿 Aromates",
+  "Cerfeuil Commun":"🌿 Aromates","Aneth Tétra Gold":"🌿 Aromates","Coriandre":"🌿 Aromates",
+  "Fenouil Officinal":"🌿 Aromates","Fenouil Selma":"🌿 Aromates","Carvi (Cumin des prés)":"🌿 Aromates",
+  "Anis vert":"🌿 Aromates","Lavande Vraie":"🌿 Aromates","Hysope Officinale":"🌿 Aromates",
+  "Agastache Menthe Coréenne":"🌿 Aromates","Bergamote Sauvage Citron":"🌿 Aromates","Bergamote sauvage":"🌿 Aromates",
+  "Thé des Jardins":"🌿 Aromates","Cochléaire Officinale":"🌿 Aromates",
+  // Fleurs & Compagnes
+  "Capucine Impératrice des Indes":"🌸 Fleurs & Compagnes","Capucine Naine":"🌸 Fleurs & Compagnes",
+  "Tournesol ramifié":"🌸 Fleurs & Compagnes","Tournesol Italian White":"🌸 Fleurs & Compagnes",
+  "Tournesol Commun":"🌸 Fleurs & Compagnes","Tournesol Pompon Gold Coin":"🌸 Fleurs & Compagnes",
+  "Achillée Millefeuille à Fleurs Blanches":"🌸 Fleurs & Compagnes","Camomille Matricaire":"🌸 Fleurs & Compagnes",
+  "Hibiscus Bissap à Fleurs Rouges":"🌸 Fleurs & Compagnes","Immortelle à Bractée Roggli Riesen":"🌸 Fleurs & Compagnes",
+  "Immortelle à bractée monstrueuse":"🌸 Fleurs & Compagnes","Chrysanthème comestible à grandes fleurs":"🌸 Fleurs & Compagnes",
+  "Gypsophile Snowflake":"🌸 Fleurs & Compagnes","Grande mauve à fleurs rose-pourpre":"🌸 Fleurs & Compagnes",
+  "Mélange de fleurs mellifères":"🌸 Fleurs & Compagnes",
+  // Médicinales
+  "Arnica Montana":"💊 Médicinales","Valériane officinale":"💊 Médicinales",
+  // Exotiques
+  "Okra Gombo Clemson Spineless":"🌍 Exotiques","Pastèque Sugar Baby":"🍈 Concombres & Melons",
+};
+
+function gtGetCat(name) {
+  return GT_CATEGORY[name] || (GT_REF[name] && GT_REF[name].cycle === 'V' ? '🌱 Vivaces comestibles' : '🥗 Autres légumes');
+}
+
+// ===== HIGHLIGHT MOIS COURANT =====
+(function() {
+  const ths = document.querySelectorAll('.gt-table thead th.th-m');
+  if (ths.length === 12) {
+    const th = ths[GT_CUR - 1];
+    if (th) { th.style.background = '#3d5c28'; th.style.boxShadow = 'inset 0 -3px 0 #a3e635'; }
+  }
+})();
+
+// ===== FICHE TECHNIQUE ACCORDÉON =====
+let gtOpenFiche = null; // nom de la variété dont la fiche est ouverte
+
+function gtToggleFiche(name) {
+  const nid = name.replace(/[^a-z0-9]/gi, '_');
+  const ficheRow = document.getElementById('fiche-' + nid);
+  if (!ficheRow) return;
+  if (gtOpenFiche === name) {
+    ficheRow.classList.remove('open');
+    gtOpenFiche = null;
+  } else {
+    // Fermer la fiche précédente
+    if (gtOpenFiche) {
+      const prev = document.getElementById('fiche-' + gtOpenFiche.replace(/[^a-z0-9]/gi,'_'));
+      if (prev) prev.classList.remove('open');
+    }
+    ficheRow.classList.add('open');
+    gtOpenFiche = name;
+    ficheRow.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+}
+
+function gtBuildFiche(name) {
+  const ref = GT_REF[name] || {};
+  const det = GT_DETAIL[name] || {};
+  const vd  = typeof VARIETIES !== 'undefined' && VARIETIES.find(v => v.name === name);
+  const ML  = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+  const fmtM = arr => {
+    if (!arr || !arr.length) return '—';
+    const groups = [];
+    let s = arr[0], e = arr[0];
+    for (let i = 1; i < arr.length; i++) { if (arr[i] === e+1) e=arr[i]; else { groups.push([s,e]); s=arr[i]; e=arr[i]; } }
+    groups.push([s,e]);
+    return groups.map(([a,b]) => a===b ? ML[a-1] : ML[a-1]+' — '+ML[b-1]).join(' et ');
+  };
+  const ancient = ref.ancient ? ' 🌱 <small style="color:#059669">Variété ancienne</small>' : '';
+  const img = vd && vd.img ? `<img src="${vd.img}" class="gt-fiche-photo" onerror="this.style.display='none'">` : `<div class="gt-fiche-photo-ph">🌱</div>`;
+  const desc = vd && vd.desc ? `<p class="gt-fiche-desc">"${vd.desc}"</p>` : '';
+  const sow_t = det.sow_t || (ref.sow && ref.sow.length ? '🌱 ' + fmtM(ref.sow) : '');
+  const tra_t = det.tra_t || (ref.transplant && ref.transplant.length ? '🔄 ' + fmtM(ref.transplant) : '');
+  const pl_t  = det.pl_t  || (ref.plant && ref.plant.length ? '🌳 ' + fmtM(ref.plant) : '');
+  const har_t = det.har_t || (ref.harvest && ref.harvest.length ? '🧺 ' + fmtM(ref.harvest) : '');
+  const cal = [
+    sow_t ? `<div class="gt-fiche-cal-item"><div class="gt-fiche-cal-dot" style="background:#059669"></div><span><b>Semis :</b> ${sow_t}</span></div>` : '',
+    tra_t && ref.needsTransplant ? `<div class="gt-fiche-cal-item"><div class="gt-fiche-cal-dot" style="background:#d97706"></div><span><b>Repiquage :</b> ${tra_t}</span></div>` : '',
+    pl_t  ? `<div class="gt-fiche-cal-item"><div class="gt-fiche-cal-dot" style="background:#ea580c"></div><span><b>Plantation :</b> ${pl_t}</span></div>` : '',
+    har_t ? `<div class="gt-fiche-cal-item"><div class="gt-fiche-cal-dot" style="background:#db2777"></div><span><b>Maturité :</b> ${har_t}</span></div>` : '',
+  ].filter(Boolean).join('');
+  const amis = det.amis ? det.amis.split(',').map(a => `<span class="gt-fiche-tag gt-fiche-tag-ami">🤝 ${a.trim()}</span>`).join('') : '—';
+  const enn  = det.ennemis ? det.ennemis.split(',').map(a => `<span class="gt-fiche-tag gt-fiche-tag-ennemi">🚫 ${a.trim()}</span>`).join('') : '—';
+  const espacement = det.ep && det.er ? `${det.ep} cm (plants) × ${det.er} cm (rangs)` + (det.pp ? `, profondeur ${det.pp} cm` : '') : '—';
+  const hauteur = det.h ? `${det.h} cm` : '—';
+  const emplacement = ref.emplacement || (vd && vd.locations && vd.locations[0] ? vd.locations[0].label : '—');
+
+  return `
+<div class="gt-fiche">
+  <div class="gt-fiche-header">
+    <div class="gt-fiche-title">${name}${ancient}</div>
+    <button class="gt-fiche-close" onclick="gtToggleFiche(${JSON.stringify(name)})">✕</button>
+  </div>
+  <div class="gt-fiche-grid">
+    <div>${img}</div>
+    <div class="gt-fiche-main">
+      ${desc}
+      <div class="gt-fiche-pills">
+        ${det.cons ? `<span class="gt-pill gt-pill-cons">📦 Graines : ${det.cons} ans</span>` : ''}
+        ${ref.cycle ? `<span class="gt-pill gt-pill-cycle">📅 ${ref.cycle==='A'?'Annuelle':ref.cycle==='V'?'Vivace':'Bisannuelle'}</span>` : ''}
+        ${det.sol ? `<span class="gt-pill gt-pill-sol">🌍 ${det.sol}</span>` : ''}
+        ${det.eau ? `<span class="gt-pill gt-pill-eau">💧 Eau : ${det.eau}</span>` : ''}
+        ${det.sun ? `<span class="gt-pill gt-pill-sun">☀️ ${det.sun}</span>` : ''}
+        ${det.h ? `<span class="gt-pill gt-pill-h">📏 ${hauteur}</span>` : ''}
+      </div>
+      <div class="gt-fiche-pills">
+        <span style="font-size:11px;color:#7c6e5c">📍 <b>Emplacement :</b> ${emplacement}</span>
+        ${det.ep ? `<span style="font-size:11px;color:#7c6e5c">📐 <b>Espacement :</b> ${espacement}</span>` : ''}
+        ${det.mode ? `<span style="font-size:11px;color:#7c6e5c">🌿 <b>Port :</b> ${det.mode}</span>` : ''}
+      </div>
+    </div>
+  </div>
+  <div class="gt-fiche-calendar">
+    <h5>🗓 Calendrier Normandie (Orne)</h5>
+    <div class="gt-fiche-cal-row">${cal || '<span style="color:#9c8a6a;font-size:11px">Données non disponibles</span>'}</div>
+  </div>
+  <div class="gt-fiche-sections">
+    <div class="gt-fiche-section">
+      <h5>🤝 Associations amies</h5>
+      <div class="gt-fiche-tags">${amis}</div>
+    </div>
+    <div class="gt-fiche-section">
+      <h5>🚫 Associations ennemies</h5>
+      <div class="gt-fiche-tags">${enn}</div>
+    </div>
+    <div class="gt-fiche-section full">
+      <h5>🦠 Maladies & Prévention</h5>
+      <p>${det.mal || '—'}</p>
+    </div>
+    <div class="gt-fiche-section">
+      <h5>🔧 Entretien régulier</h5>
+      <p>${det.care || '—'}</p>
+    </div>
+    <div class="gt-fiche-section">
+      <h5>⚡ Boost permacole</h5>
+      <p>${det.boost || '—'}</p>
+    </div>
+    <div class="gt-fiche-section full">
+      <h5>🛒 Utilisation & Consommation</h5>
+      <p>${det.use || '—'}</p>
+    </div>
+    <div class="gt-fiche-section">
+      <h5>🌾 Récolte des graines</h5>
+      <p>${det.gr || '—'}</p>
+    </div>
+    <div class="gt-fiche-section">
+      <h5>🔄 Rotation des cultures</h5>
+      <p>${det.rot || '—'}</p>
+    </div>
+    ${det.mult ? `<div class="gt-fiche-section full"><h5>✂️ Multiplication</h5><p>${det.mult}</p></div>` : ''}
+  </div>
+</div>`;
 }
 
 // ===== MAPPING VARIETIES → GT_REF (nom plan → nom référentiel) =====
