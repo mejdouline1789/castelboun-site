@@ -53,6 +53,7 @@ const DEFAULTS = {
   dispos: {},
   reservations: [],
   actualites: [],
+  "garden-lost": {},
   garden: {}
 };
 
@@ -64,7 +65,7 @@ export default async function handler(req, context) {
   const url = new URL(req.url);
   const type = url.searchParams.get("type");
 
-  if (!["activities", "events", "news", "dispos", "reservations","garden","actualites"].includes(type)) {
+  if (!["activities", "events", "news", "dispos", "reservations","garden","actualites","garden-lost"].includes(type)) {
     return new Response(JSON.stringify({ error: "Type invalide" }), { status: 400, headers: { "Content-Type": "application/json" } });
   }
 
