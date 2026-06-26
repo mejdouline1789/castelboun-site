@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Castelboun">
+<meta name="theme-color" content="#2d4a1e">
 <title>Domaine Castelboun — Permaculture en Normandie</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ad6530'/><text y='75' x='50' text-anchor='middle' font-size='70'>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -243,6 +249,19 @@
   .gt-fiche-title { font-family:'Fraunces',serif; font-size:18px; font-weight:700; color:var(--clay-dark); }
   .gt-fiche-close { background:none; border:none; font-size:18px; cursor:pointer; color:#9c8a6a; }
   .gt-fiche-close:hover { color:var(--clay); }
+  /* Dead plant + remplacement */
+  .gt-dead-btn { background:#fcebeb; color:#a32d2d; border:1px solid #f7c1c1; border-radius:8px; padding:5px 12px; font-size:12px; font-weight:700; cursor:pointer; }
+  .gt-dead-btn:hover { background:#f5d0d0; }
+  .gt-replace-panel { background:#fff8e1; border:1px solid #fcd34d; border-radius:10px; padding:12px 14px; margin-top:10px; }
+  .gt-replace-panel h5 { font-size:11px; font-weight:700; color:#854d0e; text-transform:uppercase; letter-spacing:.07em; margin:0 0 8px; }
+  .gt-replace-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .gt-replace-tag { background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:4px 10px; font-size:12px; font-weight:600; cursor:pointer; color:#78350f; transition:all .15s; }
+  .gt-replace-tag:hover { background:#fef3c7; border-color:#f59e0b; }
+  .gt-dead-indicator { font-size:10px; color:#a32d2d; font-weight:700; }
+  .gt-vague-row td { background:#fafaf8; padding:2px 4px; }
+  .gt-vague-label { font-size:10px; color:#7c6e5c; font-weight:600; padding-left:20px; }
+  .gt-add-vague-btn { background:none; border:1px dashed var(--clay); color:var(--clay); border-radius:6px; padding:2px 8px; font-size:10px; font-weight:700; cursor:pointer; }
+  .gt-add-vague-btn:hover { background:#fdf4ed; }
   .gt-fiche-grid { display:grid; grid-template-columns:140px 1fr; gap:14px; }
   .gt-fiche-photo { width:140px; height:140px; object-fit:cover; border-radius:12px; border:2px solid var(--line); display:block; }
   .gt-fiche-photo-ph { width:140px; height:140px; border-radius:12px; border:2px solid var(--line); background:#e8e0d5; display:flex; align-items:center; justify-content:center; font-size:40px; }
@@ -522,6 +541,33 @@
   .actu-card .actu-body { font-size: 14px; color: #5a5244; line-height: 1.6; }
   .actu-card img { width: 100%; border-radius: 8px; margin-top: 14px; object-fit: cover; max-height: 220px; }
   .actu-empty { text-align: center; color: #9c8a6a; padding: 48px 24px; font-size: 15px; }
+  .actu-admin-bar { display:flex; gap:10px; margin-bottom:18px; align-items:center; flex-wrap:wrap; }
+  .actu-create-btn { background:var(--clay); color:white; border:none; border-radius:9px; padding:9px 18px; font-family:'Fraunces',serif; font-size:14px; font-weight:700; cursor:pointer; display:none; }
+  .actu-create-btn:hover { background:var(--clay-dark); }
+  .admin-mode .actu-create-btn { display:inline-flex; align-items:center; gap:6px; }
+  /* Éditeur d'actualité */
+  .actu-editor-overlay { position:fixed;inset:0;background:rgba(43,47,36,.6);display:none;align-items:center;justify-content:center;z-index:800;padding:20px; }
+  .actu-editor-overlay.visible { display:flex; }
+  .actu-editor-box { background:var(--card);border-radius:16px;padding:28px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.3); }
+  .actu-editor-box h3 { font-family:'Fraunces',serif;font-size:20px;font-weight:700;margin:0 0 18px;color:var(--ink); }
+  .actu-field { margin-bottom:14px; }
+  .actu-field label { font-size:12px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px; }
+  .actu-field input { width:100%;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-size:14px;color:var(--ink);font-family:'Inter',sans-serif;outline:none;box-sizing:border-box; }
+  .actu-field input:focus { border-color:var(--clay); }
+  /* Toolbar éditeur */
+  .actu-toolbar { display:flex;gap:4px;flex-wrap:wrap;padding:6px;background:var(--cream);border:1px solid var(--line);border-radius:8px 8px 0 0;border-bottom:none; }
+  .actu-toolbar button { background:none;border:1px solid transparent;border-radius:5px;padding:4px 8px;font-size:13px;cursor:pointer;color:var(--ink);font-family:'Inter',sans-serif;font-weight:600; }
+  .actu-toolbar button:hover { background:var(--card);border-color:var(--line); }
+  .actu-toolbar button.active { background:var(--ink);color:white; }
+  .actu-toolbar .sep { width:1px;background:var(--line);margin:2px 4px; }
+  .actu-content-editor { min-height:180px;border:1px solid var(--line);border-radius:0 0 8px 8px;padding:12px;font-size:14px;color:var(--ink);line-height:1.7;background:white;outline:none;font-family:'Inter',sans-serif; }
+  .actu-content-editor:focus { border-color:var(--clay); }
+  .actu-content-editor img { max-width:100%;border-radius:8px;margin:8px 0; }
+  .actu-editor-btns { display:flex;gap:10px;margin-top:18px;justify-content:flex-end; }
+  .actu-save-btn { background:var(--clay);color:white;border:none;border-radius:9px;padding:10px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Fraunces',serif; }
+  .actu-save-btn:hover { background:var(--clay-dark); }
+  .actu-cancel-btn { background:none;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px 18px;font-size:14px;cursor:pointer; }
+  .actu-del-btn { background:#fcebeb;color:#a32d2d;border:1px solid #f7c1c1;border-radius:9px;padding:10px 18px;font-size:14px;cursor:pointer;margin-right:auto; }
 
   /* ===== EVENEMENTS ===== */
   .evt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; padding: 0 24px 64px; }
@@ -792,7 +838,7 @@
 
 
   /* ===== CALENDRIER ===== */
-  .cal-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 64px; }
+  .cal-wrap { max-width: 900px; margin: 0 auto; padding: 0 24px 64px; }
   .cal-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
   .cal-top h2 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; margin: 0; color: var(--ink); }
   .cal-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -806,7 +852,7 @@
   /* Grille calendrier */
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-bottom: 24px; }
   .cal-day-header { text-align: center; font-size: 11px; font-weight: 700; color: var(--sage); text-transform: uppercase; letter-spacing: .08em; padding: 8px 4px; }
-  .cal-cell { min-height: 88px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px; cursor: pointer; transition: all .15s; position: relative; }
+  .cal-cell { min-height: 80px; max-height: 80px; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px; cursor: pointer; transition: all .15s; position: relative; }
   .cal-cell:hover { border-color: var(--clay); box-shadow: 0 2px 8px rgba(173,101,48,.12); }
   .cal-cell.other-month { background: rgba(255,253,247,.5); opacity: .5; cursor: default; }
   .cal-cell.other-month:hover { border-color: var(--line); box-shadow: none; }
@@ -1086,9 +1132,48 @@
       <h2>Actualités</h2>
       <p class="sub">Les dernières nouvelles du domaine</p>
     </div>
+    <div class="actu-admin-bar">
+      <button class="actu-create-btn" onclick="openActuEditor()">✏️ Créer une actualité</button>
+    </div>
   </div>
   <div class="actu-grid" id="actu-grid">
-    <div class="actu-empty">Aucune actualité pour le moment — revenez bientôt !</div>
+    <div class="actu-empty" id="actu-empty-msg">Aucune actualité pour le moment — revenez bientôt !</div>
+  </div>
+
+  <!-- Éditeur d'actualité (modal) -->
+  <div class="actu-editor-overlay" id="actu-editor-overlay">
+    <div class="actu-editor-box">
+      <h3 id="actu-editor-title">✏️ Créer une actualité</h3>
+      <div class="actu-field">
+        <label>Titre</label>
+        <input type="text" id="actu-input-title" placeholder="Titre de l'actualité…">
+      </div>
+      <div class="actu-field">
+        <label>Contenu</label>
+        <div class="actu-toolbar">
+          <button onclick="document.execCommand('bold')" title="Gras"><b>B</b></button>
+          <button onclick="document.execCommand('italic')" title="Italique"><i>I</i></button>
+          <button onclick="document.execCommand('underline')" title="Souligné"><u>U</u></button>
+          <div class="sep"></div>
+          <button onclick="document.execCommand('formatBlock','false','h3')" title="Titre">H</button>
+          <button onclick="document.execCommand('formatBlock','false','p')" title="Paragraphe">¶</button>
+          <div class="sep"></div>
+          <button onclick="document.execCommand('insertUnorderedList')" title="Liste">☰</button>
+          <div class="sep"></div>
+          <button onclick="actuInsertImg()" title="Image">🖼</button>
+        </div>
+        <div class="actu-content-editor" id="actu-content-editor" contenteditable="true"></div>
+      </div>
+      <div class="actu-field">
+        <label>Image principale (URL)</label>
+        <input type="url" id="actu-input-img" placeholder="https://… (optionnel)">
+      </div>
+      <div class="actu-editor-btns">
+        <button class="actu-del-btn" id="actu-del-btn" onclick="deleteActu()" style="display:none">🗑 Supprimer</button>
+        <button class="actu-cancel-btn" onclick="closeActuEditor()">Annuler</button>
+        <button class="actu-save-btn" onclick="saveActu()">Publier</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1699,15 +1784,11 @@
             <tr>
               <th class="th-var">Variété</th>
               <th class="th-emp">Emplacement</th>
-              <th class="th-num">Godets</th>
-              <th class="th-num">Plants</th>
-              <th class="th-m">Jan</th><th class="th-m">Fév</th><th class="th-m">Mar</th>
-              <th class="th-m">Avr</th><th class="th-m">Mai</th>
-              <th class="th-m">Jun</th><th class="th-m">Jul</th><th class="th-m">Aoû</th>
-              <th class="th-m">Sep</th><th class="th-m">Oct</th><th class="th-m">Nov</th><th class="th-m">Déc</th>
+              <th class="th-num" title="Godets">G</th>
+              <th class="th-num" title="Plants">P</th>
+              <th class="th-m" data-short="J"><span>Jan</span></th><th class="th-m" data-short="F"><span>Fév</span></th><th class="th-m" data-short="M"><span>Mar</span></th><th class="th-m" data-short="A"><span>Avr</span></th><th class="th-m" data-short="M"><span>Mai</span></th><th class="th-m" data-short="J"><span>Jun</span></th><th class="th-m" data-short="J"><span>Jul</span></th><th class="th-m" data-short="A"><span>Aoû</span></th><th class="th-m" data-short="S"><span>Sep</span></th><th class="th-m" data-short="O"><span>Oct</span></th><th class="th-m" data-short="N"><span>Nov</span></th><th class="th-m" data-short="D"><span>Déc</span></th>
             </tr>
-          </thead>
-          <tbody id="gt-body"></tbody>
+          </thead>          <tbody id="gt-body"></tbody>
         </table>
       </div>
     </section>
@@ -2914,11 +2995,12 @@ function cellHtml(date, other) {
   const dejaResHtml = isCellFull
     ? `<div style="font-size:9px;font-weight:700;color:#c0392b;text-align:center;line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">🍎 Complet</div>`
     : '';
-  const resaPills = resas.slice(0, 2).map(r =>
-    `<div class="resa-pill" style="background:#1e3a5f;color:#fff;border:1px solid #2d5a8e;font-weight:600;width:100%;justify-content:center;">
-      <div class="resa-dot" style="background:${r.couleur||'#d1d5db'};border:1px solid rgba(255,255,255,.4);"></div>${r.groupe||'Réservation'}
-    </div>`
-  ).join('');
+  // Une seule pastille "Réservation" par jour (peu importe le nombre)
+  const resaPills = resas.length > 0
+    ? `<div class="resa-pill" style="background:#1e3a5f;color:#fff;border:1px solid #2d5a8e;font-weight:600;width:100%;justify-content:center;border-radius:4px;padding:2px 5px;font-size:10px;display:flex;align-items:center;gap:4px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#60a5fa;display:inline-block;flex-shrink:0;"></span>Réservation${resas.length > 1 ? ' ('+resas.length+')' : ''}
+      </div>`
+    : '';
   const addBtn = adminMode ? `<button class="cal-admin-add" title="Ajouter">+</button>` : '';
   // Afficher l'icone de disponibilité si définie
   const dispo = getDispoForDate(ds);
@@ -4225,7 +4307,131 @@ if (resaForm) {
   });
 }
 
+
 // ===== GARDEN TRACKER LOGIC =====
+
+// ===== ACTUALITÉS HOMEPAGE =====
+let actuArticles = [];
+let actuEditing = null;
+
+async function loadActu() {
+  try {
+    const r = await fetch('/.netlify/functions/data-api?type=actualites');
+    if (r.ok) { actuArticles = await r.json() || []; }
+  } catch(e) {}
+  renderActu();
+}
+
+function renderActu() {
+  const grid = document.getElementById('actu-grid');
+  if (!grid) return;
+  if (!actuArticles.length) {
+    grid.innerHTML = '<div class="actu-empty">Aucune actualité pour le moment — revenez bientôt !</div>';
+    return;
+  }
+  const sorted = [...actuArticles].sort((a,b) => b.date.localeCompare(a.date));
+  grid.innerHTML = sorted.map(a => {
+    const clickAttr = adminMode ? ` onclick="openActuEditor('${a.id}')" style="cursor:pointer;"` : '';
+    return `<div class="actu-card"${clickAttr}>
+      <div class="actu-date">${fmtActuDate(a.date)}</div>
+      <div class="actu-title">${a.title}</div>
+      <div class="actu-body">${a.content}</div>
+      ${a.img ? `<img src="${a.img}" alt="" loading="lazy">` : ''}
+    </div>`;
+  }).join('');
+}
+
+function fmtActuDate(d) {
+  if (!d) return '';
+  try {
+    return new Date(d).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+  } catch(e) { return d; }
+}
+
+function openActuEditor(id) {
+  actuEditing = id || null;
+  const overlay = document.getElementById('actu-editor-overlay');
+  const titleEl = document.getElementById('actu-editor-title');
+  const inp = document.getElementById('actu-input-title');
+  const editor = document.getElementById('actu-content-editor');
+  const imgInput = document.getElementById('actu-input-img');
+  const delBtn = document.getElementById('actu-del-btn');
+  if (!overlay) return;
+  if (id) {
+    const art = actuArticles.find(a => a.id === id);
+    if (!art) return;
+    titleEl.textContent = 'Modifier l\'actualité';
+    inp.value = art.title || '';
+    editor.innerHTML = art.content || '';
+    imgInput.value = art.img || '';
+    if (delBtn) delBtn.style.display = '';
+  } else {
+    titleEl.textContent = 'Créer une actualité';
+    inp.value = '';
+    editor.innerHTML = '';
+    imgInput.value = '';
+    if (delBtn) delBtn.style.display = 'none';
+  }
+  overlay.classList.add('visible');
+  setTimeout(() => inp.focus(), 100);
+}
+
+function closeActuEditor() {
+  const overlay = document.getElementById('actu-editor-overlay');
+  if (overlay) overlay.classList.remove('visible');
+  actuEditing = null;
+}
+
+function actuInsertImg() {
+  const url = prompt('URL de l\'image à insérer :');
+  if (url) {
+    const ed = document.getElementById('actu-content-editor');
+    if (ed) { ed.focus(); document.execCommand('insertImage', false, url); }
+  }
+}
+
+async function saveActu() {
+  const title = (document.getElementById('actu-input-title').value || '').trim();
+  const content = (document.getElementById('actu-content-editor').innerHTML || '').trim();
+  const img = (document.getElementById('actu-input-img').value || '').trim();
+  if (!title) { alert('Le titre est requis'); return; }
+  const today = new Date().toISOString().split('T')[0];
+  if (actuEditing) {
+    const idx = actuArticles.findIndex(a => a.id === actuEditing);
+    if (idx >= 0) { actuArticles[idx] = { ...actuArticles[idx], title, content, img }; }
+    else { actuEditing = null; }
+  }
+  if (!actuEditing) {
+    actuArticles.unshift({ id: 'actu-' + Date.now(), date: today, title, content, img });
+  }
+  try {
+    await fetch('/.netlify/functions/data-api?type=actualites', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: ADMIN_PASSWORD, data: actuArticles })
+    });
+  } catch(e) { console.error('Erreur sauvegarde actu:', e); }
+  renderActu();
+  closeActuEditor();
+}
+
+async function deleteActu() {
+  if (!actuEditing) return;
+  if (!confirm('Supprimer cette actualité ?')) return;
+  actuArticles = actuArticles.filter(a => a.id !== actuEditing);
+  try {
+    await fetch('/.netlify/functions/data-api?type=actualites', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: ADMIN_PASSWORD, data: actuArticles })
+    });
+  } catch(e) {}
+  renderActu();
+  closeActuEditor();
+}
+
+loadActu();
+
+
+
 const GT_REF = {
   "Tomate Ananas":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 bande tomates"},
   "Tomate Banana Legs":{ancient:true,cycle:"A",sow:[2, 3],transplant:[4],plant:[5, 6],harvest:[7, 8, 9, 10],needsTransplant:true,stt:8,ttp:4,pth:10,emplacement:"Serre \u2014 tomates"},
@@ -6629,8 +6835,152 @@ function gtBuildFiche(name) {
       <p>${det.rot || '—'}</p>
     </div>
     ${det.mult ? `<div class="gt-fiche-section full"><h5>✂️ Multiplication</h5><p>${det.mult}</p></div>` : ''}
+    ${gtAdminMode ? `<div class="gt-fiche-section full" style="border-color:${(gardenTracking[name]||{}).dead ? '#f7c1c1' : 'var(--line)'};">
+      <h5>${(gardenTracking[name]||{}).dead ? '⚰️ Plant déclaré mort' : '🌿 Suivi & Gestion'}</h5>
+      ${(gardenTracking[name]||{}).dead
+        ? `<p style="color:#a32d2d;font-size:12px;margin:0 0 8px;">💀 Plant mort le ${(gardenTracking[name]||{}).deadDate||'?'}</p>
+           <div class="gt-replace-panel">
+             <h5>🔄 Suggestions de remplacement (en saison maintenant)</h5>
+             <div class="gt-replace-tags">${
+               (gtGetReplacements(name)||[]).map(r =>
+                 `<span class="gt-replace-tag" onclick="gtPickReplacement('${r}','${name}')" title="Remplacer par ${r}">${r}</span>`
+               ).join('') || '<em style="font-size:11px;color:#9c8a6a;">Aucune suggestion disponible ce mois-ci</em>'
+             }</div>
+           </div>
+           <button class="gt-add-vague-btn" style="margin-top:10px;" onclick="gtUnmarkDead('${name}')">↩ Annuler / Ressusciter</button>`
+        : `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+             <button class="gt-dead-btn" onclick="gtMarkDead('${name}')">💀 Déclarer mort</button>
+             <button class="gt-add-vague-btn" onclick="gtAddVague('${name}')">➕ Ajouter une vague de semis</button>
+           </div>
+           ${(gardenTracking[name]||{}).vagues && (gardenTracking[name]||{}).vagues.length
+             ? `<div class="gt-fiche-calendar" style="margin-top:0;">
+                  <h5 style="color:var(--clay);">🌊 Vagues de semis</h5>
+                  ${(gardenTracking[name].vagues||[]).map(v => `
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #e8e0d5;">
+                      <span style="font-size:11px;font-weight:700;color:var(--clay);min-width:60px;">${v.label}</span>
+                      <span style="font-size:10px;color:#7c6e5c;">${v.date||''}</span>
+                      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-left:auto;">
+                        <button class="gt-add-vague-btn" onclick="gtVagueAction('${name}','${v.id}','seme_godet')" style="${v.etape==='seme_godet'?'background:var(--leaf);color:white;':''}">🌱 Semé</button>
+                        <button class="gt-add-vague-btn" onclick="gtVagueAction('${name}','${v.id}','plante')" style="${v.etape==='plante'?'background:var(--leaf);color:white;':''}">🌳 Planté</button>
+                        <button class="gt-add-vague-btn" onclick="gtVagueAction('${name}','${v.id}','recolte')" style="${v.etape==='recolte'?'background:var(--clay);color:white;':''}">🧺 Récolté</button>
+                        <button class="gt-add-vague-btn" onclick="gtRemoveVague('${name}','${v.id}')" style="color:#a32d2d;">✕</button>
+                      </div>
+                    </div>`
+                  ).join('')}
+                </div>`
+             : ''
+           }`
+      }
+    </div>` : ''}
   </div>
 </div>`;
+}
+
+
+// ===== PLANT MORT + SUGGESTION REMPLACEMENT =====
+function gtMarkDead(name) {
+  const t = gardenTracking[name] || {};
+  t.dead = true;
+  t.deadDate = new Date().toISOString().split('T')[0];
+  gardenTracking[name] = t;
+  gtSave();
+  // Re-toggle la fiche pour montrer les suggestions
+  if (gtOpenFiche === name) {
+    const ficheRow = document.getElementById('fiche-' + name.replace(/[^a-z0-9]/gi,'_'));
+    if (ficheRow) ficheRow.cells[0].innerHTML = gtBuildFiche(name);
+  }
+  renderGardenTable();
+}
+
+function gtUnmarkDead(name) {
+  const t = gardenTracking[name] || {};
+  delete t.dead;
+  delete t.deadDate;
+  gardenTracking[name] = t;
+  gtSave();
+  renderGardenTable();
+}
+
+function gtGetReplacements(deadName) {
+  // Suggestions basées sur :
+  // 1. Compatibilité avec voisins (associations amies depuis GT_DETAIL)
+  // 2. Pas la même famille de rotation
+  // 3. En saison (mois courant dans les périodes de semis/plantation)
+  const det = GT_DETAIL[deadName] || {};
+  const rot = det.rot || '';
+  const empl = gtEmplacement(deadName);
+
+  const candidates = Object.keys(GT_REF).filter(name => {
+    if (name === deadName) return false;
+    if (gardenTracking[name] && gardenTracking[name].dead) return false;
+    const d = GT_DETAIL[name] || {};
+    // Éviter même rotation
+    if (rot && d.rot && d.rot.toLowerCase().includes(rot.split('(')[0].trim().toLowerCase())) return false;
+    // Vérifier si en saison (semis ou plantation ce mois-ci ou prochain)
+    const ref = GT_REF[name] || {};
+    const nextM = (GT_CUR % 12) + 1;
+    const inSeason = (ref.sow||[]).includes(GT_CUR) || (ref.sow||[]).includes(nextM) 
+                  || (ref.plant||[]).includes(GT_CUR) || (ref.plant||[]).includes(nextM);
+    return inSeason;
+  }).slice(0, 8);
+
+  return candidates;
+}
+
+function gtPickReplacement(name) {
+  // Pré-remplir l'ajout de variété ou simplement notifier
+  const t = gardenTracking[name] || {};
+  delete t.dead;
+  gardenTracking[name] = t;
+  // Ouvrir le modal pour la nouvelle variété sélectionnée
+  const msg = `Remplacer par "${name}" ?\n\nCette variété sera marquée comme à planter dans votre tableau.`;
+  if (confirm(msg)) {
+    if (!gardenTracking[name]) gardenTracking[name] = {};
+    gtSave();
+    renderGardenTable();
+  }
+}
+
+// ===== VAGUES MULTI-SEMIS =====
+function gtAddVague(name) {
+  if (!gtAdminMode) return;
+  const t = gardenTracking[name] || {};
+  const vagues = t.vagues || [];
+  const num = vagues.length + 1;
+  vagues.push({ id: name + '-v' + Date.now(), label: 'Vague ' + num, num, etape: null, semaine: null, date: new Date().toISOString().split('T')[0] });
+  gardenTracking[name] = { ...t, vagues };
+  gtSave();
+  renderGardenTable();
+}
+
+
+
+function gtVagueAction(name, vid, action) {
+  if (!gtAdminMode) return;
+  const t = gardenTracking[name];
+  if (!t || !t.vagues) return;
+  const v = t.vagues.find(x => x.id === vid);
+  if (!v) return;
+  v.etape = action;
+  v.date = new Date().toISOString().split('T')[0];
+  gardenTracking[name] = t;
+  gtSave();
+  const nid = name.replace(/[^a-z0-9]/gi,'_');
+  const ficheRow = document.getElementById('fiche-' + nid);
+  if (ficheRow) ficheRow.cells[0].innerHTML = gtBuildFiche(name);
+}
+
+function gtRemoveVague(name, vid) {
+  if (!gtAdminMode) return;
+  const t = gardenTracking[name];
+  if (!t || !t.vagues) return;
+  if (!confirm('Supprimer cette vague de semis ?')) return;
+  t.vagues = t.vagues.filter(v => v.id !== vid);
+  gardenTracking[name] = t;
+  gtSave();
+  const nid = name.replace(/[^a-z0-9]/gi,'_');
+  const ficheRow = document.getElementById('fiche-' + nid);
+  if (ficheRow) ficheRow.cells[0].innerHTML = gtBuildFiche(name);
 }
 
 // ===== MAPPING VARIETIES → GT_REF (nom plan → nom référentiel) =====
