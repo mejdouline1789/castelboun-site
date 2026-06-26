@@ -4330,8 +4330,10 @@ function renderActu() {
     return;
   }
   const sorted = [...actuArticles].sort((a,b) => b.date.localeCompare(a.date));
+  // Utiliser gtAdminMode (garden tracker) comme indicateur global du mode admin
+  const isAdminNow = (typeof gtAdminMode !== 'undefined' && gtAdminMode);
   grid.innerHTML = sorted.map(a => {
-    const clickAttr = adminMode ? ` onclick="openActuEditor('${a.id}')" style="cursor:pointer;"` : '';
+    const clickAttr = isAdminNow ? ` onclick="openActuEditor('${a.id}')" style="cursor:pointer;outline:2px dashed var(--clay);border-radius:14px;"` : '';
     return `<div class="actu-card"${clickAttr}>
       <div class="actu-date">${fmtActuDate(a.date)}</div>
       <div class="actu-title">${a.title}</div>
@@ -6539,6 +6541,9 @@ document.getElementById('garden-admin-btn') && document.getElementById('garden-a
       return;
     }
     gtAdminMode = true;
+    document.body.classList.add('admin-mode');
+    renderGardenTable();
+    if (typeof renderActu === 'function') renderActu();
     this.textContent = '💾 Enregistrer';
     this.style.cssText = 'background:var(--clay);color:white;border:1.5px solid var(--clay);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;';
     const ab = document.getElementById('gt-add-btn'); if (ab) ab.style.display = '';
@@ -6546,8 +6551,12 @@ document.getElementById('garden-admin-btn') && document.getElementById('garden-a
     // Enregistrer
     gtSaveAll();
     gtAdminMode = false;
+    document.body.classList.remove('admin-mode');
+    renderGardenTable();
     this.textContent = '⚙ Gérer mon jardin';
     this.style.cssText = 'background:none;border:none;font-size:12px;color:#c9bfaf;cursor:pointer;opacity:.6;padding:4px;';
+    if (typeof renderActu === 'function') renderActu();
+    renderGardenTable(); // Rebuild fiches avec boutons admin visibles
     const ab = document.getElementById('gt-add-btn'); if (ab) ab.style.display = 'none';
   }
   renderGardenTable();
